@@ -13,6 +13,11 @@ public class CaseWorker extends Person implements ICaseWorker{
     /**
      * 
      */
+    private Department department;
+    
+    /**
+     * 
+     */
     private int employeeId;
     
     /**
@@ -23,25 +28,34 @@ public class CaseWorker extends Person implements ICaseWorker{
     /**
      * 
      */
-    private Case[] cases;
+    private ICase[] cases;
     
     /**
      * 
      * @param name
-     * @param mobilNumber
+     * @param phoneNumber
      * @param email 
+     * @param department 
+     * @param employeeId 
+     * @param userId 
      */
-    public CaseWorker(String name, int mobilNumber, String email) {
-        super(name, mobilNumber, email);
+    public CaseWorker(String name, int phoneNumber, String email, Department department, int employeeId, String userId) {
+        super(name, phoneNumber, email);
+        this.department = department;
+        this.employeeId = employeeId;
+        this.userId = userId;
     }
     
     /**
      *
      * @param caseWorker
+     * @param department
      */
-    public CaseWorker(ICaseWorker caseWorker) {
+    public CaseWorker(ICaseWorker caseWorker, Department department) {
         super(caseWorker.getName(), caseWorker.getMobileNumber(), caseWorker.getEmail());
-        
+        this.employeeId = caseWorker.getEmployeeId();
+        this.userId = caseWorker.getUserId();
+        this.department = department;
     }
 
     /**
