@@ -31,7 +31,7 @@ public class CaseWorker extends Person implements ICaseWorker{
      * @param mobilNumber
      * @param email 
      */
-    public CaseWorker(String name, int mobilNumber, String email) {
+    public CaseWorker(String name, String mobilNumber, String email) {
         super(name, mobilNumber, email);
     }
     
@@ -40,7 +40,7 @@ public class CaseWorker extends Person implements ICaseWorker{
      * @param caseWorker
      */
     public CaseWorker(ICaseWorker caseWorker) {
-        super(caseWorker.getName(), caseWorker.getMobileNumber(), caseWorker.getEmail());
+        super(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail());
         
     }
 
