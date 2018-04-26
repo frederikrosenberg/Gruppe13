@@ -9,7 +9,7 @@ import java.util.Date;
  * @author andreasmolgaard-andersen
  */
 public class Case implements ICase {
-    
+
     private boolean informed;
     private String state;
     private Date openingDate;
@@ -19,29 +19,28 @@ public class Case implements ICase {
     private String reason;
     private String availableOffers;
     private String sourceOfReqeust;
-    
     private Citizen citizen;
 
     public Case() {
-        
+
     }
 
     public Case(ICase c) {
-        
+
     }
-    
+
     public int getCitizenCPR() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public String getCitizenName() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public boolean closeCase() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public ICitizen getCitizen() {
         return citizen;
@@ -76,7 +75,5 @@ public class Case implements ICase {
     public String getSourceOfRequest() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 
-    
 }
