@@ -9,6 +9,8 @@ package common;
  *
  * @author fsr19
  */
-public class Common {
-    
+public enum RelationshipStatus {
+    SINGLE,
+    MARRIED,
+    IN_RELATIONSHIP
 }
