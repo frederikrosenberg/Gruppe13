@@ -16,12 +16,20 @@ public class Citizen extends Person implements ICitizen {
     private Gender gender;
     
 
-    public Citizen() {
-        
+    public Citizen(String name, int mobileNumber, String email, int cpr, String address, RelationshipStatus relationshipStatus, Gender gender) {
+        super(name, mobileNumber, email);
+        this.cpr = cpr;
+        this.address = address;
+        this.relationshipStatus = relationshipStatus;
+        this.gender = gender;
     }
     
     public Citizen(ICitizen citizen) {
-        
+        super(citizen.getName(), citizen.getMobileNumber(), citizen.getEmail());
+        this.cpr = citizen.getCpr();
+        this.address = citizen.getAddress();
+        this.relationshipStatus = citizen.getRelationshipStatus();
+        this.gender = citizen.getGender();     
     }
     
     @Override
