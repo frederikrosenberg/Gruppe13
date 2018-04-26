@@ -19,6 +19,8 @@ public class Case implements ICase {
     private String reason;
     private String availableOffers;
     private String sourceOfReqeust;
+    
+    private Citizen citizen;
 
     public Case() {
         
@@ -42,7 +44,7 @@ public class Case implements ICase {
     
     @Override
     public ICitizen getCitizen() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return citizen;
     }
 
     @Override
