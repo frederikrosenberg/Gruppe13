@@ -22,10 +22,8 @@ public class Department implements IDepartment {
     private String phoneNumber;
     
     public Department(IDepartment department) {
-        // TODO Foreach caseworkers
-        //caseWorkers = department.getCaseWorkers();
         for (ICaseWorker caseWorker : department.getCaseWorkers()) {
-            caseWorkers.add((CaseWorker) caseWorker);
+            caseWorkers.add(new CaseWorker(caseWorker, this));
         }
         name = department.getName();
         treatmentArea = department.getTreatmentArea();
