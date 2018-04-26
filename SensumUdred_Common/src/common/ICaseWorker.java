@@ -5,6 +5,8 @@
  */
 package common;
 
+import java.util.List;
+
 /**
  *
  * @author fsr19
@@ -12,4 +14,5 @@ package common;
 public interface ICaseWorker extends IPerson {
     int getEmployeeId();
     String getUserId();
+    List<? extends ICase> getActiveCases();
 }
