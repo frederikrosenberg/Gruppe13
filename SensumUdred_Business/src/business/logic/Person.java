@@ -9,12 +9,12 @@ import common.IPerson;
 public class Person implements IPerson{
 
     private String name;
-    private int mobileNumber;
+    private String phoneNumber;
     private String email;
 
-    public Person(String name, int mobileNumber, String email) {
+    public Person(String name, String phoneNumber, String email) {
         this.name = name;
-        this.mobileNumber = mobileNumber;
+        this.phoneNumber = phoneNumber;
         this.email = email;
     }
     
@@ -24,8 +24,8 @@ public class Person implements IPerson{
     }
 
     @Override
-    public int getMobileNumber() {
-        return this.mobileNumber;
+    public String getPhoneNumber() {
+        return this.phoneNumber;
     }
 
     @Override

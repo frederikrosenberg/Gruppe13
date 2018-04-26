@@ -11,6 +11,6 @@ package common;
  */
 public interface IPerson {
     String getName();
-    int getMobileNumber();
+    String  getPhoneNumber();
     String getEmail();
 }
