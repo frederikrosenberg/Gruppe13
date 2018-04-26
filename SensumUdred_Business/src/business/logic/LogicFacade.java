@@ -7,13 +7,18 @@ package business.logic;
 
 import business.common.ILogicFacade;
 import common.ICase;
+import common.ICaseWorker;
 import common.ICitizenData;
+import common.IDepartment;
 
 /**
  *
  * @author larsjorgensen
  */
 public class LogicFacade implements ILogicFacade {
+    
+    private IDepartment department;
+    private ICaseWorker caseWorker;
 
     @Override
     public ICase openCase(ICitizenData citizenData) {
