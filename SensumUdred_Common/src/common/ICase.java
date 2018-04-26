@@ -17,4 +17,5 @@ public interface ICase {
     String getReason();
     String getAvailableOffers();
     String getSourceOfRequest();
+    ICaseWorker getCaseWorker();
 }
