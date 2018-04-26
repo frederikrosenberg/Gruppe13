@@ -1,6 +1,7 @@
 package business.logic;
 
 import common.ICase;
+import common.ICaseWorker;
 import common.ICitizen;
 import java.util.Date;
 
@@ -73,6 +74,11 @@ public class Case implements ICase {
 
     @Override
     public String getSourceOfRequest() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ICaseWorker getCaseWorker() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
