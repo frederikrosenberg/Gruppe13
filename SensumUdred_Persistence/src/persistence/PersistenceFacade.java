@@ -13,8 +13,12 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
- *
- * @author fsr19
+ * The facade the that business layer communicate with.
+ * 
+ * Some of this class is reuse from another project: 
+ *  https://github.com/Frede175/HospitalGame/blob/master/HospitalGame_Persistence/src/persistence/PersistenceFacade.java
+ * 
+ * @author Frederik Rosenberg
  */
 public class PersistenceFacade implements IPersistenceFacade {
     
@@ -28,18 +32,33 @@ public class PersistenceFacade implements IPersistenceFacade {
      */
     private final String extension = ".ser";
 
+    /**
+     * Saves the given user manager and department to disk.
+     * This override other saved departments and user managers
+     * @param userManager that needs to be saved
+     * @param department that needs to be saved
+     * @return weather the save was success full or not
+     */
     @Override
     public boolean save(IUserManager userManager, IDepartment department) {
         DataObject data = new DataObject(department, userManager);
         return save(data);
     }
 
+    /**
+     * Loads saved department and user manager from disk.
+     * @return a object containing the department and user manager, 
+     * if there is no saved department or user manager this returns null.
+     */
     @Override
     public IDataObject load() {
         return load(DataObject.class);
     }
     
-    
+    /**
+     * Checks weather a save is available
+     * @return true if there is a save available
+     */
     @Override
     public boolean saveAvailable() {
         return fileExists(DataObject.class);
@@ -64,14 +83,15 @@ public class PersistenceFacade implements IPersistenceFacade {
      * save.
      */
     private boolean save(Serializable object) {
-        try (FileOutputStream fileOut = new FileOutputStream(commonName + object.getClass().getSimpleName() + extension)) {
-            ObjectOutputStream stream = new ObjectOutputStream(fileOut);
+        boolean s;
+        try (FileOutputStream fileOut = new FileOutputStream(commonName + object.getClass().getSimpleName() + extension);
+                ObjectOutputStream stream = new ObjectOutputStream(fileOut)) {
             stream.writeObject(object);
-            stream.close();
-            return true;
+            s = true;
         } catch (IOException ex) {
-            return false;
+            s = false;
         }
+        return s;
     }
 
     /**
@@ -83,12 +103,10 @@ public class PersistenceFacade implements IPersistenceFacade {
     private <T extends Serializable> T load(Class<T> type) {
         if (!fileExists(type)) return null;
         T object;
-        try (FileInputStream fileIn = new FileInputStream(commonName + type.getSimpleName() + extension)) {
-            ObjectInputStream in = new ObjectInputStream(fileIn);
+        try (FileInputStream fileIn = new FileInputStream(commonName + type.getSimpleName() + extension); ObjectInputStream in = new ObjectInputStream(fileIn)) {
             object = (T) in.readObject();
-            in.close();
         } catch (IOException | ClassNotFoundException i) {
-            return null;
+            object = null;
         }
         return object;
     }

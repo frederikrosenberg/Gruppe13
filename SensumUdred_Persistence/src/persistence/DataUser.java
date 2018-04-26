@@ -5,39 +5,106 @@ import common.Role;
 import java.io.Serializable;
 
 /**
- *
- * @author fsr19
+ * Data class for user
+ * @author Frederik Rosenberg
  */
 public class DataUser implements IUser, Serializable {
+    
+    /**
+     * The role the user has
+     */
+    private Role role;
+    
+    /**
+     * The user's username
+     */
+    private String username;
+    
+    /**
+     * The user id the user has
+     */
+    private String userId;
+    
+    /**
+     * The user's hashed password
+     */
+    private String password;
+    
+    /**
+     * The name of the user
+     */
+    private String name;
+    
+    /**
+     * Weather the user is active, meaning that it has not been deleted
+     */
+    private boolean active;
+    
+    /**
+     * Constructor for the data user
+     * @param user the given user
+     */
+    public DataUser(IUser user) {
+        role = user.getRole();
+        username = user.getUsername();
+        userId = user.getUserId();
+        password = user.getPassword();
+        name = user.getName();
+        active = user.getActive();
+    }
 
+    /**
+     * Getter for the role the user has
+     * @return the user role
+     */
     @Override
     public Role getRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return role;
     }
 
+    /**
+     * Getter for the users username
+     * @return the username of the user
+     */
     @Override
     public String getUsername() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return username;
     }
 
+    /**
+     * Getter for the users id
+     * @return the user id
+     */
     @Override
     public String getUserId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userId;
     }
 
+    /**
+     * Getter for the users hashed password
+     * @return 
+     */
     @Override
     public String getPassword() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return password;
     }
 
+    /**
+     * Getter for the name of the user
+     * @return name of user
+     */
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return name;
     }
 
+    /**
+     * Getter for if the user is active or not. If active the user has not been deleted
+     * @return if the user is active
+     */
     @Override
     public boolean getActive() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return active;
     }
     
 }
