@@ -3,6 +3,9 @@ package business.logic;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizenData;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -28,7 +31,7 @@ public class CaseWorker extends Person implements ICaseWorker{
     /**
      * 
      */
-    private ICase[] cases;
+    private Case[] cases;
     
     /**
      * 
@@ -106,8 +109,8 @@ public class CaseWorker extends Person implements ICaseWorker{
      * 
      * @return 
      */
-    public ICase[] getActiveCases() {
-        return cases;
+    public List<? extends ICase> getActiveCases() {
+        return Arrays.asList(cases);
     }
     
     /**

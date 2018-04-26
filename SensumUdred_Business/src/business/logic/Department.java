@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Department implements IDepartment {
 
-    private List<ICaseWorker> caseWorkers;
+    private List<CaseWorker> caseWorkers;
     private List<ICase> inactiveCases;
     private List<ICitizen> citizens;
     private String name;
@@ -22,7 +22,11 @@ public class Department implements IDepartment {
     private String phoneNumber;
     
     public Department(IDepartment department) {
-        caseWorkers = department.getCaseWorkers();
+        // TODO Foreach caseworkers
+        //caseWorkers = department.getCaseWorkers();
+        for (ICaseWorker caseWorker : department.getCaseWorkers()) {
+            caseWorkers.add((CaseWorker) caseWorker);
+        }
         name = department.getName();
         treatmentArea = department.getTreatmentArea();
         address = department.getAddress();
@@ -65,6 +69,11 @@ public class Department implements IDepartment {
 
     @Override
     public List<ICaseWorker> getCaseWorkers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<? extends ICase> getAllActiveCases() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
