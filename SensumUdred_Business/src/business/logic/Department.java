@@ -107,12 +107,8 @@ public class Department implements IDepartment {
      * @return All of the case workers in the department
      */
     @Override
-    public List<ICaseWorker> getCaseWorkers() {
-        List<ICaseWorker> workers = new ArrayList();
-        for (CaseWorker caseWorker : caseWorkers) {
-            workers.add((ICaseWorker)caseWorker);
-        }
-        return workers;
+    public List<? extends ICaseWorker> getCaseWorkers() {
+        return caseWorkers;
     }
 
     /**
@@ -121,9 +117,9 @@ public class Department implements IDepartment {
      */
     @Override
     public List<? extends ICase> getAllActiveCases() {
-        List<Case> cases = new ArrayList();
+        List<ICase> cases = new ArrayList();
         for (CaseWorker caseWorker : caseWorkers) {
-            cases.addAll( (List<Case>) caseWorker.getActiveCases());
+            cases.addAll(caseWorker.getActiveCases());
         }
         return cases;
     }
