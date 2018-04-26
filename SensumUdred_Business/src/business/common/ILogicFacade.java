@@ -5,10 +5,20 @@
  */
 package business.common;
 
+import common.ICase;
+import common.ICitizenData;
+
+
+
 /**
  *
  * @author larsjorgensen
  */
 public interface ILogicFacade {
-    
+    ICase openCase(ICitizenData citizenData);
+    boolean closeCase(int caseId);
+    ICase findActiveCase(int value, boolean isCpr);
+    ICase findActiveCase(String name);
+    ICase[] getAllActiveCases();
+    ICase[] getActiveCases();
 }
