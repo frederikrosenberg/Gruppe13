@@ -9,28 +9,28 @@ import common.IPerson;
 public class Person implements IPerson{
 
     private String name;
-    private int mobilNumber;
+    private int mobileNumber;
     private String email;
 
-    public Person(String name, int mobilNumber, String email) {
+    public Person(String name, int mobileNumber, String email) {
         this.name = name;
-        this.mobilNumber = mobilNumber;
+        this.mobileNumber = mobileNumber;
         this.email = email;
     }
     
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.name;
     }
 
     @Override
     public int getMobileNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.mobileNumber;
     }
 
     @Override
     public String getEmail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.email;
     }
     
 }
