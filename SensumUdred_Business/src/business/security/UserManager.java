@@ -62,15 +62,16 @@ public class UserManager implements IUserManager {
      * @return a unique 36 digit id
      */
     private String generateId() {
-        String userId="";
-        boolean duplicates=true;
-                
+        String userId = "";
+        boolean duplicates = true;
+
         while (duplicates) {
-            duplicates=false;
+            duplicates = false;
             userId = UUID.randomUUID().toString();
             for (User user : users) {
                 if (user.getUserId().equals(userId)) {
-                    duplicates=true;
+                    duplicates = true;
+                    break;
                 }
             }
         }
