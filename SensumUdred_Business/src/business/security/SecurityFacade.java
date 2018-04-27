@@ -5,10 +5,19 @@
  */
 package business.security;
 
+import business.common.ISecurityFacade;
+
 /**
- *
+ *The facade of the security Package
  * @author Krongrah
  */
-public class SecurityFacade {
+public class SecurityFacade implements ISecurityFacade{
+
+    private SecurityManager security = new SecurityManager();
+    private UserManager users = new UserManager();
+    
+    
+    
+    
     
 }

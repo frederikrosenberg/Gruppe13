@@ -61,54 +61,68 @@ public class User implements IUser {
 
     /**
      * Returns the role of the user.
+     *
      * @return the role of the user
      */
     @Override
     public Role getRole() {
         return role;
     }
-/**
- * sets the user to deactivated, removing their access to the system
- */
+
+    /**
+     * sets the user to deactivated, removing their access to the system
+     */
     public void deactivateUser() {
         active = false;
     }
-/**
- * Returns the username of the user.
- * @return the username of the user
- */
+
+    /**
+     * Returns the username of the user.
+     *
+     * @return the username of the user
+     */
     @Override
     public String getUsername() {
         return username;
     }
-/**
- *  Returns the name of the user.
- * @return the name of the user
- */
+
+    /**
+     * Returns the name of the user.
+     *
+     * @return the name of the user
+     */
     @Override
     public String getName() {
         return name;
     }
-/**
- * Returns the id of the user,
- * @return the id of the user
- */
+
+    /**
+     * Returns the id of the user,
+     *
+     * @return the id of the user
+     */
     @Override
     public String getUserId() {
         return userId;
     }
-/**
- * Returns the hashed password of the user.
- * @return the hashed password of the user
- */
+
+    /**
+     * Returns the hashed password of the user.
+     *
+     * @return the hashed password of the user
+     */
     @Override
     public String getPassword() {
         return password;
     }
-/**
- * Returns true of the user is active, and thus has access to the system, else returns false.
- * @return true of the user is active, and thus has access to the system, else returns false
- */
+
+    /**
+     * Returns true of the user is active, and thus has access to the system,
+     * else returns false.
+     *
+     * @return true of the user is active, and thus has access to the system,
+     * else returns false
+     */
     @Override
     public boolean getActive() {
         return active;

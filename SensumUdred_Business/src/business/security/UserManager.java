@@ -9,6 +9,7 @@ import java.util.UUID;
 
 /**
  * The class that creates and stores all the usrs of the program
+ *
  * @author Krongrah
  */
 public class UserManager implements IUserManager {
@@ -20,6 +21,7 @@ public class UserManager implements IUserManager {
 
     /**
      * Returns the list of users of the program.
+     *
      * @return the list of users of the program
      */
     @Override
@@ -29,6 +31,7 @@ public class UserManager implements IUserManager {
 
     /**
      * Adds a new user to the program.
+     *
      * @param name the name of the user
      * @param username the username of the user
      * @param password the hashed password of the user
@@ -38,9 +41,10 @@ public class UserManager implements IUserManager {
         users.add(new User(name, username, password, role, generateId()));
 
     }
-    
+
     /**
      * Generates a unique 36 digit id.
+     *
      * @return a unique 36 digit id
      */
     private String generateId() {

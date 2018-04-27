@@ -1,4 +1,3 @@
-
 package business.security;
 
 import java.security.MessageDigest;
@@ -9,8 +8,8 @@ import java.security.NoSuchAlgorithmException;
  * @author Krongrah
  */
 public class Hasher {
- 
-     /**
+
+    /**
      * is the MessageDigest
      */
     private MessageDigest md;
@@ -70,5 +69,3 @@ public class Hasher {
     }
 
 }
-
-
