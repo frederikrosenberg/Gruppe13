@@ -6,6 +6,7 @@
 package business.security;
 
 import business.common.ISecurityFacade;
+import common.Role;
 
 /**
  * The facade of the security Package
@@ -46,6 +47,17 @@ public class SecurityFacade implements ISecurityFacade {
     @Override
     public boolean logOut() {
         return security.logOut();
+    }
+
+    /**
+     * Returns true if the current user has the given role, false otherwise.
+     *
+     * @param role The role the current user is being checked for.
+     * @return true if the current user has the given role, false otherwise
+     */
+    @Override
+    public boolean hasAccess(Role role) {
+        return security.hasAccess(role);
     }
 
 }

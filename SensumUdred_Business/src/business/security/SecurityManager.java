@@ -1,6 +1,7 @@
 package business.security;
 
 import common.IUser;
+import common.Role;
 import java.util.List;
 
 /**
@@ -74,5 +75,19 @@ public class SecurityManager {
      */
     private String hashPassword(String password) {
         return hasher.hash(password);
+    }
+
+    /**
+     * Returns true if the current user has the given role, false otherwise.
+     *
+     * @param role The role the current user is being checked for.
+     * @return true if the current user has the given role, false otherwise
+     */
+    boolean hasAccess(Role role) {
+        if (currentUser.getActive() && currentUser.getRole().equals(role)) {
+            return true;
+        }
+
+        return false;
     }
 }

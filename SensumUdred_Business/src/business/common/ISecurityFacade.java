@@ -5,6 +5,8 @@
  */
 package business.common;
 
+import common.Role;
+
 /**
  * The interface for the security facade.
  *
@@ -29,4 +31,12 @@ public interface ISecurityFacade {
      * @return true if the log out was successful, otherwise false.
      */
     public boolean logOut();
+
+    /**
+     * Returns true if the current user has the given role, false otherwise.
+     *
+     * @param role The role the current user is being checked for.
+     * @return true if the current user has the given role, false otherwise
+     */
+    public boolean hasAccess(Role role);
 }
