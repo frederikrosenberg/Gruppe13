@@ -17,6 +17,8 @@ public interface IDepartment {
     String getAddress();
     String getEmail();
     String getPhoneNumber();
+    List<? extends ICase> getInactiveCases();
+    List<? extends ICitizen> getCitizens();
     List<? extends ICase> getAllActiveCases();
     List<? extends ICaseWorker> getCaseWorkers();
 }
