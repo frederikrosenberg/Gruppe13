@@ -142,4 +142,8 @@ public class Department implements IDepartment {
         return citizens;
     }
     
+    public void addInactiveCase(Case c) {
+        inactiveCases.add(c);
+    }
+    
 }

@@ -2,9 +2,8 @@ package business.logic;
 
 import common.ICase;
 import common.ICaseWorker;
+import common.ICitizen;
 import common.ICitizenData;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,7 +30,7 @@ public class CaseWorker extends Person implements ICaseWorker{
     /**
      * 
      */
-    private Case[] cases;
+    private List<Case> cases;
     
     /**
      * 
@@ -67,7 +66,19 @@ public class CaseWorker extends Person implements ICaseWorker{
      * @return 
      */
     public Case openCase(ICitizenData data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<? extends ICitizen> citizens = department.getCitizens();
+        Citizen citizen = null;
+        for (ICitizen c : citizens) {
+            if(c.getCpr() == data.getCitizen().getCpr()) {
+                citizen = (Citizen) c;
+            }
+        }
+        if(citizen == null) {
+            citizen = new Citizen(data.getCitizen());
+        }
+        Case c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), citizen, this);
+        cases.add(c);
+        return c;
     }
     
     /**
@@ -76,7 +87,14 @@ public class CaseWorker extends Person implements ICaseWorker{
      * @return 
      */
     public boolean closeCase(int caseId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Case aCase : cases) {
+            if(aCase.getId() == caseId) {
+                aCase.closeCase();
+                department.addInactiveCase(aCase);
+                cases.remove(aCase);
+            }
+        }
+        return true;
     }
     
     /**
@@ -84,12 +102,19 @@ public class CaseWorker extends Person implements ICaseWorker{
      * @param data
      * @return 
      */
-    public boolean editCase(ICitizenData data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean editCase(Case c, ICitizenData data) {
+        c.setAvailableOffers(data.getAvailableOffers());
+        c.setCaseWorker((CaseWorker)data.getCaseWorker());
+        c.setCitizen((Citizen)data.getCitizen());
+        c.setConsent(data.getConsent());
+        c.setReason(data.getReason());
+        c.setSourceOfReqeust(data.getSourceOfRequest());
+        c.setState(data.getState());
+        return true;
     }
     
     /**
-     * 
+     * Saves the 
      * @return 
      */
     public boolean saveCase() {
@@ -97,20 +122,11 @@ public class CaseWorker extends Person implements ICaseWorker{
     }
     
     /**
-     * 
-     * @param c
-     * @return 
-     */
-    public boolean editCase(ICase c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    } 
-    
-    /**
-     * 
-     * @return 
+     * Gets all the active cases
+     * @return All the active cases
      */
     public List<? extends ICase> getActiveCases() {
-        return Arrays.asList(cases);
+        return cases;
     }
     
     /**
@@ -119,7 +135,7 @@ public class CaseWorker extends Person implements ICaseWorker{
      */
     @Override
     public int getEmployeeId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return employeeId;
     }
 
     /**
@@ -128,7 +144,7 @@ public class CaseWorker extends Person implements ICaseWorker{
      */
     @Override
     public String getUserId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return userId;
     }
     
 }
