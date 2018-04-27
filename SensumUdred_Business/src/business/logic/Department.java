@@ -142,6 +142,10 @@ public class Department implements IDepartment {
         return citizens;
     }
     
+    /**
+     * Adds a case to the inactive case list
+     * @param c The case to move
+     */
     public void addInactiveCase(Case c) {
         inactiveCases.add(c);
     }

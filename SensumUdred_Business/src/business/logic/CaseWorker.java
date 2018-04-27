@@ -13,33 +13,33 @@ import java.util.List;
 public class CaseWorker extends Person implements ICaseWorker{
 
     /**
-     * 
+     * Contains the deparments of the caseworker
      */
     private Department department;
     
     /**
-     * 
+     * The employees Id
      */
     private int employeeId;
     
     /**
-     * 
+     * The Users Id
      */
     private String userId;
     
     /**
-     * 
+     * The list of active cases the case worker owns
      */
     private List<Case> cases;
     
     /**
-     * 
-     * @param name
-     * @param phoneNumber
-     * @param email 
-     * @param department 
-     * @param employeeId 
-     * @param userId 
+     * Contructs a new case worker
+     * @param name The case workers name
+     * @param phoneNumber The case workers phone number
+     * @param email The case workers email
+     * @param department The case workers department
+     * @param employeeId The case workers employee id
+     * @param userId The case workers user id
      */
     public CaseWorker(String name, String phoneNumber, String email, Department department, int employeeId, String userId) {
         super(name, phoneNumber, email);
@@ -49,9 +49,9 @@ public class CaseWorker extends Person implements ICaseWorker{
     }
     
     /**
-     *
-     * @param caseWorker
-     * @param department
+     * Constructs a case from an already existing case worker
+     * @param caseWorker The already existing case worker to extract data from
+     * @param department The department the existing case worker works at
      */
     public CaseWorker(ICaseWorker caseWorker, Department department) {
         super(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail());
@@ -61,9 +61,9 @@ public class CaseWorker extends Person implements ICaseWorker{
     }
 
     /**
-     * 
-     * @param data
-     * @return 
+     * Opens a new case to the case worker
+     * @param data The data to put into the new case
+     * @return The new case opened
      */
     public Case openCase(ICitizenData data) {
         List<? extends ICitizen> citizens = department.getCitizens();
@@ -82,9 +82,9 @@ public class CaseWorker extends Person implements ICaseWorker{
     }
     
     /**
-     * 
-     * @param caseId
-     * @return 
+     * Closes an case
+     * @param caseId The case id of the case to close
+     * @return True if the case is closed
      */
     public boolean closeCase(int caseId) {
         for (Case aCase : cases) {
@@ -98,9 +98,9 @@ public class CaseWorker extends Person implements ICaseWorker{
     }
     
     /**
-     * 
-     * @param data
-     * @return 
+     * Edit an already existing case
+     * @param data The data to change
+     * @return True if the case is changed
      */
     public boolean editCase(Case c, ICitizenData data) {
         c.setAvailableOffers(data.getAvailableOffers());
@@ -130,8 +130,8 @@ public class CaseWorker extends Person implements ICaseWorker{
     }
     
     /**
-     * 
-     * @return 
+     * Gets the employee id
+     * @return The employee id
      */
     @Override
     public int getEmployeeId() {
@@ -139,8 +139,8 @@ public class CaseWorker extends Person implements ICaseWorker{
     }
 
     /**
-     * 
-     * @return 
+     * Gets the user id
+     * @return The user id
      */
     @Override
     public String getUserId() {
