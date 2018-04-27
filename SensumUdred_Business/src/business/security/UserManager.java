@@ -19,6 +19,19 @@ public class UserManager implements IUserManager {
      * The a list containing all the users of the system.
      */
     private List<User> users = new ArrayList();
+    /**
+     * A reference to the security manager.
+     */
+    private SecurityManager security;
+
+    /**
+     * A constructor setting the security manager reference.
+     *
+     * @param security
+     */
+    UserManager(SecurityManager security) {
+        this.security = security;
+    }
 
     /**
      * Returns an unmodifiable list of users of the system.
@@ -36,12 +49,11 @@ public class UserManager implements IUserManager {
      *
      * @param name the name of the user
      * @param username the username of the user
-     * @param password the hashed password of the user
+     * @param password the password of the user
      * @param role the role of the user
      */
     public void addUser(String name, String username, String password, Role role) {
-        users.add(new User(name, username, password, role, generateId()));
-
+        users.add(new User(name, username, security.hashPassword(password), role, generateId()));
     }
 
     /**

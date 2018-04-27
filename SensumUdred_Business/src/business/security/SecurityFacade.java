@@ -19,12 +19,21 @@ public class SecurityFacade implements ISecurityFacade {
      * An instance of the user manager, responsible for creating and storing the
      * registered users of the system.
      */
-    private UserManager users = new UserManager();
+    private UserManager users;
     /**
      * An instance of the security manager, responsible for most of the security
      * logic.
      */
-    private SecurityManager security = new SecurityManager(users.getUsers());
+    private SecurityManager security;
+
+    /**
+     * A Constructor for the Security facade, which allows the injection of the
+     * security manager and the user manager into each other.
+     */
+    public SecurityFacade() {
+        users = new UserManager(security);
+        security = new SecurityManager(users);
+    }
 
     /**
      * Logs the current user into the system, if their username and password

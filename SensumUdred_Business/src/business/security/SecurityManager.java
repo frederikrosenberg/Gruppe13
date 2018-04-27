@@ -2,18 +2,17 @@ package business.security;
 
 import common.IUser;
 import common.Role;
-import java.util.List;
 
 /**
- *
+ * The class responsible for most security logic in the system.
  * @author Krongrah
  */
 public class SecurityManager {
 
     /**
-     * The list of registered users.
+     * A reference to the user manager.
      */
-    private List<? extends IUser> users;
+    private UserManager userManager;
     /**
      * The current user of the system.
      */
@@ -27,10 +26,10 @@ public class SecurityManager {
      * A constructor for the security manager, injecting a list of users to test
      * attempted log ins against.
      *
-     * @param users a list of users to test attempted log ins against
+     * @param userManager the user manager of the system
      */
-    public SecurityManager(List<? extends IUser> users) {
-        this.users = users;
+    public SecurityManager(UserManager userManager) {
+        this.userManager = userManager;
     }
 
     /**
@@ -47,7 +46,7 @@ public class SecurityManager {
             return false;
         }
         String hashedPassword = hashPassword(password);
-        for (IUser user : users) {
+        for (IUser user : userManager.getUsers()) {
             if (user.getActive() && user.getUsername().equals(username)
                     && user.getPassword().equals(hashedPassword)) {
                 currentUser = user;
@@ -73,7 +72,7 @@ public class SecurityManager {
      * @param password the password that needs to be hashed
      * @return the hashed password
      */
-    private String hashPassword(String password) {
+    String hashPassword(String password) {
         return hasher.hash(password);
     }
 
