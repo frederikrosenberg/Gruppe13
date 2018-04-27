@@ -28,6 +28,5 @@ public interface ISecurityFacade {
      *
      * @return true if the log out was successful, otherwise false.
      */
-
     public boolean logOut();
 }

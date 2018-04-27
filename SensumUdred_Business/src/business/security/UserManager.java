@@ -4,33 +4,35 @@ import common.IUser;
 import common.IUserManager;
 import common.Role;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * The class that creates and stores all the usrs of the program
+ * The class that creates and stores all the users of the system
  *
  * @author Krongrah
  */
 public class UserManager implements IUserManager {
 
     /**
-     * The a list containing all the users of the program.
+     * The a list containing all the users of the system.
      */
     private List<User> users = new ArrayList();
 
     /**
-     * Returns the list of users of the program.
+     * Returns an unmodifiable list of users of the system.
      *
-     * @return the list of users of the program
+     * @return an unmodifiable list of users of the system
      */
     @Override
     public List<? extends IUser> getUsers() {
-        return users;
+
+        return Collections.unmodifiableList(users);
     }
 
     /**
-     * Adds a new user to the program.
+     * Adds a new user to the system.
      *
      * @param name the name of the user
      * @param username the username of the user

@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * The class responsible for hashing passwords.
  *
  * @author Krongrah
  */
