@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author fsr19
+ * Data class for user manager
+ * @author Frederik Rosenberg
  */
 public class DataUserManager implements IUserManager, Serializable {
 
