@@ -25,12 +25,12 @@ public class PersistenceFacade implements IPersistenceFacade {
     /**
      * The name all files start with
      */
-    private final String commonName = "data_";
+    private static final String COMMON_NAME = "data_";
 
     /**
      * The file type for all files
      */
-    private final String extension = ".ser";
+    private static final String EXTENSION = ".ser";
 
     /**
      * Saves the given user manager and department to disk.
@@ -72,7 +72,7 @@ public class PersistenceFacade implements IPersistenceFacade {
      * @return true if the file exits
      */
     private <T> boolean fileExists(Class<T> type) {
-        return new File(commonName + type.getSimpleName() + extension).exists();
+        return new File(COMMON_NAME + type.getSimpleName() + EXTENSION).exists();
     }
 
     /**
@@ -84,7 +84,7 @@ public class PersistenceFacade implements IPersistenceFacade {
      */
     private boolean save(Serializable object) {
         boolean s;
-        try (FileOutputStream fileOut = new FileOutputStream(commonName + object.getClass().getSimpleName() + extension);
+        try (FileOutputStream fileOut = new FileOutputStream(COMMON_NAME + object.getClass().getSimpleName() + EXTENSION);
                 ObjectOutputStream stream = new ObjectOutputStream(fileOut)) {
             stream.writeObject(object);
             s = true;
@@ -103,7 +103,7 @@ public class PersistenceFacade implements IPersistenceFacade {
     private <T extends Serializable> T load(Class<T> type) {
         if (!fileExists(type)) return null;
         T object;
-        try (FileInputStream fileIn = new FileInputStream(commonName + type.getSimpleName() + extension); ObjectInputStream in = new ObjectInputStream(fileIn)) {
+        try (FileInputStream fileIn = new FileInputStream(COMMON_NAME + type.getSimpleName() + EXTENSION); ObjectInputStream in = new ObjectInputStream(fileIn)) {
             object = (T) in.readObject();
         } catch (IOException | ClassNotFoundException i) {
             object = null;
