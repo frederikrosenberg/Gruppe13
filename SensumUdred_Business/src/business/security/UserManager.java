@@ -3,6 +3,7 @@ package business.security;
 import common.IUser;
 import common.IUserManager;
 import common.Role;
+import static common.Role.CASEWORKER;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +37,8 @@ public class UserManager implements IUserManager {
      */
     UserManager(SecurityManager security) {
         this.security = security;
+        //Adding dummy data.
+        addUser("name", "username", "password", CASEWORKER);
     }
 
     /**
