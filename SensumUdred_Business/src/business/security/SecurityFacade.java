@@ -20,7 +20,7 @@ public class SecurityFacade implements ISecurityFacade {
      * An instance of the user manager, responsible for creating and storing the
      * registered users of the system.
      */
-    private IUserManager users;
+    private UserManager users;
     /**
      * An instance of the security manager, responsible for most of the security
      * logic.
@@ -69,5 +69,7 @@ public class SecurityFacade implements ISecurityFacade {
     public boolean hasAccess(Role role) {
         return security.hasAccess(role);
     }
-
+    public IUserManager getUserManager(){
+    return users;
+    }
 }

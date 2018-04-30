@@ -1,6 +1,7 @@
 package business.security;
 
 import common.IUser;
+import common.IUserManager;
 import common.Role;
 
 /**
