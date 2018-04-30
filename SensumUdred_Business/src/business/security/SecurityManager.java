@@ -6,17 +6,17 @@ import common.Role;
 /**
  * The class responsible for most security logic in the system.
  *
- * @author Krongrah
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class SecurityManager {
 
     /**
-     * @author Andreas Mølgaard-Andersen
-     * @author Lars Bjerregaard Jørgensen
-     * @author Frederik Rosenberg
-     * @author Mikkel Larsen
-     * @author Sebastian Christensen
-     * @author Kasper Schødts
+     * The usermanager, containing the users of the system.
      */
     private UserManager userManager;
     /**
@@ -45,7 +45,7 @@ public class SecurityManager {
      *
      * @param username the username to be matched against the existing ones
      * @param password the password to be matched against the existing ones
-     * @return true if the login was successful, otherwise false
+     * @return user id if the login was successful, otherwise null
      */
     public String logIn(String username, String password) {
         if (!hasher.isReady()) {
