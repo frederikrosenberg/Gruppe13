@@ -15,13 +15,13 @@ import common.RelationshipStatus;
  */
 public class UICitizen implements ICitizen {
     
-    private int cpr;
-    private String address;
-    private String name;
-    private int mobilNumber;
-    private String email;
-    private Gender gender;
-    private RelationshipStatus relStat;
+    private final int cpr;
+    private final String address;
+    private final String name;
+    private final int mobilNumber;
+    private final String email;
+    private final Gender gender;
+    private final RelationshipStatus relStat;
     
     public UICitizen(int cpr, String address, String name, int mobNumber, String email, Gender gender, RelationshipStatus relstat){
         this.cpr = cpr;
