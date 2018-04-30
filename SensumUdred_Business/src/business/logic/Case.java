@@ -11,16 +11,59 @@ import java.util.Date;
  */
 public class Case implements ICase {
 
+    /**
+     * If the user is informed
+     */
     private boolean informed;
+    
+    /**
+     * The state of the case
+     */
     private String state;
+    
+    /**
+     * The opening date of the case
+     */
     private Date openingDate;
+    
+    /**
+     * The closing date of the case
+     */
     private Date closingDate;
+    
+    /**
+     * The id of the case
+     */
     private int id;
+    
+    /**
+     * If the citizen has given consent
+     */
     private boolean consent;
+    
+    /**
+     * The reason of the case
+     */
     private String reason;
+    
+    /**
+     * Available offer to the case
+     */
     private String availableOffers;
+    
+    /**
+     * Source of request of the case
+     */
     private String sourceOfReqeust;
+    
+    /**
+     * The citizen the case is about
+     */
     private Citizen citizen;
+    
+    /**
+     * The caseworker that works with the case
+     */
     private CaseWorker caseWorker;
 
     /**
@@ -48,7 +91,13 @@ public class Case implements ICase {
      * @param c The case data to extract from
      */
     public Case(ICase c) {
-        
+        this.state = c.getState();
+        this.consent = c.getConsent();
+        this.reason = c.getReason();
+        this.availableOffers = c.getAvailableOffers();
+        this.sourceOfReqeust = c.getSourceOfRequest();
+        this.citizen = (Citizen) c.getCitizen();
+        this.caseWorker = (CaseWorker) c.getCaseWorker();
     }
     
     /**
@@ -72,7 +121,8 @@ public class Case implements ICase {
      * @return True if the case is closed correct
      */
     public boolean closeCase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        state = "Closed";
+        return true;
     }
 
     /**

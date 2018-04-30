@@ -3,8 +3,12 @@ package business.logic;
 import common.IPerson;
 
 /**
- *
- * @author andreasmolgaard-andersen
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class Person implements IPerson{
 

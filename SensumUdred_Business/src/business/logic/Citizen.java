@@ -5,8 +5,12 @@ import common.ICitizen;
 import common.RelationshipStatus;
 
 /**
- *
- * @author andreasmolgaard-andersen
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class Citizen extends Person implements ICitizen {
 
@@ -29,6 +33,11 @@ public class Citizen extends Person implements ICitizen {
      * The citizens gender
      */
     private Gender gender;
+    
+    /**
+     * The current active case of the citizen
+     */
+    private Case activeCase;
     
     /**
      * Construct a new citizen
@@ -70,10 +79,14 @@ public class Citizen extends Person implements ICitizen {
     }
     
     /**
-     * Remove the citizens active case
+     * Removes the citizens active case
      */
     public void removeActiveCase() {
-        
+        activeCase = null;
+    }
+    
+    public void setActiveCase(Case c) {
+        activeCase = c;
     }
     
     /**

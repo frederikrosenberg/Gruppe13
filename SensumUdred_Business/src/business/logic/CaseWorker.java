@@ -7,8 +7,12 @@ import common.ICitizenData;
 import java.util.List;
 
 /**
- *
- * @author andreasmolgaard-andersen
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class CaseWorker extends Person implements ICaseWorker{
 
@@ -111,14 +115,6 @@ public class CaseWorker extends Person implements ICaseWorker{
         c.setSourceOfReqeust(data.getSourceOfRequest());
         c.setState(data.getState());
         return true;
-    }
-    
-    /**
-     * Saves the 
-     * @return 
-     */
-    public boolean saveCase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     /**
