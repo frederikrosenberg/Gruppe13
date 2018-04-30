@@ -76,16 +76,16 @@ public class Case implements ICase {
      * @param consent Consent from the citizen
      * @param reason The reason for the case
      * @param availableOffers Available offers to the case
-     * @param sourceOfReqeust Source of request 
+     * @param sourceOfRequest Source of request 
      * @param citizen The citizen the case is about
      * @param caseWorker The case worker of the case
      */
-    public Case(String state, boolean consent, String reason, String availableOffers, String sourceOfReqeust, Citizen citizen, CaseWorker caseWorker) {
+    public Case(String state, boolean consent, String reason, String availableOffers, String sourceOfRequest, Citizen citizen, CaseWorker caseWorker) {
         this.state = state;
         this.consent = consent;
         this.reason = reason;
         this.availableOffers = availableOffers;
-        this.sourceOfRequest = sourceOfReqeust;
+        this.sourceOfRequest = sourceOfRequest;
         this.citizen = citizen;
         this.caseWorker = caseWorker;
     }
