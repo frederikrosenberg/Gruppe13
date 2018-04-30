@@ -37,6 +37,18 @@ public class SecurityFacade implements ISecurityFacade {
     }
 
     /**
+     * A Constructor for the Security facade, which allows the injection of the
+     * security manager and the user manager into each other. This constructor
+     * uses an IUserManager to load users into the system.
+     *
+     * @param userManager
+     */
+    public SecurityFacade(IUserManager userManager) {
+        users = new UserManager(security, userManager);
+        security = new SecurityManager(users);
+    }
+
+    /**
      * Logs the current user into the system, if their username and password
      * matches that of a registered user.
      *
