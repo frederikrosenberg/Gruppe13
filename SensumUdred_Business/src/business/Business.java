@@ -35,7 +35,13 @@ public class Business implements IBusinessFacade {
     }
     
     
-    
+    /**
+     * Logs the the user in, given that their information is valid.
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return true if the log in was successful, else false
+     */
     @Override
     public boolean login(String username, String password) {
         String id = security.logIn(username, password);
@@ -46,7 +52,11 @@ public class Business implements IBusinessFacade {
         
         return true;
     }
-
+    /**
+     * Logs the user out.
+     *
+     * @return true.
+     */
     @Override
     public boolean logOut() {
         if (security.hasAccess(Role.CASEWORKER)) {
@@ -56,6 +66,12 @@ public class Business implements IBusinessFacade {
         return true;
     }
 
+    /**
+     * Opens a new case based on the entered data.
+     *
+     * @param citizenData the information needed for the case
+     * @return the newly opened case
+     */
     @Override
     public ICase openCase(ICitizenData citizenData) {
         if (security.hasAccess(Role.CASEWORKER)) {
@@ -63,7 +79,12 @@ public class Business implements IBusinessFacade {
         } 
         return null;
     }
-
+    
+    /**
+     * Closes a case from a given case id
+     * @param caseId The case to close
+     * @return True if the case is closed
+     */
     @Override
     public boolean closeCase(int caseId) {
         if (security.hasAccess(Role.CASEWORKER)) {
@@ -71,12 +92,21 @@ public class Business implements IBusinessFacade {
         }
         return false;
     }
-
+    /**
+     * To be called when the system shuts down.
+     */
     @Override
     public void closing() {
         save();
     }
-
+    
+    /**
+     * Finds an active case from either cpr or case id
+     *
+     * @param value the search parameter
+     * @param isCpr if true the value is cpr otherwise it is case id
+     * @return the case found, else null
+     */
     @Override
     public ICase findActiveCase(int value, boolean isCpr) {
         if (security.hasAccess(Role.CASEWORKER)) {
@@ -85,6 +115,12 @@ public class Business implements IBusinessFacade {
         return null;
     }
 
+    /**
+     * Finds an active case from the name of the concerned citizen.
+     *
+     * @param name the name of the concerned citizen
+     * @return the case found, else null
+     */
     @Override
     public ICase findActiveCase(String name) {
         if (security.hasAccess(Role.CASEWORKER)) {
@@ -93,6 +129,11 @@ public class Business implements IBusinessFacade {
         return null;
     }
 
+    /**
+     * Returns all active cases in the department.
+     *
+     * @return all active cases in the department
+     */
     @Override
     public List<? extends ICase> getAllActiveCases() {
         if (security.hasAccess(Role.CASEWORKER)) {
@@ -101,6 +142,11 @@ public class Business implements IBusinessFacade {
         return null;
     }
 
+    /**
+     * Returns all active cases of the current caseworker.
+     *
+     * @return all active cases of the current caseworker
+     */
     @Override
     public List<? extends ICase> getActiveCases() {
         if (security.hasAccess(Role.CASEWORKER)) {
@@ -109,11 +155,20 @@ public class Business implements IBusinessFacade {
         return null;
     }
 
+    /**
+     * Injects a reference to the persistence layer
+     *
+     * @param persistence the reference to be
+     */
     @Override
     public void injectPersistence(IPersistenceFacade persistence) {
         this.persistence = persistence;
     }
 
+    /**
+     * Gets the current logged in case worker
+     * @return The current logged in case worker
+     */
     @Override
     public ICaseWorker getCaseWorker() {
         if (security.hasAccess(Role.CASEWORKER)) {
@@ -126,7 +181,7 @@ public class Business implements IBusinessFacade {
         if (persistence.saveAvailable()) {
             IDataObject data = persistence.load();
             logic = new LogicFacade(data.getDepartment());
-            //security = new SecurityFacade(data.getUserManager());
+            security = new SecurityFacade(data.getUserManager());
             
         } else {
             logic = new LogicFacade();
@@ -135,7 +190,7 @@ public class Business implements IBusinessFacade {
     }
     
     private boolean save() {
-        return persistence.save(security., logic.getDepartment());
+        return persistence.save(security.getUserManager(), logic.getDepartment());
     }
     
     
