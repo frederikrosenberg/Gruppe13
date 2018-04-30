@@ -278,10 +278,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void EditExistingCases(MouseEvent event) {
         editCasesGridPane.setVisible(true);
-        ObservableList<ICase> cases = FXCollections.observableArrayList();
-        cases.addAll((List<ICase>)business.getActiveCases());
-        casesListView.setItems(FXCollections.observableArrayList(cases));
-
+        casesListView.setItems(FXCollections.observableArrayList((List<ICase>)business.getActiveCases()));
     }
 
     /**
