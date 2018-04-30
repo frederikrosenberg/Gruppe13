@@ -54,7 +54,7 @@ public class Case implements ICase {
     /**
      * Source of request of the case
      */
-    private String sourceOfReqeust;
+    private String sourceOfRequest;
     
     /**
      * The citizen the case is about
@@ -81,7 +81,7 @@ public class Case implements ICase {
         this.consent = consent;
         this.reason = reason;
         this.availableOffers = availableOffers;
-        this.sourceOfReqeust = sourceOfReqeust;
+        this.sourceOfRequest = sourceOfReqeust;
         this.citizen = citizen;
         this.caseWorker = caseWorker;
     }
@@ -95,7 +95,7 @@ public class Case implements ICase {
         this.consent = c.getConsent();
         this.reason = c.getReason();
         this.availableOffers = c.getAvailableOffers();
-        this.sourceOfReqeust = c.getSourceOfRequest();
+        this.sourceOfRequest = c.getSourceOfRequest();
         this.citizen = (Citizen) c.getCitizen();
         this.caseWorker = (CaseWorker) c.getCaseWorker();
     }
@@ -185,7 +185,7 @@ public class Case implements ICase {
      */
     @Override
     public String getSourceOfRequest() {
-        return sourceOfReqeust;
+        return sourceOfRequest;
     }
 
     /**
@@ -242,7 +242,7 @@ public class Case implements ICase {
      * @param sourceOfReqeust The source of request
      */
     public void setSourceOfReqeust(String sourceOfReqeust) {
-        this.sourceOfReqeust = sourceOfReqeust;
+        this.sourceOfRequest = sourceOfReqeust;
     }
 
     /**
