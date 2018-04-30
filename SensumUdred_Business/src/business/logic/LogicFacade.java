@@ -7,9 +7,8 @@ package business.logic;
 
 import business.common.ILogicFacade;
 import common.ICase;
-import common.ICaseWorker;
 import common.ICitizenData;
-import common.IDepartment;
+import java.util.List;
 
 /**
  *
@@ -17,37 +16,37 @@ import common.IDepartment;
  */
 public class LogicFacade implements ILogicFacade {
     
-    private IDepartment department;
-    private ICaseWorker caseWorker;
+    private Department department;
+    private CaseWorker caseWorker;
 
     @Override
     public ICase openCase(ICitizenData citizenData) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return caseWorker.openCase(citizenData);
     }
 
     @Override
     public boolean closeCase(int caseId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return caseWorker.closeCase(caseId);
     }
 
     @Override
     public ICase findActiveCase(int value, boolean isCpr) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return department.findActiveCase(value, isCpr);
     }
 
     @Override
     public ICase findActiveCase(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return department.findActiveCase(name);
     }
 
     @Override
-    public ICase[] getAllActiveCases() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<? extends ICase> getAllActiveCases() {
+        return department.getAllActiveCases();
     }
 
     @Override
-    public ICase[] getActiveCases() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<? extends ICase> getActiveCases() {
+       return caseWorker.getActiveCases();
     }
     
 }

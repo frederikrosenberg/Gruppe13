@@ -7,6 +7,7 @@ package business.common;
 
 import common.ICase;
 import common.ICitizenData;
+import java.util.List;
 
 
 
@@ -19,6 +20,6 @@ public interface ILogicFacade {
     boolean closeCase(int caseId);
     ICase findActiveCase(int value, boolean isCpr);
     ICase findActiveCase(String name);
-    ICase[] getAllActiveCases();
-    ICase[] getActiveCases();
+    List<? extends ICase> getAllActiveCases();
+    List<? extends ICase> getActiveCases();
 }

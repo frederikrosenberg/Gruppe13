@@ -132,6 +132,14 @@ public class Department implements IDepartment {
                 if(value == activeCase.getId()) return activeCase;
             }
         }
+        return null;
+    }
+    
+    public ICase findActiveCase(String name) {
+        for (ICase activeCase : getAllActiveCases()) {
+            if(name.toLowerCase().equals(activeCase.getCitizen().getName().toLowerCase())) return activeCase;
+        }
+        return null;
     }
 
     /**
