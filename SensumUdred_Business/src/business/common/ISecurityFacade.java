@@ -1,5 +1,6 @@
 package business.common;
 
+import common.IUserManager;
 import common.Role;
 
 /**
@@ -39,4 +40,12 @@ public interface ISecurityFacade {
      * @return true if the current user has the given role, false otherwise
      */
     public boolean hasAccess(Role role);
+
+    /**
+     * Return. the user manager containing the users.
+     *
+     * @return the user manager containing the users
+     */
+    public IUserManager getUserManager();
+
 }
