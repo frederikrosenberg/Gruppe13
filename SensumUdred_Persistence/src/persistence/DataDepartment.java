@@ -69,20 +69,51 @@ public class DataDepartment implements IDepartment, Serializable {
         address = department.getAddress();
         email = department.getEmail();
         phoneNumber = department.getPhoneNumber();
-        caseWorkers = new ArrayList<>();
-        for (ICaseWorker caseWorker : department.getCaseWorkers()) {
-            caseWorkers.add(new DataCaseWorker(caseWorker));
-        }
+        
         citizens = new ArrayList<>();
         for (ICitizen citizen : department.getCitizens()) {
             citizens.add(new DataCitizen(citizen));
         }
         
+        caseWorkers = new ArrayList<>();
+        for (ICaseWorker caseWorker : department.getCaseWorkers()) {
+            caseWorkers.add(new DataCaseWorker(caseWorker, this));
+        }
+        
         inactiveCases = new ArrayList<>();
         for (ICase inactiveCase : department.getInactiveCases()) {
-            inactiveCases.add(new DataCase(inactiveCase));
+            inactiveCases.add(new DataCase(inactiveCase, findCaseWorker(inactiveCase.getCaseWorker().getUserId()), findCitizen(inactiveCase.getCitizen().getCpr())));
         }
     }
+    
+    /**
+     * Find a case worker
+     * @param id of the case worker
+     * @return the found case worker
+     * @throws IllegalArgumentException if not found, because this should be fund while saving otherwise something is missing
+     */
+    private DataCaseWorker findCaseWorker(String id) {
+        for (DataCaseWorker worker : caseWorkers) {
+            if (worker.getUserId().equals(id)) return worker;
+        }
+        throw new IllegalArgumentException();
+    }
+    
+    /**
+     * Find a citizen 
+     * @param cpr of the citizen
+     * @return the found citizen
+     * @throws IllegalArgumentException if not found, because this should be fund while saving otherwise something is missing
+     */
+    public DataCitizen findCitizen(int cpr) {
+        for (DataCitizen citizen : citizens) {
+            if (citizen.getCpr() == cpr) return citizen;
+        }
+        throw new IllegalArgumentException();
+    }
+    
+    
+    
 
     /**
      * The name of department
