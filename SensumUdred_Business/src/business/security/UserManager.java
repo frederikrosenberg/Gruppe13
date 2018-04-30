@@ -11,7 +11,12 @@ import java.util.UUID;
 /**
  * The class that creates and stores all the users of the system
  *
- * @author Krongrah
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class UserManager implements IUserManager {
 

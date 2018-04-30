@@ -11,7 +11,12 @@ import common.Role;
 /**
  * A registered user of the system
  *
- * @author Krongrah
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class User implements IUser {
 

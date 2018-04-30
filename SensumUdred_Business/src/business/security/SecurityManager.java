@@ -11,7 +11,12 @@ import common.Role;
 public class SecurityManager {
 
     /**
-     * A reference to the user manager.
+     * @author Andreas Mølgaard-Andersen
+     * @author Lars Bjerregaard Jørgensen
+     * @author Frederik Rosenberg
+     * @author Mikkel Larsen
+     * @author Sebastian Christensen
+     * @author Kasper Schødts
      */
     private UserManager userManager;
     /**
@@ -21,7 +26,7 @@ public class SecurityManager {
     /**
      * The hasher responsible for hashing passwords.
      */
-    private Hasher hasher = new Hasher();
+    private Hasher hasher;
 
     /**
      * A constructor for the security manager, injecting a list of users to test
@@ -31,6 +36,7 @@ public class SecurityManager {
      */
     public SecurityManager(UserManager userManager) {
         this.userManager = userManager;
+        hasher = new Hasher();
     }
 
     /**

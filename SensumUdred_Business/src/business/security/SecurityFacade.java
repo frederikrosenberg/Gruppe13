@@ -12,7 +12,12 @@ import common.Role;
 /**
  * The facade of the security Package
  *
- * @author Krongrah
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class SecurityFacade implements ISecurityFacade {
 
@@ -42,7 +47,7 @@ public class SecurityFacade implements ISecurityFacade {
      *
      * @param username the username of the user attempting to log in
      * @param password the password of the user attempting to log in
-     * @return true if the log in was successful, otherwise false
+     * @return user id if the log in was successful, otherwise null
      */
     @Override
     public String logIn(String username, String password) {
@@ -52,7 +57,7 @@ public class SecurityFacade implements ISecurityFacade {
     /**
      * Logs the current user out of the system.
      *
-     * @return true if the log out was successful, otherwise false
+     * @return user id if the log out was successful, otherwise null
      */
     @Override
     public boolean logOut() {
@@ -70,6 +75,11 @@ public class SecurityFacade implements ISecurityFacade {
         return security.hasAccess(role);
     }
 
+    /**
+     * Return. the user manager containing the users.
+     *
+     * @return the user manager containing the users
+     */
     public IUserManager getUserManager() {
         return users;
     }
