@@ -7,7 +7,9 @@ package business.logic;
 
 import business.common.ILogicFacade;
 import common.ICase;
+import common.ICaseWorker;
 import common.ICitizenData;
+import common.IDepartment;
 import java.util.List;
 
 /**
@@ -18,6 +20,16 @@ public class LogicFacade implements ILogicFacade {
     
     private Department department;
     private CaseWorker caseWorker;
+
+    public LogicFacade(IDepartment department) {
+        this.department = (Department) department;
+    }
+    
+    public LogicFacade() {
+        // TODO Insert dummy data to empty logicFacade
+    }
+    
+    
 
     @Override
     public ICase openCase(ICitizenData citizenData) {
@@ -47,6 +59,18 @@ public class LogicFacade implements ILogicFacade {
     @Override
     public List<? extends ICase> getActiveCases() {
        return caseWorker.getActiveCases();
+    }
+
+    @Override
+    public void setCaseWorker(String userId) {
+        for (ICaseWorker caseWorker : department.getCaseWorkers()) {
+            if(caseWorker.getUserId().equals(userId)) this.caseWorker = (CaseWorker) caseWorker;
+        }
+    }
+
+    @Override
+    public void removeCaseWorker() {
+        this.caseWorker = null;
     }
     
 }

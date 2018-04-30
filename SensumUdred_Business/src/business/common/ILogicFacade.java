@@ -22,4 +22,6 @@ public interface ILogicFacade {
     ICase findActiveCase(String name);
     List<? extends ICase> getAllActiveCases();
     List<? extends ICase> getActiveCases();
+    void setCaseWorker(String userId);
+    void removeCaseWorker();
 }
