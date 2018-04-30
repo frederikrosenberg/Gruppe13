@@ -59,16 +59,19 @@ public class DataCase implements ICase, Serializable {
     /**
      * Constructor for data case
      * @param _case the given case
+     * @param caseWorker the case worker
+     * @param citizen the citizen
      */
-    public DataCase(ICase _case) {
-        citizen = new DataCitizen(_case.getCitizen());
-        caseWorker = new DataCaseWorker(_case.getCaseWorker());
+    public DataCase(ICase _case, DataCaseWorker caseWorker, DataCitizen citizen) {
+        this.citizen = citizen;
+        this.caseWorker = caseWorker;
         id = _case.getId();
         state = _case.getState();
         consent = _case.getConsent();
         reason = _case.getReason();
         availableOffers = _case.getAvailableOffers();
         sourceOfRequest = _case.getSourceOfRequest();
+        citizen.setActiveCase(this);
     }
 
     /**

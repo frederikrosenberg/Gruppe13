@@ -1,5 +1,3 @@
-package business.logic;
-
 import common.Gender;
 import common.ICase;
 import common.ICitizen;
@@ -131,6 +129,4 @@ public class Citizen extends Person implements ICitizen {
     public ICase getActiveCase() {
         return activeCase;
     }
-
-    
 }

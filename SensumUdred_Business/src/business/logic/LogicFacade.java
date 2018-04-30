@@ -117,5 +117,4 @@ public class LogicFacade implements ILogicFacade {
     public void removeCaseWorker() {
         this.caseWorker = null;
     }
-    
 }

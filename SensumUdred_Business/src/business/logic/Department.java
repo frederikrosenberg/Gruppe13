@@ -1,5 +1,3 @@
-package business.logic;
-
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
@@ -211,5 +209,4 @@ public class Department implements IDepartment {
     public void addInactiveCase(Case c) {
         inactiveCases.add(c);
     }
-    
 }

@@ -1,5 +1,3 @@
-package business.logic;
-
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
@@ -279,5 +277,4 @@ public class Case implements ICase {
     public Date getClosingDate() {
         return closingDate;
     }
-
 }

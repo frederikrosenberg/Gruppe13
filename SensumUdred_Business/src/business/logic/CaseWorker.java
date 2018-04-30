@@ -1,5 +1,3 @@
-package business.logic;
-
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
@@ -144,5 +142,4 @@ public class CaseWorker extends Person implements ICaseWorker{
     public String getUserId() {
         return userId;
     }
-    
 }
