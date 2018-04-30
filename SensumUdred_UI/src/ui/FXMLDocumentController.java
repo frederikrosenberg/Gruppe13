@@ -14,6 +14,7 @@ import data.UICitizen;
 import data.UICitizenData;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,8 +22,8 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
@@ -162,7 +163,15 @@ public class FXMLDocumentController implements Initializable {
     private CheckBox source_region;
     @FXML
     private CheckBox source_etc;
+    @FXML
+    private ListView<?> casesListView;
+    @FXML
+    private GridPane editCasesGridPane;
 
+    /**
+     * Clears all fields of the form that the caseworker fills to open a new
+     * case.
+     */
     public void clearNewCaseForm() {
         fillable_ProblemDescription.clear();
         fillable_ContactPerson.clear();
@@ -177,6 +186,11 @@ public class FXMLDocumentController implements Initializable {
 
     private IBusinessFacade business;
 
+    /**
+     * Injects a reference to the active instance of the businesss facade.
+     *
+     * @param business an instance of the IBusinessFacade
+     */
     public void injectBusiness(IBusinessFacade business) {
         this.business = business;
     }
@@ -189,30 +203,60 @@ public class FXMLDocumentController implements Initializable {
         // TODO
         backgroundImage.fitHeightProperty().bind(appBackground.heightProperty());
         inappScreen.setVisible(false);
+        editCasesGridPane.setVisible(false);
     }
 
+    /**
+     * Shows the user a forgot password pop-up. Prompting them to take correct
+     * further action.
+     *
+     * @param event mouse click
+     */
     @FXML
     private void forgotPassword(MouseEvent event) {
         forgottenPasswordGridPane.setVisible(true);
     }
 
+    /**
+     * Called any time the user presses anywhere on the screen when the forgot
+     * password has be clicked and shown.
+     *
+     * @param event  mouse click
+     */
     @FXML
     private void closeForgottenPassword(MouseEvent event) {
         forgottenPasswordGridPane.setVisible(false);
     }
 
+    /**
+     * Calls the login functionality upon the business facade, and is given a
+     * boolean in return. if succesful, the login screen will be hidden, and the
+     * in-app screen is shown for further use. the username and password fields
+     * are cleared
+     *
+     * else a message is shown prompting the user to try again.
+     *
+     * @param event button press
+     */
     @FXML
     private void loginRequested(ActionEvent event) {
-        if (usernameField.getText().equals("Admin") && passwordField.getText().equals("Password")) {
+        if (business.login(usernameField.getText(), passwordField.getText())) {
             wrongUserPassGridPane.setVisible(false);
-            inappScreen.setVisible(true);
-
+            inappScreen.setVisible(false);
+            usernameField.clear();
+            passwordField.clear();
         } else {
             wrongUserPassGridPane.setVisible(true);
+            passwordField.clear();
         }
-        passwordField.clear();
     }
 
+    /**
+     * Shows the login screen again, upon timeout, to prompt the user to login
+     * again.
+     *
+     * @param event button press
+     */
     @FXML
     private void loginAgain(ActionEvent event) {
         inappScreen.setVisible(false);
@@ -222,17 +266,39 @@ public class FXMLDocumentController implements Initializable {
         passwordField.clear();
     }
 
+    /**
+     * Shows the GUI page for creting a new case.
+     *
+     * @param event mouse click
+     */
     @FXML
     private void OpenNewCase(MouseEvent event) {
         openNewCaseScrollPane.setVisible(true);
     }
 
+    /**
+     * Shows the caseworker the grid option to see and edit all cases.
+     *
+     * @param event mouse click
+     */
     @FXML
     private void EditExistingCases(MouseEvent event) {
+        editCasesGridPane.setVisible(true);
+
+        casesListView.setItems(FXCollections.observableList(business.getActiveCases()));
+
     }
 
+    /**
+     * Calls the logout functionality on the business facade. It then resets,
+     * and shows the login screen.
+     *
+     * @param event mouse click
+     */
     @FXML
     private void Logout(MouseEvent event) {
+        business.logOut();
+
         inappScreen.setVisible(false);
         loginGridPane.setVisible(true);
 
@@ -240,25 +306,54 @@ public class FXMLDocumentController implements Initializable {
         passwordField.clear();
     }
 
+    /**
+     * Closes the open new case grid, and clears the form.
+     *
+     * @param event mouse click
+     */
     @FXML
     private void cancelNewCase(MouseEvent event) {
         openNewCaseScrollPane.setVisible(false);
         clearNewCaseForm();
     }
 
+    /**
+     * Takes the information entered in the form, and creates an instance of
+     * ICitizen and an instance of ICitizenData, with all this information. Also
+     * calls the openCase functionality upon the business facade. Lastly it
+     * clears the open new case form.
+     *
+     * @param event  mouse click
+     */
     @FXML
     private void createNewCase(ActionEvent event) {
         ICitizen citizen = new UICitizen(Integer.valueOf(fillable_CprField.getText()), fillable_AdressField.getText(), fillable_NameField.getText(), fillable_PhoneNumberField.getText(), fillable_EmailField.getText(), gender, relstat);
 
+        ICitizenData citizenData = new UICitizenData(citizen, "Sagsåbning", 0, getConsent(), fillable_ProblemDescription.getText(), getAvailibleOffers(), getSourceOfRequest(), business.getCaseWorker());
+        business.openCase(citizenData);
+        clearNewCaseForm();
+    }
+
+    /**
+     * checks to see if the consent radio buttons have been pressed, and return
+     * a boolean of the result
+     *
+     * @return if consent was pressed
+     */
+    private boolean getConsent() {
         boolean consent = false;
         if (written_Consent.isSelected() || verbal_Consent.isSelected()) {
             consent = true;
         }
-
-        ICitizenData citizenData = new UICitizenData(citizen, "Sagsåbning", 0, consent, fillable_ProblemDescription.getText(), getAvailibleOffers(), getSourceOfRequest(), business.getCaseWorker());
-        clearNewCaseForm();
+        return consent;
     }
 
+    /**
+     * Checks to see which source of request checkboxes were clicked, and
+     * returns the titles of those boxes.
+     *
+     * @return the title of the source of request, for the given new case.
+     */
     private String getSourceOfRequest() {
         if (source_citizen.isSelected()) {
             return "Borger";
@@ -275,19 +370,24 @@ public class FXMLDocumentController implements Initializable {
         if (source_other.isSelected()) {
             return "Anden forvaltning";
         }
-        if(source_current.isSelected()){
+        if (source_current.isSelected()) {
             return "Igangværende indsats";
         }
-        if(source_region.isSelected()){
+        if (source_region.isSelected()) {
             return "Anden kommune";
         }
-        if(source_etc.isSelected()){
+        if (source_etc.isSelected()) {
             return "Andre";
-        }else{
+        } else {
             return "";
         }
     }
 
+    /**
+     * Check to see which offers were checked off
+     *
+     * @return the titles of the offers marked.
+     */
     private String getAvailibleOffers() {
         if (check_home.isSelected()) {
             return check_home.getText();
@@ -305,36 +405,53 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    /**
+     * Sets the gender to male
+     *
+     * @param event mouse click
+     */
     @FXML
     private void SetGender_Male(ActionEvent event) {
         gender = Gender.MALE;
     }
 
+    /**
+     * sets the gender to female
+     *
+     * @param event mouse click
+     */
     @FXML
     private void setGender_Female(ActionEvent event) {
         gender = Gender.FEMALE;
     }
 
+    /**
+     * sets the relationship status to single
+     *
+     * @param event mouse click
+     */
     @FXML
     private void setRelationship_Single(ActionEvent event) {
         relstat = RelationshipStatus.SINGLE;
     }
 
+    /**
+     * sets the relationship status to in a relationship
+     *
+     * @param event mouse click
+     */
     @FXML
     private void setRelationship_InRelationship(ActionEvent event) {
         relstat = RelationshipStatus.IN_RELATIONSHIP;
     }
 
+    /**
+     * sets the relationship status to married
+     *
+     * @param event mouse click
+     */
     @FXML
     private void setRelationship_Married(ActionEvent event) {
         relstat = RelationshipStatus.MARRIED;
-    }
-
-    @FXML
-    private void createNewCase(MouseEvent event) {
-    }
-
-    @FXML
-    private void cancelNewCase(ActionEvent event) {
     }
 }
