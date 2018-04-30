@@ -6,6 +6,7 @@
 package business.security;
 
 import business.common.ISecurityFacade;
+import common.IUserManager;
 import common.Role;
 
 /**
@@ -19,7 +20,7 @@ public class SecurityFacade implements ISecurityFacade {
      * An instance of the user manager, responsible for creating and storing the
      * registered users of the system.
      */
-    private UserManager users;
+    private IUserManager users;
     /**
      * An instance of the security manager, responsible for most of the security
      * logic.
