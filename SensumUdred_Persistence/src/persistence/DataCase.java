@@ -4,6 +4,7 @@ import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * The data class for a case
@@ -57,6 +58,16 @@ public class DataCase implements ICase, Serializable {
     private String sourceOfRequest;
     
     /**
+     * The date the case opened
+     */
+    private Date openingDate;
+    
+    /**
+     * The date the case closed
+     */
+    private Date closingDate;
+    
+    /**
      * Constructor for data case
      * @param _case the given case
      * @param caseWorker the case worker
@@ -71,6 +82,8 @@ public class DataCase implements ICase, Serializable {
         reason = _case.getReason();
         availableOffers = _case.getAvailableOffers();
         sourceOfRequest = _case.getSourceOfRequest();
+        openingDate = _case.getOpeningDate();
+        closingDate = _case.getClosingDate();
         citizen.setActiveCase(this);
     }
 
@@ -144,6 +157,24 @@ public class DataCase implements ICase, Serializable {
     @Override
     public ICaseWorker getCaseWorker() {
         return caseWorker;
+    }
+
+    /**
+     * Gets the opening date of the case
+     * @return the opening date
+     */
+    @Override
+    public Date getOpeningDate() {
+        return openingDate;
+    }
+
+    /**
+     * Gets the closing date of the case
+     * @return the closing date
+     */
+    @Override
+    public Date getClosingDate() {
+        return closingDate;
     }
     
 }
