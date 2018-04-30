@@ -83,7 +83,7 @@ public class SecurityManager {
         return hasher.hash(password);
     }
 
-    /*
+    /**
      * Returns true if the current user has the given role, false otherwise.
      *
      * @param role The role the current user is being checked for.
