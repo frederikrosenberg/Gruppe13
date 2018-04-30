@@ -32,7 +32,7 @@ public class DataCase implements ICase, Serializable {
     private int id;
     
     /**
-     * Weather or not the citizen have given consent.
+     * Whether or not the citizen has given consent.
      */
     private boolean consent;
     
@@ -94,7 +94,7 @@ public class DataCase implements ICase, Serializable {
     }
 
     /**
-     * Weather the citizen has given consent or not
+     * Whether the citizen has given consent or not
      * @return consent
      */
     @Override

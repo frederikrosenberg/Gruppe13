@@ -56,7 +56,7 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
     
     /**
-     * Checks weather a save is available
+     * Checks whether a save is available
      * @return true if there is a save available
      */
     @Override
