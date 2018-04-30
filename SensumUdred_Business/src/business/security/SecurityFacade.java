@@ -69,7 +69,8 @@ public class SecurityFacade implements ISecurityFacade {
     public boolean hasAccess(Role role) {
         return security.hasAccess(role);
     }
-    public IUserManager getUserManager(){
-    return users;
+
+    public IUserManager getUserManager() {
+        return users;
     }
 }

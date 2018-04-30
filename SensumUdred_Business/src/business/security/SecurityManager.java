@@ -5,6 +5,7 @@ import common.Role;
 
 /**
  * The class responsible for most security logic in the system.
+ *
  * @author Krongrah
  */
 public class SecurityManager {
