@@ -1,6 +1,7 @@
 package persistence;
 
 import common.Gender;
+import common.ICase;
 import common.ICitizen;
 import common.RelationshipStatus;
 import java.io.Serializable;
@@ -32,6 +33,11 @@ public class DataCitizen extends DataPerson implements ICitizen, Serializable {
     private Gender gender;
     
     /**
+     * The active for the citizen, can be null
+     */
+    private DataCase activeCase;
+    
+    /**
      * The status of the citizens relationship
      */
     private RelationshipStatus relationshipStatus;
@@ -46,7 +52,15 @@ public class DataCitizen extends DataPerson implements ICitizen, Serializable {
         address = citizen.getAddress();
         gender = citizen.getGender();
         relationshipStatus = citizen.getRelationshipStatus();
-        
+        activeCase = null;
+    }
+    
+    /**
+     * Sets the active case for the citizen
+     * @param _case the given case
+     */
+    public void setActiveCase(DataCase _case) {
+        activeCase = _case;
     }
 
     /**
@@ -83,6 +97,16 @@ public class DataCitizen extends DataPerson implements ICitizen, Serializable {
     @Override
     public RelationshipStatus getRelationshipStatus() {
         return relationshipStatus;
+    }
+
+    /**
+     * Get the active case for the citizen.
+     * Can be null if the citizen does not have a active case
+     * @return the active case
+     */
+    @Override
+    public ICase getActiveCase() {
+        return activeCase;
     }
     
 }
