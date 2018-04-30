@@ -8,7 +8,12 @@ import java.util.List;
 
 /**
  * The class for holding data of the case worker
- * @author Frederik Rosenberg
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class DataCaseWorker extends DataPerson implements ICaseWorker, Serializable {
 

@@ -18,7 +18,12 @@ import java.io.Serializable;
  * Some of this class is reuse from another project: 
  *  https://github.com/Frede175/HospitalGame/blob/master/HospitalGame_Persistence/src/persistence/PersistenceFacade.java
  * 
- * @author Frederik Rosenberg
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class PersistenceFacade implements IPersistenceFacade {
     

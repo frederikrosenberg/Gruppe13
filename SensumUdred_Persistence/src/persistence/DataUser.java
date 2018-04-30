@@ -6,7 +6,12 @@ import java.io.Serializable;
 
 /**
  * Data class for user
- * @author Frederik Rosenberg
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class DataUser implements IUser, Serializable {
     

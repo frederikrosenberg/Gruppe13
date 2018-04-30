@@ -5,7 +5,12 @@ import java.io.Serializable;
 
 /**
  * Class for holding person data
- * @author Frederik Rosenberg
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public abstract class DataPerson implements IPerson, Serializable {
 
@@ -17,7 +22,7 @@ public abstract class DataPerson implements IPerson, Serializable {
     /**
      * The mobile number of the person
      */
-    private int mobileNumber;
+    private String phoneNumber;
     
     /**
      * The email of the person
@@ -30,7 +35,7 @@ public abstract class DataPerson implements IPerson, Serializable {
      */
     public DataPerson(IPerson person) {
         name = person.getName();
-        mobileNumber = person.getMobileNumber();
+        phoneNumber = person.getPhoneNumber();
         email = person.getEmail();
     }
     
@@ -48,8 +53,8 @@ public abstract class DataPerson implements IPerson, Serializable {
      * @return 
      */
     @Override
-    public int getMobileNumber() {
-        return mobileNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     /**
