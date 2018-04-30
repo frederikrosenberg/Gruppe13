@@ -48,9 +48,9 @@ public class UserManager implements IUserManager {
      * @param security a reference to the security manager.
      * @param IUsers an IUserManager containing IUsers for all the users
      */
-    UserManager(SecurityManager security, IUserManager IUserManager) {
+    UserManager(SecurityManager security, IUserManager userManager) {
         this.security = security;
-        for (IUser user : IUserManager.getUsers()) {
+        for (IUser user : userManager.getUsers()) {
             users.add(new User(user));
         }
     }
