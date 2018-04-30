@@ -44,4 +44,10 @@ public interface ICitizen extends IPerson {
      * @return the relationship status
      */
     RelationshipStatus getRelationshipStatus();
+    
+    /**
+     * Gets the active case from the citizen
+     * @return The active case from the citizen
+     */
+    ICase getActiveCase();
 }
