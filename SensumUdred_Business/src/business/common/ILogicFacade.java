@@ -2,6 +2,7 @@ package business.common;
 
 import common.ICase;
 import common.ICitizenData;
+import common.IDepartment;
 import java.util.List;
 
 /**
@@ -66,4 +67,10 @@ public interface ILogicFacade {
      * Removes the logged in caseworker
      */
     void removeCaseWorker();
+    
+    /**
+     * Gets the department
+     * @return The department
+     */
+    IDepartment getDepartment();
 }

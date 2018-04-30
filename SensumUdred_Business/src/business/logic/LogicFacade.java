@@ -117,4 +117,13 @@ public class LogicFacade implements ILogicFacade {
     public void removeCaseWorker() {
         this.caseWorker = null;
     }
+
+    /**
+     * Gets the department
+     * @return The department
+     */
+    @Override
+    public IDepartment getDepartment() {
+        return department;
+    }
 }
