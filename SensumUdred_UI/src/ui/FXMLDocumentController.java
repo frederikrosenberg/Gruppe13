@@ -33,7 +33,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-
 public class FXMLDocumentController implements Initializable {
 
     @FXML
@@ -161,6 +160,96 @@ public class FXMLDocumentController implements Initializable {
     private ListView<ICase> casesListView;
     @FXML
     private GridPane editCasesGridPane;
+    @FXML
+    private ScrollPane seeSpecificCase;
+    @FXML
+    private TextArea fillable_ProblemDescription1;
+    @FXML
+    private Group clickable_ClarityRegarding1;
+    @FXML
+    private ToggleGroup clearlyChoosen1;
+    @FXML
+    private Group clickable_CitizenSeeks1;
+    @FXML
+    private RadioButton check_home1;
+    @FXML
+    private RadioButton check_personalCare1;
+    @FXML
+    private RadioButton check_shoppingFood1;
+    @FXML
+    private RadioButton check_temporaryStay1;
+    @FXML
+    private Group clickable_CameFrom1;
+    @FXML
+    private CheckBox source_citizen1;
+    @FXML
+    private CheckBox source_contact1;
+    @FXML
+    private CheckBox source_doctor1;
+    @FXML
+    private CheckBox source_hospital1;
+    @FXML
+    private CheckBox source_other1;
+    @FXML
+    private CheckBox source_current1;
+    @FXML
+    private CheckBox source_region1;
+    @FXML
+    private CheckBox source_etc1;
+    @FXML
+    private TextArea fillable_ContactPerson1;
+    @FXML
+    private Group clickable_Understood1;
+    @FXML
+    private ToggleGroup understood1;
+    @FXML
+    private Group clickable_InformedOfRights1;
+    @FXML
+    private ToggleGroup informed1;
+    @FXML
+    private ToggleGroup understoodReference11;
+    @FXML
+    private Group clickable_StorageOnline1;
+    @FXML
+    private ToggleGroup electronicStorage1;
+    @FXML
+    private ToggleGroup understoodReference1111;
+    @FXML
+    private TextField fillable_NameField1;
+    @FXML
+    private TextField fillable_AdressField1;
+    @FXML
+    private TextField fillable_ZipCodeField1;
+    @FXML
+    private TextField fillable_CprField1;
+    @FXML
+    private TextField fillable_PhoneNumberField1;
+    @FXML
+    private TextField fillable_EmailField1;
+    @FXML
+    private MenuButton choice_Gender1;
+    @FXML
+    private MenuButton choice_Relations1;
+    @FXML
+    private Group clickable_GuardianAndRepresentation1;
+    @FXML
+    private Group clickable_consent1;
+    @FXML
+    private ToggleGroup relevancy1;
+    @FXML
+    private Group clickable_ConsentType1;
+    @FXML
+    private RadioButton verbal_Consent1;
+    @FXML
+    private ToggleGroup samtykke1;
+    @FXML
+    private RadioButton written_Consent1;
+    @FXML
+    private Group clickable_ConsentFrom1;
+    @FXML
+    private TextArea fillable_SpecialCaseDesc1;
+    @FXML
+    private AnchorPane viewingBackdrop;
 
     /**
      * Clears all fields of the form that the caseworker fills to open a new
@@ -196,7 +285,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         backgroundImage.fitHeightProperty().bind(appBackground.heightProperty());
-        inappScreen.setVisible(false);
+        inappScreen.setVisible(true);
         editCasesGridPane.setVisible(false);
     }
 
@@ -215,7 +304,7 @@ public class FXMLDocumentController implements Initializable {
      * Called any time the user presses anywhere on the screen when the forgot
      * password has be clicked and shown.
      *
-     * @param event  mouse click
+     * @param event mouse click
      */
     @FXML
     private void closeForgottenPassword(MouseEvent event) {
@@ -268,6 +357,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void OpenNewCase(MouseEvent event) {
         openNewCaseScrollPane.setVisible(true);
+        editCasesGridPane.setVisible(false);
+
     }
 
     /**
@@ -278,7 +369,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void EditExistingCases(MouseEvent event) {
         editCasesGridPane.setVisible(true);
-        casesListView.setItems(FXCollections.observableArrayList((List<ICase>)business.getActiveCases()));
+        casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
     }
 
     /**
@@ -306,7 +397,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void cancelNewCase(MouseEvent event) {
         openNewCaseScrollPane.setVisible(false);
-        clearNewCaseForm();
+        //clearNewCaseForm();
     }
 
     /**
@@ -315,7 +406,7 @@ public class FXMLDocumentController implements Initializable {
      * calls the openCase functionality upon the business facade. Lastly it
      * clears the open new case form.
      *
-     * @param event  mouse click
+     * @param event mouse click
      */
     @FXML
     private void createNewCase(ActionEvent event) {
@@ -445,5 +536,16 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void setRelationship_Married(ActionEvent event) {
         relstat = RelationshipStatus.MARRIED;
+    }
+
+    @FXML
+    private void closeCase(ActionEvent event) {
+        business.closeCase();
+    }
+
+    @FXML
+    private void cancelViewing(ActionEvent event) {
+        seeSpecificCase.setVisible(false);
+        viewingBackdrop.setVisible(false);
     }
 }

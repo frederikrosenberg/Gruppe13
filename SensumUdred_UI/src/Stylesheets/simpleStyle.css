@@ -54,6 +54,13 @@
 #opretSag:hover{
 	-fx-background-color: #1f98f5;
 }
+#lukSag{
+	-fx-background-color: #ff4d51;
+	-fx-border-radius:0;
+}
+#lukSag:hover{
+	-fx-background-color: #e1474b;
+}
 
 
 #annullerSag{

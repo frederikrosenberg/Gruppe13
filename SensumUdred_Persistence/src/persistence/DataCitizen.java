@@ -1,6 +1,7 @@
 package persistence;
 
 import common.Gender;
+import common.ICase;
 import common.ICitizen;
 import common.RelationshipStatus;
 import java.io.Serializable;
@@ -83,6 +84,11 @@ public class DataCitizen extends DataPerson implements ICitizen, Serializable {
     @Override
     public RelationshipStatus getRelationshipStatus() {
         return relationshipStatus;
+    }
+
+    @Override
+    public ICase getActiveCase() {
+        throw new UnsupportedOperationException("Not supported in GUI.");
     }
     
 }
