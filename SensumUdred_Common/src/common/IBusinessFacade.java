@@ -14,12 +14,13 @@ public interface IBusinessFacade {
     boolean logOut();
     ICase openCase(ICitizenData citizenData);
     boolean closeCase();
-    /**
-     * Find active cases from either cpr or case id 
-     * @param value the search parameter
-     * @param isCpr if true the value is cpr otherwise it is case id 
-     * @return the given case that is found, if no case found null is returned
-     */
+    void closing();
+     /**
+      * Find active cases from either cpr or case id 
+      * @param value the search parameter
+      * @param isCpr if true the value is cpr otherwise it is case id 
+      * @return the given case that is found, if no case found null is returned
+      */
     ICase findActiveCase(int value, boolean isCpr);
     ICase findActiveCase(String name);
     ICase[] getAllActiveCases();
