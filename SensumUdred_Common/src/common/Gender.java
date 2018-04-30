@@ -6,6 +6,7 @@
 package common;
 
 /**
+ * Enums for the gender of the citizen
  *
  * @author fsr19
  */

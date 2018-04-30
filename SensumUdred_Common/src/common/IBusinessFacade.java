@@ -6,11 +6,21 @@
 package common;
 
 /**
- *
+ * The Facade of the business layer, responsible for communication between GUI and the business layer.
  * @author fsr19
  */
 public interface IBusinessFacade {
+    /**
+     * Logs the the user in, given that their information is valid.
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return true if the log in was successful, else false
+     */
     boolean login(String username, String password);
+    /**
+     * Logs the user out.
+     * @return true.
+     */
     boolean logOut();
     ICase openCase(ICitizenData citizenData);
     boolean closeCase();
