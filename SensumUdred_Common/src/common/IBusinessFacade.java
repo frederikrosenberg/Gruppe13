@@ -93,4 +93,10 @@ public interface IBusinessFacade {
      * @param persistence the reference to be
      */
     void injectPersistence(IPersistenceFacade persistence);
+    
+    /**
+     * Gets the current logged in case worker
+     * @return The current logged in case worker
+     */
+    ICaseWorker getCaseWorker();
 }
