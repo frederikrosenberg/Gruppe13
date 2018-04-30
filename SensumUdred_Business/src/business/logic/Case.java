@@ -268,11 +268,19 @@ public class Case implements ICase {
         this.caseWorker = caseWorker;
     }
 
+    /**
+     * Gets the opening date
+     * @return The opening date
+     */
     @Override
     public Date getOpeningDate() {
         return openingDate;
     }
 
+    /**
+     * Gets the closing date
+     * @return The closing date
+     */
     @Override
     public Date getClosingDate() {
         return closingDate;
