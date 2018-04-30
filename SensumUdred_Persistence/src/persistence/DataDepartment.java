@@ -90,7 +90,7 @@ public class DataDepartment implements IDepartment, Serializable {
      * Find a case worker
      * @param id of the case worker
      * @return the found case worker
-     * @throws IllegalArgumentException if not found, because this should be fund while saving otherwise something is missing
+     * @throws IllegalArgumentException if not found, because this should be found while saving otherwise something is missing
      */
     private DataCaseWorker findCaseWorker(String id) {
         for (DataCaseWorker worker : caseWorkers) {
@@ -103,7 +103,7 @@ public class DataDepartment implements IDepartment, Serializable {
      * Find a citizen 
      * @param cpr of the citizen
      * @return the found citizen
-     * @throws IllegalArgumentException if not found, because this should be fund while saving otherwise something is missing
+     * @throws IllegalArgumentException if not found, because this should be found while saving otherwise something is missing
      */
     public DataCitizen findCitizen(int cpr) {
         for (DataCitizen citizen : citizens) {

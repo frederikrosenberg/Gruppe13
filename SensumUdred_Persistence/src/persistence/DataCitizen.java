@@ -100,7 +100,7 @@ public class DataCitizen extends DataPerson implements ICitizen, Serializable {
     }
 
     /**
-     * Get the active case for the citizen
+     * Get the active case for the citizen.
      * Can be null if the citizen does not have a active case
      * @return the active case
      */
