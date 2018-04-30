@@ -1,7 +1,6 @@
 package business.security;
 
 import common.IUser;
-import common.IUserManager;
 import common.Role;
 
 /**
@@ -41,20 +40,20 @@ public class SecurityManager {
      * @param password the password to be matched against the existing ones
      * @return true if the login was successful, otherwise false
      */
-    public boolean logIn(String username, String password) {
+    public String logIn(String username, String password) {
         if (!hasher.isReady()) {
             System.err.println("Hasher not ready");
-            return false;
+            return null;
         }
         String hashedPassword = hashPassword(password);
         for (IUser user : userManager.getUsers()) {
             if (user.getActive() && user.getUsername().equals(username)
                     && user.getPassword().equals(hashedPassword)) {
                 currentUser = user;
-                return true;
+                return user.getUserId();
             }
         }
-        return false;
+        return null;
     }
 
     /**

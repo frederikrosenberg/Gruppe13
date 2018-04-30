@@ -45,7 +45,7 @@ public class SecurityFacade implements ISecurityFacade {
      * @return true if the log in was successful, otherwise false
      */
     @Override
-    public boolean logIn(String username, String password) {
+    public String logIn(String username, String password) {
         return security.logIn(username, password);
     }
 

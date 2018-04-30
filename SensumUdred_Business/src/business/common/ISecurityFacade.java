@@ -23,7 +23,7 @@ public interface ISecurityFacade {
      * @return true if the username and password both matches a registered user,
      * false otherwise
      */
-    public boolean logIn(String username, String password);
+    public String logIn(String username, String password);
 
     /**
      * Logs the user out of the system.
