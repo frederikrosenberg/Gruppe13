@@ -22,7 +22,16 @@ public interface IBusinessFacade {
      * @return true.
      */
     boolean logOut();
+    /**
+     * Opens a new case based on the entered data.
+     * @param citizenData the information needed for the case
+     * @return the newly opened case
+     */
     ICase openCase(ICitizenData citizenData);
+    /**
+     * 
+     * @return 
+     */
     boolean closeCase();
     void closing();
      /**
