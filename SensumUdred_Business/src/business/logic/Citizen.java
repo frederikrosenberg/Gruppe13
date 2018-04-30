@@ -86,6 +86,10 @@ public class Citizen extends Person implements ICitizen {
         activeCase = null;
     }
     
+    /**
+     * Sets the active case of the citizen
+     * @param c The case to set
+     */
     public void setActiveCase(Case c) {
         activeCase = c;
     }
@@ -117,6 +121,10 @@ public class Citizen extends Person implements ICitizen {
        return address;
    }
 
+   /**
+    * Gets the active case
+    * @return The active case
+    */
     @Override
     public ICase getActiveCase() {
         return activeCase;
