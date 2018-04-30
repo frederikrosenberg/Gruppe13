@@ -6,6 +6,8 @@ import common.ICitizen;
 import common.RelationshipStatus;
 
 /**
+ * Contains information about a citizen
+ * 
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
  * @author Frederik Rosenberg 

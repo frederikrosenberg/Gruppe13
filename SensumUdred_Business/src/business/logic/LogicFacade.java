@@ -8,6 +8,8 @@ import common.IDepartment;
 import java.util.List;
 
 /**
+ * The logicfacade that contains functionality about cases, citizen and case workers
+ * 
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
  * @author Frederik Rosenberg 

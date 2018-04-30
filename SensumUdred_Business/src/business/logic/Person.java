@@ -3,6 +3,8 @@ package business.logic;
 import common.IPerson;
 
 /**
+ * Contains basic information about a person
+ * 
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
  * @author Frederik Rosenberg 

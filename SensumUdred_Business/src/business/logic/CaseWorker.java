@@ -7,6 +7,8 @@ import common.ICitizenData;
 import java.util.List;
 
 /**
+ * Contains information about a case worker
+ * 
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
  * @author Frederik Rosenberg 

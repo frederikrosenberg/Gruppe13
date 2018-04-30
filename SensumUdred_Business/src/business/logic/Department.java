@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Contains information about a department
+ * 
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
  * @author Frederik Rosenberg 
