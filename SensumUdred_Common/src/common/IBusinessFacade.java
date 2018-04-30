@@ -45,11 +45,11 @@ public interface IBusinessFacade {
     ICase openCase(ICitizenData citizenData);
 
     /**
-     * Closes a case.
-     *
-     * @return true if the case has been closed successfully
+     * Closes a case from a given case id
+     * @param caseId The case to close
+     * @return True if the case is closed
      */
-    boolean closeCase();
+    boolean closeCase(int caseId);
 
     /**
      * To be called when the system shuts down.

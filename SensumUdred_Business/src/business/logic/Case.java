@@ -1,3 +1,5 @@
+package business.logic;
+
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;

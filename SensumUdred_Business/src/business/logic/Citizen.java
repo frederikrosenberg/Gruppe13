@@ -1,3 +1,5 @@
+package business.logic;
+
 import common.Gender;
 import common.ICase;
 import common.ICitizen;
