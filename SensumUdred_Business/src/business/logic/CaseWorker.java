@@ -114,7 +114,7 @@ public class CaseWorker extends Person implements ICaseWorker{
         c.setCitizen((Citizen)data.getCitizen());
         c.setConsent(data.getConsent());
         c.setReason(data.getReason());
-        c.setSourceOfReqeust(data.getSourceOfRequest());
+        c.setSourceOfRequest(data.getSourceOfRequest());
         c.setState(data.getState());
         return true;
     }

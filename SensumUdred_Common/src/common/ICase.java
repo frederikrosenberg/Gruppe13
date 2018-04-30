@@ -5,6 +5,8 @@
  */
 package common;
 
+import java.util.Date;
+
 /**
  * The interface for a case.
  *
@@ -72,4 +74,16 @@ public interface ICase {
      * @return the case worker
      */
     ICaseWorker getCaseWorker();
+    
+    /**
+     * Gets the opening date of the case
+     * @return  The opening date of the case
+     */
+    Date getOpeningDate();
+    
+    /**
+     * Gets the closing date of the case
+     * @return The closing date of the case
+     */
+    Date getClosingDate();
 }
