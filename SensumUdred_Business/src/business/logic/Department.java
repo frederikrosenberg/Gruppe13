@@ -17,13 +17,44 @@ import java.util.List;
  */
 public class Department implements IDepartment {
 
+    /**
+     * List of all the caseworkers in the department
+     */
     private List<CaseWorker> caseWorkers;
+    
+    /**
+     * List of all of the inactive cases from this department
+     */
     private List<Case> inactiveCases;
+    
+    /**
+     * List of all of the citizens in the department
+     */
     private List<Citizen> citizens;
+    
+    /**
+     * Name of the department
+     */
     private String name;
+    
+    /**
+     * The treatment area of the department
+     */
     private String treatmentArea;
+    
+    /**
+     * The address of the department
+     */
     private String address;
+    
+    /**
+     * The email of the department
+     */
     private String email;
+    
+    /**
+     * The phone number of the department
+     */
     private String phoneNumber;
     
     /**
@@ -63,7 +94,7 @@ public class Department implements IDepartment {
      */
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     /**
@@ -72,7 +103,7 @@ public class Department implements IDepartment {
      */
     @Override
     public String getTreatmentArea() {
-        return this.treatmentArea;
+        return treatmentArea;
     }
 
     /**
@@ -81,7 +112,7 @@ public class Department implements IDepartment {
      */
     @Override
     public String getAddress() {
-        return this.address;
+        return address;
     }
 
     /**
@@ -90,7 +121,7 @@ public class Department implements IDepartment {
      */
     @Override
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     /**
@@ -99,7 +130,7 @@ public class Department implements IDepartment {
      */
     @Override
     public String getPhoneNumber() {
-        return this.phoneNumber;
+        return phoneNumber;
     }
 
     /**
@@ -124,6 +155,12 @@ public class Department implements IDepartment {
         return cases;
     }
     
+    /**
+     * Finds an active case from either a cpr number or a case id
+     * @param value The cpr/case id
+     * @param isCpr True if it should search for a cpr
+     * @return An active case
+     */
     public ICase findActiveCase(int value, boolean isCpr) {
         for (ICase activeCase : getAllActiveCases()) {
             if(isCpr) {
@@ -135,6 +172,11 @@ public class Department implements IDepartment {
         return null;
     }
     
+    /**
+     * Finds an active case with the name of the citizen
+     * @param name The name to search for
+     * @return The active case
+     */
     public ICase findActiveCase(String name) {
         for (ICase activeCase : getAllActiveCases()) {
             if(name.toLowerCase().equals(activeCase.getCitizen().getName().toLowerCase())) return activeCase;

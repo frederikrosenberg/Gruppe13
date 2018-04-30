@@ -1,6 +1,7 @@
 package business.logic;
 
 import common.Gender;
+import common.ICase;
 import common.ICitizen;
 import common.RelationshipStatus;
 
@@ -115,6 +116,11 @@ public class Citizen extends Person implements ICitizen {
    public String getAddress() {
        return address;
    }
+
+    @Override
+    public ICase getActiveCase() {
+        return activeCase;
+    }
 
     
 }
