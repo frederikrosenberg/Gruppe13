@@ -5,6 +5,8 @@ import common.ICitizenData;
 import java.util.List;
 
 /**
+ * Contains the interface functionality for the LogicFacade
+ * 
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
  * @author Frederik Rosenberg 
