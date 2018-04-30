@@ -88,6 +88,7 @@ public class Case implements ICase {
         this.sourceOfRequest = sourceOfRequest;
         this.citizen = citizen;
         this.caseWorker = caseWorker;
+        openingDate = new Date();
     }
 
     /**
@@ -102,6 +103,7 @@ public class Case implements ICase {
         this.sourceOfRequest = c.getSourceOfRequest();
         this.citizen = (Citizen) c.getCitizen();
         this.caseWorker = (CaseWorker) c.getCaseWorker();
+        openingDate = c.getOpeningDate();
     }
     
     /**
@@ -126,6 +128,7 @@ public class Case implements ICase {
      */
     public boolean closeCase() {
         state = "Closed";
+        closingDate = new Date();
         return true;
     }
 
@@ -263,5 +266,23 @@ public class Case implements ICase {
      */
     public void setCaseWorker(CaseWorker caseWorker) {
         this.caseWorker = caseWorker;
+    }
+
+    /**
+     * Gets the opening date
+     * @return The opening date
+     */
+    @Override
+    public Date getOpeningDate() {
+        return openingDate;
+    }
+
+    /**
+     * Gets the closing date
+     * @return The closing date
+     */
+    @Override
+    public Date getClosingDate() {
+        return closingDate;
     }
 }
