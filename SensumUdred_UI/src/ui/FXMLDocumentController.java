@@ -1,20 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import common.Gender;
 import common.IBusinessFacade;
+import common.ICase;
 import common.ICitizen;
 import common.ICitizenData;
 import common.RelationshipStatus;
 import data.UICitizen;
 import data.UICitizenData;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,11 +33,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-/**
- * FXML Controller class
- *
- * @author Sebas
- */
+
 public class FXMLDocumentController implements Initializable {
 
     @FXML
@@ -164,7 +158,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private CheckBox source_etc;
     @FXML
-    private ListView<?> casesListView;
+    private ListView<ICase> casesListView;
     @FXML
     private GridPane editCasesGridPane;
 
@@ -284,8 +278,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void EditExistingCases(MouseEvent event) {
         editCasesGridPane.setVisible(true);
-
-        casesListView.setItems(FXCollections.observableList(business.getActiveCases()));
+        ObservableList<ICase> cases = FXCollections.observableArrayList();
+        cases.addAll((List<ICase>)business.getActiveCases());
+        casesListView.setItems(FXCollections.observableArrayList(cases));
 
     }
 
