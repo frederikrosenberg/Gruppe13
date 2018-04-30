@@ -1,16 +1,21 @@
-
 package business.security;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * The class responsible for hashing passwords.
  *
- * @author Krongrah
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class Hasher {
- 
-     /**
+
+    /**
      * is the MessageDigest
      */
     private MessageDigest md;
@@ -33,6 +38,11 @@ public class Hasher {
         }
     }
 
+    /**
+     * Returns true if the hasher is ready.
+     *
+     * @return true if the hasher is ready
+     */
     public boolean isReady() {
         return ready;
     }
@@ -70,5 +80,3 @@ public class Hasher {
     }
 
 }
-
-

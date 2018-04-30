@@ -25,3 +25,5 @@ hs_err_pid*
 /SensumUdred_Business/nbproject/private/
 /SensumUdred_Persistence/nbproject/private/
 /SensumUdred_UI/nbproject/private/
+/SensumUdred_Common/dist/
+/SensumUdred_Common/build/
