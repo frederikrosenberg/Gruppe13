@@ -7,7 +7,12 @@ import java.io.Serializable;
 
 /**
  * Data about the citizen
- * @author Frederik Rosenberg
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class DataCitizen extends DataPerson implements ICitizen, Serializable {
 

@@ -10,7 +10,12 @@ import java.util.List;
 
 /**
  * Stores the data in the department
- * @author Frederik Rosenberg
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class DataDepartment implements IDepartment, Serializable {
     

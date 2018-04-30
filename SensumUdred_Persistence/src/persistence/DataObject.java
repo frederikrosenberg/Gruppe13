@@ -7,7 +7,12 @@ import java.io.Serializable;
 
 /**
  * The object that stores all the information
- * @author Frederik Rosenberg
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class DataObject implements IDataObject, Serializable {
     
