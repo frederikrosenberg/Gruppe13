@@ -204,7 +204,7 @@ public class Case implements ICase {
     }
 
     /**
-     * Sets so the citizen is informed
+     * Sets the citizen's status to informed.
      * @param informed True if the citizen is informed
      */
     public void setInformed(boolean informed) {
@@ -245,10 +245,10 @@ public class Case implements ICase {
 
     /**
      * Sets the source of request
-     * @param sourceOfReqeust The source of request
+     * @param sourceOfRequest The source of request
      */
-    public void setSourceOfReqeust(String sourceOfReqeust) {
-        this.sourceOfRequest = sourceOfReqeust;
+    public void setSourceOfRequest(String sourceOfRequest) {
+        this.sourceOfRequest = sourceOfRequest;
     }
 
     /**
