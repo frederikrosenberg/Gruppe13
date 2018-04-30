@@ -1,0 +1,124 @@
+#glemtKodeord:hover{
+	 -fx-text-fill: #ff9900;
+}
+#loginButton{
+	-fx-background-color: #1c7dc8;
+}
+#loginButton:hover{
+	-fx-background-color: #1f98f5;
+}
+#fillableField:focused{
+	-fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+}
+#fillableField{
+	-fx-text-fill:#fff;
+}
+#fillableForm:focused{
+	-fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+}
+#fillableForm{
+	-fx-text-fill:#000;
+}
+
+#mainBackgImage{
+	-fx-background-size: contain;
+	-fx-background-repeat: no-repeat;
+}
+#forgottenPasswordTextArea{
+	-fx-background-insets: 0;
+    -fx-background-radius: 0, 0, 0, 0;
+	
+	-fx-box-border: none;
+    -fx-border-width: -1;
+}
+#menuBackground{
+	-fx-opacity:0;
+}
+#menuBackground:hover{
+	-fx-opacity:0.2;
+}
+#mailCount{
+	-fx-background-color:#ff4d51;
+	-fx-border: hidden;
+	-fx-border-width: 1px;
+	-fx-border-radius:55;
+	-fx-background-radius: 55;
+}
+
+
+/* in app screen content:*/ 
+#opretSag{
+	-fx-background-color: #1c7dc8;
+	-fx-border-radius:0;
+}
+#opretSag:hover{
+	-fx-background-color: #1f98f5;
+}
+
+
+#annullerSag{
+	-fx-background-color: #434343;
+	-fx-border-radius:0;
+}
+#annullerSag:hover{
+	-fx-background-color: #2c2c2c;
+}
+
+.check-box .box {
+
+	-fx-background-color: white;
+	-fx-border-color:#acacac;
+	-fx-border-radius:3px; 
+
+}
+
+.check-box:selected .mark {
+
+	-fx-background-color: #434343;
+
+}
+
+.check-box:selected .box {
+}
+
+.radio-button .radio{
+	-fx-background-color: #fff;
+	-fx-border-color:#acacac;
+	-fx-border-radius:500px;
+	-fx-border-width:1px;
+}
+
+.radio-button:selected .radio {
+    -fx-background-insets: 0;
+	-fx-background-color: #fff;
+	-fx-border-color:#acacac;
+	-fx-border-radius:500px;
+	-fx-border-width:1px;
+}
+
+
+.text-area{
+	-fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
+    -fx-background-radius: 0, 0, 0, 0;
+	
+	-fx-border-color: #acacac;
+    -fx-focus-color: -fx-control-inner-background;
+    -fx-faint-focus-color: -fx-control-inner-background;
+    -fx-text-box-border: -fx-control-inner-background;
+    -fx-border-width: 1px;
+	-fx-border-radius:15px;
+	-fx-padding:8px;
+}
+.text-area:focused{
+	-fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+}
+
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent, white, transparent, white;
+}

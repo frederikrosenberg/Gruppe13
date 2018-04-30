@@ -9,13 +9,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
  *
- * @author fsr19
+ * @author Sebas
  */
-public class SensumUdred_UI extends Application {
+public class SensumUdredLogin extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -23,7 +24,10 @@ public class SensumUdred_UI extends Application {
         
         Scene scene = new Scene(root);
         
+        
         stage.setScene(scene);
+        stage.setTitle("Sensum Udred");
+        stage.getIcons().add(new Image("Images/icon.png"));
         stage.show();
     }
 
