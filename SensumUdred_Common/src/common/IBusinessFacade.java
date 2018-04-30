@@ -5,44 +5,92 @@
  */
 package common;
 
+import java.util.List;
+
 /**
- * The Facade of the business layer, responsible for communication between GUI and the business layer.
- * @author fsr19
+ * The interface for the facade of the business layer, responsible for communication between GUI
+ * and the business layer.
+ *
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public interface IBusinessFacade {
+
     /**
      * Logs the the user in, given that their information is valid.
+     *
      * @param username the username of the user
      * @param password the password of the user
      * @return true if the log in was successful, else false
      */
     boolean login(String username, String password);
+
     /**
      * Logs the user out.
+     *
      * @return true.
      */
     boolean logOut();
+
     /**
      * Opens a new case based on the entered data.
+     *
      * @param citizenData the information needed for the case
      * @return the newly opened case
      */
     ICase openCase(ICitizenData citizenData);
+
     /**
-     * 
-     * @return 
+     * Closes a case.
+     *
+     * @return true if the case has been closed successfully
      */
     boolean closeCase();
+
+    /**
+     * To be called when the system shuts down.
+     */
     void closing();
-     /**
-      * Find active cases from either cpr or case id 
-      * @param value the search parameter
-      * @param isCpr if true the value is cpr otherwise it is case id 
-      * @return the given case that is found, if no case found null is returned
-      */
+
+    /**
+     * Finds an active case from either cpr or case id
+     *
+     * @param value the search parameter
+     * @param isCpr if true the value is cpr otherwise it is case id
+     * @return the case found, else null
+     */
     ICase findActiveCase(int value, boolean isCpr);
+
+    /**
+     * Finds an active case from the name of the concerned citizen.
+     *
+     * @param name the name of the concerned citizen
+     * @return the case found, else null
+     */
     ICase findActiveCase(String name);
-    ICase[] getAllActiveCases();
-    ICase[] getActiveCases();
+
+    /**
+     * Returns all active cases in the department.
+     *
+     * @return all active cases in the department
+     */
+    List<? extends ICase> getAllActiveCases();
+
+    /**
+     * Returns all active cases of the current caseworker.
+     *
+     * @return all active cases of the current caseworker
+     */
+    List<? extends ICase> getActiveCases();
+
+    /**
+     * Injects a reference to the persistence layer
+     *
+     * @param persistence the reference to be
+     */
     void injectPersistence(IPersistenceFacade persistence);
 }
