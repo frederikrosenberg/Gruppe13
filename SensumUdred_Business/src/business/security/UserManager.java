@@ -42,6 +42,20 @@ public class UserManager implements IUserManager {
     }
 
     /**
+     * A constructor setting the security manager reference and taking an IUser
+     * to get user data from.
+     *
+     * @param security a reference to the security manager.
+     * @param IUsers an IUserManager containing IUsers for all the users
+     */
+    UserManager(SecurityManager security, IUserManager IUsers) {
+        this.security = security;
+        for (IUser user : IUsers.getUsers()) {
+            users.add(new User(user));
+        }
+    }
+
+    /**
      * Returns an unmodifiable list of users of the system.
      *
      * @return an unmodifiable list of users of the system

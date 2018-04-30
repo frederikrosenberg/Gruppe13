@@ -60,6 +60,19 @@ public class User implements IUser {
     }
 
     /**
+     * A constructor for the user which takes the information from an IUser.
+     *
+     * @param iUser anIUser containing all the information for the new user
+     */
+    public User(IUser iUser) {
+        name = iUser.getName();
+        username = iUser.getUsername();
+        role = iUser.getRole();
+        password = iUser.getPassword();
+        userId = iUser.getUserId();
+    }
+
+    /**
      * Returns the role of the user.
      *
      * @return the role of the user
