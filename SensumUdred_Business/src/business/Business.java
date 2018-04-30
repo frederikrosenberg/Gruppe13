@@ -117,7 +117,7 @@ public class Business implements IBusinessFacade {
     @Override
     public ICaseWorker getCaseWorker() {
         if (security.hasAccess(Role.CASEWORKER)) {
-            //return logic.
+            return logic.getCaseWorker();
         }
         return null;
     }
@@ -135,7 +135,8 @@ public class Business implements IBusinessFacade {
     }
     
     private boolean save() {
-     return false;   
+        return persistence.save(security., logic.getDepartment());
     }
+    
     
 }
