@@ -123,6 +123,16 @@ public class Department implements IDepartment {
         }
         return cases;
     }
+    
+    public ICase findActiveCase(int value, boolean isCpr) {
+        for (ICase activeCase : getAllActiveCases()) {
+            if(isCpr) {
+                if(value == activeCase.getCitizen().getCpr()) return activeCase;
+            } else {
+                if(value == activeCase.getId()) return activeCase;
+            }
+        }
+    }
 
     /**
      * Gets a list of all of the inactive cases on the department
