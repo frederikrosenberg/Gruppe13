@@ -1,19 +1,16 @@
-/*
- * Lars Bjerregaard Jørgensen (larjo17)
- * Software Engineering at SDU
- * larjo17@student.sdu.dk
- */
 package business.common;
 
 import common.ICase;
 import common.ICitizenData;
 import java.util.List;
 
-
-
 /**
- *
- * @author larsjorgensen
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public interface ILogicFacade {
     /**
