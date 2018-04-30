@@ -1,5 +1,3 @@
-package business.logic;
-
 import common.IPerson;
 
 /**
@@ -67,5 +65,4 @@ public class Person implements IPerson{
     public String getEmail() {
         return this.email;
     }
-    
 }
