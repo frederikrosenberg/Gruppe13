@@ -18,16 +18,16 @@ public class UICitizen implements ICitizen {
     private final int cpr;
     private final String address;
     private final String name;
-    private final int mobilNumber;
+    private final String phoneNumber;
     private final String email;
     private final Gender gender;
     private final RelationshipStatus relStat;
     
-    public UICitizen(int cpr, String address, String name, int mobNumber, String email, Gender gender, RelationshipStatus relstat){
+    public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat){
         this.cpr = cpr;
         this.address = address;
         this.name = name;
-        this.mobilNumber = mobNumber;
+        this.phoneNumber = mobNumber;
         this.email = email;
         this.gender = gender;
         this.relStat = relstat;
@@ -59,8 +59,8 @@ public class UICitizen implements ICitizen {
     }
 
     @Override
-    public int getMobileNumber() {
-        return this.mobilNumber;
+    public String getPhoneNumber() {
+        return this.phoneNumber;
     }
 
     @Override

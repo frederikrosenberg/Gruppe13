@@ -446,892 +446,887 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ScrollPane fx:id="openNewCaseScrollPane" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                           <content>
-                              <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2097.0" prefWidth="913.0" style="-fx-background-color: #eaeaea;">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.5" minWidth="10.0" prefWidth="341.5" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="630.0" minWidth="10.0" prefWidth="423.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="500.0" minHeight="400.0" prefHeight="500.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="220.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <GridPane style="-fx-background-color: #fff;">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <GridPane.margin>
-                                          <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                       </GridPane.margin>
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Basisoplysninger" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="22.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </GridPane>
-                                    <GridPane prefHeight="1350.0" prefWidth="495.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="6">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                          <RowConstraints maxHeight="206.5" minHeight="10.0" prefHeight="183.5" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="125.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="144.5" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <GridPane.margin>
-                                          <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                       </GridPane.margin>
-                                       <children>
-                                          <Label text="Hvad drejer henvendelsen sig om?" wrapText="true" GridPane.valignment="TOP">
-                                             <GridPane.margin>
-                                                <Insets left="25.0" top="12.0" />
-                                             </GridPane.margin>
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                          </Label>
-                                          <TextArea fx:id="fillable_ProblemDescription" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse af problemstillingen ogbehov for hjælp" styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true">
-                                             <GridPane.margin>
-                                                <Insets left="25.0" right="25.0" top="35.0" />
-                                             </GridPane.margin>
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <opaqueInsets>
-                                                <Insets />
-                                             </opaqueInsets>
-                                          </TextArea>
-                                          <Label text="Er det klart hvad borgeren søger om?" wrapText="true" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" top="12.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <Group fx:id="clickable_ClarityRegarding" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1">
-                                             <children>
-                                                <RadioButton id="check-box" mnemonicParsing="false" text="Nej" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                                   <font>
-                                                      <Font size="12.0" />
-                                                   </font>
-                                                   <GridPane.margin>
-                                                      <Insets left="25.0" top="75.0" />
-                                                   </GridPane.margin>
-                                                   <padding>
-                                                      <Insets top="25.0" />
-                                                   </padding>
-                                                   <toggleGroup>
-                                                      <ToggleGroup fx:id="clearlyChoosen" />
-                                                   </toggleGroup>
-                                                </RadioButton>
-                                                <RadioButton id="check-box" mnemonicParsing="false" text="Ja" toggleGroup="$clearlyChoosen">
-                                                   <font>
-                                                      <Font size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                             </children>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Group>
-                                          <Label id="check-box" stylesheets="@../Stylesheets/simpleStyle.css" text="Hvis ja, angiv da hvad borgeren søger om (afkrydsning af ydelser/§)" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                             <font>
-                                                <Font name="Arial" size="10.0" />
-                                             </font>
-                                          </Label>
-                                          <Group fx:id="clickable_CitizenSeeks" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                             <children>
-                                                <RadioButton id="check-box" mnemonicParsing="false" text="Støtte til personlig pleje (§ 85)" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                   <padding>
-                                                      <Insets top="25.0" />
-                                                   </padding>
-                                                </RadioButton>
-                                                <RadioButton id="check-box" layoutY="50.0" mnemonicParsing="false" text="Støtte til indkøb og kost (§ 85)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                                <RadioButton id="check-box" layoutY="75.0" mnemonicParsing="false" selected="true" text="Midlertidigt ophold (§ 107)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                                <RadioButton id="check-box" mnemonicParsing="false" text="Støtte til praktiske opgaver i hjemmet(§ 85)" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                                   <GridPane.margin>
-                                                      <Insets left="25.0" top="12.0" />
-                                                   </GridPane.margin>
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                             </children>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" top="12.0" />
-                                             </GridPane.margin>
-                                          </Group>
-                                          <Label text="Hvor kommer henvendelsen fra?" wrapText="true" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" top="12.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <Group fx:id="clickable_CameFrom" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                                             <children>
-                                                <CheckBox mnemonicParsing="false" text="Borger" GridPane.rowIndex="3">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="25.0" mnemonicParsing="false" text="Pårørende (angiv kontaktoplysninger)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="50.0" mnemonicParsing="false" text="Læge (angiv kontaktoplysninger)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="75.0" mnemonicParsing="false" text="Hospital (angiv kontaktoplysninger)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="100.0" mnemonicParsing="false" text="Anden forvaltning (angiv kontaktoplysninger)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="125.0" mnemonicParsing="false" text="Igangværende indsats (angiv kontaktoplysninger)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="150.0" mnemonicParsing="false" text="Anden kommune">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="175.0" mnemonicParsing="false" text="Andre (angiv kontaktoplysninger)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                             </children>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" top="45.0" />
-                                             </GridPane.margin>
-                                          </Group>
-                                       </children>
-                                    </GridPane>
-                                    <Label text="Angiv kontaktpersonen" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                       <GridPane.margin>
-                                          <Insets left="25.0" top="20.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <TextArea id="fillableForm" fx:id="fillable_ContactPerson" prefHeight="200.0" prefWidth="200.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                       <font>
-                                          <Font name="Arial" size="12.0" />
-                                       </font>
-                                       <GridPane.margin>
-                                          <Insets bottom="25.0" left="25.0" right="25.0" top="55.0" />
-                                       </GridPane.margin>
-                                    </TextArea>
-                                    <Label text="Er borgeren indforstået med henvendelsen?" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                       <GridPane.margin>
-                                          <Insets left="25.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Group fx:id="clickable_Understood" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
-                                       <GridPane.margin>
-                                          <Insets left="25.0" top="35.0" />
-                                       </GridPane.margin>
-                                       <children>
-                                          <RadioButton id="check-box" mnemonicParsing="false" text="Ja">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="understood" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                          <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej" toggleGroup="$understood">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                          </RadioButton>
-                                       </children>
-                                    </Group>
-                                    <Label text="Er borgeren informeret om rettigheder og pligter?" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                       <GridPane.margin>
-                                          <Insets bottom="25.0" left="25.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Label text="Ret til bisidder og partsrepræsentant" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
-                                       <font>
-                                          <Font name="Arial" size="10.0" />
-                                       </font>
-                                       <GridPane.margin>
-                                          <Insets left="25.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Group fx:id="clickable_InformedOfRights" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
-                                       <children>
-                                          <RadioButton id="check-box" mnemonicParsing="false" text="Ja">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="informed" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                          <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="understoodReference1" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                       </children>
-                                       <GridPane.margin>
-                                          <Insets left="25.0" top="25.0" />
-                                       </GridPane.margin>
-                                    </Group>
-                                    <Label text="Er borgeren informeret om at oplysningerneer registreret elektronisk?" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                       <GridPane.margin>
-                                          <Insets left="25.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Group fx:id="clickable_StorageOnline" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP">
-                                       <children>
-                                          <RadioButton id="check-box" mnemonicParsing="false" text="Ja">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="electronicStorage" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                          <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="understoodReference111" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                       </children>
-                                       <GridPane.margin>
-                                          <Insets left="25.0" top="30.0" />
-                                       </GridPane.margin>
-                                    </Group>
-                                    <GridPane style="-fx-background-color: #fff;" GridPane.columnIndex="1">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Henvendelsesoplysninger" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="22.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <GridPane.margin>
-                                          <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                       </GridPane.margin>
-                                    </GridPane>
-                                    <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="1">
-                                      <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="117.5" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="290.5" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                          <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <GridPane.margin>
-                                          <Insets left="1.0" right="1.0" top="1.0" />
-                                       </GridPane.margin>
-                                       <children>
-                                          <Label text="Navn" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="14.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextField id="fillableForm" fx:id="fillable_NameField" promptText="Indtast borgers fulde navn" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-                                             </padding>
-                                             <GridPane.margin>
-                                                <Insets right="12.0" />
-                                             </GridPane.margin>
-                                          </TextField>
-                                          <Label text="Adresse" GridPane.rowIndex="3">
-                                             <font>
-                                                <Font name="Arial" size="14.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextField id="fillableForm" fx:id="fillable_AdressField" promptText="Indtast borgers adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-                                             </padding>
-                                             <GridPane.margin>
-                                                <Insets right="12.0" />
-                                             </GridPane.margin>
-                                          </TextField>
-                                          <Label text="Postnr." GridPane.rowIndex="4">
-                                             <font>
-                                                <Font name="Arial" size="14.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextField id="fillableForm" fx:id="fillable_ZipCodeField" maxWidth="120.0" promptText="Indtast postnr." style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-                                             </padding>
-                                             <GridPane.margin>
-                                                <Insets />
-                                             </GridPane.margin>
-                                          </TextField>
-                                          <Label text="CPR Nr." GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Arial" size="14.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextField id="fillableForm" fx:id="fillable_CprField" promptText="Indtast borgers CPR nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-                                             </padding>
-                                             <GridPane.margin>
-                                                <Insets right="12.0" />
-                                             </GridPane.margin>
-                                          </TextField>
-                                          <Label text="Telefon Nr." GridPane.rowIndex="6">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextField id="fillableForm" fx:id="fillable_PhoneNumberField" promptText="Indtast borgers telefon nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-                                             </padding>
-                                             <GridPane.margin>
-                                                <Insets right="12.0" />
-                                             </GridPane.margin>
-                                          </TextField>
-                                          <Label text="E-Mail" GridPane.rowIndex="7">
-                                             <font>
-                                                <Font name="Arial" size="14.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextField id="fillableForm" fx:id="fillable_EmailField" promptText="Indtast borgers email adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-                                             </padding>
-                                             <GridPane.margin>
-                                                <Insets right="12.0" />
-                                             </GridPane.margin>
-                                          </TextField>
-                                       </children>
-                                    </GridPane>
-                                    <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="2">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="113.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.5" minWidth="10.0" prefWidth="295.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <GridPane.margin>
-                                          <Insets bottom="1.0" left="1.0" right="1.0" />
-                                       </GridPane.margin>
-                                       <children>
-                                          <Label text="Køn">
-                                             <font>
-                                                <Font name="Arial" size="14.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <MenuButton fx:id="choice_Gender" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg køn" GridPane.columnIndex="1">
-                                            <items>
-                                              <MenuItem mnemonicParsing="false" text="Mand" />
-                                              <MenuItem mnemonicParsing="false" text="Kvinde" />
-                                            </items>
-                                             <font>
-                                                <Font size="12.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="12.0" />
-                                             </GridPane.margin>
-                                          </MenuButton>
-                                          <Label text="Civilstatus" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Arial" size="14.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <MenuButton fx:id="choice_Relations" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg civilstatus" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font size="12.0" />
-                                             </font>
-                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Single" />
-                                                <MenuItem mnemonicParsing="false" text="I forhold" />
-                                                <MenuItem mnemonicParsing="false" text="Gift" />
-                                             </items>
-                                             <GridPane.margin>
-                                                <Insets left="12.0" />
-                                             </GridPane.margin>
-                                          </MenuButton>
-                                       </children>
-                                    </GridPane>
-                                    <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Værgemål og repræsentation" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="22.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <GridPane.margin>
-                                          <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                       </GridPane.margin>
-                                    </GridPane>
-                                    <GridPane maxHeight="1.7976931348623157E308" style="-fx-background-color: #fff;" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="TOP">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <GridPane.margin>
-                                          <Insets bottom="1.0" left="1.0" right="1.0" top="53.0" />
-                                       </GridPane.margin>
-                                       <children>
-                                          <Label text="Værgemål og repræsentation angiv, hvis relevant" wrapText="true">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <Label text="værge og partsrepræsentantfremkommer automatisk hvis dettidligere er registreret om borgeren" wrapText="true" GridPane.valignment="BOTTOM">
-                                             <font>
-                                                <Font name="Arial" size="10.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" right="12.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <Group fx:id="clickable_GuardianAndRepresentation" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                             <children>
-                                                <CheckBox mnemonicParsing="false" text="Værgemål (§5)" GridPane.rowIndex="1">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                   <GridPane.margin>
-                                                      <Insets left="25.0" />
-                                                   </GridPane.margin>
-                                                </CheckBox>
-                                                <CheckBox layoutY="25.0" mnemonicParsing="false" text="Værgemål med frataget retslig handleevne (§6)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="50.0" mnemonicParsing="false" text="Samværgemål (§7)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="75.0" mnemonicParsing="false" text="Værge (angiv kontaktoplysninger)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="100.0" mnemonicParsing="false" text="Bisidder">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="125.0" mnemonicParsing="false" text="Partsrepræsentant">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="150.0" mnemonicParsing="false" text="Fuldmagt - hvis ja, angiv hvad der er givet fuldmagt til">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                             </children>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" top="20.0" />
-                                             </GridPane.margin>
-                                          </Group>
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                       </padding>
-                                    </GridPane>
-                                    <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.rowIndex="5" GridPane.valignment="TOP">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Samtykke" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="22.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <padding>
-                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                       </padding>
-                                       <GridPane.margin>
-                                          <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                       </GridPane.margin>
-                                    </GridPane>
-                                    <GridPane maxHeight="320.0" style="-fx-background-color: #fff;" GridPane.rowIndex="5" GridPane.rowSpan="2" GridPane.valignment="TOP">
-                                       <children>
-                                          <Label text="Er det relevant at indhente samtykke?" wrapText="true">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <Group fx:id="clickable_consent" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css">
-                                             <children>
-                                                <RadioButton id="check-box" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Ja">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                   <toggleGroup>
-                                                      <ToggleGroup fx:id="relevancy" />
-                                                   </toggleGroup>
-                                                </RadioButton>
-                                                <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" stylesheets="@../Stylesheets/simpleStyle.css" text="Nej" toggleGroup="$relevancy">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                             </children>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" top="95.0" />
-                                             </GridPane.margin>
-                                          </Group>
-                                          <Label text="Hvis ja, angiv hvordan samtykke ermodtaget:" wrapText="true" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <Group fx:id="clickable_ConsentType" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                             <children>
-                                                <RadioButton id="check-box" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Mundtlig samtykke">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                   <toggleGroup>
-                                                      <ToggleGroup fx:id="samtykke" />
-                                                   </toggleGroup>
-                                                </RadioButton>
-                                                <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" stylesheets="@../Stylesheets/simpleStyle.css" text="Skriftlig samtykke" toggleGroup="$samtykke">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                             </children>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" top="100.0" />
-                                             </GridPane.margin>
-                                          </Group>
-                                       </children>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <GridPane.margin>
-                                          <Insets left="1.0" right="1.0" top="53.0" />
-                                       </GridPane.margin>
-                                       <padding>
-                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                       </padding>
-                                    </GridPane>
-                                    <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="7" GridPane.rowSpan="2">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <Label text="Er der modtaget samtykke om indhentning af oplysninger fra:" wrapText="true" GridPane.valignment="TOP">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" right="12.0" top="30.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <Group fx:id="clickable_ConsentFrom" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css">
-                                             <children>
-                                                <CheckBox mnemonicParsing="false" text="Egen læge">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="25.0" mnemonicParsing="false" text="Speciallæge">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="50.0" mnemonicParsing="false" text="Hospital">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="75.0" mnemonicParsing="false" text="A-kasse">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="100.0" mnemonicParsing="false" text="Tilbud">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="125.0" mnemonicParsing="false" text="Arbejdsgiver">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="150.0" mnemonicParsing="false" text="Tidligere Opholdskommune">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                                <CheckBox layoutY="175.0" mnemonicParsing="false" text="Andre forvaltninger">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </CheckBox>
-                                             </children>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" />
-                                             </GridPane.margin>
-                                          </Group>
-                                       </children>
-                                       <GridPane.margin>
-                                          <Insets right="1.0" />
-                                       </GridPane.margin>
-                                    </GridPane>
-                                    <GridPane style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.rowSpan="2">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <GridPane.margin>
-                                          <Insets left="1.0" top="53.0" />
-                                       </GridPane.margin>
-                                       <children>
-                                          <Label text="Eventuelle særlige forhold der skaladresseres for at borgeren kan inddragesi sagsbehandlingen?" wrapText="true" GridPane.valignment="TOP">
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets left="25.0" top="35.0" />
-                                             </GridPane.margin>
-                                          </Label>
-                                          <TextArea id="fillableForm" fx:id="fillable_SpecialCaseDesc" maxHeight="100.0" prefHeight="100.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.valignment="TOP">
-                                             <font>
-                                                <Font name="Arial" size="12.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets bottom="25.0" left="25.0" right="25.0" top="90.0" />
-                                             </GridPane.margin>
-                                          </TextArea>
-                                       </children>
-                                    </GridPane>
-                                    <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="TOP">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="Borgerinddragelse" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                             <font>
-                                                <Font name="Arial" size="22.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <padding>
-                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                       </padding>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <GridPane.margin>
-                                          <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                       </GridPane.margin>
-                                    </GridPane>
-                                    <GridPane style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.5" minWidth="10.0" prefWidth="253.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="93.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="114.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="35.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <Button id="opretSag" mnemonicParsing="false" onAction="#createNewCase" onMouseClicked="#createNewCase" stylesheets="@../Stylesheets/simpleStyle.css" text="Opret" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                             <padding>
-                                                <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                          </Button>
-                                          <Button id="annullerSag" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#cancelNewCase" onMouseClicked="#cancelNewCase" style="-fx-border: none; -fx-background-color: #434343;" stylesheets="@../Stylesheets/simpleStyle.css" text="Annuller" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                             <padding>
-                                                <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
-                                             </padding>
-                                             <font>
-                                                <Font name="Arial" size="16.0" />
-                                             </font>
-                                          </Button>
-                                       </children>
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                    </GridPane>
-                                    <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="9">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </children>
-                              </GridPane>
-                           </content></ScrollPane>
+                        <ScrollPane fx:id="openNewCaseScrollPane" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
                      </children>
                   </GridPane>
                </children>
             </GridPane>
          </children>
       </AnchorPane>
+      <GridPane alignment="TOP_CENTER" layoutX="354.0" layoutY="-1131.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2097.0" prefWidth="913.0" style="-fx-background-color: #eaeaea;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.5" minWidth="10.0" prefWidth="341.5" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="630.0" minWidth="10.0" prefWidth="423.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="500.0" minHeight="400.0" prefHeight="500.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="220.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane style="-fx-background-color: #fff;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </GridPane.margin>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Basisoplysninger" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <GridPane prefHeight="1350.0" prefWidth="495.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="6">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="206.5" minHeight="10.0" prefHeight="183.5" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="125.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="144.5" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </GridPane.margin>
+               <children>
+                  <Label text="Hvad drejer henvendelsen sig om?" wrapText="true" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets left="25.0" top="12.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="fillable_ProblemDescription" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse af problemstillingen ogbehov for hjælp" styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true">
+                     <GridPane.margin>
+                        <Insets left="25.0" right="25.0" top="35.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextArea>
+                  <Label text="Er det klart hvad borgeren søger om?" wrapText="true" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" top="12.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Group fx:id="clickable_ClarityRegarding" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1">
+                     <children>
+                        <RadioButton id="check-box" mnemonicParsing="false" text="Nej" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="25.0" top="75.0" />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets top="25.0" />
+                           </padding>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="clearlyChoosen" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton id="check-box" mnemonicParsing="false" text="Ja" toggleGroup="$clearlyChoosen">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Group>
+                  <Label id="check-box" stylesheets="@../Stylesheets/simpleStyle.css" text="Hvis ja, angiv da hvad borgeren søger om (afkrydsning af ydelser/§)" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Arial" size="10.0" />
+                     </font>
+                  </Label>
+                  <Group fx:id="clickable_CitizenSeeks" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <children>
+                        <RadioButton id="check-box" fx:id="check_home" mnemonicParsing="false" text="Støtte til praktiske opgaver i hjemmet(§ 85)" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets left="25.0" top="12.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton id="check-box" fx:id="check_personalCare" layoutY="25.0" mnemonicParsing="false" text="Støtte til personlig pleje (§ 85)" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton id="check-box" fx:id="check_shoppingFood" layoutY="50.0" mnemonicParsing="false" text="Støtte til indkøb og kost (§ 85)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton id="check-box" fx:id="check_temporaryStay" layoutY="75.0" mnemonicParsing="false" selected="true" text="Midlertidigt ophold (§ 107)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="25.0" top="12.0" />
+                     </GridPane.margin>
+                  </Group>
+                  <Label text="Hvor kommer henvendelsen fra?" wrapText="true" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" top="12.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Group fx:id="clickable_CameFrom" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                     <children>
+                        <CheckBox fx:id="source_citizen" mnemonicParsing="false" text="Borger" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="source_contact" layoutY="25.0" mnemonicParsing="false" text="Pårørende (angiv kontaktoplysninger)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="source_doctor" layoutY="50.0" mnemonicParsing="false" text="Læge (angiv kontaktoplysninger)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="source_hospital" layoutY="75.0" mnemonicParsing="false" text="Hospital (angiv kontaktoplysninger)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="source_other" layoutY="100.0" mnemonicParsing="false" text="Anden forvaltning (angiv kontaktoplysninger)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="source_current" layoutY="125.0" mnemonicParsing="false" text="Igangværende indsats (angiv kontaktoplysninger)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="other_region" layoutY="150.0" mnemonicParsing="false" text="Anden kommune">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="source_etc" layoutY="175.0" mnemonicParsing="false" text="Andre (angiv kontaktoplysninger)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="25.0" top="45.0" />
+                     </GridPane.margin>
+                  </Group>
+               </children>
+            </GridPane>
+            <Label text="Angiv kontaktpersonen" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="25.0" top="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TextArea id="fillableForm" fx:id="fillable_ContactPerson" prefHeight="200.0" prefWidth="200.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="55.0" />
+               </GridPane.margin>
+            </TextArea>
+            <Label text="Er borgeren indforstået med henvendelsen?" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Group fx:id="clickable_Understood" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="25.0" top="35.0" />
+               </GridPane.margin>
+               <children>
+                  <RadioButton id="check-box" mnemonicParsing="false" text="Ja">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="understood" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej" toggleGroup="$understood">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </Group>
+            <Label text="Er borgeren informeret om rettigheder og pligter?" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="25.0" left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Ret til bisidder og partsrepræsentant" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Arial" size="10.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Group fx:id="clickable_InformedOfRights" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
+               <children>
+                  <RadioButton id="check-box" mnemonicParsing="false" text="Ja">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="informed" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="understoodReference1" />
+                     </toggleGroup>
+                  </RadioButton>
+               </children>
+               <GridPane.margin>
+                  <Insets left="25.0" top="25.0" />
+               </GridPane.margin>
+            </Group>
+            <Label text="Er borgeren informeret om at oplysningerne er registreret elektronisk?" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Group fx:id="clickable_StorageOnline" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP">
+               <children>
+                  <RadioButton id="check-box" mnemonicParsing="false" text="Ja">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="electronicStorage" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="understoodReference111" />
+                     </toggleGroup>
+                  </RadioButton>
+               </children>
+               <GridPane.margin>
+                  <Insets left="25.0" top="30.0" />
+               </GridPane.margin>
+            </Group>
+            <GridPane style="-fx-background-color: #fff;" GridPane.columnIndex="1">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Henvendelsesoplysninger" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="1">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="117.5" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="290.5" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <GridPane.margin>
+                  <Insets left="1.0" right="1.0" top="1.0" />
+               </GridPane.margin>
+               <children>
+                  <Label text="Navn" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField id="fillableForm" fx:id="fillable_NameField" promptText="Indtast borgers fulde navn" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets right="12.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="Adresse" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField id="fillableForm" fx:id="fillable_AdressField" promptText="Indtast borgers adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets right="12.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="Postnr." GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField id="fillableForm" fx:id="fillable_ZipCodeField" maxWidth="120.0" promptText="Indtast postnr." style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="CPR Nr." GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField id="fillableForm" fx:id="fillable_CprField" promptText="Indtast borgers CPR nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets right="12.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="Telefon Nr." GridPane.rowIndex="6">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField id="fillableForm" fx:id="fillable_PhoneNumberField" promptText="Indtast borgers telefon nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets right="12.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="E-Mail" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField id="fillableForm" fx:id="fillable_EmailField" promptText="Indtast borgers email adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets right="12.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+            </GridPane>
+            <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="113.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.5" minWidth="10.0" prefWidth="295.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" />
+               </GridPane.margin>
+               <children>
+                  <Label text="Køn">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <MenuButton fx:id="choice_Gender" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg køn" GridPane.columnIndex="1">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#SetGender_Male" text="Mand" />
+                      <MenuItem mnemonicParsing="false" onAction="#setGender_Female" text="Kvinde" />
+                    </items>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="12.0" />
+                     </GridPane.margin>
+                  </MenuButton>
+                  <Label text="Civilstatus" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <MenuButton fx:id="choice_Relations" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg civilstatus" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#setRelationship_Single" text="Single" />
+                        <MenuItem mnemonicParsing="false" onAction="#setRelationship_InRelationship" text="I forhold" />
+                        <MenuItem mnemonicParsing="false" onAction="#setRelationship_Married" text="Gift" />
+                     </items>
+                     <GridPane.margin>
+                        <Insets left="12.0" />
+                     </GridPane.margin>
+                  </MenuButton>
+               </children>
+            </GridPane>
+            <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Værgemål og repræsentation" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+               <GridPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane maxHeight="1.7976931348623157E308" style="-fx-background-color: #fff;" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="TOP">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="53.0" />
+               </GridPane.margin>
+               <children>
+                  <Label text="Værgemål og repræsentation angiv, hvis relevant" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="værge og partsrepræsentant fremkommer automatisk hvis det tidligere er registreret om borgeren" wrapText="true" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font name="Arial" size="10.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" right="12.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Group fx:id="clickable_GuardianAndRepresentation" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Værgemål (§5)" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="25.0" />
+                           </GridPane.margin>
+                        </CheckBox>
+                        <CheckBox layoutY="25.0" mnemonicParsing="false" text="Værgemål med frataget retslig handleevne (§6)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="50.0" mnemonicParsing="false" text="Samværgemål (§7)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="75.0" mnemonicParsing="false" text="Værge (angiv kontaktoplysninger)">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="100.0" mnemonicParsing="false" text="Bisidder">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="125.0" mnemonicParsing="false" text="Partsrepræsentant">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="150.0" mnemonicParsing="false" text="Fuldmagt - hvis ja, angiv hvad der er givet fuldmagt til">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="25.0" top="20.0" />
+                     </GridPane.margin>
+                  </Group>
+               </children>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
+            </GridPane>
+            <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.rowIndex="5" GridPane.valignment="TOP">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Samtykke" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane maxHeight="320.0" style="-fx-background-color: #fff;" GridPane.rowIndex="5" GridPane.rowSpan="2" GridPane.valignment="TOP">
+               <children>
+                  <Label text="Er det relevant at indhente samtykke?" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Group fx:id="clickable_consent" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css">
+                     <children>
+                        <RadioButton id="check-box" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Ja">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="relevancy" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" stylesheets="@../Stylesheets/simpleStyle.css" text="Nej" toggleGroup="$relevancy">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="25.0" top="95.0" />
+                     </GridPane.margin>
+                  </Group>
+                  <Label text="Hvis ja, angiv hvordan samtykke er modtaget:" wrapText="true" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Group fx:id="clickable_ConsentType" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <children>
+                        <RadioButton id="check-box" fx:id="verbal_Consent" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Mundtlig samtykke">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="samtykke" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton id="check-box" fx:id="written_Consent" layoutY="25.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Skriftlig samtykke" toggleGroup="$samtykke">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="25.0" top="100.0" />
+                     </GridPane.margin>
+                  </Group>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <GridPane.margin>
+                  <Insets left="1.0" right="1.0" top="53.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </GridPane>
+            <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="7" GridPane.rowSpan="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Er der modtaget samtykke om indhentning af oplysninger fra:" wrapText="true" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" right="12.0" top="30.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Group fx:id="clickable_ConsentFrom" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Egen læge">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="25.0" mnemonicParsing="false" text="Speciallæge">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="50.0" mnemonicParsing="false" text="Hospital">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="75.0" mnemonicParsing="false" text="A-kasse">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="100.0" mnemonicParsing="false" text="Tilbud">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="125.0" mnemonicParsing="false" text="Arbejdsgiver">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="150.0" mnemonicParsing="false" text="Tidligere Opholdskommune">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox layoutY="175.0" mnemonicParsing="false" text="Andre forvaltninger">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </CheckBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Group>
+               </children>
+               <GridPane.margin>
+                  <Insets right="1.0" />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.rowSpan="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <GridPane.margin>
+                  <Insets left="1.0" top="53.0" />
+               </GridPane.margin>
+               <children>
+                  <Label text="Eventuelle særlige forhold der skal adresseres for at borgeren kan inddrages i sagsbehandlingen?" wrapText="true" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="25.0" top="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextArea id="fillableForm" fx:id="fillable_SpecialCaseDesc" maxHeight="100.0" prefHeight="100.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="90.0" />
+                     </GridPane.margin>
+                  </TextArea>
+               </children>
+            </GridPane>
+            <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.valignment="TOP">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Borgerinddragelse" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+               <rowConstraints>
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <GridPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="9">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.5" minWidth="10.0" prefWidth="253.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="93.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="114.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="35.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button id="opretSag" mnemonicParsing="false" onAction="#createNewCase" onMouseClicked="#createNewCase" stylesheets="@../Stylesheets/simpleStyle.css" text="Opret" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button id="annullerSag" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#cancelNewCase" onMouseClicked="#cancelNewCase" style="-fx-border: none; -fx-background-color: #434343;" stylesheets="@../Stylesheets/simpleStyle.css" text="Annuller" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </GridPane>
+            <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="9">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

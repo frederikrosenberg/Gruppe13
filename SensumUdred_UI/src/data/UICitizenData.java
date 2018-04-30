@@ -5,15 +5,15 @@
  */
 package data;
 
-import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
+import common.ICitizenData;
 
 /**
  *
  * @author Sebas
  */
-public class UICase implements ICase {
+public class UICitizenData implements ICitizenData {
 
     private ICitizen citizen;
     private String state;
@@ -24,7 +24,7 @@ public class UICase implements ICase {
     private String sourceOfRequest;
     private ICaseWorker caseWorker;
 
-    public UICase(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest,ICaseWorker caseWorker){
+    public UICitizenData(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest,ICaseWorker caseWorker){
         this.citizen = citizen;
         this.state = state;
         this.id = id;
