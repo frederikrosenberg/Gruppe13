@@ -45,7 +45,6 @@ public class UserManager implements IUserManager {
      */
     @Override
     public List<? extends IUser> getUsers() {
-
         return Collections.unmodifiableList(users);
     }
 
