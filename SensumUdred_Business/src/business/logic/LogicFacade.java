@@ -126,4 +126,13 @@ public class LogicFacade implements ILogicFacade {
     public IDepartment getDepartment() {
         return department;
     }
+
+    /**
+     * Gets the current logged in case worker
+     * @return The current logged in case worker
+     */
+    @Override
+    public ICaseWorker getCaseWorker() {
+        return caseWorker;
+    }
 }
