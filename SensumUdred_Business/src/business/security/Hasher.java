@@ -32,7 +32,10 @@ public class Hasher {
         } catch (NoSuchAlgorithmException ex) {
         }
     }
-
+/**
+ * Returns true if the hasher is ready.
+ * @return true if the hasher is ready
+ */
     public boolean isReady() {
         return ready;
     }
