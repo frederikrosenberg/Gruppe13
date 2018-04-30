@@ -437,7 +437,7 @@
                         </AnchorPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="openNewCaseGrid" GridPane.columnIndex="1" GridPane.rowSpan="3">
+                  <GridPane fx:id="openNewCaseGrid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowSpan="3">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -446,7 +446,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ScrollPane fx:id="openNewCaseScrollPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                        <ScrollPane fx:id="openNewCaseScrollPane" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                            <content>
                               <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2097.0" prefWidth="913.0" style="-fx-background-color: #eaeaea;">
                                 <columnConstraints>
@@ -506,7 +506,7 @@
                                                 <Font name="Arial" size="16.0" />
                                              </font>
                                           </Label>
-                                          <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse af problemstillingen ogbehov for hjælp" styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true">
+                                          <TextArea fx:id="fillable_ProblemDescription" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse af problemstillingen ogbehov for hjælp" styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true">
                                              <GridPane.margin>
                                                 <Insets left="25.0" right="25.0" top="35.0" />
                                              </GridPane.margin>
@@ -525,7 +525,7 @@
                                                 <Insets left="25.0" top="12.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Group styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1">
+                                          <Group fx:id="clickable_ClarityRegarding" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1">
                                              <children>
                                                 <RadioButton id="check-box" mnemonicParsing="false" text="Nej" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                                    <font>
@@ -559,7 +559,7 @@
                                                 <Font name="Arial" size="10.0" />
                                              </font>
                                           </Label>
-                                          <Group styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                          <Group fx:id="clickable_CitizenSeeks" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                              <children>
                                                 <RadioButton id="check-box" mnemonicParsing="false" text="Støtte til personlig pleje (§ 85)" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                                    <font>
@@ -600,7 +600,7 @@
                                                 <Insets left="25.0" top="12.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Group styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                          <Group fx:id="clickable_CameFrom" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="3" GridPane.valignment="TOP">
                                              <children>
                                                 <CheckBox mnemonicParsing="false" text="Borger" GridPane.rowIndex="3">
                                                    <font>
@@ -657,7 +657,7 @@
                                           <Insets left="25.0" top="20.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <TextArea id="fillableForm" prefHeight="200.0" prefWidth="200.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <TextArea id="fillableForm" fx:id="fillable_ContactPerson" prefHeight="200.0" prefWidth="200.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="Arial" size="12.0" />
                                        </font>
@@ -673,7 +673,7 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Group styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                                    <Group fx:id="clickable_Understood" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                        <GridPane.margin>
                                           <Insets left="25.0" top="35.0" />
                                        </GridPane.margin>
@@ -709,7 +709,7 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Group styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                                    <Group fx:id="clickable_InformedOfRights" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
                                        <children>
                                           <RadioButton id="check-box" mnemonicParsing="false" text="Ja">
                                              <font>
@@ -740,7 +740,7 @@
                                           <Insets left="25.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Group styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                                    <Group fx:id="clickable_StorageOnline" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP">
                                        <children>
                                           <RadioButton id="check-box" mnemonicParsing="false" text="Ja">
                                              <font>
@@ -808,7 +808,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextField id="fillableForm" fx:id="nameField" promptText="Indtast borgers fulde navn" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                          <TextField id="fillableForm" fx:id="fillable_NameField" promptText="Indtast borgers fulde navn" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
@@ -827,7 +827,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextField id="fillableForm" fx:id="AddressField" promptText="Indtast borgers adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                          <TextField id="fillableForm" fx:id="fillable_AdressField" promptText="Indtast borgers adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
@@ -846,7 +846,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextField id="fillableForm" fx:id="zipCodeField" maxWidth="120.0" promptText="Indtast postnr." style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                          <TextField id="fillableForm" fx:id="fillable_ZipCodeField" maxWidth="120.0" promptText="Indtast postnr." style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
@@ -865,7 +865,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextField id="fillableForm" fx:id="cprField" promptText="Indtast borgers CPR nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <TextField id="fillableForm" fx:id="fillable_CprField" promptText="Indtast borgers CPR nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
@@ -884,7 +884,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextField id="fillableForm" fx:id="tlfField" promptText="Indtast borgers telefon nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                          <TextField id="fillableForm" fx:id="fillable_PhoneNumberField" promptText="Indtast borgers telefon nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
@@ -903,7 +903,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextField id="fillableForm" fx:id="emailField" promptText="Indtast borgers email adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                          <TextField id="fillableForm" fx:id="fillable_EmailField" promptText="Indtast borgers email adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
@@ -938,7 +938,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <MenuButton fx:id="genderChoice" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg køn" GridPane.columnIndex="1">
+                                          <MenuButton fx:id="choice_Gender" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg køn" GridPane.columnIndex="1">
                                             <items>
                                               <MenuItem mnemonicParsing="false" text="Mand" />
                                               <MenuItem mnemonicParsing="false" text="Kvinde" />
@@ -958,7 +958,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <MenuButton fx:id="genderChoice1" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg civilstatus" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                          <MenuButton fx:id="choice_Relations" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg civilstatus" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <font>
                                                 <Font size="12.0" />
                                              </font>
@@ -1019,7 +1019,7 @@
                                                 <Insets left="25.0" right="12.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Group styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                          <Group fx:id="clickable_GuardianAndRepresentation" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                              <children>
                                                 <CheckBox mnemonicParsing="false" text="Værgemål (§5)" GridPane.rowIndex="1">
                                                    <font>
@@ -1100,7 +1100,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Group styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css">
+                                          <Group fx:id="clickable_consent" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css">
                                              <children>
                                                 <RadioButton id="check-box" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Ja">
                                                    <font>
@@ -1128,7 +1128,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Group styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <Group fx:id="clickable_ConsentType" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <children>
                                                 <RadioButton id="check-box" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Mundtlig samtykke">
                                                    <font>
@@ -1171,7 +1171,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Label text="Er der modtaget samtykke om indhentningaf oplysninger fra:" wrapText="true" GridPane.valignment="TOP">
+                                          <Label text="Er der modtaget samtykke om indhentning af oplysninger fra:" wrapText="true" GridPane.valignment="TOP">
                                              <font>
                                                 <Font name="Arial" size="16.0" />
                                              </font>
@@ -1179,7 +1179,7 @@
                                                 <Insets left="25.0" right="12.0" top="30.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Group styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css">
+                                          <Group fx:id="clickable_ConsentFrom" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css">
                                              <children>
                                                 <CheckBox mnemonicParsing="false" text="Egen læge">
                                                    <font>
@@ -1250,7 +1250,7 @@
                                                 <Insets left="25.0" top="35.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextArea id="fillableForm" maxHeight="100.0" prefHeight="100.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.valignment="TOP">
+                                          <TextArea id="fillableForm" fx:id="fillable_SpecialCaseDesc" maxHeight="100.0" prefHeight="100.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.valignment="TOP">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
@@ -1293,7 +1293,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button id="opretSag" mnemonicParsing="false" onMouseClicked="#createNewCase" stylesheets="@../Stylesheets/simpleStyle.css" text="Opret" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                          <Button id="opretSag" mnemonicParsing="false" onAction="#createNewCase" onMouseClicked="#createNewCase" stylesheets="@../Stylesheets/simpleStyle.css" text="Opret" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <padding>
                                                 <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
                                              </padding>
@@ -1301,7 +1301,7 @@
                                                 <Font name="Arial" size="16.0" />
                                              </font>
                                           </Button>
-                                          <Button id="annullerSag" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#cancelNewCase" style="-fx-border: none; -fx-background-color: #434343;" stylesheets="@../Stylesheets/simpleStyle.css" text="Annuller" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                          <Button id="annullerSag" layoutX="10.0" layoutY="18.0" mnemonicParsing="false" onAction="#cancelNewCase" onMouseClicked="#cancelNewCase" style="-fx-border: none; -fx-background-color: #434343;" stylesheets="@../Stylesheets/simpleStyle.css" text="Annuller" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                              <padding>
                                                 <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
                                              </padding>

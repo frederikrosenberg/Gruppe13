@@ -5,6 +5,8 @@
  */
 package ui;
 
+import common.IBusinessFacade;
+import common.IUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,25 +18,31 @@ import javafx.stage.Stage;
  *
  * @author Sebas
  */
-public class SensumUdredLogin extends Application {
+public class GUI extends Application implements IUI {
+    private static GUI gui;
+    private IBusinessFacade business;
+    private Stage stage;
     
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
         Scene scene = new Scene(root);
         
-        
+        gui.stage = stage;
         stage.setScene(scene);
         stage.setTitle("Sensum Udred");
         stage.getIcons().add(new Image("Images/icon.png"));
         stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    @Override
+    public void injectBusiness(IBusinessFacade business) {
+        this.business = business;
+    }
+
+    @Override
+    public void startApplication(String[] args) {
+        gui = this;
         launch(args);
     }
     
