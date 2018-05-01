@@ -10,20 +10,23 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class GUI extends Application implements IUI {
+
     private static GUI gui;
     private IBusinessFacade business;
     private Stage stage;
-    
+
     /**
-     * Sets the stage and scene for the GUI, also loads the FXML Document, and sets it as the scene.
+     * Sets the stage and scene for the GUI, also loads the FXML Document, and
+     * sets it as the scene.
+     *
      * @param stage : Stage
-     * @throws Exception 
+     * @throws Exception
      */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene scene = new Scene(root);
-        
+
         gui.stage = stage;
         stage.setScene(scene);
         stage.setTitle("Sensum Udred");
@@ -33,6 +36,7 @@ public class GUI extends Application implements IUI {
 
     /**
      * Injects a reference to the IBusinessFacase into the starter class.
+     *
      * @param business : IBusinessFacade
      */
     @Override
@@ -42,12 +46,13 @@ public class GUI extends Application implements IUI {
 
     /**
      * Starts and launches the application.
-     * @param args 
+     *
+     * @param args
      */
     @Override
     public void startApplication(String[] args) {
         gui = this;
         launch(args);
     }
-    
+
 }

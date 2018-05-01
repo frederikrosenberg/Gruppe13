@@ -6,7 +6,7 @@ import common.ICitizen;
 import common.RelationshipStatus;
 
 public class UICitizen implements ICitizen {
-   
+
     private final ICase activeCase;
     private final int cpr;
     private final String address;
@@ -15,23 +15,10 @@ public class UICitizen implements ICitizen {
     private final String email;
     private final Gender gender;
     private final RelationshipStatus relStat;
-    
+
     /**
      * The constructor for the UICitizen.
-     * @param cpr
-     * @param address
-     * @param name
-     * @param mobNumber
-     * @param email
-     * @param gender
-     * @param relstat 
-     */
-    public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat){
-        this(cpr,address,name,mobNumber,email,gender,relstat,null);
-    }
-    
-    /**
-     * The constructor for the UICitizen including an instance of an ICase object.
+     *
      * @param cpr
      * @param address
      * @param name
@@ -39,9 +26,25 @@ public class UICitizen implements ICitizen {
      * @param email
      * @param gender
      * @param relstat
-     * @param activeCase 
      */
-    public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat, ICase activeCase){
+    public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat) {
+        this(cpr, address, name, mobNumber, email, gender, relstat, null);
+    }
+
+    /**
+     * The constructor for the UICitizen including an instance of an ICase
+     * object.
+     *
+     * @param cpr
+     * @param address
+     * @param name
+     * @param mobNumber
+     * @param email
+     * @param gender
+     * @param relstat
+     * @param activeCase
+     */
+    public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat, ICase activeCase) {
         this.cpr = cpr;
         this.address = address;
         this.name = name;
@@ -54,6 +57,7 @@ public class UICitizen implements ICitizen {
 
     /**
      * Returns the Social security number of the citizen.
+     *
      * @return social security number
      */
     @Override
@@ -63,6 +67,7 @@ public class UICitizen implements ICitizen {
 
     /**
      * Returns the adress of the citizen.
+     *
      * @return address : String
      */
     @Override
@@ -72,6 +77,7 @@ public class UICitizen implements ICitizen {
 
     /**
      * Returns the gender of the Citizen.
+     *
      * @return gender : Gender
      */
     @Override
@@ -81,6 +87,7 @@ public class UICitizen implements ICitizen {
 
     /**
      * Returns the relationshipstatus of the citizen.
+     *
      * @return relstat : Relationshipstatus
      */
     @Override
@@ -90,6 +97,7 @@ public class UICitizen implements ICitizen {
 
     /**
      * Returns the name of the citizen.
+     *
      * @return name : String
      */
     @Override
@@ -99,6 +107,7 @@ public class UICitizen implements ICitizen {
 
     /**
      * Returns the phone number of the citizen.
+     *
      * @return phoneNumber : int
      */
     @Override
@@ -108,6 +117,7 @@ public class UICitizen implements ICitizen {
 
     /**
      * Returns the email of the citizen.
+     *
      * @return email : String
      */
     @Override
@@ -117,11 +127,12 @@ public class UICitizen implements ICitizen {
 
     /**
      * Returns the citizens active case.
+     *
      * @return activeCase : ICase
      */
     @Override
     public ICase getActiveCase() {
         return activeCase;
     }
-    
+
 }

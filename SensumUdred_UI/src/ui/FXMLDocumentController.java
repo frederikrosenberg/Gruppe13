@@ -167,12 +167,13 @@ public class FXMLDocumentController implements Initializable {
      * An instance of the citizens gender, for use in creating a new case.
      */
     private Gender gender;
-    
+
     /**
-     * An instance of the citizens relationship status, for use in creating a new case.
+     * An instance of the citizens relationship status, for use in creating a
+     * new case.
      */
     private RelationshipStatus relstat;
-    
+
     /**
      * An instance of the citizens case, for use in the case preview.
      */
@@ -315,13 +316,15 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Converts a given case's data to a string object, for use in the GUI preview of the case.
+     * Converts a given case's data to a string object, for use in the GUI
+     * preview of the case.
+     *
      * @param c : ICase
      * @return String of the case's data
      */
     private String convertCase2String(ICase c) {
         String rep = "";
-        
+
         rep += "#" + c.getId() + "\tSagsstatus: " + c.getState() + "\t " + c.getOpeningDate() + "\n\n";
 
         rep += "Borger:\n";
@@ -334,8 +337,7 @@ public class FXMLDocumentController implements Initializable {
 
         rep += c.getReason() + "\n";
         rep += c.getAvailableOffers() + "\n";
-        
-        
+
         rep += "Tilhørende sagsbehandler: " + c.getCaseWorker().getName() + "(" + c.getCaseWorker().getUserId() + ")";
 
         return rep;
@@ -509,6 +511,7 @@ public class FXMLDocumentController implements Initializable {
 
     /**
      * closes the specific case, as from the preview.
+     *
      * @param event : Mouse click on button
      */
     @FXML
@@ -518,6 +521,7 @@ public class FXMLDocumentController implements Initializable {
 
     /**
      * Cancels the preview of the given case.
+     *
      * @param event : Mouse click
      */
     @FXML

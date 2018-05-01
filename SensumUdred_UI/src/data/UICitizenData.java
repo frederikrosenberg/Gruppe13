@@ -15,9 +15,10 @@ public class UICitizenData implements ICitizenData {
     private String avalibleOffers;
     private String sourceOfRequest;
     private ICaseWorker caseWorker;
-    
+
     /**
      * The constructor for the UICitizenData class
+     *
      * @param citizen
      * @param state
      * @param id
@@ -25,9 +26,9 @@ public class UICitizenData implements ICitizenData {
      * @param reason
      * @param avalibleOffers
      * @param sourcerOfRequest
-     * @param caseWorker 
+     * @param caseWorker
      */
-    public UICitizenData(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest,ICaseWorker caseWorker){
+    public UICitizenData(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest, ICaseWorker caseWorker) {
         this.citizen = citizen;
         this.state = state;
         this.id = id;
@@ -37,9 +38,10 @@ public class UICitizenData implements ICitizenData {
         this.sourceOfRequest = sourcerOfRequest;
         this.caseWorker = caseWorker;
     }
-    
+
     /**
      * Returns the citizen object.
+     *
      * @return citizen : ICitizen
      */
     @Override
@@ -49,6 +51,7 @@ public class UICitizenData implements ICitizenData {
 
     /**
      * Returns the status of the case.
+     *
      * @return state : String
      */
     @Override
@@ -58,6 +61,7 @@ public class UICitizenData implements ICitizenData {
 
     /**
      * Returns the id of the case.
+     *
      * @return id : int
      */
     @Override
@@ -67,6 +71,7 @@ public class UICitizenData implements ICitizenData {
 
     /**
      * Returns wether or not the citizen has given consent.
+     *
      * @return consent : boolean
      */
     @Override
@@ -75,7 +80,9 @@ public class UICitizenData implements ICitizenData {
     }
 
     /**
-     * Returns the reason for the case existing, and the citizens need for further treatment.
+     * Returns the reason for the case existing, and the citizens need for
+     * further treatment.
+     *
      * @return reason : String
      */
     @Override
@@ -85,6 +92,7 @@ public class UICitizenData implements ICitizenData {
 
     /**
      * Returns the available offers that are relevant for the citizen.
+     *
      * @return avalibleOffers : String
      */
     @Override
@@ -94,6 +102,7 @@ public class UICitizenData implements ICitizenData {
 
     /**
      * Returns the source of the request.
+     *
      * @return sourceOfRequest : String
      */
     @Override
@@ -103,6 +112,7 @@ public class UICitizenData implements ICitizenData {
 
     /**
      * Returns the case worker associated with the specific case.
+     *
      * @return caseWorker : ICaseWorker
      */
     @Override
@@ -112,6 +122,7 @@ public class UICitizenData implements ICitizenData {
 
     /**
      * Returns the opening date of the case.
+     *
      * @return new Date : Date
      */
     @Override
@@ -121,6 +132,7 @@ public class UICitizenData implements ICitizenData {
 
     /**
      * Returns the closing date of the given case.
+     *
      * @return null
      */
     @Override
