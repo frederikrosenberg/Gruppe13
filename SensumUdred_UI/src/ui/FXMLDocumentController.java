@@ -235,6 +235,7 @@ public class FXMLDocumentController implements Initializable {
         inappWallpaperDark.fitHeightProperty().bind(inappBackground.heightProperty());
 
         Thread timethread = new TimeThread(time);
+        timethread.setDaemon(true);
         timethread.start();
         
         

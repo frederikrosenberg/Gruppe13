@@ -8,13 +8,29 @@ import javafx.scene.control.Label;
 
 public class TimeThread extends Thread {
 
+    /**
+     * the value of the time, as a string
+     */
     private String output;
+    
+    /**
+     * An instance of the label type
+     */
     private Label label;
 
+    /**
+     * Initializes an instanse of label
+     * @param label the label from GUI
+     */
     public TimeThread(Label label) {
         this.label = label;
     }
 
+    /**
+     * Runs the thread, this thread sets the text of the label, to the time of the DK time zone
+     * After this, the thread sleeps for 0.5 seconds and then re-gets the time
+     * 
+     */
     public void run() {
         //Runs eternally:
         while (true) {
