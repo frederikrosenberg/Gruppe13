@@ -29,7 +29,7 @@ public class GUI extends Application implements IUI {
      * Sets the stage and scene for the GUI, also loads the FXML Document, and
      * sets it as the scene.
      *
-     * @param stage : Stage
+     * @param stage obejct
      * @throws Exception
      */
     @Override
@@ -47,7 +47,7 @@ public class GUI extends Application implements IUI {
     /**
      * Injects a reference to the IBusinessFacase into the starter class.
      *
-     * @param business : IBusinessFacade
+     * @param business object of the IBusinessfacade type
      */
     @Override
     public void injectBusiness(IBusinessFacade business) {
