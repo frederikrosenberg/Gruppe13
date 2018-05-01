@@ -32,8 +32,10 @@ public class SecurityFacade implements ISecurityFacade {
      * security manager and the user manager into each other.
      */
     public SecurityFacade() {
-        security = new SecurityManager(users);
-        users = new UserManager(security);
+        security = new SecurityManager();
+        users = new UserManager();
+        security.injectUserManager(users);
+        users.injectSecurityManager(security);
     }
 
     /**
@@ -44,9 +46,10 @@ public class SecurityFacade implements ISecurityFacade {
      * @param userManager
      */
     public SecurityFacade(IUserManager userManager) {
-        security = new SecurityManager(users);
-        users = new UserManager(security, userManager);
-
+        security = new SecurityManager();
+        users = new UserManager(userManager);
+        security.injectUserManager(users);
+        users.injectSecurityManager(security);
     }
 
     /**

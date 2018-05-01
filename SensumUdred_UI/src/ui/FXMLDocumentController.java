@@ -208,23 +208,15 @@ public class FXMLDocumentController implements Initializable {
     private IBusinessFacade business;
 
     /**
-     * Injects a reference to the active instance of the businesss facade.
-     *
-     * @param business an instance of the IBusinessFacade
-     */
-    public void injectBusiness(IBusinessFacade business) {
-        this.business = business;
-    }
-
-    /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
         backgroundImage.fitHeightProperty().bind(appBackground.heightProperty());
-        inappScreen.setVisible(true);
+        inappScreen.setVisible(false);
         editCasesGridPane.setVisible(false);
+        business = GUI.getInstacne().getBusiness();
     }
 
     /**
@@ -263,7 +255,7 @@ public class FXMLDocumentController implements Initializable {
     private void loginRequested(ActionEvent event) {
         if (business.login(usernameField.getText(), passwordField.getText())) {
             wrongUserPassGridPane.setVisible(false);
-            inappScreen.setVisible(false);
+            inappScreen.setVisible(true);
             usernameField.clear();
             passwordField.clear();
         } else {
