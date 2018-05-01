@@ -19,24 +19,41 @@ import common.Role;
 import java.util.List;
 
 /**
+ * The facade of the business package
  *
- * @author fsr19
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
-public class Business implements IBusinessFacade {
+public class BusinessFacade implements IBusinessFacade {
 
-    private ILogicFacade logic;
-    
-    private ISecurityFacade security;
-    
-    private IPersistenceFacade persistence;
-    
-    public Business() {
-        
-    }
-    
-    
     /**
-     * Logs the the user in, given that their information is valid.
+     * Instance of the ILogicFacade
+     */
+    private ILogicFacade logic;
+
+    /**
+     * Instance of the ISecurityFacade
+     */
+    private ISecurityFacade security;
+
+    /**
+     * Instance of the IPersistenceFacade
+     */
+    private IPersistenceFacade persistence;
+
+    /**
+     * Constructor for the BusinessFacade
+     */
+    public BusinessFacade() {
+
+    }
+
+    /**
+     * Logs the the user in, given that their information is valid
      *
      * @param username the username of the user
      * @param password the password of the user
@@ -45,15 +62,18 @@ public class Business implements IBusinessFacade {
     @Override
     public boolean login(String username, String password) {
         String id = security.logIn(username, password);
-        if (id == null) return false;
+        if (id == null) {
+            return false;
+        }
         if (security.hasAccess(Role.CASEWORKER)) {
             logic.setCaseWorker(id);
         }
-        
+
         return true;
     }
+
     /**
-     * Logs the user out.
+     * Logs the user out
      *
      * @return true.
      */
@@ -67,7 +87,7 @@ public class Business implements IBusinessFacade {
     }
 
     /**
-     * Opens a new case based on the entered data.
+     * Opens a new case based on the entered data
      *
      * @param citizenData the information needed for the case
      * @return the newly opened case
@@ -76,12 +96,13 @@ public class Business implements IBusinessFacade {
     public ICase openCase(ICitizenData citizenData) {
         if (security.hasAccess(Role.CASEWORKER)) {
             return logic.openCase(citizenData);
-        } 
+        }
         return null;
     }
-    
+
     /**
      * Closes a case from a given case id
+     *
      * @param caseId The case to close
      * @return True if the case is closed
      */
@@ -92,14 +113,15 @@ public class Business implements IBusinessFacade {
         }
         return false;
     }
+
     /**
-     * To be called when the system shuts down.
+     * To be called when the system shuts down
      */
     @Override
     public void closing() {
         save();
     }
-    
+
     /**
      * Finds an active case from either cpr or case id
      *
@@ -110,13 +132,13 @@ public class Business implements IBusinessFacade {
     @Override
     public ICase findActiveCase(int value, boolean isCpr) {
         if (security.hasAccess(Role.CASEWORKER)) {
-           return logic.findActiveCase(value, isCpr);
+            return logic.findActiveCase(value, isCpr);
         }
         return null;
     }
 
     /**
-     * Finds an active case from the name of the concerned citizen.
+     * Finds an active case from the name of the concerned citizen
      *
      * @param name the name of the concerned citizen
      * @return the case found, else null
@@ -130,7 +152,7 @@ public class Business implements IBusinessFacade {
     }
 
     /**
-     * Returns all active cases in the department.
+     * Returns all active cases in the department
      *
      * @return all active cases in the department
      */
@@ -143,7 +165,7 @@ public class Business implements IBusinessFacade {
     }
 
     /**
-     * Returns all active cases of the current caseworker.
+     * Returns all active cases of the current caseworker
      *
      * @return all active cases of the current caseworker
      */
@@ -158,7 +180,7 @@ public class Business implements IBusinessFacade {
     /**
      * Injects a reference to the persistence layer
      *
-     * @param persistence the reference to be
+     * @param persistence the reference to be injected
      */
     @Override
     public void injectPersistence(IPersistenceFacade persistence) {
@@ -167,6 +189,7 @@ public class Business implements IBusinessFacade {
 
     /**
      * Gets the current logged in case worker
+     *
      * @return The current logged in case worker
      */
     @Override
@@ -176,22 +199,29 @@ public class Business implements IBusinessFacade {
         }
         return null;
     }
-    
+
+    /**
+     * Loads in the saved data if any is available
+     */
     private void load() {
         if (persistence.saveAvailable()) {
             IDataObject data = persistence.load();
             logic = new LogicFacade(data.getDepartment());
             security = new SecurityFacade(data.getUserManager());
-            
+
         } else {
             logic = new LogicFacade();
             security = new SecurityFacade();
         }
     }
-    
+
+    /**
+     * Saves the data
+     *
+     * @return true if the data is saved
+     */
     private boolean save() {
         return persistence.save(security.getUserManager(), logic.getDepartment());
     }
-    
-    
+
 }
