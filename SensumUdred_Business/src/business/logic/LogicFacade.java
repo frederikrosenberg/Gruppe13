@@ -33,7 +33,7 @@ public class LogicFacade implements ILogicFacade {
      * @param department The deparment to create a logicfacade from
      */
     public LogicFacade(IDepartment department) {
-        this.department = (Department) department;
+        this.department = new Department(department);
     }
     
     public LogicFacade() {
