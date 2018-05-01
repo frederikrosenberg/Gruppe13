@@ -32,27 +32,30 @@ public class UserManager implements IUserManager {
 
     /**
      * A constructor setting the security manager reference.
-     *
-     * @param security a reference to the security manager
      */
-    UserManager(SecurityManager security) {
-        this.security = security;
+    public UserManager() {
         //Adding dummy data.
-        addUser("name", "username", "password", CASEWORKER);
+        
     }
 
     /**
      * A constructor setting the security manager reference and taking an IUser
      * to get user data from.
-     *
-     * @param security a reference to the security manager.
-     * @param IUsers an IUserManager containing IUsers for all the users
+     * 
+     * @param userManager an IUserManager containing IUsers for all the users
      */
-    UserManager(SecurityManager security, IUserManager userManager) {
-        this.security = security;
+    public UserManager(IUserManager userManager) {
         for (IUser user : userManager.getUsers()) {
             users.add(new User(user));
         }
+    }
+    
+    /**
+     * Inject the security manager
+     * @param securityManager the manager
+     */
+    public void injectSecurityManager(SecurityManager securityManager) {
+        security = securityManager;
     }
 
     /**
@@ -66,15 +69,18 @@ public class UserManager implements IUserManager {
     }
 
     /**
-     * Adds a new user to the system.
+     * Adds a new user to the system and returns its user id
      *
      * @param name the name of the user
      * @param username the username of the user
      * @param password the password of the user
      * @param role the role of the user
+     * @return the user id of the new user
      */
-    public void addUser(String name, String username, String password, Role role) {
-        users.add(new User(name, username, security.hashPassword(password), role, generateId()));
+    public String addUser(String name, String username, String password, Role role) {
+        String id = generateId();
+        users.add(new User(name, username, security.hashPassword(password), role, id));
+        return id;
     }
 
     /**

@@ -75,5 +75,21 @@ public class GUI extends Application implements IUI {
         gui = this;
         launch(args);
     }
+    
+    /**
+     * Gets the business facade
+     * @return the business facade
+     */
+    public IBusinessFacade getBusiness() {
+        return business;
+    }
+    
+    /**
+     * Get the ui instance
+     * @return the gui object
+     */
+    public static GUI getInstacne() {
+        return gui;
+    }
 
 }

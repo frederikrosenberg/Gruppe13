@@ -1,28 +1,29 @@
-package  business.logic;
+package business.logic;
+
 import common.IPerson;
 
 /**
  * Contains basic information about a person
- * 
+ *
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
- * @author Frederik Rosenberg 
+ * @author Frederik Rosenberg
  * @author Mikkel Larsen
  * @author Sebastian Christensen
  * @author Kasper Schødts
  */
-public class Person implements IPerson{
+public class Person implements IPerson {
 
     /**
      * The name of the person
      */
     private String name;
-    
+
     /**
      * The phone number of the person
      */
     private String phoneNumber;
-    
+
     /**
      * The email of the person
      */
@@ -30,6 +31,7 @@ public class Person implements IPerson{
 
     /**
      * Construct a new person
+     *
      * @param name The name of the person
      * @param phoneNumber The phone number of the person
      * @param email The email of the person
@@ -39,9 +41,10 @@ public class Person implements IPerson{
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
-    
+
     /**
      * Gets the name of the person
+     *
      * @return The name of the person
      */
     @Override
@@ -51,6 +54,7 @@ public class Person implements IPerson{
 
     /**
      * Gets the phone number of the person
+     *
      * @return The phone number of the person
      */
     @Override
@@ -60,6 +64,7 @@ public class Person implements IPerson{
 
     /**
      * Gets the email of the person
+     *
      * @return The email of the person
      */
     @Override
