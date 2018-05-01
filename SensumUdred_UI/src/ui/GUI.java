@@ -23,6 +23,11 @@ public class GUI extends Application implements IUI {
     private IBusinessFacade business;
     private Stage stage;
     
+    /**
+     * Sets the stage and scene for the GUI, also loads the FXML Document, and sets it as the scene.
+     * @param stage : Stage
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -35,11 +40,19 @@ public class GUI extends Application implements IUI {
         stage.show();
     }
 
+    /**
+     * Injects a reference to the IBusinessFacase into the starter class.
+     * @param business : IBusinessFacade
+     */
     @Override
     public void injectBusiness(IBusinessFacade business) {
         this.business = business;
     }
 
+    /**
+     * Starts and launches the application.
+     * @param args 
+     */
     @Override
     public void startApplication(String[] args) {
         gui = this;
