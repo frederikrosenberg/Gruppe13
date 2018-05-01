@@ -45,7 +45,7 @@ public class DataCaseWorker extends DataPerson implements ICaseWorker, Serializa
         cases = new ArrayList<>();
         for (ICase activeCase : caseWorker.getActiveCases()) {
             DataCitizen citizen = department.findCitizen(activeCase.getCitizen().getCpr());
-            DataCase _case = new DataCase(activeCase, this, citizen);
+            DataCase _case = new DataCase(activeCase, this, citizen, true);
             cases.add(_case);
         }
     }
