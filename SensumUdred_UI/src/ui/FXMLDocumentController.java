@@ -32,6 +32,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+/**
+ * FXML Controller class for the GUI
+ *
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
+ */
 public class FXMLDocumentController implements Initializable {
 
     @FXML

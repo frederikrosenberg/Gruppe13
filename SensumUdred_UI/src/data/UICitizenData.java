@@ -5,6 +5,16 @@ import common.ICitizen;
 import common.ICitizenData;
 import java.util.Date;
 
+/**
+ * UICitizenData class for representation of the citizen in the GUI
+ *
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
+ */
 public class UICitizenData implements ICitizenData {
 
     private ICitizen citizen;
@@ -19,14 +29,14 @@ public class UICitizenData implements ICitizenData {
     /**
      * The constructor for the UICitizenData class
      *
-     * @param citizen
-     * @param state
-     * @param id
-     * @param consent
-     * @param reason
-     * @param avalibleOffers
-     * @param sourcerOfRequest
-     * @param caseWorker
+     * @param citizen The citizen object 
+     * @param state The state of the citizens case
+     * @param id The id of the citizens case
+     * @param consent Wether or not consent was given
+     * @param reason The reason for the request
+     * @param avalibleOffers The avalible offers for the citizen
+     * @param sourcerOfRequest The source of the request
+     * @param caseWorker The case worker object associated with the case
      */
     public UICitizenData(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest, ICaseWorker caseWorker) {
         this.citizen = citizen;

@@ -5,6 +5,16 @@ import common.ICase;
 import common.ICitizen;
 import common.RelationshipStatus;
 
+/**
+ * UICitizen class for representation in the GUI.
+ *
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
+ */
 public class UICitizen implements ICitizen {
 
     private final ICase activeCase;
@@ -19,13 +29,13 @@ public class UICitizen implements ICitizen {
     /**
      * The constructor for the UICitizen.
      *
-     * @param cpr
-     * @param address
-     * @param name
-     * @param mobNumber
-     * @param email
-     * @param gender
-     * @param relstat
+     * @param name The citizens name
+     * @param mobNumber The citizens phone number
+     * @param email The citizens email
+     * @param cpr The citizens cpr number
+     * @param address The citizens address
+     * @param relstat The citizens relationship status
+     * @param gender The citizens gender
      */
     public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat) {
         this(cpr, address, name, mobNumber, email, gender, relstat, null);
@@ -35,14 +45,14 @@ public class UICitizen implements ICitizen {
      * The constructor for the UICitizen including an instance of an ICase
      * object.
      *
-     * @param cpr
-     * @param address
-     * @param name
-     * @param mobNumber
-     * @param email
-     * @param gender
-     * @param relstat
-     * @param activeCase
+     * @param name The citizens name
+     * @param mobNumber The citizens phone number
+     * @param email The citizens email
+     * @param cpr The citizens cpr number
+     * @param address The citizens address
+     * @param relstat The citizens relationship status
+     * @param gender The citizens gender
+     * @param activeCase The active case of the citizen
      */
     public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat, ICase activeCase) {
         this.cpr = cpr;
