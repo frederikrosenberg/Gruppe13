@@ -8,6 +8,7 @@ package data;
 import common.ICaseWorker;
 import common.ICitizen;
 import common.ICitizenData;
+import java.util.Date;
 
 /**
  *
@@ -23,7 +24,7 @@ public class UICitizenData implements ICitizenData {
     private String avalibleOffers;
     private String sourceOfRequest;
     private ICaseWorker caseWorker;
-
+    
     public UICitizenData(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest,ICaseWorker caseWorker){
         this.citizen = citizen;
         this.state = state;
@@ -73,6 +74,16 @@ public class UICitizenData implements ICitizenData {
     @Override
     public ICaseWorker getCaseWorker() {
         return this.caseWorker;
+    }
+
+    @Override
+    public Date getOpeningDate() {
+        return new Date();
+    }
+
+    @Override
+    public Date getClosingDate() {
+        return null;
     }
 
 }

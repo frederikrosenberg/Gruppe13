@@ -303,7 +303,7 @@ public class FXMLDocumentController implements Initializable {
     private String convertCase2String(ICase c) {
         String rep = "";
         
-        rep += "#" + c.getId() + "\tSagsstatus: " + c.getState() + "\n\n";
+        rep += "#" + c.getId() + "\tSagsstatus: " + c.getState() + "\t " + c.getOpeningDate() + "\n\n";
 
         rep += "Borger:\n";
         rep += c.getCitizen().getName() + "\n";
@@ -490,7 +490,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void closeCase(ActionEvent event) {
-        business.closeCase();
+        business.closeCase(casepreview.getId());
     }
 
     @FXML
