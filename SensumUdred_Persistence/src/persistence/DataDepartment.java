@@ -82,7 +82,7 @@ public class DataDepartment implements IDepartment, Serializable {
         
         inactiveCases = new ArrayList<>();
         for (ICase inactiveCase : department.getInactiveCases()) {
-            inactiveCases.add(new DataCase(inactiveCase, findCaseWorker(inactiveCase.getCaseWorker().getUserId()), findCitizen(inactiveCase.getCitizen().getCpr())));
+            inactiveCases.add(new DataCase(inactiveCase, findCaseWorker(inactiveCase.getCaseWorker().getUserId()), findCitizen(inactiveCase.getCitizen().getCpr()), false));
         }
     }
     
