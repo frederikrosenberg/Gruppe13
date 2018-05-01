@@ -90,7 +90,7 @@ public interface IBusinessFacade {
     /**
      * Injects a reference to the persistence layer
      *
-     * @param persistence the reference to be
+     * @param persistence the reference to be injected
      */
     void injectPersistence(IPersistenceFacade persistence);
     

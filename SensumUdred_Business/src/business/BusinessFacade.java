@@ -19,22 +19,39 @@ import common.Role;
 import java.util.List;
 
 /**
+ * The facade of the business package
  *
- * @author fsr19
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
-public class Business implements IBusinessFacade {
+public class BusinessFacade implements IBusinessFacade {
 
+    /**
+     * Instance of the ILogicFacade
+     */
     private ILogicFacade logic;
-    
+
+    /**
+     * Instance of the ISecurityFacade
+     */
     private ISecurityFacade security;
-    
+
+    /**
+     * Instance of the IPersistenceFacade
+     */
     private IPersistenceFacade persistence;
-    
-    public Business() {
-        
+
+    /**
+     * Constructor for the BusinessFacade
+     */
+    public BusinessFacade() {
+
     }
-    
-    
+
     /**
      * Logs the the user in, given that their information is valid.
      *
@@ -45,13 +62,16 @@ public class Business implements IBusinessFacade {
     @Override
     public boolean login(String username, String password) {
         String id = security.logIn(username, password);
-        if (id == null) return false;
+        if (id == null) {
+            return false;
+        }
         if (security.hasAccess(Role.CASEWORKER)) {
             logic.setCaseWorker(id);
         }
-        
+
         return true;
     }
+
     /**
      * Logs the user out.
      *
@@ -76,12 +96,13 @@ public class Business implements IBusinessFacade {
     public ICase openCase(ICitizenData citizenData) {
         if (security.hasAccess(Role.CASEWORKER)) {
             return logic.openCase(citizenData);
-        } 
+        }
         return null;
     }
-    
+
     /**
-     * Closes a case from a given case id
+     * Closes a case from a given case id.
+     *
      * @param caseId The case to close
      * @return True if the case is closed
      */
@@ -92,6 +113,7 @@ public class Business implements IBusinessFacade {
         }
         return false;
     }
+
     /**
      * To be called when the system shuts down.
      */
@@ -99,9 +121,9 @@ public class Business implements IBusinessFacade {
     public void closing() {
         save();
     }
-    
+
     /**
-     * Finds an active case from either cpr or case id
+     * Finds an active case from either cpr or case id.
      *
      * @param value the search parameter
      * @param isCpr if true the value is cpr otherwise it is case id
@@ -110,7 +132,7 @@ public class Business implements IBusinessFacade {
     @Override
     public ICase findActiveCase(int value, boolean isCpr) {
         if (security.hasAccess(Role.CASEWORKER)) {
-           return logic.findActiveCase(value, isCpr);
+            return logic.findActiveCase(value, isCpr);
         }
         return null;
     }
@@ -156,9 +178,9 @@ public class Business implements IBusinessFacade {
     }
 
     /**
-     * Injects a reference to the persistence layer
+     * Injects a reference to the persistence layer.
      *
-     * @param persistence the reference to be
+     * @param persistence the reference to be injected
      */
     @Override
     public void injectPersistence(IPersistenceFacade persistence) {
@@ -166,7 +188,8 @@ public class Business implements IBusinessFacade {
     }
 
     /**
-     * Gets the current logged in case worker
+     * Gets the current logged in case worker.
+     *
      * @return The current logged in case worker
      */
     @Override
@@ -176,22 +199,29 @@ public class Business implements IBusinessFacade {
         }
         return null;
     }
-    
+
+    /**
+     * Loads in the saved data if any is available.
+     */
     private void load() {
         if (persistence.saveAvailable()) {
             IDataObject data = persistence.load();
             logic = new LogicFacade(data.getDepartment());
             security = new SecurityFacade(data.getUserManager());
-            
+
         } else {
             logic = new LogicFacade();
             security = new SecurityFacade();
         }
     }
-    
+
+    /**
+     * Saves the data.
+     *
+     * @return
+     */
     private boolean save() {
         return persistence.save(security.getUserManager(), logic.getDepartment());
     }
-    
-    
+
 }
