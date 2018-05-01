@@ -33,7 +33,7 @@ public class UserManager implements IUserManager {
     /**
      * A constructor setting the security manager reference.
      *
-     * @param security
+     * @param security a reference to the security manager
      */
     UserManager(SecurityManager security) {
         this.security = security;
