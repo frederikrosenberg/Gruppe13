@@ -64,14 +64,28 @@ public class Department implements IDepartment {
      * @param department The saved department
      */
     public Department(IDepartment department) {
+//        for (ICaseWorker caseWorker : department.getCaseWorkers()) {
+//            caseWorkers.add(new CaseWorker(caseWorker, this));
+//        }
+//        for (ICase c : department.getInactiveCases()) {
+//            inactiveCases.add(new Case(c));
+//        }
+//        for (ICitizen citizen : department.getCitizens()) {
+//            citizens.add(new Citizen(citizen));
+//        }
+        citizens = new ArrayList<>();
+        for (ICitizen citizen : department.getCitizens()) {
+            citizens.add(new Citizen(citizen));
+        }
+        
+        caseWorkers = new ArrayList<>();
         for (ICaseWorker caseWorker : department.getCaseWorkers()) {
             caseWorkers.add(new CaseWorker(caseWorker, this));
         }
-        for (ICase c : department.getInactiveCases()) {
-            inactiveCases.add(new Case(c));
-        }
-        for (ICitizen citizen : department.getCitizens()) {
-            citizens.add(new Citizen(citizen));
+        
+        inactiveCases = new ArrayList<>();
+        for (ICase inactiveCase : department.getInactiveCases()) {
+            inactiveCases.add(new Case(inactiveCase, findCaseWorker(inactiveCase.getCaseWorker().getUserId()), findCitizen(inactiveCase.getCitizen().getCpr()), false));
         }
         name = department.getName();
         treatmentArea = department.getTreatmentArea();
@@ -94,6 +108,32 @@ public class Department implements IDepartment {
         this.address = address;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+    
+    /**
+     * Find a case worker
+     * @param id of the case worker
+     * @return the found case worker
+     * @throws IllegalArgumentException if not found, because this should be found while saving otherwise something is missing
+     */
+    private CaseWorker findCaseWorker(String id) {
+        for (CaseWorker worker : caseWorkers) {
+            if (worker.getUserId().equals(id)) return worker;
+        }
+        throw new IllegalArgumentException();
+    }
+    
+    /**
+     * Find a citizen 
+     * @param cpr of the citizen
+     * @return the found citizen
+     * @throws IllegalArgumentException if not found, because this should be found while saving otherwise something is missing
+     */
+    public Citizen findCitizen(int cpr) {
+        for (Citizen citizen : citizens) {
+            if (citizen.getCpr() == cpr) return citizen;
+        }
+        throw new IllegalArgumentException();
     }
     
     /**

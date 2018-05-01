@@ -4,6 +4,7 @@ import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
 import common.ICitizenData;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class CaseWorker extends Person implements ICaseWorker{
     /**
      * The list of active cases the case worker owns
      */
-    private List<Case> cases;
+    private List<Case> cases = new ArrayList();
     
     /**
      * Contructs a new case worker
@@ -64,6 +65,11 @@ public class CaseWorker extends Person implements ICaseWorker{
         this.employeeId = caseWorker.getEmployeeId();
         this.userId = caseWorker.getUserId();
         this.department = department;
+        for (ICase activeCase : caseWorker.getActiveCases()) {
+            Citizen citizen = department.findCitizen(activeCase.getCitizen().getCpr());
+            Case c = new Case(activeCase, this, citizen, true);
+            cases.add(c);
+        }
     }
 
     /**

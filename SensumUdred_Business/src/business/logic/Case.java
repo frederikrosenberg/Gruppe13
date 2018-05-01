@@ -93,19 +93,34 @@ public class Case implements ICase {
         openingDate = new Date();
     }
 
-    /**
-     * Construct an case with already exisiting case data
-     * @param c The case data to extract from
-     */
-    public Case(ICase c) {
-        this.state = c.getState();
-        this.consent = c.getConsent();
-        this.reason = c.getReason();
-        this.availableOffers = c.getAvailableOffers();
-        this.sourceOfRequest = c.getSourceOfRequest();
-        this.citizen = (Citizen) c.getCitizen();
-        this.caseWorker = (CaseWorker) c.getCaseWorker();
+//    /**
+//     * Construct an case with already exisiting case data
+//     * @param c The case data to extract from
+//     */
+//    public Case(ICase c) {
+//        this.state = c.getState();
+//        this.consent = c.getConsent();
+//        this.reason = c.getReason();
+//        this.availableOffers = c.getAvailableOffers();
+//        this.sourceOfRequest = c.getSourceOfRequest();
+//        this.citizen = (Citizen) c.getCitizen();
+//        this.caseWorker = (CaseWorker) c.getCaseWorker();
+//        openingDate = c.getOpeningDate();
+//    }
+    
+    
+    public Case(ICase c, CaseWorker caseWorker, Citizen citizen, boolean isActive) {
+        this.citizen = citizen;
+        this.caseWorker = caseWorker;
+        id = c.getId();
+        state = c.getState();
+        consent = c.getConsent();
+        reason = c.getReason();
+        availableOffers = c.getAvailableOffers();
+        sourceOfRequest = c.getSourceOfRequest();
         openingDate = c.getOpeningDate();
+        closingDate = c.getClosingDate();
+        if(isActive) citizen.setActiveCase(this);
     }
     
     /**
