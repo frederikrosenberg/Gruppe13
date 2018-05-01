@@ -163,8 +163,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label preview_Label;
 
+    /**
+     * An instance of the citizens gender, for use in creating a new case.
+     */
     private Gender gender;
+    
+    /**
+     * An instance of the citizens relationship status, for use in creating a new case.
+     */
     private RelationshipStatus relstat;
+    
+    /**
+     * An instance of the citizens case, for use in the case preview.
+     */
     private ICase casepreview;
 
     /**
@@ -296,10 +307,18 @@ public class FXMLDocumentController implements Initializable {
         });
     }
 
+    /**
+     * Sets the case's text from the case data.
+     */
     private void showCasePreview() {
         preview_Label.setText(convertCase2String(casepreview));
     }
 
+    /**
+     * Converts a given case's data to a string object, for use in the GUI preview of the case.
+     * @param c : ICase
+     * @return String of the case's data
+     */
     private String convertCase2String(ICase c) {
         String rep = "";
         
@@ -488,11 +507,19 @@ public class FXMLDocumentController implements Initializable {
         relstat = RelationshipStatus.MARRIED;
     }
 
+    /**
+     * closes the specific case, as from the preview.
+     * @param event : Mouse click on button
+     */
     @FXML
     private void closeCase(ActionEvent event) {
         business.closeCase(casepreview.getId());
     }
 
+    /**
+     * Cancels the preview of the given case.
+     * @param event : Mouse click
+     */
     @FXML
     private void cancelPreviewCase(ActionEvent event) {
         seeSpecificCase.setVisible(false);

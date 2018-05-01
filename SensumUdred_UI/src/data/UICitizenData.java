@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
 import common.ICaseWorker;
@@ -10,10 +5,6 @@ import common.ICitizen;
 import common.ICitizenData;
 import java.util.Date;
 
-/**
- *
- * @author Sebas
- */
 public class UICitizenData implements ICitizenData {
 
     private ICitizen citizen;

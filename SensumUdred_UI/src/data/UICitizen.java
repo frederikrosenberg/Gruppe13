@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package data;
 
 import common.Gender;
@@ -10,10 +5,6 @@ import common.ICase;
 import common.ICitizen;
 import common.RelationshipStatus;
 
-/**
- *
- * @author Sebas
- */
 public class UICitizen implements ICitizen {
    
     private final ICase activeCase;
