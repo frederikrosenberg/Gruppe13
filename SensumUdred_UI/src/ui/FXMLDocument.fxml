@@ -593,22 +593,22 @@
                                           </Label>
                                           <Group GridPane.rowIndex="2" GridPane.valignment="TOP">
                                              <children>
-                                                <RadioButton id="check-box" fx:id="check_personalCare" mnemonicParsing="false" text="Støtte til personlig pleje (§ 85)">
+                                                <RadioButton id="check-box" fx:id="check_personalCare" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Støtte til personlig pleje (§ 85)">
                                                    <font>
                                                       <Font name="Arial" size="12.0" />
                                                    </font>
                                                 </RadioButton>
-                                                <RadioButton id="check-box" fx:id="check_temporaryStay" layoutY="25.0" mnemonicParsing="false" text="Midlertidigt ophold (§ 107)">
+                                                <RadioButton id="check-box" fx:id="check_temporaryStay" layoutY="25.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Midlertidigt ophold (§ 107)">
                                                    <font>
                                                       <Font name="Arial" size="12.0" />
                                                    </font>
                                                 </RadioButton>
-                                                <RadioButton id="check-box" fx:id="check_home" layoutY="50.0" mnemonicParsing="false" text="Støtte til praktiske opgaver i hjemmet(§ 85)">
+                                                <RadioButton id="check-box" fx:id="check_home" layoutY="50.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Støtte til praktiske opgaver i hjemmet(§ 85)">
                                                    <font>
                                                       <Font name="Arial" size="12.0" />
                                                    </font>
                                                 </RadioButton>
-                                                <RadioButton id="check-box" fx:id="check_shoppingFood" layoutY="75.0" mnemonicParsing="false" text="Støtte til indkøb og kost (§ 85)">
+                                                <RadioButton id="check-box" fx:id="check_shoppingFood" layoutY="75.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Støtte til indkøb og kost (§ 85)">
                                                    <font>
                                                       <Font name="Arial" size="12.0" />
                                                    </font>
@@ -1340,7 +1340,7 @@
                               </GridPane>
                            </content>
                         </ScrollPane>
-                        <AnchorPane fx:id="viewingBackdrop" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.columnSpan="2">
+                        <AnchorPane fx:id="viewingBackdrop" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2">
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000; -fx-opacity: 0.2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
@@ -1358,16 +1358,12 @@
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowSpan="3">
                                  <children>
-                                    <ListView fx:id="casesListView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 35;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
-                                    <AnchorPane fx:id="allCasesAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-                                       <children>
-                                          <Label fx:id="noCasesFound" alignment="CENTER" text="Ingen sager fundet..." textFill="#434343" visible="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
+                                    <Label fx:id="noCasesFound" alignment="CENTER" text="Ingen sager fundet..." textFill="#434343" visible="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="casesListView" focusTraversable="false" onMouseClicked="#selectCaseFromListView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
                                  </children>
                               </AnchorPane>
                            </children>

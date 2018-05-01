@@ -92,4 +92,12 @@ public class GUI extends Application implements IUI {
         return gui;
     }
 
+    @Override
+    public void stop() throws Exception {
+        getInstacne().business.closing();
+        super.stop();
+    }
+    
+    
+
 }
