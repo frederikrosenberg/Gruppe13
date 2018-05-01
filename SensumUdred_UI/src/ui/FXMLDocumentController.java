@@ -239,14 +239,6 @@ public class FXMLDocumentController implements Initializable {
         
         
         Calendar cal = Calendar.getInstance();
-//        int minute = cal.get(Calendar.MINUTE);
-//        String val = String.valueOf(minute);
-//        if (minute < 10) {
-//            val = "0" + String.valueOf(minute); //Makes sure that minutes < 10 are displayed as ex. 03, not just 3.
-//        }
-//        int hour = cal.get(Calendar.HOUR_OF_DAY);
-//        time.setText(hour + ":" + (val));
-
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
         Date dato = calen.getTime();
