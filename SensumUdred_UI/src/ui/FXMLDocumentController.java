@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
@@ -34,6 +36,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class for the GUI.
@@ -231,7 +234,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        business = GUI.getInstacne().getBusiness();
         backgroundImage.fitHeightProperty().bind(appBackground.heightProperty());
 
         inappWallpaperDark.fitHeightProperty().bind(inappBackground.heightProperty());
@@ -254,7 +257,22 @@ public class FXMLDocumentController implements Initializable {
 
         inappScreen.setVisible(false); //Set false to force user to log in
         editCasesGridPane.setVisible(false);
-        business = GUI.getInstacne().getBusiness();
+        
+        casesListView.setCellFactory(value -> new ListCell<ICase>() {
+            @Override
+            protected void updateItem(ICase item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) setText(null);
+                else setText("(" + item.getCitizen().getCpr() + ") " + item.getCitizen().getName() + " : " + item.getState());
+            }
+            
+        });
+        
+    }
+    
+    @FXML
+    public void exitApplication(ActionEvent event) {
+       Platform.exit();
     }
 
     /**
@@ -328,6 +346,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void OpenNewCase(MouseEvent event) {
+        seeSpecificCase.setVisible(false);
         viewingBackdrop.setVisible(false);
         editCasesGridPane.setVisible(false);
         openNewCaseScrollPane.setVisible(true);
@@ -341,28 +360,31 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void EditExistingCases(MouseEvent event) {
+        seeSpecificCase.setVisible(false);
         openNewCaseScrollPane.setVisible(false);
         viewingBackdrop.setVisible(true);
         editCasesGridPane.setVisible(true);
-
-        try {
-            casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
-            noCasesFound.setVisible(false);
-        } catch (NullPointerException ex) {
-            noCasesFound.setVisible(true);
+        casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
+        if (casesListView.getItems().isEmpty()) noCasesFound.setVisible(true);
+        else noCasesFound.setVisible(false);
+        
+        
+    }
+    
+    @FXML
+    public void selectCaseFromListView(MouseEvent event) {
+        casepreview = casesListView.getSelectionModel().getSelectedItem();
+        if (casepreview != null) {
+            showCasePreview();
         }
-        casesListView.getSelectionModel().selectionModeProperty().addListener(evt -> {
-            casepreview = casesListView.getSelectionModel().getSelectedItem();
-            if (casepreview != null) {
-                showCasePreview();
-            }
-        });
     }
 
     /**
      * Sets the case's text from the case data.
      */
     private void showCasePreview() {
+        editCasesGridPane.setVisible(false);
+        seeSpecificCase.setVisible(true);
         preview_Label.setText(convertCase2String(casepreview));
     }
 
@@ -379,6 +401,7 @@ public class FXMLDocumentController implements Initializable {
         rep += "#" + c.getId() + "\tSagsstatus: " + c.getState() + "\t " + c.getOpeningDate() + "\n\n";
 
         rep += "Borger:\n";
+        rep += c.getCitizen().getCpr() + "\n";
         rep += c.getCitizen().getName() + "\n";
         rep += c.getCitizen().getAddress() + "\n";
         rep += c.getCitizen().getPhoneNumber() + "\n";
@@ -437,6 +460,7 @@ public class FXMLDocumentController implements Initializable {
         ICitizenData citizenData = new UICitizenData(citizen, "Sagsåbning", 0, getConsent(), fillable_ProblemDescription.getText(), getAvailibleOffers(), getSourceOfRequest(), business.getCaseWorker());
         business.openCase(citizenData);
         clearNewCaseForm();
+        openNewCaseScrollPane.setVisible(false);
     }
 
     /**

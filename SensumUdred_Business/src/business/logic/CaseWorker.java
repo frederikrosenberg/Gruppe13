@@ -90,6 +90,7 @@ public class CaseWorker extends Person implements ICaseWorker {
         }
         if (citizen == null) {
             citizen = new Citizen(data.getCitizen());
+            department.addCitizen(citizen);
         }
         Case c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), citizen, this);
         cases.add(c);
