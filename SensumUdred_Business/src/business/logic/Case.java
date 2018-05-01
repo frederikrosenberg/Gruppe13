@@ -92,23 +92,14 @@ public class Case implements ICase {
         this.caseWorker = caseWorker;
         openingDate = new Date();
     }
-
-//    /**
-//     * Construct an case with already exisiting case data
-//     * @param c The case data to extract from
-//     */
-//    public Case(ICase c) {
-//        this.state = c.getState();
-//        this.consent = c.getConsent();
-//        this.reason = c.getReason();
-//        this.availableOffers = c.getAvailableOffers();
-//        this.sourceOfRequest = c.getSourceOfRequest();
-//        this.citizen = (Citizen) c.getCitizen();
-//        this.caseWorker = (CaseWorker) c.getCaseWorker();
-//        openingDate = c.getOpeningDate();
-//    }
     
-    
+    /**
+     * Construct an case with already exisiting case data
+     * @param c The case data to extract from
+     * @param caseWorker The case worker who works on the case
+     * @param citizen The citizen the case is about
+     * @param isActive True if the case is the citizens active case
+     */
     public Case(ICase c, CaseWorker caseWorker, Citizen citizen, boolean isActive) {
         this.citizen = citizen;
         this.caseWorker = caseWorker;
