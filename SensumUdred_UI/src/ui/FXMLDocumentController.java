@@ -199,6 +199,14 @@ public class FXMLDocumentController implements Initializable {
      * An instance of the citizens case, for use in the case preview.
      */
     private ICase casepreview;
+    @FXML
+    private Label noCasesFound;
+    @FXML
+    private Label user_JobTitle;
+    @FXML
+    private Label user_Name;
+    @FXML
+    private Label user_Email;
 
     /**
      * Clears all fields of the form that the caseworker fills to open a new
@@ -230,8 +238,12 @@ public class FXMLDocumentController implements Initializable {
 
         Calendar cal = Calendar.getInstance();
         int minute = cal.get(Calendar.MINUTE);
+        String val = String.valueOf(minute);
+        if(minute < 10){
+            val = "0" + String.valueOf(minute);
+        }
         int hour = cal.get(Calendar.HOUR_OF_DAY);
-        time.setText(hour + ":" + (minute));
+        time.setText(hour + ":" + (val));
 
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
@@ -284,6 +296,10 @@ public class FXMLDocumentController implements Initializable {
             inappScreen.setVisible(true);
             usernameField.clear();
             passwordField.clear();
+            
+            user_Name.setText(business.getCaseWorker().getName());
+            user_Email.setText(business.getCaseWorker().getEmail());
+            user_JobTitle.setText("Sagsbehandler");
         } else {
             wrongUserPassGridPane.setVisible(true);
             passwordField.clear();
@@ -328,8 +344,13 @@ public class FXMLDocumentController implements Initializable {
         openNewCaseScrollPane.setVisible(false);
         viewingBackdrop.setVisible(true);
         editCasesGridPane.setVisible(true);
-        casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
 
+        try {
+            casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
+            noCasesFound.setVisible(false);
+        } catch (NullPointerException ex) {
+            noCasesFound.setVisible(true);
+        }
         casesListView.getSelectionModel().selectionModeProperty().addListener(evt -> {
             casepreview = casesListView.getSelectionModel().getSelectedItem();
             if (casepreview != null) {
