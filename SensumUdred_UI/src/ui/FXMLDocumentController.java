@@ -124,13 +124,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ToggleGroup informed;
     @FXML
-    private ToggleGroup understoodReference1;
-    @FXML
     private Group clickable_StorageOnline;
     @FXML
     private ToggleGroup electronicStorage;
-    @FXML
-    private ToggleGroup understoodReference111;
     @FXML
     private TextField fillable_NameField;
     @FXML
@@ -348,15 +344,12 @@ public class FXMLDocumentController implements Initializable {
         try {
             casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
             noCasesFound.setVisible(false);
-        } catch (NullPointerException ex) {
+        } catch (NullPointerException ex) {}
+        if (casesListView.getItems().size() < 1) {
             noCasesFound.setVisible(true);
         }
-        casesListView.getSelectionModel().selectionModeProperty().addListener(evt -> {
-            casepreview = casesListView.getSelectionModel().getSelectedItem();
-            if (casepreview != null) {
-                showCasePreview();
-            }
-        });
+        
+        
     }
 
     /**
