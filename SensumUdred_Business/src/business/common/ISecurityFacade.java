@@ -24,14 +24,14 @@ public interface ISecurityFacade {
      * @return true if the username and password both matches a registered user,
      * false otherwise
      */
-    public String logIn(String username, String password);
+     String logIn(String username, String password);
 
     /**
      * Logs the user out of the system.
      *
      * @return true if the log out was successful, otherwise false.
      */
-    public boolean logOut();
+     boolean logOut();
 
     /**
      * Returns true if the current user has the given role, false otherwise.
@@ -39,14 +39,14 @@ public interface ISecurityFacade {
      * @param role The role the current user is being checked for.
      * @return true if the current user has the given role, false otherwise
      */
-    public boolean hasAccess(Role role);
+    boolean hasAccess(Role role);
 
     /**
      * Return. the user manager containing the users.
      *
      * @return the user manager containing the users
      */
-    public IUserManager getUserManager();
+    IUserManager getUserManager();
 
     /**
      * Adds a new user to the system and returns its user id
@@ -57,6 +57,6 @@ public interface ISecurityFacade {
      * @param role the role of the user
      * @return the user id of the new user
      */
-    public String addUser(String name, String username, String password, Role role);
+    String addUser(String name, String username, String password, Role role);
 
 }

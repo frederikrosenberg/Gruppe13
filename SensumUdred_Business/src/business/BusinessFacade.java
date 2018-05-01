@@ -212,7 +212,7 @@ public class BusinessFacade implements IBusinessFacade {
             security = new SecurityFacade(data.getUserManager());
 
         } else {
-            //todo dummy data is added here
+            //dummy data is added here
             logic = new LogicFacade("Dummy Department", "Dummy Syndrome", "Dummystreet 35", "dummy@dummymail.com", "12345678");
             security = new SecurityFacade();
             createCaseWorker("Dummy", "12345678", "dummy@dummymail.com", 12345, "Dummyuser", "password", Role.CASEWORKER);

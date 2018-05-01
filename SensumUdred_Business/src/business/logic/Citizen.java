@@ -77,7 +77,7 @@ public class Citizen extends Person implements ICitizen {
     /**
      * Gets the citizens cpr number
      *
-     * @return
+     * @return the citizens cpr number
      */
     @Override
     public int getCpr() {

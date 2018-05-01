@@ -111,8 +111,6 @@ public class Department implements IDepartment {
      *
      * @param id of the case worker
      * @return the found case worker
-     * @throws IllegalArgumentException if not found, because this should be
-     * found while saving otherwise something is missing
      */
     private CaseWorker findCaseWorker(String id) {
         for (CaseWorker worker : caseWorkers) {
@@ -128,8 +126,6 @@ public class Department implements IDepartment {
      *
      * @param cpr of the citizen
      * @return the found citizen
-     * @throws IllegalArgumentException if not found, because this should be
-     * found while saving otherwise something is missing
      */
     public Citizen findCitizen(int cpr) {
         for (Citizen citizen : citizens) {
