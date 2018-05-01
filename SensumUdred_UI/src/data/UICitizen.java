@@ -68,7 +68,7 @@ public class UICitizen implements ICitizen {
     /**
      * Returns the Social security number of the citizen.
      *
-     * @return social security number
+     * @return the social security number
      */
     @Override
     public int getCpr() {
@@ -78,7 +78,7 @@ public class UICitizen implements ICitizen {
     /**
      * Returns the adress of the citizen.
      *
-     * @return address : String
+     * @return the address of the citizen
      */
     @Override
     public String getAddress() {
@@ -88,7 +88,7 @@ public class UICitizen implements ICitizen {
     /**
      * Returns the gender of the Citizen.
      *
-     * @return gender : Gender
+     * @return citizen's gender
      */
     @Override
     public Gender getGender() {
@@ -98,7 +98,7 @@ public class UICitizen implements ICitizen {
     /**
      * Returns the relationshipstatus of the citizen.
      *
-     * @return relstat : Relationshipstatus
+     * @return the citizen's relationshipstatus
      */
     @Override
     public RelationshipStatus getRelationshipStatus() {
@@ -108,7 +108,7 @@ public class UICitizen implements ICitizen {
     /**
      * Returns the name of the citizen.
      *
-     * @return name : String
+     * @return the citizens name
      */
     @Override
     public String getName() {
@@ -118,7 +118,7 @@ public class UICitizen implements ICitizen {
     /**
      * Returns the phone number of the citizen.
      *
-     * @return phoneNumber : int
+     * @return the citizens phone number
      */
     @Override
     public String getPhoneNumber() {
@@ -128,7 +128,7 @@ public class UICitizen implements ICitizen {
     /**
      * Returns the email of the citizen.
      *
-     * @return email : String
+     * @return the citizens emal address
      */
     @Override
     public String getEmail() {
@@ -138,7 +138,7 @@ public class UICitizen implements ICitizen {
     /**
      * Returns the citizens active case.
      *
-     * @return activeCase : ICase
+     * @return the citizens active case
      */
     @Override
     public ICase getActiveCase() {

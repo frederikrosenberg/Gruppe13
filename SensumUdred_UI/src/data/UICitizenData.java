@@ -52,7 +52,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the citizen object.
      *
-     * @return citizen : ICitizen
+     * @return the citizen object
      */
     @Override
     public ICitizen getCitizen() {
@@ -62,7 +62,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the status of the case.
      *
-     * @return state : String
+     * @return the state of the case
      */
     @Override
     public String getState() {
@@ -72,7 +72,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the id of the case.
      *
-     * @return id : int
+     * @return the id of the case
      */
     @Override
     public int getId() {
@@ -82,7 +82,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns wether or not the citizen has given consent.
      *
-     * @return consent : boolean
+     * @return wether consent was given
      */
     @Override
     public boolean getConsent() {
@@ -93,7 +93,7 @@ public class UICitizenData implements ICitizenData {
      * Returns the reason for the case existing, and the citizens need for
      * further treatment.
      *
-     * @return reason : String
+     * @return the reason for the case 
      */
     @Override
     public String getReason() {
@@ -103,7 +103,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the available offers that are relevant for the citizen.
      *
-     * @return avalibleOffers : String
+     * @return the avalible offers for the citizen
      */
     @Override
     public String getAvailableOffers() {
@@ -113,7 +113,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the source of the request.
      *
-     * @return sourceOfRequest : String
+     * @return the source of the request
      */
     @Override
     public String getSourceOfRequest() {
@@ -123,7 +123,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the case worker associated with the specific case.
      *
-     * @return caseWorker : ICaseWorker
+     * @return the caseworker object
      */
     @Override
     public ICaseWorker getCaseWorker() {
@@ -133,7 +133,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the opening date of the case.
      *
-     * @return new Date : Date
+     * @return a new date
      */
     @Override
     public Date getOpeningDate() {
