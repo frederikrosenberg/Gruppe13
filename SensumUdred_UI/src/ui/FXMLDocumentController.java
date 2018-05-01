@@ -234,14 +234,18 @@ public class FXMLDocumentController implements Initializable {
 
         inappWallpaperDark.fitHeightProperty().bind(inappBackground.heightProperty());
 
+        Thread timethread = new TimeThread(time);
+        timethread.start();
+        
+        
         Calendar cal = Calendar.getInstance();
-        int minute = cal.get(Calendar.MINUTE);
-        String val = String.valueOf(minute);
-        if (minute < 10) {
-            val = "0" + String.valueOf(minute); //Makes sure that minutes < 10 are displayed as ex. 03, not just 3.
-        }
-        int hour = cal.get(Calendar.HOUR_OF_DAY);
-        time.setText(hour + ":" + (val));
+//        int minute = cal.get(Calendar.MINUTE);
+//        String val = String.valueOf(minute);
+//        if (minute < 10) {
+//            val = "0" + String.valueOf(minute); //Makes sure that minutes < 10 are displayed as ex. 03, not just 3.
+//        }
+//        int hour = cal.get(Calendar.HOUR_OF_DAY);
+//        time.setText(hour + ":" + (val));
 
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
@@ -260,7 +264,7 @@ public class FXMLDocumentController implements Initializable {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText("(" + item.getCitizen().getCpr() + ") " + item.getCitizen().getName() + " : " + item.getState());
+                    setText("(" + item.getCitizen().getCpr() + ") \t\t " + item.getCitizen().getName() + " \t\t Status: " + item.getState());
                 }
             }
 
@@ -268,7 +272,6 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
-    @FXML
     public void exitApplication(ActionEvent event) {
         Platform.exit();
     }
@@ -608,6 +611,12 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void cancelPreviewCase(ActionEvent event) {
         seeSpecificCase.setVisible(false);
+        editCasesGridPane.setVisible(true);
+    }
+
+    @FXML
+    private void closeEditCasesView(MouseEvent event) {
+        editCasesGridPane.setVisible(false);
         viewingBackdrop.setVisible(false);
     }
 

@@ -1345,7 +1345,7 @@
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000; -fx-opacity: 0.2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
-                        <GridPane fx:id="editCasesGridPane" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <GridPane fx:id="editCasesGridPane" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1356,15 +1356,23 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowSpan="3">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnSpan="2" GridPane.rowSpan="3">
                                  <children>
+                                    <ImageView fitHeight="150.0" fitWidth="35.0" onMouseClicked="#closeEditCasesView" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+                                       <image>
+                                          <Image url="@../Images/Inapp/close.png" />
+                                       </image>
+                                    </ImageView>
                                     <Label fx:id="noCasesFound" alignment="CENTER" text="Ingen sager fundet..." textFill="#434343" visible="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <ListView fx:id="casesListView" focusTraversable="false" onMouseClicked="#selectCaseFromListView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                                    <ListView id="simpleListView" fx:id="casesListView" focusTraversable="false" onMouseClicked="#selectCaseFromListView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: transparent; -fx-border-width: none; -fx-border: none;" stylesheets="@../Stylesheets/simpleStyle.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
                                  </children>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
                               </AnchorPane>
                            </children>
                         </GridPane>
