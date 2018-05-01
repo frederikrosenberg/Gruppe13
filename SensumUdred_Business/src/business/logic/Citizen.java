@@ -7,10 +7,10 @@ import common.RelationshipStatus;
 
 /**
  * Contains information about a citizen
- * 
+ *
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
- * @author Frederik Rosenberg 
+ * @author Frederik Rosenberg
  * @author Mikkel Larsen
  * @author Sebastian Christensen
  * @author Kasper Schødts
@@ -21,29 +21,30 @@ public class Citizen extends Person implements ICitizen {
      * The CPR number of the citizen
      */
     private int cpr;
-    
+
     /**
      * The address of the citizen
      */
     private String address;
-    
+
     /**
      * The relationship status of the citizen
      */
     private RelationshipStatus relationshipStatus;
-    
+
     /**
      * The citizens gender
      */
     private Gender gender;
-    
+
     /**
      * The current active case of the citizen
      */
     private Case activeCase;
-    
+
     /**
      * Construct a new citizen
+     *
      * @param name The citizens name
      * @param mobileNumber The citizens phone number
      * @param email The citizens email
@@ -59,9 +60,10 @@ public class Citizen extends Person implements ICitizen {
         this.relationshipStatus = relationshipStatus;
         this.gender = gender;
     }
-    
+
     /**
      * Construct a citizen from an existing citizen
+     *
      * @param citizen The existing citizen to extract data from
      */
     public Citizen(ICitizen citizen) {
@@ -71,42 +73,46 @@ public class Citizen extends Person implements ICitizen {
         this.relationshipStatus = citizen.getRelationshipStatus();
         this.gender = citizen.getGender();
     }
-    
+
     /**
      * Gets the citizens cpr number
-     * @return 
+     *
+     * @return the citizens cpr number
      */
     @Override
     public int getCpr() {
         return cpr;
     }
-    
+
     /**
      * Removes the citizens active case
      */
     public void removeActiveCase() {
         activeCase = null;
     }
-    
+
     /**
      * Sets the active case of the citizen
+     *
      * @param c The case to set
      */
     public void setActiveCase(Case c) {
         activeCase = c;
     }
-    
+
     /**
      * Gets the citizens gender
+     *
      * @return The citizens gender
      */
     @Override
     public Gender getGender() {
         return gender;
     }
-    
+
     /**
      * Gets the citizens relationship status
+     *
      * @return The citizens relationship status
      */
     @Override
@@ -116,17 +122,19 @@ public class Citizen extends Person implements ICitizen {
 
     /**
      * Gets the citizens address
+     *
      * @return The citizens address
      */
     @Override
-   public String getAddress() {
-       return address;
-   }
+    public String getAddress() {
+        return address;
+    }
 
-   /**
-    * Gets the active case
-    * @return The active case
-    */
+    /**
+     * Gets the active case
+     *
+     * @return The active case
+     */
     @Override
     public ICase getActiveCase() {
         return activeCase;

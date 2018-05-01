@@ -88,7 +88,22 @@ public class SecurityFacade implements ISecurityFacade {
      *
      * @return the user manager containing the users
      */
+    @Override
     public IUserManager getUserManager() {
         return users;
+    }
+
+    /**
+     * Adds a new user to the system and returns its user id
+     *
+     * @param name the name of the user
+     * @param username the username of the user
+     * @param password the password of the user
+     * @param role the role of the user
+     * @return the user id of the new user
+     */
+    @Override
+    public String addUser(String name, String username, String password, Role role) {
+        return users.addUser(name, username, password, role);
     }
 }

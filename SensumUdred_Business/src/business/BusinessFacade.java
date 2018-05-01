@@ -201,7 +201,9 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Loads in the saved data if any is available
+     * Loads in the saved data if any is available, otherwise generates dummy
+     * data
+     *
      */
     private void load() {
         if (persistence.saveAvailable()) {
@@ -210,8 +212,11 @@ public class BusinessFacade implements IBusinessFacade {
             security = new SecurityFacade(data.getUserManager());
 
         } else {
-            logic = new LogicFacade();
+            //dummy data is added here
+            logic = new LogicFacade("Dummy Department", "Dummy Syndrome", "Dummystreet 35", "dummy@dummymail.com", "12345678");
             security = new SecurityFacade();
+            createCaseWorker("Dummy", "12345678", "dummy@dummymail.com", 12345, "Dummyuser", "password", Role.CASEWORKER);
+
         }
     }
 
@@ -224,4 +229,19 @@ public class BusinessFacade implements IBusinessFacade {
         return persistence.save(security.getUserManager(), logic.getDepartment());
     }
 
+    /**
+     * Creates a new case worker
+     *
+     * @param name the name of the caseworker
+     * @param phoneNumber the phone number of the case worker
+     * @param email the email address of the case worker
+     * @param employeeId the employee id of the case worker
+     * @param username the username of the case worker
+     * @param password the password of the case worker
+     * @param role the role of the case workerS
+     */
+    private void createCaseWorker(String name, String phoneNumber, String email, int employeeId, String username, String password, Role role) {
+        logic.createCaseWorker(name, phoneNumber, email, employeeId, security.addUser(name, username, password, role));
+
+    }
 }
