@@ -9,6 +9,8 @@ import common.RelationshipStatus;
 import data.UICitizen;
 import data.UICitizenData;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -177,6 +179,11 @@ public class FXMLDocumentController implements Initializable {
     private Label time;
     @FXML
     private Label date;
+    @FXML
+    private ImageView inappWallpaperDark;
+    @FXML
+    private AnchorPane inappBackground;
+
     /**
      * An instance of the citizens gender, for use in creating a new case.
      */
@@ -216,11 +223,24 @@ public class FXMLDocumentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         backgroundImage.fitHeightProperty().bind(appBackground.heightProperty());
-        time.setText(String.valueOf(new Date().getTime()));
-        date.setText(String.valueOf(new Date()));
-        inappScreen.setVisible(false);
+
+        inappWallpaperDark.fitHeightProperty().bind(inappBackground.heightProperty());
+
+        Calendar cal = Calendar.getInstance();
+        int minute = cal.get(Calendar.MINUTE);
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        time.setText(hour + ":" + (minute));
+
+        Calendar calen = Calendar.getInstance();
+        calen.add(Calendar.DATE, 0);
+        Date dato = calen.getTime();
+
+        SimpleDateFormat format1 = new SimpleDateFormat("EEEEEEE 'd.'d MMM yyyy");
+        date.setText(String.valueOf(format1.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format1.format(dato)).substring(1));
+
+        inappScreen.setVisible(true); //Set false to force user to log in
         editCasesGridPane.setVisible(false);
         business = GUI.getInstacne().getBusiness();
     }
@@ -292,8 +312,9 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void OpenNewCase(MouseEvent event) {
-        openNewCaseScrollPane.setVisible(true);
+        viewingBackdrop.setVisible(false);
         editCasesGridPane.setVisible(false);
+        openNewCaseScrollPane.setVisible(true);
 
     }
 
@@ -305,6 +326,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void EditExistingCases(MouseEvent event) {
         openNewCaseScrollPane.setVisible(false);
+        viewingBackdrop.setVisible(true);
         editCasesGridPane.setVisible(true);
         casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
 

@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="appBackground" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #434343;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.FXMLDocumentController">
    <children>
-      <ImageView fx:id="backgroundImage" fitHeight="720.0" fitWidth="481.0" preserveRatio="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0">
+      <ImageView fx:id="backgroundImage" fitHeight="720.0" fitWidth="481.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <image>
             <Image url="@../Images/backgroundImage.png" />
          </image>
@@ -446,16 +446,21 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f8ca6c;" GridPane.columnSpan="2">
+                        <AnchorPane fx:id="inappBackground" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f8ca6c;" GridPane.columnSpan="2">
                            <children>
-                              <Label fx:id="time" text="11:05" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="55.0">
+                              <ImageView fx:id="inappWallpaperDark" fitHeight="720.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                                 <image>
+                                    <Image url="@../Images/Inapp/backgroundImage_dark.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="time" alignment="CENTER" contentDisplay="CENTER" minWidth="300.0" prefWidth="300.0" text="11:15" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="50.0">
                                  <font>
-                                    <Font size="36.0" />
+                                    <Font name="Arial" size="48.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="date" layoutX="756.0" layoutY="65.0" text="d. 13/2 - 2017" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                              <Label fx:id="date" alignment="CENTER" layoutX="729.0" layoutY="60.0" minWidth="300.0" prefWidth="300.0" text="Fredag d. 15/2-2017" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="100.0">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font name="Arial" size="22.0" />
                                  </font>
                               </Label>
                            </children>
@@ -1338,6 +1343,11 @@
                                  </children>
                               </GridPane>
                            </content></ScrollPane>
+                        <AnchorPane fx:id="viewingBackdrop" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000; -fx-opacity: 0.2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
                         <GridPane fx:id="editCasesGridPane" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1350,18 +1360,13 @@
                           </rowConstraints>
                            <children>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowSpan="3" />
-                              <ListView fx:id="casesListView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 35;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="3" GridPane.valignment="CENTER">
+                              <ListView fx:id="casesListView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 35;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="3" GridPane.valignment="CENTER">
                                  <GridPane.margin>
                                     <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                                  </GridPane.margin>
                               </ListView>
                            </children>
                         </GridPane>
-                        <AnchorPane fx:id="viewingBackdrop" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000; -fx-opacity: 0.2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
                         <ScrollPane fx:id="seeSpecificCase" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <GridPane.margin>
                               <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
