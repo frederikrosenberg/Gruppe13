@@ -239,8 +239,8 @@ public class FXMLDocumentController implements Initializable {
         Calendar cal = Calendar.getInstance();
         int minute = cal.get(Calendar.MINUTE);
         String val = String.valueOf(minute);
-        if(minute < 10){
-            val = "0" + String.valueOf(minute);
+        if (minute < 10) {
+            val = "0" + String.valueOf(minute); //Makes sure that minutes < 10 are displayed as ex. 03, not just 3.
         }
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         time.setText(hour + ":" + (val));
@@ -252,7 +252,7 @@ public class FXMLDocumentController implements Initializable {
         SimpleDateFormat format1 = new SimpleDateFormat("EEEEEEE 'd.'d MMM yyyy");
         date.setText(String.valueOf(format1.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format1.format(dato)).substring(1));
 
-        inappScreen.setVisible(true); //Set false to force user to log in
+        inappScreen.setVisible(false); //Set false to force user to log in
         editCasesGridPane.setVisible(false);
         business = GUI.getInstacne().getBusiness();
     }
@@ -296,7 +296,7 @@ public class FXMLDocumentController implements Initializable {
             inappScreen.setVisible(true);
             usernameField.clear();
             passwordField.clear();
-            
+
             user_Name.setText(business.getCaseWorker().getName());
             user_Email.setText(business.getCaseWorker().getEmail());
             user_JobTitle.setText("Sagsbehandler");
@@ -517,6 +517,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void SetGender_Male(ActionEvent event) {
+        choice_Gender.setText("Mand");
         gender = Gender.MALE;
     }
 
@@ -527,6 +528,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void setGender_Female(ActionEvent event) {
+        choice_Gender.setText("Kvinde");
         gender = Gender.FEMALE;
     }
 
@@ -537,6 +539,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void setRelationship_Single(ActionEvent event) {
+        choice_Relations.setText("Single");
         relstat = RelationshipStatus.SINGLE;
     }
 
@@ -547,6 +550,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void setRelationship_InRelationship(ActionEvent event) {
+        choice_Relations.setText("I forhold");
         relstat = RelationshipStatus.IN_RELATIONSHIP;
     }
 
@@ -557,6 +561,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void setRelationship_Married(ActionEvent event) {
+        choice_Relations.setText("Gift");
         relstat = RelationshipStatus.MARRIED;
     }
 
