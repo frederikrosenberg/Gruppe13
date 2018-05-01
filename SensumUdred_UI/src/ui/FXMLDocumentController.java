@@ -9,6 +9,7 @@ import common.RelationshipStatus;
 import data.UICitizen;
 import data.UICitizenData;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -172,7 +173,10 @@ public class FXMLDocumentController implements Initializable {
     private ScrollPane seeSpecificCase;
     @FXML
     private Label preview_Label;
-
+    @FXML
+    private Label time;
+    @FXML
+    private Label date;
     /**
      * An instance of the citizens gender, for use in creating a new case.
      */
@@ -223,6 +227,8 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         backgroundImage.fitHeightProperty().bind(appBackground.heightProperty());
+        time.setText(String.valueOf(new Date().getTime()));
+        date.setText(String.valueOf(new Date()));
         inappScreen.setVisible(true);
         editCasesGridPane.setVisible(false);
     }
