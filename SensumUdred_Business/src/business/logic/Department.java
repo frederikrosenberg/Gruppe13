@@ -22,17 +22,17 @@ public class Department implements IDepartment {
     /**
      * List of all the caseworkers in the department
      */
-    private List<CaseWorker> caseWorkers;
+    private List<CaseWorker> caseWorkers = new ArrayList();
     
     /**
      * List of all of the inactive cases from this department
      */
-    private List<Case> inactiveCases;
+    private List<Case> inactiveCases = new ArrayList();
     
     /**
      * List of all of the citizens in the department
      */
-    private List<Citizen> citizens;
+    private List<Citizen> citizens = new ArrayList();
     
     /**
      * Name of the department
@@ -66,6 +66,12 @@ public class Department implements IDepartment {
     public Department(IDepartment department) {
         for (ICaseWorker caseWorker : department.getCaseWorkers()) {
             caseWorkers.add(new CaseWorker(caseWorker, this));
+        }
+        for (ICase c : department.getInactiveCases()) {
+            inactiveCases.add(new Case(c));
+        }
+        for (ICitizen citizen : department.getCitizens()) {
+            citizens.add(new Citizen(citizen));
         }
         name = department.getName();
         treatmentArea = department.getTreatmentArea();
