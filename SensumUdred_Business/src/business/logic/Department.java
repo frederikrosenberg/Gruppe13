@@ -114,7 +114,7 @@ public class Department implements IDepartment {
         for (CaseWorker worker : caseWorkers) {
             if (worker.getUserId().equals(id)) return worker;
         }
-        throw new IllegalArgumentException();
+        return null;
     }
     
     /**
@@ -127,7 +127,7 @@ public class Department implements IDepartment {
         for (Citizen citizen : citizens) {
             if (citizen.getCpr() == cpr) return citizen;
         }
-        throw new IllegalArgumentException();
+        return null;
     }
     
     /**
