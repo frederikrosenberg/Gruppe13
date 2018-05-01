@@ -33,7 +33,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 /**
- * FXML Controller class for the GUI
+ * FXML Controller class for the GUI.
  *
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen

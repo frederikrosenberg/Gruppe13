@@ -21,8 +21,19 @@ import javafx.stage.Stage;
  */
 public class GUI extends Application implements IUI {
 
+    /**
+     * An instance of the GUI class.
+     */
     private static GUI gui;
+    
+    /**
+     * An instance of the IBusinessFacade.
+     */
     private IBusinessFacade business;
+    
+    /**
+     * An instance of the application stage.
+     */
     private Stage stage;
 
     /**

@@ -17,13 +17,44 @@ import common.RelationshipStatus;
  */
 public class UICitizen implements ICitizen {
 
+    /**
+     * The case obejct for the citizen.
+     */
     private final ICase activeCase;
+    
+    /**
+     * The social security number of the citizen.
+     */
     private final int cpr;
+    
+    /**
+     * The address of the citizen.
+     */
     private final String address;
+    
+    /**
+     * The name of the citizen.
+     */
     private final String name;
+    
+    /**
+     * The phone number of the citizen.
+     */
     private final String phoneNumber;
+    
+    /**
+     * The email address of the citizen.
+     */
     private final String email;
+    
+    /**
+     * The gender of the citizen.
+     */
     private final Gender gender;
+    
+    /**
+     * The relationship status of the citizen.
+     */
     private final RelationshipStatus relStat;
 
     /**

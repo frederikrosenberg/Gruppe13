@@ -17,17 +17,48 @@ import java.util.Date;
  */
 public class UICitizenData implements ICitizenData {
 
-    private ICitizen citizen;
-    private String state;
-    private int id;
-    private boolean consent;
-    private String reason;
-    private String avalibleOffers;
-    private String sourceOfRequest;
-    private ICaseWorker caseWorker;
+    /**
+     * The citizen object associated with Their case.
+     */
+    private final ICitizen citizen;
+    
+    /**
+     * The state of the citizens case.
+     */
+    private final String state;
+    
+    /**
+     * The id of the citizens case.
+     */
+    private final int id;
+    
+    /**
+     * Wether or not the citizen has given consent.
+     */
+    private final boolean consent;
+    
+    /**
+     * The reason for the case and the request for treatment.
+     */
+    private final String reason;
+    
+    /**
+     * The avalible offers for the citizen.
+     */
+    private final String avalibleOffers;
+    
+    /**
+     * The source of the request.
+     */
+    private final String sourceOfRequest;
+    
+    /**
+     * The case worker associated with the case.
+     */
+    private final ICaseWorker caseWorker;
 
     /**
-     * The constructor for the UICitizenData class
+     * The constructor for the UICitizenData class.
      *
      * @param citizen The citizen object 
      * @param state The state of the citizens case
