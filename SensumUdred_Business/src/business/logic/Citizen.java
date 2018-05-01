@@ -69,7 +69,7 @@ public class Citizen extends Person implements ICitizen {
         this.cpr = citizen.getCpr();
         this.address = citizen.getAddress();
         this.relationshipStatus = citizen.getRelationshipStatus();
-        this.gender = citizen.getGender();     
+        this.gender = citizen.getGender();
     }
     
     /**

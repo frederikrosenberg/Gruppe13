@@ -7,10 +7,10 @@ import java.util.Date;
 
 /**
  * Contains information about a case
- * 
+ *
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
- * @author Frederik Rosenberg 
+ * @author Frederik Rosenberg
  * @author Mikkel Larsen
  * @author Sebastian Christensen
  * @author Kasper Schødts
@@ -21,52 +21,52 @@ public class Case implements ICase {
      * If the user is informed
      */
     private boolean informed;
-    
+
     /**
      * The state of the case
      */
     private String state;
-    
+
     /**
      * The opening date of the case
      */
     private Date openingDate;
-    
+
     /**
      * The closing date of the case
      */
     private Date closingDate;
-    
+
     /**
      * The id of the case
      */
     private int id;
-    
+
     /**
      * If the citizen has given consent
      */
     private boolean consent;
-    
+
     /**
      * The reason of the case
      */
     private String reason;
-    
+
     /**
      * Available offer to the case
      */
     private String availableOffers;
-    
+
     /**
      * Source of request of the case
      */
     private String sourceOfRequest;
-    
+
     /**
      * The citizen the case is about
      */
     private Citizen citizen;
-    
+
     /**
      * The caseworker that works with the case
      */
@@ -74,11 +74,12 @@ public class Case implements ICase {
 
     /**
      * Constructs a new case
+     *
      * @param state The state of the case
      * @param consent Consent from the citizen
      * @param reason The reason for the case
      * @param availableOffers Available offers to the case
-     * @param sourceOfRequest Source of request 
+     * @param sourceOfRequest Source of request
      * @param citizen The citizen the case is about
      * @param caseWorker The case worker of the case
      */
@@ -95,21 +96,31 @@ public class Case implements ICase {
 
     /**
      * Construct an case with already exisiting case data
+     *
      * @param c The case data to extract from
+     * @param caseWorker The case worker who works on the case
+     * @param citizen The citizen the case is about
+     * @param isActive True if the case is the citizens active case
      */
-    public Case(ICase c) {
-        this.state = c.getState();
-        this.consent = c.getConsent();
-        this.reason = c.getReason();
-        this.availableOffers = c.getAvailableOffers();
-        this.sourceOfRequest = c.getSourceOfRequest();
-        this.citizen = (Citizen) c.getCitizen();
-        this.caseWorker = (CaseWorker) c.getCaseWorker();
+    public Case(ICase c, CaseWorker caseWorker, Citizen citizen, boolean isActive) {
+        this.citizen = citizen;
+        this.caseWorker = caseWorker;
+        id = c.getId();
+        state = c.getState();
+        consent = c.getConsent();
+        reason = c.getReason();
+        availableOffers = c.getAvailableOffers();
+        sourceOfRequest = c.getSourceOfRequest();
         openingDate = c.getOpeningDate();
+        closingDate = c.getClosingDate();
+        if (isActive) {
+            citizen.setActiveCase(this);
+        }
     }
-    
+
     /**
      * Gets the citizen of the case's cpr number
+     *
      * @return The citizen of the case's cpr number
      */
     public int getCitizenCPR() {
@@ -118,6 +129,7 @@ public class Case implements ICase {
 
     /**
      * Gets the citizen of the case's name
+     *
      * @return The citizen of the case's name
      */
     public String getCitizenName() {
@@ -126,6 +138,7 @@ public class Case implements ICase {
 
     /**
      * Closes this case
+     *
      * @return True if the case is closed correct
      */
     public boolean closeCase() {
@@ -136,6 +149,7 @@ public class Case implements ICase {
 
     /**
      * Gets the citizen of the case
+     *
      * @return The citizen of the case
      */
     @Override
@@ -145,6 +159,7 @@ public class Case implements ICase {
 
     /**
      * Gets the state of the case
+     *
      * @return The state of the case
      */
     @Override
@@ -154,6 +169,7 @@ public class Case implements ICase {
 
     /**
      * Gets the case id
+     *
      * @return The case id
      */
     @Override
@@ -163,6 +179,7 @@ public class Case implements ICase {
 
     /**
      * Gets the current state of the consent
+     *
      * @return The current state of the consent
      */
     @Override
@@ -172,6 +189,7 @@ public class Case implements ICase {
 
     /**
      * Gets the reason of the case
+     *
      * @return The reason of the case
      */
     @Override
@@ -181,6 +199,7 @@ public class Case implements ICase {
 
     /**
      * Gets the available offers
+     *
      * @return The available offers
      */
     @Override
@@ -190,6 +209,7 @@ public class Case implements ICase {
 
     /**
      * Gets the source of request
+     *
      * @return The source of request
      */
     @Override
@@ -199,6 +219,7 @@ public class Case implements ICase {
 
     /**
      * Gets the case worker of the case
+     *
      * @return The case worker of the case
      */
     @Override
@@ -208,6 +229,7 @@ public class Case implements ICase {
 
     /**
      * Sets the citizen's status to informed.
+     *
      * @param informed True if the citizen is informed
      */
     public void setInformed(boolean informed) {
@@ -216,6 +238,7 @@ public class Case implements ICase {
 
     /**
      * Sets the state of the case
+     *
      * @param state Which state the case is in
      */
     public void setState(String state) {
@@ -224,6 +247,7 @@ public class Case implements ICase {
 
     /**
      * Sets if the citizen has given consent
+     *
      * @param consent True if the consent is given
      */
     public void setConsent(boolean consent) {
@@ -232,6 +256,7 @@ public class Case implements ICase {
 
     /**
      * Sets the reason of the case
+     *
      * @param reason The reason of the case
      */
     public void setReason(String reason) {
@@ -240,7 +265,8 @@ public class Case implements ICase {
 
     /**
      * Sets the available offer of the case
-     * @param availableOffers  The available offers
+     *
+     * @param availableOffers The available offers
      */
     public void setAvailableOffers(String availableOffers) {
         this.availableOffers = availableOffers;
@@ -248,6 +274,7 @@ public class Case implements ICase {
 
     /**
      * Sets the source of request
+     *
      * @param sourceOfRequest The source of request
      */
     public void setSourceOfRequest(String sourceOfRequest) {
@@ -256,6 +283,7 @@ public class Case implements ICase {
 
     /**
      * Sets the citizen of the case
+     *
      * @param citizen The citizen of the case
      */
     public void setCitizen(Citizen citizen) {
@@ -264,6 +292,7 @@ public class Case implements ICase {
 
     /**
      * Sets the case worker of the case
+     *
      * @param caseWorker The case worker of the case
      */
     public void setCaseWorker(CaseWorker caseWorker) {
@@ -272,6 +301,7 @@ public class Case implements ICase {
 
     /**
      * Gets the opening date
+     *
      * @return The opening date
      */
     @Override
@@ -281,6 +311,7 @@ public class Case implements ICase {
 
     /**
      * Gets the closing date
+     *
      * @return The closing date
      */
     @Override
