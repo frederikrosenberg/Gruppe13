@@ -53,7 +53,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Logs the the user in, given that their information is valid.
+     * Logs the the user in, given that their information is valid
      *
      * @param username the username of the user
      * @param password the password of the user
@@ -73,7 +73,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Logs the user out.
+     * Logs the user out
      *
      * @return true.
      */
@@ -87,7 +87,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Opens a new case based on the entered data.
+     * Opens a new case based on the entered data
      *
      * @param citizenData the information needed for the case
      * @return the newly opened case
@@ -101,7 +101,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Closes a case from a given case id.
+     * Closes a case from a given case id
      *
      * @param caseId The case to close
      * @return True if the case is closed
@@ -115,7 +115,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * To be called when the system shuts down.
+     * To be called when the system shuts down
      */
     @Override
     public void closing() {
@@ -123,7 +123,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Finds an active case from either cpr or case id.
+     * Finds an active case from either cpr or case id
      *
      * @param value the search parameter
      * @param isCpr if true the value is cpr otherwise it is case id
@@ -138,7 +138,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Finds an active case from the name of the concerned citizen.
+     * Finds an active case from the name of the concerned citizen
      *
      * @param name the name of the concerned citizen
      * @return the case found, else null
@@ -152,7 +152,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Returns all active cases in the department.
+     * Returns all active cases in the department
      *
      * @return all active cases in the department
      */
@@ -165,7 +165,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Returns all active cases of the current caseworker.
+     * Returns all active cases of the current caseworker
      *
      * @return all active cases of the current caseworker
      */
@@ -178,7 +178,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Injects a reference to the persistence layer.
+     * Injects a reference to the persistence layer
      *
      * @param persistence the reference to be injected
      */
@@ -188,7 +188,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Gets the current logged in case worker.
+     * Gets the current logged in case worker
      *
      * @return The current logged in case worker
      */
@@ -201,7 +201,7 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Loads in the saved data if any is available.
+     * Loads in the saved data if any is available
      */
     private void load() {
         if (persistence.saveAvailable()) {
@@ -216,9 +216,9 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * Saves the data.
+     * Saves the data
      *
-     * @return
+     * @return true if the data is saved
      */
     private boolean save() {
         return persistence.save(security.getUserManager(), logic.getDepartment());
