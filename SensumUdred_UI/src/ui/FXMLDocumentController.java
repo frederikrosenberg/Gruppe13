@@ -12,7 +12,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -68,37 +67,57 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ScrollPane openNewCaseScrollPane;
     @FXML
-    private ToggleGroup clearlyChoosen;
-    @FXML
-    private ToggleGroup understood;
-    @FXML
-    private ToggleGroup informed;
-    @FXML
-    private ToggleGroup understoodReference1;
-    @FXML
-    private ToggleGroup electronicStorage;
-    @FXML
-    private ToggleGroup understoodReference111;
-    @FXML
-    private ToggleGroup relevancy;
-    @FXML
-    private ToggleGroup samtykke;
-    @FXML
     private TextArea fillable_ProblemDescription;
     @FXML
     private Group clickable_ClarityRegarding;
     @FXML
+    private ToggleGroup clearlyChoosen;
+    @FXML
     private Group clickable_CitizenSeeks;
     @FXML
+    private RadioButton check_home;
+    @FXML
+    private RadioButton check_personalCare;
+    @FXML
+    private RadioButton check_shoppingFood;
+    @FXML
+    private RadioButton check_temporaryStay;
+    @FXML
     private Group clickable_CameFrom;
+    @FXML
+    private CheckBox source_citizen;
+    @FXML
+    private CheckBox source_contact;
+    @FXML
+    private CheckBox source_doctor;
+    @FXML
+    private CheckBox source_hospital;
+    @FXML
+    private CheckBox source_other;
+    @FXML
+    private CheckBox source_current;
+    @FXML
+    private CheckBox source_region;
+    @FXML
+    private CheckBox source_etc;
     @FXML
     private TextArea fillable_ContactPerson;
     @FXML
     private Group clickable_Understood;
     @FXML
+    private ToggleGroup understood;
+    @FXML
     private Group clickable_InformedOfRights;
     @FXML
+    private ToggleGroup informed;
+    @FXML
+    private ToggleGroup understoodReference1;
+    @FXML
     private Group clickable_StorageOnline;
+    @FXML
+    private ToggleGroup electronicStorage;
+    @FXML
+    private ToggleGroup understoodReference111;
     @FXML
     private TextField fillable_NameField;
     @FXML
@@ -120,136 +139,33 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Group clickable_consent;
     @FXML
+    private ToggleGroup relevancy;
+    @FXML
     private Group clickable_ConsentType;
+    @FXML
+    private RadioButton verbal_Consent;
+    @FXML
+    private ToggleGroup samtykke;
+    @FXML
+    private RadioButton written_Consent;
     @FXML
     private Group clickable_ConsentFrom;
     @FXML
     private TextArea fillable_SpecialCaseDesc;
-
-    private Gender gender;
-    private RelationshipStatus relstat;
-    @FXML
-    private RadioButton verbal_Consent;
-    @FXML
-    private RadioButton written_Consent;
-    @FXML
-    private RadioButton check_personalCare;
-    @FXML
-    private RadioButton check_shoppingFood;
-    @FXML
-    private RadioButton check_temporaryStay;
-    @FXML
-    private RadioButton check_home;
-    @FXML
-    private CheckBox source_citizen;
-    @FXML
-    private CheckBox source_contact;
-    @FXML
-    private CheckBox source_doctor;
-    @FXML
-    private CheckBox source_hospital;
-    @FXML
-    private CheckBox source_other;
-    @FXML
-    private CheckBox source_current;
-    @FXML
-    private CheckBox source_region;
-    @FXML
-    private CheckBox source_etc;
-    @FXML
-    private ListView<ICase> casesListView;
     @FXML
     private GridPane editCasesGridPane;
     @FXML
-    private ScrollPane seeSpecificCase;
-    @FXML
-    private TextArea fillable_ProblemDescription1;
-    @FXML
-    private Group clickable_ClarityRegarding1;
-    @FXML
-    private ToggleGroup clearlyChoosen1;
-    @FXML
-    private Group clickable_CitizenSeeks1;
-    @FXML
-    private RadioButton check_home1;
-    @FXML
-    private RadioButton check_personalCare1;
-    @FXML
-    private RadioButton check_shoppingFood1;
-    @FXML
-    private RadioButton check_temporaryStay1;
-    @FXML
-    private Group clickable_CameFrom1;
-    @FXML
-    private CheckBox source_citizen1;
-    @FXML
-    private CheckBox source_contact1;
-    @FXML
-    private CheckBox source_doctor1;
-    @FXML
-    private CheckBox source_hospital1;
-    @FXML
-    private CheckBox source_other1;
-    @FXML
-    private CheckBox source_current1;
-    @FXML
-    private CheckBox source_region1;
-    @FXML
-    private CheckBox source_etc1;
-    @FXML
-    private TextArea fillable_ContactPerson1;
-    @FXML
-    private Group clickable_Understood1;
-    @FXML
-    private ToggleGroup understood1;
-    @FXML
-    private Group clickable_InformedOfRights1;
-    @FXML
-    private ToggleGroup informed1;
-    @FXML
-    private ToggleGroup understoodReference11;
-    @FXML
-    private Group clickable_StorageOnline1;
-    @FXML
-    private ToggleGroup electronicStorage1;
-    @FXML
-    private ToggleGroup understoodReference1111;
-    @FXML
-    private TextField fillable_NameField1;
-    @FXML
-    private TextField fillable_AdressField1;
-    @FXML
-    private TextField fillable_ZipCodeField1;
-    @FXML
-    private TextField fillable_CprField1;
-    @FXML
-    private TextField fillable_PhoneNumberField1;
-    @FXML
-    private TextField fillable_EmailField1;
-    @FXML
-    private MenuButton choice_Gender1;
-    @FXML
-    private MenuButton choice_Relations1;
-    @FXML
-    private Group clickable_GuardianAndRepresentation1;
-    @FXML
-    private Group clickable_consent1;
-    @FXML
-    private ToggleGroup relevancy1;
-    @FXML
-    private Group clickable_ConsentType1;
-    @FXML
-    private RadioButton verbal_Consent1;
-    @FXML
-    private ToggleGroup samtykke1;
-    @FXML
-    private RadioButton written_Consent1;
-    @FXML
-    private Group clickable_ConsentFrom1;
-    @FXML
-    private TextArea fillable_SpecialCaseDesc1;
+    private ListView<ICase> casesListView;
     @FXML
     private AnchorPane viewingBackdrop;
+    @FXML
+    private ScrollPane seeSpecificCase;
+    @FXML
+    private Label preview_Label;
+
+    private Gender gender;
+    private RelationshipStatus relstat;
+    private ICase casepreview;
 
     /**
      * Clears all fields of the form that the caseworker fills to open a new
@@ -368,8 +284,42 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void EditExistingCases(MouseEvent event) {
+        openNewCaseScrollPane.setVisible(false);
         editCasesGridPane.setVisible(true);
         casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
+
+        casesListView.getSelectionModel().selectionModeProperty().addListener(evt -> {
+            casepreview = casesListView.getSelectionModel().getSelectedItem();
+            if (casepreview != null) {
+                showCasePreview();
+            }
+        });
+    }
+
+    private void showCasePreview() {
+        preview_Label.setText(convertCase2String(casepreview));
+    }
+
+    private String convertCase2String(ICase c) {
+        String rep = "";
+        
+        rep += "#" + c.getId() + "\tSagsstatus: " + c.getState() + "\n\n";
+
+        rep += "Borger:\n";
+        rep += c.getCitizen().getName() + "\n";
+        rep += c.getCitizen().getAddress() + "\n";
+        rep += c.getCitizen().getPhoneNumber() + "\n";
+        rep += c.getCitizen().getEmail() + "\n";
+
+        rep += "\n\n\n";
+
+        rep += c.getReason() + "\n";
+        rep += c.getAvailableOffers() + "\n";
+        
+        
+        rep += "Tilhørende sagsbehandler: " + c.getCaseWorker().getName() + "(" + c.getCaseWorker().getUserId() + ")";
+
+        return rep;
     }
 
     /**
@@ -395,7 +345,7 @@ public class FXMLDocumentController implements Initializable {
      * @param event mouse click
      */
     @FXML
-    private void cancelNewCase(MouseEvent event) {
+    private void cancelNewCase(ActionEvent event) {
         openNewCaseScrollPane.setVisible(false);
         //clearNewCaseForm();
     }
@@ -544,8 +494,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void cancelViewing(ActionEvent event) {
+    private void cancelPreviewCase(ActionEvent event) {
         seeSpecificCase.setVisible(false);
         viewingBackdrop.setVisible(false);
     }
+
 }
