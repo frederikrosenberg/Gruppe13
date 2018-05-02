@@ -290,6 +290,10 @@ public class Department implements IDepartment {
         caseWorkers.add(caseWorker);
     }
     
+    /**
+     * Adds a citizen to the list of citizens for the department
+     * @param citizen the given citizen
+     */
     public void addCitizen(Citizen citizen) {
         citizens.add(citizen);
     }

@@ -222,6 +222,9 @@ public class FXMLDocumentController implements Initializable {
         fillable_EmailField.clear();
     }
 
+    /**
+     * The business facade used to communicate with business layer
+     */
     private IBusinessFacade business;
 
     /**
@@ -264,6 +267,10 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    /**
+     * Called the application is closed
+     * @param event that closed the application
+     */
     public void exitApplication(ActionEvent event) {
         Platform.exit();
     }
@@ -388,7 +395,7 @@ public class FXMLDocumentController implements Initializable {
      * Converts a given case's data to a string object, for use in the GUI
      * preview of the case.
      *
-     * @param c : ICase
+     * @param c the case to convert
      * @return String of the case's data
      */
     private String convertCase2String(ICase c) {
@@ -588,7 +595,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * closes the specific case, as from the preview.
      *
-     * @param event : Mouse click on button
+     * @param event mouse click on button
      */
     @FXML
     private void closeCase(ActionEvent event) {
@@ -598,7 +605,7 @@ public class FXMLDocumentController implements Initializable {
     /**
      * Cancels the preview of the given case.
      *
-     * @param event : Mouse click
+     * @param event the mouse click
      */
     @FXML
     private void cancelPreviewCase(ActionEvent event) {
@@ -606,6 +613,10 @@ public class FXMLDocumentController implements Initializable {
         editCasesGridPane.setVisible(true);
     }
 
+    /**
+     * Closes the edit cases view
+     * @param event the mouse click
+     */
     @FXML
     private void closeEditCasesView(MouseEvent event) {
         editCasesGridPane.setVisible(false);
