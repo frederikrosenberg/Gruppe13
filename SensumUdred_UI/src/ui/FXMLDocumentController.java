@@ -600,6 +600,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void closeCase(ActionEvent event) {
         business.closeCase(casepreview.getId());
+        EditExistingCases(null);
     }
 
     /**
