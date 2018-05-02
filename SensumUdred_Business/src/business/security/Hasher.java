@@ -84,6 +84,7 @@ public class Hasher {
             // if they don't match the xor will be one and therefor zero will be one
             //example: 0 |= 1 ^ 0 --> zero: 1
             //example: 0 |= 1 ^ 1 --> zero: 0
+            //example: 1 |= 1 ^ 1 --> zero: 1
             zero |= hashBytes[salt.length + i] ^ check[i]; 
         }
         return zero == 0;
