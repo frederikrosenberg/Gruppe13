@@ -1363,12 +1363,12 @@
                                           <Image url="@../Images/Inapp/close.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="noCasesFound" alignment="CENTER" text="Ingen sager fundet..." textFill="#434343" visible="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <ListView id="simpleListView" fx:id="casesListView" focusTraversable="false" onMouseClicked="#selectCaseFromListView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: transparent; -fx-border-width: none; -fx-border: none;" stylesheets="@../Stylesheets/simpleStyle.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
+                                    <Label fx:id="noCasesFound" alignment="CENTER" text="Ingen sager fundet..." textFill="#434343" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <ListView id="simpleListView" fx:id="casesListView" focusTraversable="false" onMouseClicked="#selectCaseFromListView" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: transparent; -fx-border-width: none; -fx-border: none;" stylesheets="@../Stylesheets/simpleStyle.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
                                  </children>
                                  <GridPane.margin>
                                     <Insets />
