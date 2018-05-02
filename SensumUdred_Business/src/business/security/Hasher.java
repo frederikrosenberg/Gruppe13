@@ -51,38 +51,47 @@ public class Hasher {
      * 
      */
     public String hash(String password) {
-            byte[] salt = getNextSalt();
-            System.out.println(Base64.getUrlEncoder().withoutPadding().encodeToString(salt));
-            byte[] key = pbkdf2(password.toCharArray(), salt);
-            System.out.println(Base64.getUrlEncoder().withoutPadding().encodeToString(key));
-            byte[] hash = new byte[salt.length + key.length];
-            System.arraycopy(salt, 0, hash, 0, salt.length);
-            System.arraycopy(key, 0, hash, salt.length, key.length);
-            return Base64.getUrlEncoder().withoutPadding().encodeToString(hash);
+        //Get a random salt
+        byte[] salt = getNextSalt();
+        //Calculate a hash from the given password and the random salt
+        byte[] key = pbkdf2(password.toCharArray(), salt);
+        //Merge the two to the format salthash
+        byte[] hash = new byte[salt.length + key.length];
+        System.arraycopy(salt, 0, hash, 0, salt.length);
+        System.arraycopy(key, 0, hash, salt.length, key.length);
+        //Encode that in base64
+        return Base64.getUrlEncoder().withoutPadding().encodeToString(hash);
     }
     
     /**
      * Check if the hash and the password match
+     * 
      * @param password to be checked
      * @param hash to be checked against
      * @return if the password matched the hash
      */
     public boolean compare(String password, String hash) {
+        //Get the bytes from the hash
         byte[] hashBytes = Base64.getUrlDecoder().decode(hash);
-        System.out.println(Base64.getUrlEncoder().withoutPadding().encodeToString(hashBytes));
+        //Get the salt from hash
         byte[] salt = Arrays.copyOfRange(hashBytes, 0, SIZE / 8);
-        System.out.println(Base64.getUrlEncoder().withoutPadding().encodeToString(salt));
+        //Calculate hash from given password
         byte[] check = pbkdf2(password.toCharArray(), salt);
-        System.out.println(Base64.getUrlEncoder().withoutPadding().encodeToString(check));
+        
+        //Check if they are equal
         int zero = 0;
         for (int i = 0; i < check.length; i++) {
-            zero |= hashBytes[salt.length + i] ^ check[i];
+            // if they don't match the xor will be one and therefor zero will be one
+            //example: 0 |= 1 ^ 0 --> zero: 1
+            //example: 0 |= 1 ^ 1 --> zero: 0
+            zero |= hashBytes[salt.length + i] ^ check[i]; 
         }
         return zero == 0;
     }
     
     /**
      * Generates the hash
+     * 
      * @param password to be hashed
      * @param salt to be used
      * @return byte array with the hashed password
