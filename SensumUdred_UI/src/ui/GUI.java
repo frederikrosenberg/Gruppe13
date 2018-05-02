@@ -88,13 +88,13 @@ public class GUI extends Application implements IUI {
      * Get the ui instance
      * @return the gui object
      */
-    public static GUI getInstacne() {
+    public static GUI getInstance() {
         return gui;
     }
 
     @Override
     public void stop() throws Exception {
-        getInstacne().business.closing();
+        getInstance().business.closing();
         super.stop();
     }
     

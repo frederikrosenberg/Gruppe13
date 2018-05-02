@@ -170,7 +170,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane viewingBackdrop;
     @FXML
-    private ScrollPane seeSpecificCase;
+    private AnchorPane seeSpecificCase;
     @FXML
     private Label preview_Label;
     @FXML
@@ -229,7 +229,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        business = GUI.getInstacne().getBusiness();
+        business = GUI.getInstance().getBusiness();
         backgroundImage.fitHeightProperty().bind(appBackground.heightProperty());
 
         inappWallpaperDark.fitHeightProperty().bind(inappBackground.heightProperty());
@@ -237,8 +237,7 @@ public class FXMLDocumentController implements Initializable {
         Thread timethread = new TimeThread(time);
         timethread.setDaemon(true);
         timethread.start();
-        
-        
+
         Calendar cal = Calendar.getInstance();
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
@@ -360,13 +359,11 @@ public class FXMLDocumentController implements Initializable {
         editCasesGridPane.setVisible(true);
 
         casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
-
-        casesListView.getSelectionModel().selectionModeProperty().addListener(evt -> {
-            casepreview = casesListView.getSelectionModel().getSelectedItem();
-            if (casepreview != null) {
-                showCasePreview();
-            }
-        });
+        if (casesListView.getItems().isEmpty()) {
+            noCasesFound.setVisible(true);
+        } else {
+            noCasesFound.setVisible(false);
+        }
 
     }
 
