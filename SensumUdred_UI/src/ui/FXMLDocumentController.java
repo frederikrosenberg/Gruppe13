@@ -360,11 +360,13 @@ public class FXMLDocumentController implements Initializable {
         editCasesGridPane.setVisible(true);
 
         casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
-        if (casesListView.getItems().isEmpty()) {
-            noCasesFound.setVisible(true);
-        } else {
-            noCasesFound.setVisible(false);
-        }
+
+        casesListView.getSelectionModel().selectionModeProperty().addListener(evt -> {
+            casepreview = casesListView.getSelectionModel().getSelectedItem();
+            if (casepreview != null) {
+                showCasePreview();
+            }
+        });
 
     }
 
