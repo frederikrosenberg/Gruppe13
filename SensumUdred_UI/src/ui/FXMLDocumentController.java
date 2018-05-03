@@ -206,6 +206,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label user_Email;
 
+    private IdleChecker checker;
+    
+    
+
     /**
      * Clears all fields of the form that the caseworker fills to open a new
      * case.
@@ -237,6 +241,13 @@ public class FXMLDocumentController implements Initializable {
         Thread timethread = new TimeThread(time);
         timethread.setDaemon(true);
         timethread.start();
+        
+        checker = new IdleChecker(5,this);
+        Thread idle = new Thread(checker);
+        idle.setDaemon(true);
+        idle.start();
+        
+
 
         Calendar cal = Calendar.getInstance();
         Calendar calen = Calendar.getInstance();
@@ -264,6 +275,10 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    /**
+     * Safely exits the application on close
+     * @param event mouse click
+     */
     public void exitApplication(ActionEvent event) {
         Platform.exit();
     }
@@ -311,6 +326,9 @@ public class FXMLDocumentController implements Initializable {
             user_Name.setText(business.getCaseWorker().getName());
             user_Email.setText(business.getCaseWorker().getEmail());
             user_JobTitle.setText("Sagsbehandler");
+            
+            checker.updateLastMove();
+            checker.setLogin(true);
         } else {
             wrongUserPassGridPane.setVisible(true);
             passwordField.clear();
@@ -325,6 +343,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void loginAgain(ActionEvent event) {
+        loggedOutGridPane.setVisible(false);
         inappScreen.setVisible(false);
         loginGridPane.setVisible(true);
 
@@ -367,6 +386,10 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    /**
+     * Sets the clicke case from the list view to the specified object of the ICase type.
+     * @param event Mouse click
+     */
     @FXML
     public void selectCaseFromListView(MouseEvent event) {
         casepreview = casesListView.getSelectionModel().getSelectedItem();
@@ -428,6 +451,8 @@ public class FXMLDocumentController implements Initializable {
 
         usernameField.clear();
         passwordField.clear();
+        
+        checker.setLogin(false);
     }
 
     /**
@@ -438,7 +463,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void cancelNewCase(ActionEvent event) {
         openNewCaseScrollPane.setVisible(false);
-        //clearNewCaseForm();
+        clearNewCaseForm();
     }
 
     /**
@@ -610,6 +635,15 @@ public class FXMLDocumentController implements Initializable {
     private void closeEditCasesView(MouseEvent event) {
         editCasesGridPane.setVisible(false);
         viewingBackdrop.setVisible(false);
+    }
+
+    @FXML
+    private void resetIdle(MouseEvent event) {
+        checker.updateLastMove();
+    }
+
+    public void logout() {
+        Logout(null);
     }
 
 }
