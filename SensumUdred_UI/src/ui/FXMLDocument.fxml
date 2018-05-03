@@ -471,7 +471,7 @@
                                                 <Font name="Arial" size="16.0" />
                                              </font>
                                           </Label>
-                                          <TextArea fx:id="fillable_ProblemDescription" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse af problemstillingen ogbehov for hjælp" styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true">
+                                          <TextArea fx:id="fillable_ProblemDescription" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse af problemstillingen og behov for hjælp" styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true">
                                              <GridPane.margin>
                                                 <Insets left="25.0" right="25.0" top="35.0" />
                                              </GridPane.margin>
@@ -969,7 +969,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Label text="værge og partsrepræsentant fremkommer automatisk hvis det tidligere er registreret om borgeren" wrapText="true" GridPane.valignment="BOTTOM">
+                                          <Label text="Værge og partsrepræsentant fremkommer automatisk hvis det tidligere er registreret om borgeren" wrapText="true" GridPane.valignment="BOTTOM">
                                              <font>
                                                 <Font name="Arial" size="10.0" />
                                              </font>
