@@ -6,13 +6,23 @@ import java.util.Locale;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
+/**
+ * FXML Controller class for the GUI.
+ *
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
+ */
 public class TimeThread extends Thread {
 
     /**
      * the value of the time, as a string
      */
     private String output;
-    
+
     /**
      * An instance of the label type
      */
@@ -20,6 +30,7 @@ public class TimeThread extends Thread {
 
     /**
      * Initializes an instanse of label
+     *
      * @param label the label from GUI
      */
     public TimeThread(Label label) {
@@ -27,9 +38,10 @@ public class TimeThread extends Thread {
     }
 
     /**
-     * Runs the thread, this thread sets the text of the label, to the time of the DK time zone
-     * After this, the thread sleeps for 0.5 seconds and then re-gets the time
-     * 
+     * Runs the thread, this thread sets the text of the label, to the time of
+     * the DK time zone After this, the thread sleeps for 0.5 seconds and then
+     * re-gets the time
+     *
      */
     public void run() {
         //Runs eternally:

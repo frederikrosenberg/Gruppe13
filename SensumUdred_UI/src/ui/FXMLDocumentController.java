@@ -181,7 +181,14 @@ public class FXMLDocumentController implements Initializable {
     private ImageView inappWallpaperDark;
     @FXML
     private AnchorPane inappBackground;
-
+    @FXML
+    private Label noCasesFound;
+    @FXML
+    private Label user_JobTitle;
+    @FXML
+    private Label user_Name;
+    @FXML
+    private Label user_Email;
     /**
      * An instance of the citizens gender, for use in creating a new case.
      */
@@ -197,18 +204,11 @@ public class FXMLDocumentController implements Initializable {
      * An instance of the citizens case, for use in the case preview.
      */
     private ICase casepreview;
-    @FXML
-    private Label noCasesFound;
-    @FXML
-    private Label user_JobTitle;
-    @FXML
-    private Label user_Name;
-    @FXML
-    private Label user_Email;
 
+    /**
+     * An instance of the IdleChecker class, used to count idle time.
+     */
     private IdleChecker checker;
-    
-    
 
     /**
      * Clears all fields of the form that the caseworker fills to open a new
@@ -244,13 +244,11 @@ public class FXMLDocumentController implements Initializable {
         Thread timethread = new TimeThread(time);
         timethread.setDaemon(true);
         timethread.start();
-        
-        checker = new IdleChecker(5*60,this);
+
+        checker = new IdleChecker(5 * 60, this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
-        
-
 
         Calendar cal = Calendar.getInstance();
         Calendar calen = Calendar.getInstance();
@@ -280,6 +278,7 @@ public class FXMLDocumentController implements Initializable {
 
     /**
      * Called the application is closed
+     *
      * @param event that closed the application
      */
     public void exitApplication(ActionEvent event) {
@@ -329,7 +328,7 @@ public class FXMLDocumentController implements Initializable {
             user_Name.setText(business.getCaseWorker().getName());
             user_Email.setText(business.getCaseWorker().getEmail());
             user_JobTitle.setText("Sagsbehandler");
-            
+
             checker.updateLastMove();
             checker.setLogin(true);
         } else {
@@ -390,7 +389,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * Sets the clicke case from the list view to the specified object of the ICase type.
+     * Sets the clicke case from the list view to the specified object of the
+     * ICase type.
+     *
      * @param event Mouse click
      */
     @FXML
@@ -454,7 +455,7 @@ public class FXMLDocumentController implements Initializable {
 
         usernameField.clear();
         passwordField.clear();
-        
+
         checker.setLogin(false);
     }
 
@@ -637,6 +638,7 @@ public class FXMLDocumentController implements Initializable {
 
     /**
      * Closes the edit cases view
+     *
      * @param event the mouse click
      */
     @FXML
@@ -645,11 +647,19 @@ public class FXMLDocumentController implements Initializable {
         viewingBackdrop.setVisible(false);
     }
 
+    /**
+     * Resets the idle time counter
+     *
+     * @param event on mouse moved
+     */
     @FXML
     private void resetIdle(MouseEvent event) {
         checker.updateLastMove();
     }
 
+    /**
+     * Calls the logout method, used by the idle thread.
+     */
     public void logout() {
         Logout(null);
     }

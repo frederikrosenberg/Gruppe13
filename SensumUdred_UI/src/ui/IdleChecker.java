@@ -4,6 +4,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 
+/**
+ * FXML Controller class for the GUI.
+ *
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
+ */
 public class IdleChecker implements Runnable {
 
     /**
