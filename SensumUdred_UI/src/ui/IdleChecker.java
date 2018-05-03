@@ -68,8 +68,8 @@ public class IdleChecker implements Runnable {
     }
 
     /**
-     *  The run method of the idle threads.
-     */
+     *  The run method of the idle threads. 
+    */
     @Override
     public void run() {
         //Runs eternally:

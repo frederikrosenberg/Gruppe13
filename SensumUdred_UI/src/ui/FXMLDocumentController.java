@@ -211,6 +211,11 @@ public class FXMLDocumentController implements Initializable {
     private IdleChecker checker;
 
     /**
+     * An instance of the TimeChecker class, used to display current time.
+     */
+    private TimeChecker timethread;
+    
+    /**
      * Clears all fields of the form that the caseworker fills to open a new
      * case.
      */
@@ -241,9 +246,9 @@ public class FXMLDocumentController implements Initializable {
 
         inappWallpaperDark.fitHeightProperty().bind(inappBackground.heightProperty());
 
-        Thread timethread = new TimeThread(time);
-        timethread.setDaemon(true);
-        timethread.start();
+        Thread timet = new Thread(new TimeChecker(time));
+        timet.setDaemon(true);
+        timet.start();
 
         checker = new IdleChecker(5 * 60, this);
         Thread idle = new Thread(checker);
