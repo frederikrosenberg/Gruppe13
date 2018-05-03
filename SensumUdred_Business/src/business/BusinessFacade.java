@@ -185,6 +185,7 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public void injectPersistence(IPersistenceFacade persistence) {
         this.persistence = persistence;
+        load();
     }
 
     /**

@@ -9,8 +9,12 @@ import common.RelationshipStatus;
 import data.UICitizen;
 import data.UICitizenData;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +23,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.PasswordField;
@@ -121,13 +126,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ToggleGroup informed;
     @FXML
-    private ToggleGroup understoodReference1;
-    @FXML
     private Group clickable_StorageOnline;
     @FXML
     private ToggleGroup electronicStorage;
-    @FXML
-    private ToggleGroup understoodReference111;
     @FXML
     private TextField fillable_NameField;
     @FXML
@@ -169,10 +170,25 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private AnchorPane viewingBackdrop;
     @FXML
-    private ScrollPane seeSpecificCase;
+    private AnchorPane seeSpecificCase;
     @FXML
     private Label preview_Label;
-
+    @FXML
+    private Label time;
+    @FXML
+    private Label date;
+    @FXML
+    private ImageView inappWallpaperDark;
+    @FXML
+    private AnchorPane inappBackground;
+    @FXML
+    private Label noCasesFound;
+    @FXML
+    private Label user_JobTitle;
+    @FXML
+    private Label user_Name;
+    @FXML
+    private Label user_Email;
     /**
      * An instance of the citizens gender, for use in creating a new case.
      */
@@ -190,6 +206,11 @@ public class FXMLDocumentController implements Initializable {
     private ICase casepreview;
 
     /**
+     * An instance of the IdleChecker class, used to count idle time.
+     */
+    private IdleChecker checker;
+
+    /**
      * Clears all fields of the form that the caseworker fills to open a new
      * case.
      */
@@ -205,26 +226,63 @@ public class FXMLDocumentController implements Initializable {
         fillable_EmailField.clear();
     }
 
-    private IBusinessFacade business;
-
     /**
-     * Injects a reference to the active instance of the businesss facade.
-     *
-     * @param business an instance of the IBusinessFacade
+     * The business facade used to communicate with business layer
      */
-    public void injectBusiness(IBusinessFacade business) {
-        this.business = business;
-    }
+    private IBusinessFacade business;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        business = GUI.getInstance().getBusiness();
         backgroundImage.fitHeightProperty().bind(appBackground.heightProperty());
-        inappScreen.setVisible(true);
+
+        inappWallpaperDark.fitHeightProperty().bind(inappBackground.heightProperty());
+
+        Thread timethread = new TimeThread(time);
+        timethread.setDaemon(true);
+        timethread.start();
+
+        checker = new IdleChecker(5 * 60, this);
+        Thread idle = new Thread(checker);
+        idle.setDaemon(true);
+        idle.start();
+
+        Calendar cal = Calendar.getInstance();
+        Calendar calen = Calendar.getInstance();
+        calen.add(Calendar.DATE, 0);
+        Date dato = calen.getTime();
+
+        SimpleDateFormat format1 = new SimpleDateFormat("EEEEEEE 'd.'d MMM yyyy");
+        date.setText(String.valueOf(format1.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format1.format(dato)).substring(1));
+
+        inappScreen.setVisible(false); //Set false to force user to log in
         editCasesGridPane.setVisible(false);
+
+        casesListView.setCellFactory(value -> new ListCell<ICase>() {
+            @Override
+            protected void updateItem(ICase item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText("(" + item.getCitizen().getCpr() + ") \t\t " + item.getCitizen().getName() + " \t\t Status: " + item.getState());
+                }
+            }
+
+        });
+
+    }
+
+    /**
+     * Called the application is closed
+     *
+     * @param event that closed the application
+     */
+    public void exitApplication(ActionEvent event) {
+        Platform.exit();
     }
 
     /**
@@ -263,9 +321,16 @@ public class FXMLDocumentController implements Initializable {
     private void loginRequested(ActionEvent event) {
         if (business.login(usernameField.getText(), passwordField.getText())) {
             wrongUserPassGridPane.setVisible(false);
-            inappScreen.setVisible(false);
+            inappScreen.setVisible(true);
             usernameField.clear();
             passwordField.clear();
+
+            user_Name.setText(business.getCaseWorker().getName());
+            user_Email.setText(business.getCaseWorker().getEmail());
+            user_JobTitle.setText("Sagsbehandler");
+
+            checker.updateLastMove();
+            checker.setLogin(true);
         } else {
             wrongUserPassGridPane.setVisible(true);
             passwordField.clear();
@@ -280,6 +345,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void loginAgain(ActionEvent event) {
+        loggedOutGridPane.setVisible(false);
         inappScreen.setVisible(false);
         loginGridPane.setVisible(true);
 
@@ -294,8 +360,10 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void OpenNewCase(MouseEvent event) {
-        openNewCaseScrollPane.setVisible(true);
+        seeSpecificCase.setVisible(false);
+        viewingBackdrop.setVisible(false);
         editCasesGridPane.setVisible(false);
+        openNewCaseScrollPane.setVisible(true);
 
     }
 
@@ -306,22 +374,40 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void EditExistingCases(MouseEvent event) {
+        seeSpecificCase.setVisible(false);
         openNewCaseScrollPane.setVisible(false);
+        viewingBackdrop.setVisible(true);
         editCasesGridPane.setVisible(true);
-        casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
 
-        casesListView.getSelectionModel().selectionModeProperty().addListener(evt -> {
-            casepreview = casesListView.getSelectionModel().getSelectedItem();
-            if (casepreview != null) {
-                showCasePreview();
-            }
-        });
+        casesListView.setItems(FXCollections.observableArrayList((List<ICase>) business.getActiveCases()));
+        if (casesListView.getItems().isEmpty()) {
+            noCasesFound.setVisible(true);
+        } else {
+            noCasesFound.setVisible(false);
+        }
+
+    }
+
+    /**
+     * Sets the clicke case from the list view to the specified object of the
+     * ICase type.
+     *
+     * @param event Mouse click
+     */
+    @FXML
+    public void selectCaseFromListView(MouseEvent event) {
+        casepreview = casesListView.getSelectionModel().getSelectedItem();
+        if (casepreview != null) {
+            showCasePreview();
+        }
     }
 
     /**
      * Sets the case's text from the case data.
      */
     private void showCasePreview() {
+        editCasesGridPane.setVisible(false);
+        seeSpecificCase.setVisible(true);
         preview_Label.setText(convertCase2String(casepreview));
     }
 
@@ -329,7 +415,7 @@ public class FXMLDocumentController implements Initializable {
      * Converts a given case's data to a string object, for use in the GUI
      * preview of the case.
      *
-     * @param c : ICase
+     * @param c the case to convert
      * @return String of the case's data
      */
     private String convertCase2String(ICase c) {
@@ -338,6 +424,7 @@ public class FXMLDocumentController implements Initializable {
         rep += "#" + c.getId() + "\tSagsstatus: " + c.getState() + "\t " + c.getOpeningDate() + "\n\n";
 
         rep += "Borger:\n";
+        rep += c.getCitizen().getCpr() + "\n";
         rep += c.getCitizen().getName() + "\n";
         rep += c.getCitizen().getAddress() + "\n";
         rep += c.getCitizen().getPhoneNumber() + "\n";
@@ -368,6 +455,8 @@ public class FXMLDocumentController implements Initializable {
 
         usernameField.clear();
         passwordField.clear();
+
+        checker.setLogin(false);
     }
 
     /**
@@ -378,7 +467,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void cancelNewCase(ActionEvent event) {
         openNewCaseScrollPane.setVisible(false);
-        //clearNewCaseForm();
+        clearNewCaseForm();
     }
 
     /**
@@ -396,6 +485,7 @@ public class FXMLDocumentController implements Initializable {
         ICitizenData citizenData = new UICitizenData(citizen, "Sagsåbning", 0, getConsent(), fillable_ProblemDescription.getText(), getAvailibleOffers(), getSourceOfRequest(), business.getCaseWorker());
         business.openCase(citizenData);
         clearNewCaseForm();
+        openNewCaseScrollPane.setVisible(false);
     }
 
     /**
@@ -419,32 +509,32 @@ public class FXMLDocumentController implements Initializable {
      * @return the title of the source of request, for the given new case.
      */
     private String getSourceOfRequest() {
+        String val = "";
         if (source_citizen.isSelected()) {
-            return "Borger";
+            val += "Borger, ";
         }
         if (source_contact.isSelected()) {
-            return "Pårørende";
+            val += "Pårørende, ";
         }
         if (source_doctor.isSelected()) {
-            return "Læge";
+            val += "Læge, ";
         }
         if (source_hospital.isSelected()) {
-            return "Hospital";
+            val += "Hospital, ";
         }
         if (source_other.isSelected()) {
-            return "Anden forvaltning";
+            val += "Anden forvaltning, ";
         }
         if (source_current.isSelected()) {
-            return "Igangværende indsats";
+            val += "Igangværende indsats, ";
         }
         if (source_region.isSelected()) {
-            return "Anden kommune";
+            val += "Anden kommune, ";
         }
         if (source_etc.isSelected()) {
-            return "Andre";
-        } else {
-            return "";
+            val += "Andre, ";
         }
+        return val;
     }
 
     /**
@@ -476,6 +566,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void SetGender_Male(ActionEvent event) {
+        choice_Gender.setText("Mand");
         gender = Gender.MALE;
     }
 
@@ -486,6 +577,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void setGender_Female(ActionEvent event) {
+        choice_Gender.setText("Kvinde");
         gender = Gender.FEMALE;
     }
 
@@ -496,6 +588,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void setRelationship_Single(ActionEvent event) {
+        choice_Relations.setText("Single");
         relstat = RelationshipStatus.SINGLE;
     }
 
@@ -506,6 +599,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void setRelationship_InRelationship(ActionEvent event) {
+        choice_Relations.setText("I forhold");
         relstat = RelationshipStatus.IN_RELATIONSHIP;
     }
 
@@ -516,28 +610,58 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void setRelationship_Married(ActionEvent event) {
+        choice_Relations.setText("Gift");
         relstat = RelationshipStatus.MARRIED;
     }
 
     /**
      * closes the specific case, as from the preview.
      *
-     * @param event : Mouse click on button
+     * @param event mouse click on button
      */
     @FXML
     private void closeCase(ActionEvent event) {
         business.closeCase(casepreview.getId());
+        EditExistingCases(null);
     }
 
     /**
      * Cancels the preview of the given case.
      *
-     * @param event : Mouse click
+     * @param event the mouse click
      */
     @FXML
     private void cancelPreviewCase(ActionEvent event) {
         seeSpecificCase.setVisible(false);
+        editCasesGridPane.setVisible(true);
+    }
+
+    /**
+     * Closes the edit cases view
+     *
+     * @param event the mouse click
+     */
+    @FXML
+    private void closeEditCasesView(MouseEvent event) {
+        editCasesGridPane.setVisible(false);
         viewingBackdrop.setVisible(false);
+    }
+
+    /**
+     * Resets the idle time counter
+     *
+     * @param event on mouse moved
+     */
+    @FXML
+    private void resetIdle(MouseEvent event) {
+        checker.updateLastMove();
+    }
+
+    /**
+     * Calls the logout method, used by the idle thread.
+     */
+    public void logout() {
+        Logout(null);
     }
 
 }

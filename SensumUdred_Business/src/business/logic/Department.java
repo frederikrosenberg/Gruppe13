@@ -289,5 +289,13 @@ public class Department implements IDepartment {
         CaseWorker caseWorker = new CaseWorker(name, phoneNumber, email, this, employeeId, userId);
         caseWorkers.add(caseWorker);
     }
+    
+    /**
+     * Adds a citizen to the list of citizens for the department
+     * @param citizen the given citizen
+     */
+    public void addCitizen(Citizen citizen) {
+        citizens.add(citizen);
+    }
 
 }

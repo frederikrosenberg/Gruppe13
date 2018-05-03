@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="appBackground" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #434343;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.FXMLDocumentController">
    <children>
-      <ImageView fx:id="backgroundImage" fitHeight="720.0" fitWidth="481.0" preserveRatio="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0">
+      <ImageView fx:id="backgroundImage" fitHeight="720.0" fitWidth="481.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <image>
             <Image url="@../Images/backgroundImage.png" />
          </image>
@@ -133,60 +133,6 @@
             </GridPane>
          </children>
       </GridPane>
-      <GridPane fx:id="loggedOutGridPane" minHeight="480.0" minWidth="720.0" prefHeight="480.0" prefWidth="720.0" stylesheets="@../Stylesheets/simpleStyle.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="250.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="290.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="474.6666717529297" prefHeight="569.3333282470703" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <AnchorPane fx:id="loggedoutBackground" minHeight="720.0" minWidth="1280.0" style="-fx-background-color: #000; -fx-opacity: 0.25;" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
-            <AnchorPane maxHeight="150.0" maxWidth="400.0" minHeight="150.0" minWidth="400.0" prefHeight="150.0" prefWidth="400.0" style="-fx-background-color: #fff;" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
-            <ImageView fitWidth="35.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-               <image>
-                  <Image url="@../Images/icons8-protect-50.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets left="40.0" top="10.0" />
-               </GridPane.margin>
-            </ImageView>
-            <Label maxWidth="230.0" minWidth="230.0" prefWidth="230.0" text="Du er blevet logget ud!" textFill="#434343" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets left="20.0" top="15.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Arial" size="22.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="377.0" minHeight="40.0" minWidth="377.0" prefHeight="40.0" prefWidth="377.0" text="Af sikkerhedsmæssige årsager, er du logget ud. Klik knappen herunder, for at logge ind igen." textAlignment="CENTER" textFill="#434343" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-               <font>
-                  <Font name="Arial" size="12.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets top="50.0" />
-               </GridPane.margin>
-            </Label>
-            <Button fx:id="reLogin" maxWidth="120.0" minWidth="120.0" mnemonicParsing="false" onAction="#loginAgain" prefWidth="120.0" style="-fx-background-color: transparent; -fx-border-color: #434343; -fx-border-width: 2px; -fx-border-radius: 12px;" text="Prøv igen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
-                     <image>
-                        <Image url="@../Images/icons8-synchronize-96.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <GridPane.margin>
-                  <Insets bottom="10.0" />
-               </GridPane.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </GridPane>
       <GridPane fx:id="forgottenPasswordGridPane" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
@@ -255,7 +201,7 @@
             <AnchorPane onMouseClicked="#closeForgottenPassword" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.columnSpan="3" GridPane.rowSpan="3" />
          </children>
       </GridPane>
-      <AnchorPane fx:id="inappScreen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: White;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="inappScreen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseMoved="#resetIdle" style="-fx-background-color: White;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columnConstraints>
@@ -284,7 +230,7 @@
                            <image>
                               <Image url="@../Images/Inapp/anon_user.png" />
                            </image></ImageView>
-                        <Label text="Systemadministrator" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                        <Label fx:id="user_JobTitle" text="Systemadministrator" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets left="15.0" />
                            </GridPane.margin>
@@ -292,7 +238,7 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <Label text="Sebastian S. Christiansen" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Label fx:id="user_Name" text="Sebastian S. Christiansen" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -300,7 +246,7 @@
                               <Insets left="15.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label text="Sebac17@student.sdu.dk" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                        <Label fx:id="user_Email" text="Sebac17@student.sdu.dk" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
                            <font>
                               <Font size="12.0" />
                            </font>
@@ -446,7 +392,26 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ScrollPane fx:id="openNewCaseScrollPane" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                        <AnchorPane fx:id="inappBackground" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f8ca6c;" GridPane.columnSpan="2">
+                           <children>
+                              <ImageView fx:id="inappWallpaperDark" fitHeight="720.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                                 <image>
+                                    <Image url="@../Images/Inapp/backgroundImage_dark.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="time" alignment="CENTER" contentDisplay="CENTER" minWidth="300.0" prefWidth="300.0" text="11:15" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="50.0">
+                                 <font>
+                                    <Font name="Arial" size="48.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="date" alignment="CENTER" layoutX="729.0" layoutY="60.0" minWidth="300.0" prefWidth="300.0" text="Fredag d. 15/2-2017" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="100.0">
+                                 <font>
+                                    <Font name="Arial" size="22.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <ScrollPane fx:id="openNewCaseScrollPane" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                            <content>
                               <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2097.0" prefWidth="913.0" style="-fx-background-color: #eaeaea;">
                                 <columnConstraints>
@@ -506,7 +471,7 @@
                                                 <Font name="Arial" size="16.0" />
                                              </font>
                                           </Label>
-                                          <TextArea fx:id="fillable_ProblemDescription" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse af problemstillingen ogbehov for hjælp" styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true">
+                                          <TextArea fx:id="fillable_ProblemDescription" prefHeight="200.0" prefWidth="200.0" promptText="Beskrivelse af problemstillingen og behov for hjælp" styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true">
                                              <GridPane.margin>
                                                 <Insets left="25.0" right="25.0" top="35.0" />
                                              </GridPane.margin>
@@ -560,31 +525,6 @@
                                              </font>
                                           </Label>
                                           <Group fx:id="clickable_CitizenSeeks" styleClass="radio-button" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                             <children>
-                                                <RadioButton id="check-box" fx:id="check_home" mnemonicParsing="false" text="Støtte til praktiske opgaver i hjemmet(§ 85)" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                                   <GridPane.margin>
-                                                      <Insets left="25.0" top="12.0" />
-                                                   </GridPane.margin>
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                                <RadioButton id="check-box" fx:id="check_personalCare" layoutY="25.0" mnemonicParsing="false" text="Støtte til personlig pleje (§ 85)" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                                <RadioButton id="check-box" fx:id="check_shoppingFood" layoutY="50.0" mnemonicParsing="false" text="Støtte til indkøb og kost (§ 85)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                                <RadioButton id="check-box" fx:id="check_temporaryStay" layoutY="75.0" mnemonicParsing="false" selected="true" text="Midlertidigt ophold (§ 107)">
-                                                   <font>
-                                                      <Font name="Arial" size="12.0" />
-                                                   </font>
-                                                </RadioButton>
-                                             </children>
                                              <GridPane.margin>
                                                 <Insets left="25.0" top="12.0" />
                                              </GridPane.margin>
@@ -597,6 +537,33 @@
                                                 <Insets left="25.0" top="12.0" />
                                              </GridPane.margin>
                                           </Label>
+                                          <Group GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                             <children>
+                                                <RadioButton id="check-box" fx:id="check_personalCare" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Støtte til personlig pleje (§ 85)">
+                                                   <font>
+                                                      <Font name="Arial" size="12.0" />
+                                                   </font>
+                                                </RadioButton>
+                                                <RadioButton id="check-box" fx:id="check_temporaryStay" layoutY="25.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Midlertidigt ophold (§ 107)">
+                                                   <font>
+                                                      <Font name="Arial" size="12.0" />
+                                                   </font>
+                                                </RadioButton>
+                                                <RadioButton id="check-box" fx:id="check_home" layoutY="50.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Støtte til praktiske opgaver i hjemmet(§ 85)">
+                                                   <font>
+                                                      <Font name="Arial" size="12.0" />
+                                                   </font>
+                                                </RadioButton>
+                                                <RadioButton id="check-box" fx:id="check_shoppingFood" layoutY="75.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Støtte til indkøb og kost (§ 85)">
+                                                   <font>
+                                                      <Font name="Arial" size="12.0" />
+                                                   </font>
+                                                </RadioButton>
+                                             </children>
+                                             <GridPane.margin>
+                                                <Insets left="25.0" top="12.0" />
+                                             </GridPane.margin>
+                                          </Group>
                                           <Group fx:id="clickable_CameFrom" styleClass="check-box" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.rowIndex="3" GridPane.valignment="TOP">
                                              <children>
                                                 <CheckBox fx:id="source_citizen" mnemonicParsing="false" text="Borger" GridPane.rowIndex="3">
@@ -716,13 +683,10 @@
                                                 <ToggleGroup fx:id="informed" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej">
+                                          <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej" toggleGroup="$informed">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="understoodReference1" />
-                                             </toggleGroup>
                                           </RadioButton>
                                        </children>
                                        <GridPane.margin>
@@ -747,13 +711,10 @@
                                                 <ToggleGroup fx:id="electronicStorage" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej">
+                                          <RadioButton id="check-box" layoutY="25.0" mnemonicParsing="false" selected="true" text="Nej" toggleGroup="$electronicStorage">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="understoodReference111" />
-                                             </toggleGroup>
                                           </RadioButton>
                                        </children>
                                        <GridPane.margin>
@@ -1008,7 +969,7 @@
                                                 <Insets left="25.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Label text="værge og partsrepræsentant fremkommer automatisk hvis det tidligere er registreret om borgeren" wrapText="true" GridPane.valignment="BOTTOM">
+                                          <Label text="Værge og partsrepræsentant fremkommer automatisk hvis det tidligere er registreret om borgeren" wrapText="true" GridPane.valignment="BOTTOM">
                                              <font>
                                                 <Font name="Arial" size="10.0" />
                                              </font>
@@ -1247,7 +1208,7 @@
                                                 <Insets left="25.0" top="35.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextArea id="fillableForm" fx:id="fillable_SpecialCaseDesc" maxHeight="100.0" prefHeight="100.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.valignment="TOP">
+                                          <TextArea id="fillableForm" fx:id="fillable_SpecialCaseDesc" maxHeight="100.0" prefHeight="100.0" promptText="Beskriv eventuelle særlige forhold for borgeren.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.valignment="TOP">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
@@ -1323,8 +1284,14 @@
                                     </GridPane>
                                  </children>
                               </GridPane>
-                           </content></ScrollPane>
-                        <GridPane fx:id="editCasesGridPane" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           </content>
+                        </ScrollPane>
+                        <AnchorPane fx:id="viewingBackdrop" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000; -fx-opacity: 0.2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <GridPane fx:id="editCasesGridPane" stylesheets="@../Stylesheets/simpleStyle.css" visible="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -1335,59 +1302,113 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowSpan="3" />
-                              <ListView fx:id="casesListView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-border-radius: 35;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="3" GridPane.valignment="CENTER">
-                                 <GridPane.margin>
-                                    <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-                                 </GridPane.margin>
-                              </ListView>
-                           </children>
-                        </GridPane>
-                        <AnchorPane fx:id="viewingBackdrop" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.columnSpan="2">
-                           <children>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000; -fx-opacity: 0.2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                        <ScrollPane fx:id="seeSpecificCase" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                           <GridPane.margin>
-                              <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
-                           </GridPane.margin>
-                           <content>
-                              <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="621.0" prefWidth="805.0" style="-fx-background-color: #fff;">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnSpan="2" GridPane.rowSpan="3">
                                  <children>
-                                    <Label fx:id="preview_Label" alignment="TOP_LEFT" text="insert case here.." wrapText="true" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
+                                    <ImageView fitHeight="150.0" fitWidth="35.0" onMouseClicked="#closeEditCasesView" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+                                       <image>
+                                          <Image url="@../Images/Inapp/close.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ListView id="simpleListView" fx:id="casesListView" focusTraversable="false" onMouseClicked="#selectCaseFromListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../Stylesheets/simpleStyle.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
+                                    <Label fx:id="noCasesFound" alignment="CENTER" text="Ingen sager fundet..." textFill="#434343" wrapText="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                                        <font>
-                                          <Font size="12.0" />
+                                          <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Button id="annullerSag" mnemonicParsing="false" onAction="#cancelPreviewCase" style="-fx-border: none; -fx-background-color: #434343;" stylesheets="@../Stylesheets/simpleStyle.css" text="Annuller" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="25.0">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
-                                       </padding>
-                                    </Button>
-                                    <Button id="lukSag" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#closeCase" stylesheets="@../Stylesheets/simpleStyle.css" text="Luk sag" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="140.0">
-                                       <font>
-                                          <Font name="Arial" size="16.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
-                                       </padding>
-                                    </Button>
                                  </children>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
                               </AnchorPane>
-                           </content>
-                        </ScrollPane>
+                           </children>
+                        </GridPane>
+                        <AnchorPane fx:id="seeSpecificCase" maxWidth="1.7976931348623157E308" prefHeight="621.0" prefWidth="805.0" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2">
+                           <children>
+                              <Label fx:id="preview_Label" alignment="TOP_LEFT" text="insert case here.." wrapText="true" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                              <Button id="annullerSag" mnemonicParsing="false" onAction="#cancelPreviewCase" style="-fx-border: none; -fx-background-color: #434343;" stylesheets="@../Stylesheets/simpleStyle.css" text="Annuller" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="25.0">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
+                                 </padding>
+                              </Button>
+                              <Button id="lukSag" mnemonicParsing="false" onAction="#closeCase" stylesheets="@../Stylesheets/simpleStyle.css" text="Luk sag" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="140.0">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </GridPane>
                </children>
             </GridPane>
          </children>
       </AnchorPane>
+      <GridPane fx:id="loggedOutGridPane" minHeight="480.0" minWidth="720.0" prefHeight="480.0" prefWidth="720.0" stylesheets="@../Stylesheets/simpleStyle.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="250.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="290.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="474.6666717529297" prefHeight="569.3333282470703" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane fx:id="loggedoutBackground" minHeight="720.0" minWidth="1280.0" style="-fx-background-color: #000; -fx-opacity: 0.25;" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+            <AnchorPane maxHeight="150.0" maxWidth="400.0" minHeight="150.0" minWidth="400.0" prefHeight="150.0" prefWidth="400.0" style="-fx-background-color: #fff;" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
+            <ImageView fitWidth="35.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <image>
+                  <Image url="@../Images/icons8-protect-50.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="40.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <Label maxWidth="230.0" minWidth="230.0" prefWidth="230.0" text="Du er blevet logget ud!" textFill="#434343" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="20.0" top="15.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Arial" size="22.0" />
+               </font>
+            </Label>
+            <Label maxHeight="40.0" maxWidth="377.0" minHeight="40.0" minWidth="377.0" prefHeight="40.0" prefWidth="377.0" text="Af sikkerhedsmæssige årsager, er du logget ud. Klik knappen herunder, for at logge ind igen." textAlignment="CENTER" textFill="#434343" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="50.0" />
+               </GridPane.margin>
+            </Label>
+            <Button fx:id="reLogin" maxWidth="120.0" minWidth="120.0" mnemonicParsing="false" onAction="#loginAgain" prefWidth="120.0" style="-fx-background-color: transparent; -fx-border-color: #434343; -fx-border-width: 2px; -fx-border-radius: 12px;" text="Prøv igen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/icons8-synchronize-96.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>
