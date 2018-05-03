@@ -32,30 +32,27 @@ public class UserManager implements IUserManager {
 
     /**
      * A constructor setting the security manager reference.
+     *
+     * @param security a reference to the security manager
      */
-    public UserManager() {
+    UserManager(SecurityManager security) {
+        this.security = security;
         //Adding dummy data.
-        
+        addUser("name", "username", "password", CASEWORKER);
     }
 
     /**
      * A constructor setting the security manager reference and taking an IUser
      * to get user data from.
-     * 
-     * @param userManager an IUserManager containing IUsers for all the users
+     *
+     * @param security a reference to the security manager.
+     * @param IUsers an IUserManager containing IUsers for all the users
      */
-    public UserManager(IUserManager userManager) {
+    UserManager(SecurityManager security, IUserManager userManager) {
+        this.security = security;
         for (IUser user : userManager.getUsers()) {
             users.add(new User(user));
         }
-    }
-    
-    /**
-     * Inject the security manager
-     * @param securityManager the manager
-     */
-    public void injectSecurityManager(SecurityManager securityManager) {
-        security = securityManager;
     }
 
     /**

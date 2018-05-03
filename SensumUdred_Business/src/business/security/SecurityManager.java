@@ -31,19 +31,13 @@ public class SecurityManager {
     /**
      * A constructor for the security manager, injecting a list of users to test
      * attempted log ins against.
+     *
+     * @param userManager the user manager of the system
      */
-    public SecurityManager() {
+    public SecurityManager(UserManager userManager) {
+        this.userManager = userManager;
         hasher = new Hasher();
     }
-
-    /**
-     * Inject user manager
-     * @param userManager the user manager
-     */
-    public void injectUserManager(UserManager userManager) {
-        this.userManager = userManager;
-    }
-    
     
     /**
      * This method evaluates if the username and password matches a registered
