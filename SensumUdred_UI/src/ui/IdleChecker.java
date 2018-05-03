@@ -57,6 +57,7 @@ public class IdleChecker implements Runnable {
 
             } else {
                 if (System.currentTimeMillis() - lastMove > time * 1000) {
+                    loggedIn = false;
                     //Use runLater as, a non-application thread, cannot update GUI directly.
                     Platform.runLater(new Runnable() {
                         @Override
