@@ -1208,7 +1208,7 @@
                                                 <Insets left="25.0" top="35.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <TextArea id="fillableForm" fx:id="fillable_SpecialCaseDesc" maxHeight="100.0" prefHeight="100.0" promptText="Beskriv kontaktpersonen her, navn, tlf nummer, email, mm.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.valignment="TOP">
+                                          <TextArea id="fillableForm" fx:id="fillable_SpecialCaseDesc" maxHeight="100.0" prefHeight="100.0" promptText="Beskriv eventuelle særlige forhold for borgeren.." styleClass="text-area" stylesheets="@../Stylesheets/simpleStyle.css" wrapText="true" GridPane.valignment="TOP">
                                              <font>
                                                 <Font name="Arial" size="12.0" />
                                              </font>
