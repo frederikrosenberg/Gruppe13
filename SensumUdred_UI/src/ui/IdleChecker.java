@@ -21,22 +21,43 @@ public class IdleChecker implements Runnable {
      */
     private int time;
 
+    /**
+     * Last time in milli seconds that the user moved the mouse.
+     */
     private long lastMove;
 
+    /**
+     * A reference to the FXML Controller class, for method calls on that class.
+     */
     private final FXMLDocumentController controller;
 
+    /**
+     * To check wether the user is logged in or not.
+     */
     private boolean loggedIn = false;
 
+    /**
+     * Contructor for the IdleChecker.
+     * @param time the sleep time in milliseconds
+     * @param controller a reference to the FXML Document Controller class
+     */
     public IdleChecker(int time, FXMLDocumentController controller) {
         this.time = time;
         this.controller = controller;
         lastMove = System.currentTimeMillis();
     }
 
+    /**
+     * Sets the last registered time of user move, the the current time in milliseconds
+     */
     public void updateLastMove() {
         lastMove = System.currentTimeMillis();
     }
 
+    /**
+     * Sets wether the user is logged in.
+     * @param loggedIn boolean referencing the users logged in status
+     */
     public void setLogin(boolean loggedIn) {
         this.loggedIn = loggedIn;
         if (loggedIn) {
@@ -47,10 +68,7 @@ public class IdleChecker implements Runnable {
     }
 
     /**
-     * Runs the thread, this thread sets the text of the label, to the time of
-     * the DK time zone After this, the thread sleeps for 0.5 seconds and then
-     * re-gets the time
-     *
+     *  The run method of the idle threads.
      */
     @Override
     public void run() {
