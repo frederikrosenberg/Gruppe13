@@ -5,6 +5,7 @@ import common.ICaseWorker;
 import common.ICitizen;
 import common.ICitizenData;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -104,11 +105,13 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @return True if the case is closed
      */
     public boolean closeCase(int caseId) {
-        for (Case aCase : cases) {
+        Case aCase;
+        for (Iterator<Case> itr = cases.iterator(); itr.hasNext();) {
+            aCase = itr.next();
             if (aCase.getId() == caseId) {
                 aCase.closeCase();
                 department.addInactiveCase(aCase);
-                cases.remove(aCase);
+                itr.remove();
             }
         }
         return true;
