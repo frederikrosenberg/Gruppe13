@@ -245,7 +245,7 @@ public class FXMLDocumentController implements Initializable {
         timethread.setDaemon(true);
         timethread.start();
         
-        checker = new IdleChecker(5,this);
+        checker = new IdleChecker(5*60,this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
