@@ -1,6 +1,7 @@
 package business.security;
 
 import business.common.ISecurityFacade;
+import common.IUser;
 import common.IUserManager;
 import common.Role;
 
@@ -108,5 +109,14 @@ public class SecurityFacade implements ISecurityFacade {
     @Override
     public String addUser(String name, String username, String password, Role role) {
         return users.addUser(name, username, password, role);
+    }
+
+    /**
+     * Gets the current logged in user
+     * @return The current logged in user
+     */
+    @Override
+    public IUser getCurrentUser() {
+        return security.getCurrentUser();
     }
 }
