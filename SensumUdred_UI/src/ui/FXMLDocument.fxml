@@ -268,8 +268,8 @@
                         <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label text="Åbn ny sag" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -408,7 +408,7 @@
                         </AnchorPane>
                      </children>
                   </GridPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.rowIndex="2" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(255,255,255,0.2);" GridPane.rowIndex="2" />
                   <ImageView fitHeight="200.0" fitWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <image>
                         <Image url="@../Images/Inapp/calendar.png" />
@@ -1397,7 +1397,7 @@
                               </Button>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="logPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #fff;" GridPane.columnSpan="2">
+                        <AnchorPane fx:id="logPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2">
                            <children>
                               <ListView id="simpleListView" fx:id="LogListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../Stylesheets/simpleStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0" />
                               <Label fx:id="noLogFound" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="Ingen loggede handlinger fundet..." textFill="#434343" wrapText="true" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="85.0">
@@ -1410,27 +1410,24 @@
                                     <Image url="@../Images/Inapp/close.png" />
                                  </image>
                               </ImageView>
+                              <MenuButton fx:id="choice_logType" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg log type" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="35.0">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#setLogType_All" text="Alle" />
+                                    <MenuItem mnemonicParsing="false" onAction="#setLogType_ViewedCases" text="Sete sager" />
+                                    <MenuItem mnemonicParsing="false" onAction="#setLogType_CaseOpened" text="Åbnede sager" />
+                                    <MenuItem mnemonicParsing="false" onAction="#setLogType_ClosedCases" text="Lukkede sager" />
+                                    <MenuItem mnemonicParsing="false" onAction="#setLogType_ViewedLog" text="Set loggen" />
+                                    <MenuItem mnemonicParsing="false" onAction="#setLogType_LoggedIn" text="Logget ind" />
+                                    <MenuItem mnemonicParsing="false" onAction="#setLogType_LoggedOut" text="Logget ud" />
+                                    <MenuItem mnemonicParsing="false" onAction="#setLogType_IdleLogOut" text="Inaktivt logget ud" />
+                                    <MenuItem mnemonicParsing="false" onAction="#setLogType_AttemptedLogIn" text="Forsøgt logged ind" />
+                                 </items>
+                              </MenuButton>
                            </children>
                         </AnchorPane>
-                        <MenuButton fx:id="choice_logType" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg log type" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="12.0" />
-                           </font>
-                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#setLogType_All" text="Alle" />
-                              <MenuItem mnemonicParsing="false" onAction="#setLogType_ViewedCases" text="Sete sager" />
-                              <MenuItem mnemonicParsing="false" onAction="#setLogType_CaseOpened" text="Åbnede sager" />
-                              <MenuItem mnemonicParsing="false" onAction="#setLogType_ClosedCases" text="Lukkede sager" />
-                              <MenuItem mnemonicParsing="false" onAction="#setLogType_ViewedLog" text="Set loggen" />
-                              <MenuItem mnemonicParsing="false" onAction="#setLogType_LoggedIn" text="Logget ind" />
-                              <MenuItem mnemonicParsing="false" onAction="#setLogType_LoggedOut" text="Logget ud" />
-                              <MenuItem mnemonicParsing="false" onAction="#setLogType_IdleLogOut" text="Inaktivt logget ud" />
-                              <MenuItem mnemonicParsing="false" onAction="#setLogType_AttemptedLogIn" text="Forsøgt logged ind" />
-                           </items>
-                           <GridPane.margin>
-                              <Insets right="150.0" top="35.0" />
-                           </GridPane.margin>
-                        </MenuButton>
                      </children>
                   </GridPane>
                </children>

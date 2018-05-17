@@ -5,6 +5,7 @@ import common.IBusinessFacade;
 import common.ICase;
 import common.ICitizen;
 import common.ICitizenData;
+import common.LogType;
 import common.RelationshipStatus;
 import data.UICitizen;
 import data.UICitizenData;
@@ -211,6 +212,10 @@ public class FXMLDocumentController implements Initializable {
     private IdleChecker checker;
 
     /**
+     * An instace of the LogType class, used for showing a specific type of log.
+     */
+    private LogType logType;
+    /**
      * An instance of the TimeChecker class, used to display current time.
      */
     private TimeChecker timethread;
@@ -266,7 +271,7 @@ public class FXMLDocumentController implements Initializable {
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
-
+        
         Calendar cal = Calendar.getInstance();
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
@@ -711,38 +716,56 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void setLogType_All(ActionEvent event) {
+        logType = null;
+        choice_logType.setText("Viser alle logs");
     }
 
     @FXML
     private void setLogType_ViewedCases(ActionEvent event) {
+        logType = LogType.CASE_VIEWED;
+        choice_logType.setText("Viser sete sager logs");
     }
 
     @FXML
     private void setLogType_CaseOpened(ActionEvent event) {
+        logType = LogType.OPEN_CASE;
+        choice_logType.setText("Viser åbnede sager logs");
     }
 
     @FXML
     private void setLogType_ClosedCases(ActionEvent event) {
+        logType = LogType.CLOSE_CASE;
+        choice_logType.setText("Viser lukkede sager logs");
     }
 
     @FXML
     private void setLogType_ViewedLog(ActionEvent event) {
+        logType = LogType.CASE_VIEWED;
+        choice_logType.setText("Viser sete sager logs");
     }
 
     @FXML
     private void setLogType_LoggedIn(ActionEvent event) {
+        logType = LogType.LOGIN;
+        choice_logType.setText("Viser logind logs");
     }
 
     @FXML
     private void setLogType_LoggedOut(ActionEvent event) {
+        logType = LogType.LOGOUT;
+        choice_logType.setText("Viser logud logs");
     }
 
     @FXML
     private void setLogType_IdleLogOut(ActionEvent event) {
+        logType = LogType.TIMEOUT;
+        choice_logType.setText("Viser inaktive logud logs");
     }
 
     @FXML
     private void setLogType_AttemptedLogIn(ActionEvent event) {
+        logType = LogType.ATTEMPT_LOGIN;
+        choice_logType.setText("Viser login forsøg logs");
     }
 
 }
