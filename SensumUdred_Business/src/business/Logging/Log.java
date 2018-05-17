@@ -33,7 +33,7 @@ public class Log implements ILog {
     private LogType logType;
     
     /**
-     * The date of the log
+     * The date and time of the log
      */
     private Date date;
     
@@ -52,7 +52,7 @@ public class Log implements ILog {
     }
 
     /**
-     * Gets the date of the log
+     * Gets the date and time of the log
      * @return The date of the log
      */
     @Override

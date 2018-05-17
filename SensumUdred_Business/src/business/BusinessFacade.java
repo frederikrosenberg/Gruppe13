@@ -121,8 +121,10 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public boolean closeCase(int caseId) {
         if (security.hasAccess(Role.CASEWORKER)) {
-            loggingFacade.createCaseLog(LogType.CLOSE_CASE, security.getCurrentUser().getUserId(), caseId);
-            return logic.closeCase(caseId);
+            if(logic.closeCase(caseId)) {
+                loggingFacade.createCaseLog(LogType.CLOSE_CASE, security.getCurrentUser().getUserId(), caseId);
+                return true;
+            }
         }
         return false;
     }
