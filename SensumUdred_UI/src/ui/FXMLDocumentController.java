@@ -214,7 +214,19 @@ public class FXMLDocumentController implements Initializable {
      * An instance of the TimeChecker class, used to display current time.
      */
     private TimeChecker timethread;
-    
+    @FXML
+    private Label calendarMonth;
+    @FXML
+    private Label calendarDate;
+    @FXML
+    private ListView<?> LogListView;
+    @FXML
+    private AnchorPane logPane;
+    @FXML
+    private Label noLogFound;
+    @FXML
+    private MenuButton choice_logType;
+
     /**
      * Clears all fields of the form that the caseworker fills to open a new
      * case.
@@ -263,6 +275,14 @@ public class FXMLDocumentController implements Initializable {
         SimpleDateFormat format1 = new SimpleDateFormat("EEEEEEE 'd.'d MMM yyyy");
         date.setText(String.valueOf(format1.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format1.format(dato)).substring(1));
 
+        SimpleDateFormat format2 = new SimpleDateFormat("MMM");
+        calendarMonth.setText(String.valueOf(format2.format(dato)).substring(0,1).toUpperCase() + String.valueOf(format2.format(dato)).substring(1));
+
+        SimpleDateFormat format3 = new SimpleDateFormat("d");
+        calendarDate.setText(String.valueOf(format3.format(dato)));
+
+        
+        //calendarMonth.setText();
         inappScreen.setVisible(false); //Set false to force user to log in
         editCasesGridPane.setVisible(false);
 
@@ -367,6 +387,7 @@ public class FXMLDocumentController implements Initializable {
     private void OpenNewCase(MouseEvent event) {
         seeSpecificCase.setVisible(false);
         viewingBackdrop.setVisible(false);
+        logPane.setVisible(false);
         editCasesGridPane.setVisible(false);
         openNewCaseScrollPane.setVisible(true);
 
@@ -381,6 +402,7 @@ public class FXMLDocumentController implements Initializable {
     private void EditExistingCases(MouseEvent event) {
         seeSpecificCase.setVisible(false);
         openNewCaseScrollPane.setVisible(false);
+        logPane.setVisible(false);
         viewingBackdrop.setVisible(true);
         editCasesGridPane.setVisible(true);
 
@@ -667,6 +689,60 @@ public class FXMLDocumentController implements Initializable {
      */
     public void logout() {
         Logout(null);
+    }
+    
+    /**
+     * Shows the list view of the logged events
+     * @param event on mouse click
+     */
+    @FXML
+    private void showLog(MouseEvent event) {
+        logPane.setVisible(true);
+    }
+
+    /**
+     * Closes the list view of the logged events
+     * @param event on mouse click
+     */
+    @FXML
+    private void closeShowLog(MouseEvent event) {
+        logPane.setVisible(false);
+    }
+
+    @FXML
+    private void setLogType_All(ActionEvent event) {
+    }
+
+    @FXML
+    private void setLogType_ViewedCases(ActionEvent event) {
+    }
+
+    @FXML
+    private void setLogType_CaseOpened(ActionEvent event) {
+    }
+
+    @FXML
+    private void setLogType_ClosedCases(ActionEvent event) {
+    }
+
+    @FXML
+    private void setLogType_ViewedLog(ActionEvent event) {
+    }
+
+    @FXML
+    private void setLogType_LoggedIn(ActionEvent event) {
+    }
+
+    @FXML
+    private void setLogType_LoggedOut(ActionEvent event) {
+    }
+
+    @FXML
+    private void setLogType_IdleLogOut(ActionEvent event) {
+    }
+
+    @FXML
+    private void setLogType_AttemptedLogIn(ActionEvent event) {
     }
 
 }
