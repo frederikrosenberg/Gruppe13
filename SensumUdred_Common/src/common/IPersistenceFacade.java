@@ -5,6 +5,8 @@
  */
 package common;
 
+import java.util.List;
+
 /**
  * The interface for the Persistence interface.
  *
@@ -16,7 +18,28 @@ package common;
  * @author Kasper Schødts
  */
 public interface IPersistenceFacade {
+    
+    String addUser(IUser user);
+    
+    int addCase(ICase _case);
+    
+    int addCaseWorker(ICaseWorker caseWorker);
+    
+    int addDeparment(IDepartment department);
+    
+    int addCitizen(ICitizen citizen);
+    
+    int addLog(ILog log);
 
+    ICase getCase(int caseId);
+    
+    List<ICase> getAllCases();
+    
+    List<ICase> getCaseWorkersCases(int caseWorkerId);
+    
+    
+    
+    
     /**
      * Checks whether a save is available
      *
