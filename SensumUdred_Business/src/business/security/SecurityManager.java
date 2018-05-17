@@ -35,7 +35,7 @@ public class SecurityManager {
     public SecurityManager() {
         hasher = new Hasher();
     }
-
+    
     /**
      * Inject user manager
      * @param userManager the user manager
@@ -54,14 +54,9 @@ public class SecurityManager {
      * @return user id if the login was successful, otherwise null
      */
     public String logIn(String username, String password) {
-        if (!hasher.isReady()) {
-            System.err.println("Hasher not ready");
-            return null;
-        }
-        String hashedPassword = hashPassword(password);
         for (IUser user : userManager.getUsers()) {
             if (user.getActive() && user.getUsername().equals(username)
-                    && user.getPassword().equals(hashedPassword)) {
+                    && hasher.compare(password, user.getPassword())) {
                 currentUser = user;
                 return user.getUserId();
             }
