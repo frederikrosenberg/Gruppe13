@@ -69,7 +69,7 @@ public interface IPersistenceFacade {
      * @param log the given log
      * @return the id from the database
      */
-    int addAttemptLog(IAttemptLog log);
+    int addAttemptLog(ILoginAttemptLog log);
     
     /**
      * Adds a case log from ICaseLog and returns the id
