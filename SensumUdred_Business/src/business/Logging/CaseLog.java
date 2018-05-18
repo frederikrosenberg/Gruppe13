@@ -15,6 +15,11 @@ import common.LogType;
  */
 public class CaseLog extends Log implements ICaseLog {
 
+     /**
+     * Contains the case id
+     */
+    private int caseId;
+    
     /**
      * Constructs a case log
      * @param caseId The case id
@@ -25,13 +30,6 @@ public class CaseLog extends Log implements ICaseLog {
         super(logType, userId);
         this.caseId = caseId;
     }
-
-    /**
-     * Contains the case id
-     */
-    private int caseId;
-
-    
     
     /**
      * Gets the case id

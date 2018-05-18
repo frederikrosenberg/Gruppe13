@@ -40,7 +40,7 @@ public class LoggingFacade implements ILoggingFacade{
      /**
      * Gets all logs from the given type
      * @param type The type of the logs to get
-     * @return Allo logs form the given type
+     * @return All logs from the given type
      */
     @Override
     public List<? extends ILog> getLogsOfType(LogType type) {

@@ -15,6 +15,11 @@ import common.LogType;
  */
 public class LoginAttemptLog extends Log implements ILoginAttemptLog {
 
+     /**
+     * Contains the username of the attempted login
+     */
+    private String username;
+    
     /**
      * Constructs a login attempt log
      * @param username The username of the user who tried to login
@@ -25,11 +30,6 @@ public class LoginAttemptLog extends Log implements ILoginAttemptLog {
         this.username = username;
     }
 
-    /**
-     * Contains the username of the attempted login
-     */
-    private String username;
-    
     /**
      * Gets the username of the attempted login
      * @return The username of the attempted login
