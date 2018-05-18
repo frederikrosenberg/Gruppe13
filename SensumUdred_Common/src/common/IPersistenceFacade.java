@@ -19,49 +19,128 @@ import java.util.List;
  */
 public interface IPersistenceFacade {
     
+    /**
+     * Adds a user from a IUser and give the id from the database
+     * @param user the given user
+     * @return the id from the database
+     */
     String addUser(IUser user);
     
+    /**
+     * Adds a case from a ICase and returns the id
+     * @param _case the given case
+     * @return the id from the database
+     */
     int addCase(ICase _case);
     
+    /**
+     * Adds a case worker from ICaseWorker and returns the id
+     * Does not add
+     * @param caseWorker the given case worker
+     * @return the id from the database
+     */
     int addCaseWorker(ICaseWorker caseWorker);
     
+    /**
+     * Adds a department from IDepartment and returns the id.
+     * This does not add case workers, citizen or cases
+     * @param department the given department
+     * @return the id from the database
+     */
     int addDeparment(IDepartment department);
     
+    /**
+     * Adds a citizen from ICitizen and returns the id
+     * This does not add cases the citizen has
+     * @param citizen the given citizen
+     * @return the id from the database
+     */
     int addCitizen(ICitizen citizen);
     
+    /**
+     * Adds a standard log from ILog and returns the id
+     * @param log the given log
+     * @return the id from the database
+     */
     int addLog(ILog log);
-
+    
+    /**
+     * Adds a attempt log from IAttemptLog and returns the id
+     * @param log the given log
+     * @return the id from the database
+     */
+    int addAttemptLog(IAttemptLog log);
+    
+    /**
+     * Adds a case log from ICaseLog and returns the id
+     * @param log the given log
+     * @return the id from the database
+     */
+    int addCaseLog(ICaseLog log);
+    
+    /**
+     * Get all the logs from the database
+     * @return the logs
+     */
+    List<ILog> getLogs();
+    
+    /**
+     * Get all the logs with at given type
+     * @param type the type of log
+     * @return the logs of that type
+     */
+    List<ILog> getLogsOfType(LogType type);
+    
+    /**
+     * Get a specific case
+     * @param caseId the case id
+     * @return the given case with the id, or null if the case does not exist 
+     */
     ICase getCase(int caseId);
     
+    /**
+     * Get all the cases
+     * @return all the cases
+     */
     List<ICase> getAllCases();
     
+    /**
+     * Get all the cases belonging to that case worker
+     * @param caseWorkerId the id of the case worker
+     * @return the cases for the case worker, empty if the case worker does not exist
+     */
     List<ICase> getCaseWorkersCases(int caseWorkerId);
     
-    
-    
+    /**
+     * Get a specific user
+     * @param userId the id of the user
+     * @return the given user or null if the user does not exist
+     */
+    IUser getUser(String userId);
     
     /**
-     * Checks whether a save is available
-     *
-     * @return true if there is a save available
+     * Get all the users
+     * @return all the users
      */
-    boolean saveAvailable();
-
+    List<IUser> getUsers();
+    
     /**
-     * Save the given object to the persistence store.
-     *
-     * @param userManager a reference to the user manager
-     * @param department a reference to the department
-     * @return true if the object has been saved and false if object failed to
-     * save.
+     * Get a specific citizen
+     * @param id the id of the citizen
+     * @return the given citizen or null if the citizen does not exist
      */
-    boolean save(IUserManager userManager, IDepartment department);
-
+    ICitizen getCitizen(int id);
+    
     /**
-     * Loads saved department and user manager from disk.
-     *
-     * @return a object containing the department and user manager, if there is
-     * no saved department or user manager this returns null.
+     * Get all the citizens
+     * @return all the citizens 
      */
-    IDataObject load();
+    List<ICitizen> getCitizens();
+    
+    /**
+     * Get a specific department
+     * @param id the given id
+     * @return the specific department or null if the department does not exist
+     */
+    IDepartment getDepartment(int id);
 }
