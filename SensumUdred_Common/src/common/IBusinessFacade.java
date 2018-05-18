@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package common;
 
 import java.util.List;
@@ -32,9 +27,10 @@ public interface IBusinessFacade {
     /**
      * Logs the user out.
      *
+     * @param isTimeout True if the log out was caused by a timeout
      * @return true.
      */
-    boolean logOut();
+    boolean logOut(boolean isTimeout);
 
     /**
      * Opens a new case based on the entered data
@@ -99,4 +95,17 @@ public interface IBusinessFacade {
      * @return The current logged in case worker
      */
     ICaseWorker getCaseWorker();
+    
+    /**
+     * Gets all the logs
+     * @return All the logs
+     */
+    List<? extends ILog> getAllLogs();
+    
+    /**
+     * Gets all logs of a given type
+     * @param type The log type
+     * @return All the logs of a given type
+     */
+    List<? extends ILog> getLogsOfType(LogType type);
 }
