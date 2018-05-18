@@ -1,5 +1,6 @@
 package business.common;
 
+import common.IUser;
 import common.IUserManager;
 import common.Role;
 
@@ -59,4 +60,9 @@ public interface ISecurityFacade {
      */
     String addUser(String name, String username, String password, Role role);
 
+    /**
+     * Gets the current logged in user
+     * @return The current logged in user
+     */
+    IUser getCurrentUser();
 }

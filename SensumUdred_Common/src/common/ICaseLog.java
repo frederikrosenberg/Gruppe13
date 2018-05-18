@@ -1,7 +1,7 @@
 package common;
 
 /**
- * The enum for log types
+ * The interface for case log
  *
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
@@ -10,15 +10,10 @@ package common;
  * @author Sebastian Christensen
  * @author Kasper Schødts
  */
-public enum LogType {
-    CASE_VIEWED,
-    OPEN_CASE,
-    CLOSE_CASE,
-    VIEW_LOG,
-    LOGIN,
-    LOGOUT,
-    TIMEOUT,
-    ATTEMPT_LOGIN,
-    VIEW_ALL_CASES,
-    VIEW_CASEWORKERS_CASES
+public interface ICaseLog extends ILog {
+    /**
+     * Gets the case id
+     * @return The case id
+     */
+    int getCaseId();
 }
