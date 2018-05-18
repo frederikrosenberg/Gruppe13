@@ -94,7 +94,14 @@ public class SecurityManager {
         if (currentUser.getActive() && currentUser.getRole().equals(role)) {
             return true;
         }
-
         return false;
+    }
+    
+    /**
+     * Gets the current logged in user
+     * @return The current logged in user
+     */
+    public IUser getCurrentUser() {
+        return currentUser;
     }
 }
