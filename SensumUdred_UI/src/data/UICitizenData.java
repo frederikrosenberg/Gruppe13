@@ -33,7 +33,7 @@ public class UICitizenData implements ICitizenData {
     private final int id;
     
     /**
-     * Wether or not the citizen has given consent.
+     * Whether or not the citizen has given consent.
      */
     private final boolean consent;
     
@@ -43,7 +43,7 @@ public class UICitizenData implements ICitizenData {
     private final String reason;
     
     /**
-     * The avalible offers for the citizen.
+     * The available offers for the citizen.
      */
     private final String avalibleOffers;
     
@@ -63,9 +63,9 @@ public class UICitizenData implements ICitizenData {
      * @param citizen The citizen object 
      * @param state The state of the citizens case
      * @param id The id of the citizens case
-     * @param consent Wether or not consent was given
+     * @param consent Whether or not consent was given
      * @param reason The reason for the request
-     * @param avalibleOffers The avalible offers for the citizen
+     * @param avalibleOffers The available offers for the citizen
      * @param sourcerOfRequest The source of the request
      * @param caseWorker The case worker object associated with the case
      */
@@ -111,9 +111,9 @@ public class UICitizenData implements ICitizenData {
     }
 
     /**
-     * Returns wether or not the citizen has given consent.
+     * Returns whether or not the citizen has given consent.
      *
-     * @return wether consent was given
+     * @return whether consent was given
      */
     @Override
     public boolean getConsent() {
@@ -134,7 +134,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the available offers that are relevant for the citizen.
      *
-     * @return the avalible offers for the citizen
+     * @return the available offers for the citizen
      */
     @Override
     public String getAvailableOffers() {

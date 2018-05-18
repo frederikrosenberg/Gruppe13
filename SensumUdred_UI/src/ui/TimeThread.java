@@ -2,7 +2,6 @@ package ui;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Locale;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
@@ -29,7 +28,7 @@ public class TimeThread extends Thread {
     private Label label;
 
     /**
-     * Initializes an instanse of label
+     * Initializes an instance of label
      *
      * @param label the label from GUI
      */
@@ -43,11 +42,11 @@ public class TimeThread extends Thread {
      * re-gets the time
      *
      */
+    @Override
     public void run() {
         //Runs eternally:
         while (true) {
             Date moment = new Date();
-            Locale dk = new Locale("dk");
 
             DateFormat timeFormatter = DateFormat.getTimeInstance(DateFormat.DEFAULT);
 
