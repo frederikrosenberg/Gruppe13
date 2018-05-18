@@ -10,7 +10,20 @@ import common.ILoginAttemptLog;
 import common.IPersistenceFacade;
 import common.IUser;
 import common.LogType;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The facade the that business layer communicate with.
@@ -24,6 +37,39 @@ import java.util.List;
  */
 public class PersistenceFacade implements IPersistenceFacade {
 
+    private final String dbServer;
+    
+    private final String dbUserName;
+    
+    private final String dbPassword;
+    
+    
+    public PersistenceFacade() throws FileNotFoundException, IOException {
+        File credentials = new File("credentials.txt");
+        
+        Scanner s = new Scanner(credentials);
+        
+        List<String> lines = new ArrayList<>();
+        
+        while (s.hasNextLine()) {
+            lines.add(s.nextLine());
+        }
+        
+        if (lines.size() == 4) {
+            dbUserName = lines.get(0);
+            dbPassword = lines.get(1);
+            String urlPort = lines.get(2);
+            String db = lines.get(3);
+            dbServer = "jdbc:postgresql://" + urlPort + "/" + db + "?ssl";
+        } else {
+            throw new java.io.IOException("File is not of correct format!\nNeeds to be four lines with username on the first line, password on the second line, server url + port on the thrid line and database bane on the fourh line");
+        }
+    }
+    
+    private Connection getDbConnection() throws SQLException {
+        return DriverManager.getConnection(dbServer, dbUserName, dbPassword);
+    }
+    
      /**
      * Adds a user from a IUser and give the id from the database
      * @param user the given user
@@ -94,7 +140,29 @@ public class PersistenceFacade implements IPersistenceFacade {
      */
     @Override
     public int addAttemptLog(ILoginAttemptLog log) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //INSERT INTO "Log" (UserID, Type, DateTime) VALUES (null,?,?) RETURNING Id
+        //INSERT INTO "AttemptLog" (Id, UserName) VALUES (Id,?)
+        
+        try(Connection con = getDbConnection()) {
+            PreparedStatement statement = con.prepareStatement("INSERT INTO \"Log\" (UserID, Type, DateTime) VALUES (?,?,?) RETURNING Id");
+            statement.setNull(1, 0);
+            statement.setInt(2, log.getLogType().ordinal());
+            statement.setTimestamp(3, new Timestamp(log.getDate().getTime()));
+            statement.execute();
+            ResultSet set = statement.getResultSet();
+            set.next();
+            int id = set.getInt(1);
+            
+            statement = con.prepareStatement("INSERT INTO \"AttemptLog\" (Id, UserName) VALUES (?,?)");
+            statement.setInt(1, id);
+            statement.setString(2, log.getUsername());
+            statement.execute();
+            return id;
+        } catch (SQLException ex) {
+            Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return -1;
     }
 
      /**
