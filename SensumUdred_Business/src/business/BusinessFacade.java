@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package business;
 
+import business.Logging.LoggingFacade;
 import business.common.ILogicFacade;
 import business.common.ISecurityFacade;
 import business.logic.LogicFacade;
@@ -14,7 +10,9 @@ import common.ICase;
 import common.ICaseWorker;
 import common.ICitizenData;
 import common.IDataObject;
+import common.ILog;
 import common.IPersistenceFacade;
+import common.LogType;
 import common.Role;
 import java.util.List;
 
@@ -44,6 +42,11 @@ public class BusinessFacade implements IBusinessFacade {
      * Instance of the IPersistenceFacade
      */
     private IPersistenceFacade persistence;
+    
+    /**
+     * Instance of the LoggingFacade
+     */
+    private LoggingFacade loggingFacade;
 
     /**
      * Constructor for the BusinessFacade
@@ -63,24 +66,31 @@ public class BusinessFacade implements IBusinessFacade {
     public boolean login(String username, String password) {
         String id = security.logIn(username, password);
         if (id == null) {
+            loggingFacade.createLoginAttemptLog(LogType.ATTEMPT_LOGIN, username);
             return false;
         }
         if (security.hasAccess(Role.CASEWORKER)) {
             logic.setCaseWorker(id);
         }
-
+        loggingFacade.createLog(LogType.LOGIN, id);
         return true;
     }
 
     /**
      * Logs the user out
      *
+     * @param isTimeout True if the logout was caused by a timeout
      * @return true.
      */
     @Override
-    public boolean logOut() {
+    public boolean logOut(boolean isTimeout) {
         if (security.hasAccess(Role.CASEWORKER)) {
             logic.removeCaseWorker();
+        }
+        if(isTimeout) {
+            loggingFacade.createLog(LogType.TIMEOUT, security.getCurrentUser().getUserId());
+        } else {
+            loggingFacade.createLog(LogType.LOGOUT, security.getCurrentUser().getUserId());
         }
         security.logOut();
         return true;
@@ -95,7 +105,9 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public ICase openCase(ICitizenData citizenData) {
         if (security.hasAccess(Role.CASEWORKER)) {
-            return logic.openCase(citizenData);
+            ICase temp = logic.openCase(citizenData);
+            loggingFacade.createCaseLog(LogType.OPEN_CASE, security.getCurrentUser().getUserId(), temp.getId());
+            return temp;
         }
         return null;
     }
@@ -109,7 +121,10 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public boolean closeCase(int caseId) {
         if (security.hasAccess(Role.CASEWORKER)) {
-            return logic.closeCase(caseId);
+            if(logic.closeCase(caseId)) {
+                loggingFacade.createCaseLog(LogType.CLOSE_CASE, security.getCurrentUser().getUserId(), caseId);
+                return true;
+            }
         }
         return false;
     }
@@ -132,7 +147,9 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public ICase findActiveCase(int value, boolean isCpr) {
         if (security.hasAccess(Role.CASEWORKER)) {
-            return logic.findActiveCase(value, isCpr);
+            ICase temp = logic.findActiveCase(value, isCpr);
+            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId());
+            return temp;
         }
         return null;
     }
@@ -146,7 +163,9 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public ICase findActiveCase(String name) {
         if (security.hasAccess(Role.CASEWORKER)) {
-            return logic.findActiveCase(name);
+            ICase temp = logic.findActiveCase(name);
+            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId());
+            return temp;
         }
         return null;
     }
@@ -159,6 +178,7 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public List<? extends ICase> getAllActiveCases() {
         if (security.hasAccess(Role.CASEWORKER)) {
+            loggingFacade.createLog(LogType.VIEW_ALL_CASES, security.getCurrentUser().getUserId());
             return logic.getAllActiveCases();
         }
         return null;
@@ -172,6 +192,7 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public List<? extends ICase> getActiveCases() {
         if (security.hasAccess(Role.CASEWORKER)) {
+            loggingFacade.createLog(LogType.VIEW_CASEWORKERS_CASES, security.getCurrentUser().getUserId());
             return logic.getActiveCases();
         }
         return null;
@@ -185,6 +206,7 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public void injectPersistence(IPersistenceFacade persistence) {
         this.persistence = persistence;
+        loggingFacade = new LoggingFacade(persistence);
         load();
     }
 
@@ -211,7 +233,6 @@ public class BusinessFacade implements IBusinessFacade {
             IDataObject data = persistence.load();
             logic = new LogicFacade(data.getDepartment());
             security = new SecurityFacade(data.getUserManager());
-
         } else {
             //dummy data is added here
             logic = new LogicFacade("Dummy Department", "Dummy Syndrome", "Dummystreet 35", "dummy@dummymail.com", "12345678");
@@ -245,4 +266,27 @@ public class BusinessFacade implements IBusinessFacade {
         logic.createCaseWorker(name, phoneNumber, email, employeeId, security.addUser(name, username, password, role));
 
     }
+
+    /**
+     * Gets all logs
+     * @return All logs
+     */
+    @Override
+    public List<? extends ILog> getAllLogs() {
+        loggingFacade.createLog(LogType.VIEW_LOG, security.getCurrentUser().getUserId());
+        return loggingFacade.getAllLogs();
+    }
+
+    /**
+     * Gets all logs of a given type
+     * @param type The given type
+     * @return All logs of a given type
+     */
+    @Override
+    public List<? extends ILog> getLogsOfType(LogType type) {
+        loggingFacade.createLog(LogType.VIEW_LOG, security.getCurrentUser().getUserId());
+        return loggingFacade.getLogsOfType(type);
+    }
+    
+    
 }
