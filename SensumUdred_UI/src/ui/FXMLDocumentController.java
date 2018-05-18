@@ -3,8 +3,11 @@ package ui;
 import common.Gender;
 import common.IBusinessFacade;
 import common.ICase;
+import common.ICaseLog;
 import common.ICitizen;
 import common.ICitizenData;
+import common.ILog;
+import common.ILoginAttemptLog;
 import common.LogType;
 import common.RelationshipStatus;
 import data.UICitizen;
@@ -224,7 +227,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label calendarDate;
     @FXML
-    private ListView<?> LogListView;
+    private ListView<ILog> LogListView;
     @FXML
     private AnchorPane logPane;
     @FXML
@@ -271,7 +274,7 @@ public class FXMLDocumentController implements Initializable {
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
-        
+
         Calendar cal = Calendar.getInstance();
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
@@ -281,12 +284,11 @@ public class FXMLDocumentController implements Initializable {
         date.setText(String.valueOf(format1.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format1.format(dato)).substring(1));
 
         SimpleDateFormat format2 = new SimpleDateFormat("MMM");
-        calendarMonth.setText(String.valueOf(format2.format(dato)).substring(0,1).toUpperCase() + String.valueOf(format2.format(dato)).substring(1));
+        calendarMonth.setText(String.valueOf(format2.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format2.format(dato)).substring(1));
 
         SimpleDateFormat format3 = new SimpleDateFormat("d");
         calendarDate.setText(String.valueOf(format3.format(dato)));
 
-        
         //calendarMonth.setText();
         inappScreen.setVisible(false); //Set false to force user to log in
         editCasesGridPane.setVisible(false);
@@ -480,7 +482,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void Logout(MouseEvent event) {
-        business.logOut();
+        business.logOut(false);
 
         inappScreen.setVisible(false);
         loginGridPane.setVisible(true);
@@ -693,11 +695,12 @@ public class FXMLDocumentController implements Initializable {
      * Calls the logout method, used by the idle thread.
      */
     public void logout() {
-        Logout(null);
+        business.logOut(true);
     }
-    
+
     /**
      * Shows the list view of the logged events
+     *
      * @param event on mouse click
      */
     @FXML
@@ -707,6 +710,7 @@ public class FXMLDocumentController implements Initializable {
 
     /**
      * Closes the list view of the logged events
+     *
      * @param event on mouse click
      */
     @FXML
@@ -714,58 +718,170 @@ public class FXMLDocumentController implements Initializable {
         logPane.setVisible(false);
     }
 
+    /**
+     * Sets the requested log type to see all logs. Also sets the text for the
+     * dropdown, to the given type.
+     *
+     * @param event mouse click, on dropdown option
+     */
     @FXML
     private void setLogType_All(ActionEvent event) {
         logType = null;
-        choice_logType.setText("Viser alle logs");
+        choice_logType.setText("Alle");
+        getAllLogs();
     }
 
+    /**
+     * Sets the requested log type to cases viewed. Also sets the text for the
+     * dropdown, to the given type.
+     *
+     * @param event mouse click, on dropdown option
+     */
     @FXML
     private void setLogType_ViewedCases(ActionEvent event) {
         logType = LogType.CASE_VIEWED;
-        choice_logType.setText("Viser sete sager logs");
+        choice_logType.setText("Sete sager");
+        getLogOfType();
     }
 
+    /**
+     * Sets the requested log type to cases opened. Also sets the text for the
+     * dropdown, to the given type.
+     *
+     * @param event mouse click, on dropdown option
+     */
     @FXML
     private void setLogType_CaseOpened(ActionEvent event) {
         logType = LogType.OPEN_CASE;
-        choice_logType.setText("Viser åbnede sager logs");
+        choice_logType.setText("Åbnede sager");
+        getLogOfType();
+
     }
 
+    /**
+     * Sets the requested log type to cases closed. Also sets the text for the
+     * dropdown, to the given type.
+     *
+     * @param event mouse click, on dropdown option
+     */
     @FXML
     private void setLogType_ClosedCases(ActionEvent event) {
         logType = LogType.CLOSE_CASE;
-        choice_logType.setText("Viser lukkede sager logs");
+        choice_logType.setText("Lukkede sager");
+        getLogOfType();
+
     }
 
+    /**
+     * Sets the requested log type . Also sets the text for the dropdown, to the
+     * given type.
+     *
+     * @param event mouse click, on dropdown option
+     */
     @FXML
     private void setLogType_ViewedLog(ActionEvent event) {
-        logType = LogType.CASE_VIEWED;
-        choice_logType.setText("Viser sete sager logs");
+        logType = LogType.VIEW_LOG;
+        choice_logType.setText("Set log");
+        getLogOfType();
+
     }
 
+    /**
+     * Sets the requested log type to user logins. Also sets the text for the
+     * dropdown, to the given type.
+     *
+     * @param event mouse click, on dropdown option
+     */
     @FXML
     private void setLogType_LoggedIn(ActionEvent event) {
         logType = LogType.LOGIN;
-        choice_logType.setText("Viser logind logs");
+        choice_logType.setText("Log ind");
+        getLogOfType();
+
     }
 
+    /**
+     * Sets the requested log type to user logouts. Also sets the text for the
+     * dropdown, to the given type.
+     *
+     * @param event mouse click, on dropdown option
+     */
     @FXML
     private void setLogType_LoggedOut(ActionEvent event) {
         logType = LogType.LOGOUT;
-        choice_logType.setText("Viser logud logs");
+        choice_logType.setText("Log ud");
+        getLogOfType();
+
     }
 
+    /**
+     * Sets the requested log type to user who were timeouted Also sets the text
+     * for the dropdown, to the given type.
+     *
+     * @param event mouse click, on dropdown option
+     */
     @FXML
     private void setLogType_IdleLogOut(ActionEvent event) {
         logType = LogType.TIMEOUT;
-        choice_logType.setText("Viser inaktive logud logs");
+        choice_logType.setText("Inaktivitets Log ud");
+        getLogOfType();
+
     }
 
+    /**
+     * Sets the requested log type to login attempts. Also sets the text for the
+     * dropdown, to the given type.
+     *
+     * @param event mouse click, on dropdown option
+     */
     @FXML
     private void setLogType_AttemptedLogIn(ActionEvent event) {
         logType = LogType.ATTEMPT_LOGIN;
-        choice_logType.setText("Viser login forsøg logs");
+        choice_logType.setText("Log ind forsøg");
+        getLogOfType();
+
     }
 
+    /**
+     * First the list view is formatted, then it Gets logs of the specified type
+     * (logType). This is specified for each dropdown menu option click. Also
+     * sets the listView's items.
+     */
+    private void getLogOfType() {
+        showStandardLogs();
+
+        LogListView.setItems(FXCollections.observableArrayList((List<ILog>) business.getLogsOfType(logType)));
+        if (LogListView.getItems().isEmpty()) {
+            noLogFound.setVisible(true);
+        } else {
+            noLogFound.setVisible(false);
+        }
+    }
+
+    /**
+     * Formats the listview's cells, then gets all the log entries.
+     */
+    private void getAllLogs() {
+        showStandardLogs();
+        LogListView.setItems(FXCollections.observableArrayList((List<ILog>) business.getAllLogs()));
+        if (LogListView.getItems().isEmpty()) {
+            noLogFound.setVisible(true);
+        } else {
+            noLogFound.setVisible(false);
+        }
+    }
+
+    public void showStandardLogs() {
+        LogListView.setCellFactory(value -> new ListCell<ILog>() {
+            @Override
+            protected void updateItem(ILog item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText("User: " + item.getUserId() + "\t " + item.getLogType().name() + "\t Date: " + item.getDate());
+                }
+            }
+        });
+    }
 }
