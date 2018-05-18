@@ -1,22 +1,19 @@
 package persistence;
 
-import common.IDataObject;
+import common.ICase;
+import common.ICaseLog;
+import common.ICaseWorker;
+import common.ICitizen;
 import common.IDepartment;
+import common.ILog;
+import common.ILoginAttemptLog;
 import common.IPersistenceFacade;
-import common.IUserManager;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import common.IUser;
+import common.LogType;
+import java.util.List;
 
 /**
  * The facade the that business layer communicate with.
- * 
- * Some of this class is reuse from another project: 
- *  https://github.com/Frede175/HospitalGame/blob/master/HospitalGame_Persistence/src/persistence/PersistenceFacade.java
  * 
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
@@ -26,94 +23,184 @@ import java.io.Serializable;
  * @author Kasper Schødts
  */
 public class PersistenceFacade implements IPersistenceFacade {
+
+     /**
+     * Adds a user from a IUser and give the id from the database
+     * @param user the given user
+     * @return the id from the database
+     */
+    @Override
+    public String addUser(IUser user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Adds a case from a ICase and returns the id
+     * @param _case the given case
+     * @return the id from the database
+     */
+    @Override
+    public int addCase(ICase _case) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Adds a case worker from ICaseWorker and returns the id
+     * Does not add
+     * @param caseWorker the given case worker
+     * @return the id from the database
+     */
+    @Override
+    public int addCaseWorker(ICaseWorker caseWorker) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Adds a department from IDepartment and returns the id.
+     * This does not add case workers, citizen or cases
+     * @param department the given department
+     * @return the id from the database
+     */
+    @Override
+    public int addDeparment(IDepartment department) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Adds a citizen from ICitizen and returns the id
+     * This does not add cases the citizen has
+     * @param citizen the given citizen
+     * @return the id from the database
+     */
+    @Override
+    public int addCitizen(ICitizen citizen) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Adds a standard log from ILog and returns the id
+     * @param log the given log
+     * @return the id from the database
+     */
+    @Override
+    public int addLog(ILog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Adds a attempt log from IAttemptLog and returns the id
+     * @param log the given log
+     * @return the id from the database
+     */
+    @Override
+    public int addAttemptLog(ILoginAttemptLog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+     /**
+     * Adds a case log from ICaseLog and returns the id
+     * @param log the given log
+     * @return the id from the database
+     */
+    @Override
+    public int addCaseLog(ICaseLog log) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Get all the logs from the database
+     * @return the logs
+     */
+    @Override
+    public List<ILog> getLogs() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Get all the logs with at given type
+     * @param type the type of log
+     * @return the logs of that type
+     */
+    @Override
+    public List<ILog> getLogsOfType(LogType type) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Get a specific case
+     * @param caseId the case id
+     * @return the given case with the id, or null if the case does not exist 
+     */
+    @Override
+    public ICase getCase(int caseId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Get all the cases
+     * @return all the cases
+     */
+    @Override
+    public List<ICase> getAllCases() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     /**
-     * The name all files start with
-     */
-    private static final String COMMON_NAME = "data_";
-
-    /**
-     * The file type for all files
-     */
-    private static final String EXTENSION = ".ser";
-
-    /**
-     * Saves the given user manager and department to disk.
-     * This override other saved departments and user managers
-     * @param userManager that needs to be saved
-     * @param department that needs to be saved
-     * @return weather the save was success full or not
+     * Get all the cases belonging to that case worker
+     * @param caseWorkerId the id of the case worker
+     * @return the cases for the case worker, empty if the case worker does not exist
      */
     @Override
-    public boolean save(IUserManager userManager, IDepartment department) {
-        DataObject data = new DataObject(department, userManager);
-        return save(data);
+    public List<ICase> getCaseWorkersCases(int caseWorkerId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
-     * Loads saved department and user manager from disk.
-     * @return a object containing the department and user manager, 
-     * if there is no saved department or user manager this returns null.
+     * Get a specific user
+     * @param userId the id of the user
+     * @return the given user or null if the user does not exist
      */
     @Override
-    public IDataObject load() {
-        return load(DataObject.class);
+    public IUser getUser(String userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     /**
-     * Checks whether a save is available
-     * @return true if there is a save available
+     * Get all the users
+     * @return all the users
      */
     @Override
-    public boolean saveAvailable() {
-        return fileExists(DataObject.class);
+    public List<IUser> getUsers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
-     * Check if a file exists on the file system from the given type.
-     *
-     * @param <T>
-     * @param type that need to see if a file exits
-     * @return true if the file exits
+     * Get a specific citizen
+     * @param id the id of the citizen
+     * @return the given citizen or null if the citizen does not exist
      */
-    private <T> boolean fileExists(Class<T> type) {
-        return new File(COMMON_NAME + type.getSimpleName() + EXTENSION).exists();
+    @Override
+    public ICitizen getCitizen(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
-     * Save the given object to the persistence store.
-     *
-     * @param object the given object to be stored
-     * @return true if the object has been saved and false if object failed to
-     * save.
+     * Get all the citizens
+     * @return all the citizens 
      */
-    private boolean save(Serializable object) {
-        boolean s;
-        try (FileOutputStream fileOut = new FileOutputStream(COMMON_NAME + object.getClass().getSimpleName() + EXTENSION);
-                ObjectOutputStream stream = new ObjectOutputStream(fileOut)) {
-            stream.writeObject(object);
-            s = true;
-        } catch (IOException ex) {
-            s = false;
-        }
-        return s;
+    @Override
+    public List<ICitizen> getCitizens() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
-     * Get the given object form the persistence store.
-     *
-     * @param type The class that needs to be loaded
-     * @return an object with the given class or null if an error occurs.
+     * Get a specific department
+     * @param id the given id
+     * @return the specific department or null if the department does not exist
      */
-    private <T extends Serializable> T load(Class<T> type) {
-        if (!fileExists(type)) return null;
-        T object;
-        try (FileInputStream fileIn = new FileInputStream(COMMON_NAME + type.getSimpleName() + EXTENSION); ObjectInputStream in = new ObjectInputStream(fileIn)) {
-            object = (T) in.readObject();
-        } catch (IOException | ClassNotFoundException i) {
-            object = null;
-        }
-        return object;
+    @Override
+    public IDepartment getDepartment(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
