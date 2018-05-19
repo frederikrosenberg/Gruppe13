@@ -2,13 +2,8 @@ package starter;
 
 import business.BusinessFacade;
 import common.IBusinessFacade;
-import common.ILoginAttemptLog;
 import common.IPersistenceFacade;
 import common.IUI;
-import common.LogType;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Date;
 import persistence.PersistenceFacade;
 import ui.GUI;
 
@@ -29,39 +24,15 @@ public class SensumUdred_Starter {
      * 
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException, FileNotFoundException {
+    public static void main(String[] args) {
         IPersistenceFacade persistence = new PersistenceFacade();
+        IBusinessFacade business = new BusinessFacade();
+        IUI ui = new GUI();
         
-        int id = persistence.addAttemptLog(new ILoginAttemptLog() {
-            @Override
-            public String getUsername() {
-                return "Fred";
-            }
-
-            @Override
-            public LogType getLogType() {
-                return LogType.ATTEMPT_LOGIN;
-            }
-
-            @Override
-            public Date getDate() {
-                return new Date();
-            }
-
-            @Override
-            public String getUserId() {
-                return null;
-            }
-        });
+        business.injectPersistence(persistence);
+        ui.injectBusiness(business);
+        ui.startApplication(args);
         
-        System.out.println(id);
-//        IBusinessFacade business = new BusinessFacade();
-//        IUI ui = new GUI();
-//        
-//        business.injectPersistence(persistence);
-//        ui.injectBusiness(business);
-//        ui.startApplication(args);
-//        
     }
     
 }
