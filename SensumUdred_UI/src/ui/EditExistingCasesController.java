@@ -125,6 +125,11 @@ public class EditExistingCasesController implements Initializable {
         checker.setLogin(true);
     }
 
+    /**
+     * Loads the open new case FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void OpenNewCase(MouseEvent event) throws IOException {
        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/OpenNewCase.fxml"));
@@ -135,18 +140,33 @@ public class EditExistingCasesController implements Initializable {
     private void EditExistingCases(MouseEvent event) {
     }
 
+    /**
+     * Loads the see log FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void showLog(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SeeLog.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 
+    /**
+     * Loads the login screen FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void Logout(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 
+    /**
+     * Loads the main background FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void closeEditCasesView(MouseEvent event) throws IOException {
         loadMainBackground();
@@ -227,11 +247,20 @@ public class EditExistingCasesController implements Initializable {
         appBackground.getChildren().setAll(pane);
     }
 
+    /**
+     * Resets the idle counter.
+     * @param event mouse moved
+     */
     @FXML
     private void resetIdle(MouseEvent event) {
         checker.updateLastMove();
     }
 
+    /**
+     * Loads the main background FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     private void loadMainBackground() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
         appBackground.getChildren().setAll(pane);

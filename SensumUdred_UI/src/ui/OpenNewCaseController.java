@@ -181,6 +181,11 @@ public class OpenNewCaseController implements Initializable {
         fillable_EmailField.clear();
     }
 
+    /**
+     * Initializes the class.
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
@@ -214,18 +219,33 @@ public class OpenNewCaseController implements Initializable {
     private void OpenNewCase(MouseEvent event) {
     }
 
+    /**
+     * Loads the edit existing case FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void EditExistingCases(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 
+    /**
+     * Loads the see log FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void showLog(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SeeLog.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 
+    /**
+     * Loads the login screen FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void Logout(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
@@ -379,17 +399,31 @@ public class OpenNewCaseController implements Initializable {
         relstat = RelationshipStatus.MARRIED;
     }
 
+    /**
+     * Clears the form, and reloads the main background fxml.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void cancelNewCase(ActionEvent event) throws IOException {
         clearNewCaseForm();
         loadMainBackground();
     }
 
+    /**
+     * Resets the idle counter.
+     * @param event mouse moved
+     */
     @FXML
     private void resetIdle(MouseEvent event) {
         checker.updateLastMove();
     }
 
+    /**
+     * Loads the main background FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     private void loadMainBackground() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
         appBackground.getChildren().setAll(pane);

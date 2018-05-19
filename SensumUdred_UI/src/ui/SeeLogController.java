@@ -105,28 +105,53 @@ public class SeeLogController implements Initializable {
         checker.setLogin(true);
     }
 
+    /**
+     * Loads the open new case FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void OpenNewCase(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/OpenNewCase.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 
+    /**
+     * Loads the edit extisting case FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void EditExistingCases(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 
+    /**
+     * Loads the show log FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void showLog(MouseEvent event) {
     }
 
+    /**
+     * Loads the login screen FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void Logout(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 
+    /**
+     * Loads the edit existing case FMXL.
+     * @param event mouse click
+     * @throws IOException file not found / null pointer
+     */
     @FXML
     private void closeShowLog(MouseEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
@@ -286,6 +311,9 @@ public class SeeLogController implements Initializable {
         }
     }
 
+    /**
+     * Shows the log items as a standard log item.
+     */
     public void showStandardLogs() {
         LogListView.setCellFactory(value -> new ListCell<ILog>() {
             @Override
@@ -300,6 +328,10 @@ public class SeeLogController implements Initializable {
         });
     }
 
+    /**
+     * Resets the idle counter.
+     * @param event mouse moved
+     */
     @FXML
     private void resetIdle(MouseEvent event) {
         checker.updateLastMove();
