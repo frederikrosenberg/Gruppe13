@@ -12,6 +12,7 @@ import common.LogType;
 import common.RelationshipStatus;
 import data.UICitizen;
 import data.UICitizenData;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,6 +23,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
@@ -55,135 +57,55 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private AnchorPane appBackground;
-    @FXML
     private ImageView backgroundImage;
-    @FXML
     private GridPane loginGridPane;
-    @FXML
     private TextField usernameField;
-    @FXML
     private PasswordField passwordField;
-    @FXML
-    private ImageView EGTeamOnlineLogo;
-    @FXML
-    private Label forgottenPassword;
-    @FXML
-    private Button loginButton;
-    @FXML
     private GridPane wrongUserPassGridPane;
-    @FXML
     private GridPane loggedOutGridPane;
-    @FXML
-    private AnchorPane loggedoutBackground;
-    @FXML
-    private Button reLogin;
-    @FXML
     private GridPane forgottenPasswordGridPane;
     @FXML
     private AnchorPane inappScreen;
     @FXML
     private GridPane openNewCaseGrid;
-    @FXML
     private ScrollPane openNewCaseScrollPane;
-    @FXML
     private TextArea fillable_ProblemDescription;
-    @FXML
-    private Group clickable_ClarityRegarding;
-    @FXML
-    private ToggleGroup clearlyChoosen;
-    @FXML
-    private Group clickable_CitizenSeeks;
-    @FXML
     private RadioButton check_home;
-    @FXML
     private RadioButton check_personalCare;
-    @FXML
     private RadioButton check_shoppingFood;
-    @FXML
     private RadioButton check_temporaryStay;
-    @FXML
-    private Group clickable_CameFrom;
-    @FXML
     private CheckBox source_citizen;
-    @FXML
     private CheckBox source_contact;
-    @FXML
     private CheckBox source_doctor;
-    @FXML
     private CheckBox source_hospital;
-    @FXML
     private CheckBox source_other;
-    @FXML
     private CheckBox source_current;
-    @FXML
     private CheckBox source_region;
-    @FXML
     private CheckBox source_etc;
-    @FXML
     private TextArea fillable_ContactPerson;
-    @FXML
-    private Group clickable_Understood;
-    @FXML
-    private ToggleGroup understood;
-    @FXML
-    private Group clickable_InformedOfRights;
-    @FXML
-    private ToggleGroup informed;
-    @FXML
-    private Group clickable_StorageOnline;
-    @FXML
-    private ToggleGroup electronicStorage;
-    @FXML
     private TextField fillable_NameField;
-    @FXML
     private TextField fillable_AdressField;
-    @FXML
     private TextField fillable_ZipCodeField;
-    @FXML
     private TextField fillable_CprField;
-    @FXML
     private TextField fillable_PhoneNumberField;
-    @FXML
     private TextField fillable_EmailField;
-    @FXML
     private MenuButton choice_Gender;
-    @FXML
     private MenuButton choice_Relations;
-    @FXML
-    private Group clickable_GuardianAndRepresentation;
-    @FXML
-    private Group clickable_consent;
-    @FXML
-    private ToggleGroup relevancy;
-    @FXML
-    private Group clickable_ConsentType;
-    @FXML
     private RadioButton verbal_Consent;
-    @FXML
-    private ToggleGroup samtykke;
-    @FXML
     private RadioButton written_Consent;
-    @FXML
-    private Group clickable_ConsentFrom;
-    @FXML
     private TextArea fillable_SpecialCaseDesc;
     @FXML
     private GridPane editCasesGridPane;
     @FXML
     private ListView<ICase> casesListView;
-    @FXML
     private AnchorPane viewingBackdrop;
     @FXML
     private AnchorPane seeSpecificCase;
     @FXML
     private Label preview_Label;
-    @FXML
     private Label time;
-    @FXML
     private Label date;
-    @FXML
     private ImageView inappWallpaperDark;
-    @FXML
     private AnchorPane inappBackground;
     @FXML
     private Label noCasesFound;
@@ -226,13 +148,9 @@ public class FXMLDocumentController implements Initializable {
     private Label calendarMonth;
     @FXML
     private Label calendarDate;
-    @FXML
     private ListView<ILog> LogListView;
-    @FXML
     private AnchorPane logPane;
-    @FXML
     private Label noLogFound;
-    @FXML
     private MenuButton choice_logType;
 
     /**
@@ -270,7 +188,7 @@ public class FXMLDocumentController implements Initializable {
         timet.setDaemon(true);
         timet.start();
 
-        checker = new IdleChecker(5 * 60, this);
+        //checker = new IdleChecker(5 * 60, this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
@@ -323,7 +241,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click
      */
-    @FXML
     private void forgotPassword(MouseEvent event) {
         forgottenPasswordGridPane.setVisible(true);
     }
@@ -334,7 +251,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click
      */
-    @FXML
     private void closeForgottenPassword(MouseEvent event) {
         forgottenPasswordGridPane.setVisible(false);
     }
@@ -349,20 +265,24 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event button press
      */
-    @FXML
-    private void loginRequested(ActionEvent event) {
+    private void loginRequested(ActionEvent event) throws IOException {
         if (business.login(usernameField.getText(), passwordField.getText())) {
             wrongUserPassGridPane.setVisible(false);
             inappScreen.setVisible(true);
             usernameField.clear();
             passwordField.clear();
 
+            AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fmxl/MainBackground.fxml"));
+            appBackground.getChildren().setAll(pane);
+            
             user_Name.setText(business.getCaseWorker().getName());
             user_Email.setText(business.getCaseWorker().getEmail());
             user_JobTitle.setText("Sagsbehandler");
 
             checker.updateLastMove();
             checker.setLogin(true);
+            
+            
         } else {
             wrongUserPassGridPane.setVisible(true);
             passwordField.clear();
@@ -375,7 +295,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event button press
      */
-    @FXML
     private void loginAgain(ActionEvent event) {
         loggedOutGridPane.setVisible(false);
         inappScreen.setVisible(false);
@@ -498,7 +417,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click
      */
-    @FXML
     private void cancelNewCase(ActionEvent event) {
         openNewCaseScrollPane.setVisible(false);
         clearNewCaseForm();
@@ -512,7 +430,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click
      */
-    @FXML
     private void createNewCase(ActionEvent event) {
         ICitizen citizen = new UICitizen(Integer.valueOf(fillable_CprField.getText()), fillable_AdressField.getText(), fillable_NameField.getText(), fillable_PhoneNumberField.getText(), fillable_EmailField.getText(), gender, relstat);
 
@@ -598,7 +515,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click
      */
-    @FXML
     private void SetGender_Male(ActionEvent event) {
         choice_Gender.setText("Mand");
         gender = Gender.MALE;
@@ -609,7 +525,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click
      */
-    @FXML
     private void setGender_Female(ActionEvent event) {
         choice_Gender.setText("Kvinde");
         gender = Gender.FEMALE;
@@ -620,7 +535,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click
      */
-    @FXML
     private void setRelationship_Single(ActionEvent event) {
         choice_Relations.setText("Single");
         relstat = RelationshipStatus.SINGLE;
@@ -631,7 +545,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click
      */
-    @FXML
     private void setRelationship_InRelationship(ActionEvent event) {
         choice_Relations.setText("I forhold");
         relstat = RelationshipStatus.IN_RELATIONSHIP;
@@ -642,7 +555,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click
      */
-    @FXML
     private void setRelationship_Married(ActionEvent event) {
         choice_Relations.setText("Gift");
         relstat = RelationshipStatus.MARRIED;
@@ -713,7 +625,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event on mouse click
      */
-    @FXML
     private void closeShowLog(MouseEvent event) {
         logPane.setVisible(false);
     }
@@ -724,7 +635,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click, on dropdown option
      */
-    @FXML
     private void setLogType_All(ActionEvent event) {
         logType = null;
         choice_logType.setText("Alle");
@@ -737,7 +647,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click, on dropdown option
      */
-    @FXML
     private void setLogType_ViewedCases(ActionEvent event) {
         logType = LogType.CASE_VIEWED;
         choice_logType.setText("Sete sager");
@@ -750,7 +659,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click, on dropdown option
      */
-    @FXML
     private void setLogType_CaseOpened(ActionEvent event) {
         logType = LogType.OPEN_CASE;
         choice_logType.setText("Åbnede sager");
@@ -764,7 +672,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click, on dropdown option
      */
-    @FXML
     private void setLogType_ClosedCases(ActionEvent event) {
         logType = LogType.CLOSE_CASE;
         choice_logType.setText("Lukkede sager");
@@ -778,7 +685,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click, on dropdown option
      */
-    @FXML
     private void setLogType_ViewedLog(ActionEvent event) {
         logType = LogType.VIEW_LOG;
         choice_logType.setText("Set log");
@@ -792,7 +698,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click, on dropdown option
      */
-    @FXML
     private void setLogType_LoggedIn(ActionEvent event) {
         logType = LogType.LOGIN;
         choice_logType.setText("Log ind");
@@ -806,7 +711,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click, on dropdown option
      */
-    @FXML
     private void setLogType_LoggedOut(ActionEvent event) {
         logType = LogType.LOGOUT;
         choice_logType.setText("Log ud");
@@ -820,7 +724,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click, on dropdown option
      */
-    @FXML
     private void setLogType_IdleLogOut(ActionEvent event) {
         logType = LogType.TIMEOUT;
         choice_logType.setText("Inaktivitets Log ud");
@@ -834,7 +737,6 @@ public class FXMLDocumentController implements Initializable {
      *
      * @param event mouse click, on dropdown option
      */
-    @FXML
     private void setLogType_AttemptedLogIn(ActionEvent event) {
         logType = LogType.ATTEMPT_LOGIN;
         choice_logType.setText("Log ind forsøg");

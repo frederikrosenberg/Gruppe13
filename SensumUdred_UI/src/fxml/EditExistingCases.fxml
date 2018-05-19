@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="appBackground" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #434343;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.EditExistingCasesController">
+   <children>
+      <AnchorPane fx:id="inappScreen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseMoved="#resetIdle" style="-fx-background-color: White;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="180.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="418.5" minHeight="10.0" prefHeight="342.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="276.5" minHeight="10.0" prefHeight="228.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <AnchorPane style="-fx-background-color: #434343;" GridPane.halignment="LEFT" GridPane.rowSpan="3" GridPane.valignment="TOP" />
+                  <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowSpan="3" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../Images/Inapp/anon_user.png" />
+                           </image></ImageView>
+                        <Label fx:id="user_JobTitle" text="Systemadministrator" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="user_Name" text="Sebastian S. Christiansen" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="user_Email" text="Sebac17@student.sdu.dk" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="15.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.rowIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="25.0" prefWidth="50.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="40.0" prefWidth="80.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Åbn ny sag" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="25.0" />
+                           </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../Images/Inapp/new_white.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <AnchorPane id="menuBackground" onMouseClicked="#OpenNewCase" opacity="0.2" style="-fx-background-color: #000;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </AnchorPane>
+                        <Label text="Rediger Sag" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="25.0" />
+                           </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../Images/Inapp/document_white.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <AnchorPane id="menuBackground" onMouseClicked="#EditExistingCases" opacity="0.2" style="-fx-background-color: #000; -fx-opacity: 0.2;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </AnchorPane>
+                        <Label text="Indbakke" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="25.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../Images/Inapp/post_white.png" />
+                           </image>
+                        </ImageView>
+                        <Label id="mailCount" alignment="CENTER" stylesheets="@../Stylesheets/simpleStyle.css" text="11" textFill="#ffffffcc" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="2.0" left="8.0" right="8.0" top="2.0" />
+                           </padding>
+                        </Label>
+                        <AnchorPane id="menuBackground" opacity="0.2" style="-fx-background-color: #000;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </AnchorPane>
+                        <Label text="Se Log" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="25.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../Images/Inapp/log.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane id="menuBackground" onMouseClicked="#showLog" opacity="0.2" style="-fx-background-color: #000;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </AnchorPane>
+                        <Label text="Log ud" textFill="#ffffffcc" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="25.0" />
+                           </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                        <ImageView fitHeight="25.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../Images/Inapp/logout_white.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets right="2.0" />
+                           </GridPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <AnchorPane id="menuBackground" onMouseClicked="#Logout" opacity="0.2" style="-fx-background-color: #000;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(255,255,255,0.2);" GridPane.rowIndex="2" />
+                  <ImageView fitHeight="200.0" fitWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Images/Inapp/calendar.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="calendarMonth" text="August" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="110.0" top="65.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="calendarDate" text="28" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets left="110.0" top="35.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Arial" size="26.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="openNewCaseGrid" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowSpan="3">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <GridPane fx:id="editCasesGridPane" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnSpan="2" GridPane.rowSpan="3">
+                                 <children>
+                                    <ImageView fitHeight="150.0" fitWidth="35.0" onMouseClicked="#closeEditCasesView" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+                                       <image>
+                                          <Image url="@../Images/Inapp/close.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ListView id="simpleListView" fx:id="casesListView" focusTraversable="false" onMouseClicked="#selectCaseFromListView" prefHeight="200.0" prefWidth="200.0" stylesheets="@../Stylesheets/simpleStyle.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
+                                    <Label fx:id="noCasesFound" alignment="CENTER" text="Ingen sager fundet..." textFill="#434343" wrapText="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </AnchorPane>
+                           </children>
+                        </GridPane>
+                        <AnchorPane fx:id="seeSpecificCase" maxWidth="1.7976931348623157E308" prefHeight="621.0" prefWidth="805.0" style="-fx-background-color: #fff;" visible="false" GridPane.columnSpan="2">
+                           <children>
+                              <Label fx:id="preview_Label" alignment="TOP_LEFT" text="insert case here.." wrapText="true" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                              <Button id="annullerSag" mnemonicParsing="false" onAction="#cancelPreviewCase" style="-fx-border: none; -fx-background-color: #434343;" stylesheets="@../Stylesheets/simpleStyle.css" text="Annuller" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="25.0">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
+                                 </padding>
+                              </Button>
+                              <Button id="lukSag" mnemonicParsing="false" onAction="#closeCase" stylesheets="@../Stylesheets/simpleStyle.css" text="Luk sag" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="140.0">
+                                 <font>
+                                    <Font name="Arial" size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="12.0" left="18.0" right="18.0" top="12.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
