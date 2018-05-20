@@ -7,6 +7,7 @@ package ui;
 
 import common.IBusinessFacade;
 import common.ILog;
+import common.Idleable;
 import common.LogType;
 import java.io.IOException;
 import java.net.URL;
@@ -32,7 +33,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Sebas
  */
-public class SeeLogController implements Initializable {
+public class SeeLogController implements Initializable, Idleable {
 
     @FXML
     private AnchorPane appBackground;
@@ -81,11 +82,11 @@ public class SeeLogController implements Initializable {
         business = GUI.getInstance().getBusiness();
 
         mb = new MainBackgroundController();
-        checker = new IdleChecker(1 * 60, mb);
+        checker = new IdleChecker(10, this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
-        
+
         Calendar cal = Calendar.getInstance();
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
@@ -96,7 +97,7 @@ public class SeeLogController implements Initializable {
 
         SimpleDateFormat format3 = new SimpleDateFormat("d");
         calendarDate.setText(String.valueOf(format3.format(dato)));
-        
+
         user_Name.setText(business.getCaseWorker().getName());
         user_Email.setText(business.getCaseWorker().getEmail());
         user_JobTitle.setText("Sagsbehandler");
@@ -107,6 +108,7 @@ public class SeeLogController implements Initializable {
 
     /**
      * Loads the open new case FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -118,6 +120,7 @@ public class SeeLogController implements Initializable {
 
     /**
      * Loads the edit extisting case FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -129,6 +132,7 @@ public class SeeLogController implements Initializable {
 
     /**
      * Loads the show log FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -138,17 +142,20 @@ public class SeeLogController implements Initializable {
 
     /**
      * Loads the login screen FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
     @FXML
     private void Logout(MouseEvent event) throws IOException {
+        business.logOut(false);
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 
     /**
      * Loads the edit existing case FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -330,11 +337,19 @@ public class SeeLogController implements Initializable {
 
     /**
      * Resets the idle counter.
+     *
      * @param event mouse moved
      */
     @FXML
-    private void resetIdle(MouseEvent event) {
+    public void resetIdle(MouseEvent event) {
         checker.updateLastMove();
+    }
+
+    @Override
+    public void logout() throws IOException {
+        business.logOut(true);
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
+        appBackground.getChildren().setAll(pane);
     }
 
 }

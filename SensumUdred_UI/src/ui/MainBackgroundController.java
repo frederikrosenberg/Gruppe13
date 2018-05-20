@@ -6,6 +6,7 @@
 package ui;
 
 import common.IBusinessFacade;
+import common.Idleable;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Sebas
  */
-public class MainBackgroundController implements Initializable {
+public class MainBackgroundController implements Initializable, Idleable {
 
     @FXML
     private AnchorPane appBackground;
@@ -79,7 +80,7 @@ public class MainBackgroundController implements Initializable {
         timet.setDaemon(true);
         timet.start();
 
-        checker = new IdleChecker(5 * 60, this);
+        checker = new IdleChecker(10, this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
@@ -169,7 +170,7 @@ public class MainBackgroundController implements Initializable {
      */
     public void logout() throws IOException {
         business.logOut(true);
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 

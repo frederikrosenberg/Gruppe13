@@ -9,6 +9,7 @@ import common.Gender;
 import common.IBusinessFacade;
 import common.ICitizen;
 import common.ICitizenData;
+import common.Idleable;
 import common.RelationshipStatus;
 import data.UICitizen;
 import data.UICitizenData;
@@ -39,7 +40,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Sebas
  */
-public class OpenNewCaseController implements Initializable {
+public class OpenNewCaseController implements Initializable, Idleable {
 
     @FXML
     private AnchorPane appBackground;
@@ -183,15 +184,16 @@ public class OpenNewCaseController implements Initializable {
 
     /**
      * Initializes the class.
+     *
      * @param location
-     * @param resources 
+     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
 
         mb = new MainBackgroundController();
-        checker = new IdleChecker(1 * 60, mb);
+        checker = new IdleChecker(10, this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
@@ -200,7 +202,7 @@ public class OpenNewCaseController implements Initializable {
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
         Date dato = calen.getTime();
-        
+
         SimpleDateFormat format2 = new SimpleDateFormat("MMM");
         calendarMonth.setText(String.valueOf(format2.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format2.format(dato)).substring(1));
 
@@ -221,6 +223,7 @@ public class OpenNewCaseController implements Initializable {
 
     /**
      * Loads the edit existing case FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -232,6 +235,7 @@ public class OpenNewCaseController implements Initializable {
 
     /**
      * Loads the see log FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -243,11 +247,13 @@ public class OpenNewCaseController implements Initializable {
 
     /**
      * Loads the login screen FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
     @FXML
     private void Logout(MouseEvent event) throws IOException {
+        business.logOut(false);
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
         appBackground.getChildren().setAll(pane);
     }
@@ -401,6 +407,7 @@ public class OpenNewCaseController implements Initializable {
 
     /**
      * Clears the form, and reloads the main background fxml.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -412,20 +419,29 @@ public class OpenNewCaseController implements Initializable {
 
     /**
      * Resets the idle counter.
+     *
      * @param event mouse moved
      */
     @FXML
-    private void resetIdle(MouseEvent event) {
+    public void resetIdle(MouseEvent event) {
         checker.updateLastMove();
     }
 
     /**
      * Loads the main background FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
     private void loadMainBackground() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
+        appBackground.getChildren().setAll(pane);
+    }
+
+    @Override
+    public void logout() throws IOException {
+        business.logOut(true);
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 }

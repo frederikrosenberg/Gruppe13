@@ -7,6 +7,7 @@ package ui;
 
 import common.IBusinessFacade;
 import common.ICase;
+import common.Idleable;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -30,7 +31,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Sebas
  */
-public class EditExistingCasesController implements Initializable {
+public class EditExistingCasesController implements Initializable, Idleable {
 
     @FXML
     private AnchorPane appBackground;
@@ -81,7 +82,7 @@ public class EditExistingCasesController implements Initializable {
         business = GUI.getInstance().getBusiness();
 
         mb = new MainBackgroundController();
-        checker = new IdleChecker(1 * 60, mb);
+        checker = new IdleChecker(10, this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
@@ -158,6 +159,7 @@ public class EditExistingCasesController implements Initializable {
      */
     @FXML
     private void Logout(MouseEvent event) throws IOException {
+        business.logOut(false);
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
         appBackground.getChildren().setAll(pane);
     }
@@ -252,7 +254,7 @@ public class EditExistingCasesController implements Initializable {
      * @param event mouse moved
      */
     @FXML
-    private void resetIdle(MouseEvent event) {
+    public void resetIdle(MouseEvent event) {
         checker.updateLastMove();
     }
 
@@ -263,6 +265,13 @@ public class EditExistingCasesController implements Initializable {
      */
     private void loadMainBackground() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
+        appBackground.getChildren().setAll(pane);
+    }
+
+    @Override
+    public void logout() throws IOException {
+        business.logOut(true);
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 }
