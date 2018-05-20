@@ -47,7 +47,7 @@ public interface IPersistenceFacade {
      * @param department the given department
      * @return the id from the database
      */
-    int addDeparment(IDepartment department);
+    String addDeparment(IDepartment department);
     
     /**
      * Adds a citizen from ICitizen and returns the id
@@ -82,14 +82,14 @@ public interface IPersistenceFacade {
      * Get all the logs from the database
      * @return the logs
      */
-    List<ILog> getLogs();
+    List<? extends ILog> getLogs();
     
     /**
      * Get all the logs with at given type
      * @param type the type of log
      * @return the logs of that type
      */
-    List<ILog> getLogsOfType(LogType type);
+    List<? extends ILog> getLogsOfType(LogType type);
     
     /**
      * Get a specific case
@@ -122,7 +122,7 @@ public interface IPersistenceFacade {
      * Get all the users
      * @return all the users
      */
-    List<IUser> getUsers();
+    List<? extends IUser> getUsers();
     
     /**
      * Get a specific citizen
@@ -142,5 +142,5 @@ public interface IPersistenceFacade {
      * @param id the given id
      * @return the specific department or null if the department does not exist
      */
-    IDepartment getDepartment(int id);
+    IDepartment getDepartment(String id);
 }
