@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistence;
 
 import common.ICaseLog;
@@ -10,19 +5,37 @@ import common.LogType;
 import java.util.Date;
 
 /**
- *
- * @author Frederik Rosenberg
+ * Data class for case log
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg 
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class DataCaseLog extends DataLog implements ICaseLog {
-
+    
+    /**
+     * The case the log involves
+     */
     private int caseId;
     
-    
+    /**
+     * Constructor for the case log
+     * @param type the type of log
+     * @param date the date of the log
+     * @param userId the user id of the log
+     * @param caseId the case id of the log
+     */
     public DataCaseLog(LogType type, Date date, String userId, int caseId) {
         super(type, date, userId);
         this.caseId = caseId;
     }
 
+    /**
+     * Gets the case id for the case that is involved in the log
+     * @return the case id
+     */
     @Override
     public int getCaseId() {
         return caseId;

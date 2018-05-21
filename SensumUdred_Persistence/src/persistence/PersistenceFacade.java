@@ -40,17 +40,17 @@ import java.util.logging.Logger;
 public class PersistenceFacade implements IPersistenceFacade {
     
     /**
-     * 
+     * The URL for the server
      */
     private final String dbServer;
     
     /**
-     * 
+     * The username to login to the database
      */
     private final String dbUserName;
     
     /**
-     * 
+     * The password to login to the database
      */
     private final String dbPassword;
     
@@ -81,6 +81,11 @@ public class PersistenceFacade implements IPersistenceFacade {
         }
     }
     
+    /**
+     * Creates a connection to the database
+     * @return a connection for the database
+     * @throws SQLException when the driver has determined that the timeout value specified by the setLoginTimeout method has been exceeded and has at least tried to cancel the current database connection attempt
+     */
     private Connection getDbConnection() throws SQLException {
         return DriverManager.getConnection(dbServer, dbUserName, dbPassword);
     }
@@ -191,11 +196,11 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
     
     /**
-     * 
-     * @param con
-     * @param log
-     * @return
-     * @throws SQLException 
+     * Inserts a log into the database
+     * @param con the connection to use
+     * @param log the log to insert
+     * @return the id of the log
+     * @throws SQLException if a database access error occurs or this method is called on a closed connection
      */
     private int insertLog(Connection con, ILog log) throws SQLException {
         PreparedStatement statement = con.prepareStatement("INSERT INTO \"Log\" (UserID, Type, DateTime) VALUES (?,?,?) RETURNING Id");
@@ -457,11 +462,18 @@ public class PersistenceFacade implements IPersistenceFacade {
         try (Connection con = getDbConnection()) {
             PreparedStatement statement = con.prepareStatement("SELECT * FROM \"Department\" WHERE \"Department\".Name = ?");
             statement.setString(1, id);
+            ResultSet set = statement.executeQuery();
+            set.next();
+            return new DataDepartment(
+                    set.getString("name"), 
+                    set.getString("treatmentarea"), 
+                    set.getString("address"), 
+                    set.getString("email"), 
+                    set.getString("phonenumber")
+            );
         } catch (SQLException ex) {
             Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
         
         return null;
     }
