@@ -193,7 +193,7 @@ public class OpenNewCaseController implements Initializable, Idleable {
         business = GUI.getInstance().getBusiness();
 
         mb = new MainBackgroundController();
-        checker = new IdleChecker(10, this);
+        checker = new IdleChecker(5*60, this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
