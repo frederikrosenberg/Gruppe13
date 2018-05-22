@@ -29,4 +29,16 @@ public interface IPerson {
      * @return email
      */
     String getEmail();
+    
+    /**
+     * Gets the department name
+     * @return The department name
+     */
+    String getDepartmentName();
+    
+    /**
+     * Gets the id of the person
+     * @return The id of the person
+     */
+    int getId();
 }
