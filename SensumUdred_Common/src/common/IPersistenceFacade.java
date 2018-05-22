@@ -153,10 +153,11 @@ public interface IPersistenceFacade {
      * @param id the given id
      * @return the specific department or null if the department does not exist
      */
-    IDepartment getDepartment(int id);
+    IDepartment getDepartment(String departmentName);
     
     /**
      * Closes a case
+     * @param departmentName The department name
      * @param caseId The case to close
      * @return True if the case is closed
      */

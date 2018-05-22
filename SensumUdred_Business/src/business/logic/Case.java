@@ -1,8 +1,10 @@
 package business.logic;
 
+import business.Persistence;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
+import common.IDepartment;
 import java.util.Date;
 
 /**
@@ -71,6 +73,11 @@ public class Case implements ICase {
      * The caseworker that works with the case
      */
     private CaseWorker caseWorker;
+    
+    /**
+     * The department name
+     */
+    private String departmentName;
 
     /**
      * Constructs a new case
@@ -83,7 +90,7 @@ public class Case implements ICase {
      * @param citizen The citizen the case is about
      * @param caseWorker The case worker of the case
      */
-    public Case(String state, boolean consent, String reason, String availableOffers, String sourceOfRequest, Citizen citizen, CaseWorker caseWorker) {
+    public Case(String state, boolean consent, String reason, String availableOffers, String sourceOfRequest, Citizen citizen, CaseWorker caseWorker, String departmentName) {
         this.state = state;
         this.consent = consent;
         this.reason = reason;
@@ -92,6 +99,7 @@ public class Case implements ICase {
         this.citizen = citizen;
         this.caseWorker = caseWorker;
         openingDate = new Date();
+        this.departmentName = departmentName;
     }
 
     /**
@@ -113,6 +121,7 @@ public class Case implements ICase {
         sourceOfRequest = c.getSourceOfRequest();
         openingDate = c.getOpeningDate();
         closingDate = c.getClosingDate();
+        departmentName = c.getDepartment().getName();
         if (isActive) {
             citizen.setActiveCase(this);
         }
@@ -317,5 +326,10 @@ public class Case implements ICase {
     @Override
     public Date getClosingDate() {
         return closingDate;
+    }
+
+    @Override
+    public IDepartment getDepartment() {
+        return Persistence.getInstance().getPersistenceFacade().getDepartment(departmentName);
     }
 }

@@ -28,6 +28,11 @@ public class Person implements IPerson {
      * The email of the person
      */
     private String email;
+    
+    /**
+     * The name of the department
+     */
+    private String departmentName;
 
     /**
      * Construct a new person
@@ -36,10 +41,11 @@ public class Person implements IPerson {
      * @param phoneNumber The phone number of the person
      * @param email The email of the person
      */
-    public Person(String name, String phoneNumber, String email) {
+    public Person(String name, String phoneNumber, String email, String departmentName) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.departmentName = departmentName;
     }
 
     /**
@@ -70,5 +76,14 @@ public class Person implements IPerson {
     @Override
     public String getEmail() {
         return this.email;
+    }
+
+    /**
+     * Gets the department name
+     * @return The department name
+     */
+    @Override
+    public String getDepartmentName() {
+        return this.departmentName;
     }
 }
