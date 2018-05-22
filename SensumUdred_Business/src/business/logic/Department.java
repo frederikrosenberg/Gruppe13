@@ -1,6 +1,5 @@
 package business.logic;
 
-import business.Persistence;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
@@ -114,7 +113,12 @@ public class Department implements IDepartment {
      * @return the found case worker
      */
     private CaseWorker findCaseWorker(String id) {
-        return new CaseWorker(Persistence.getInstance().getPersistenceFacade().getCaseworker(name, id), this);
+        for (CaseWorker worker : caseWorkers) {
+            if (worker.getUserId().equals(id)) {
+                return worker;
+            }
+        }
+        return null;
     }
 
     /**
@@ -124,7 +128,12 @@ public class Department implements IDepartment {
      * @return the found citizen
      */
     public Citizen findCitizen(int cpr) {
-        return new Citizen(Persistence.getInstance().getPersistenceFacade().getCitizen(cpr));
+        for (Citizen citizen : citizens) {
+            if (citizen.getCpr() == cpr) {
+                return citizen;
+            }
+        }
+        return null;
     }
 
     /**
@@ -184,7 +193,7 @@ public class Department implements IDepartment {
      */
     @Override
     public List<? extends ICaseWorker> getCaseWorkers() {
-        return Persistence.getInstance().getPersistenceFacade().getCaseworkers(name);
+        return caseWorkers;
     }
 
     /**
@@ -194,7 +203,11 @@ public class Department implements IDepartment {
      */
     @Override
     public List<? extends ICase> getAllActiveCases() {
-        return Persistence.getInstance().getPersistenceFacade().getAllCases(name);
+        List<ICase> cases = new ArrayList();
+        for (CaseWorker caseWorker : caseWorkers) {
+            cases.addAll(caseWorker.getActiveCases());
+        }
+        return cases;
     }
 
     /**
@@ -205,7 +218,18 @@ public class Department implements IDepartment {
      * @return An active case
      */
     public ICase findActiveCase(int value, boolean isCpr) {
-        return Persistence.getInstance().getPersistenceFacade().getCase(value, isCpr);
+        for (ICase activeCase : getAllActiveCases()) {
+            if (isCpr) {
+                if (value == activeCase.getCitizen().getCpr()) {
+                    return activeCase;
+                }
+            } else {
+                if (value == activeCase.getId()) {
+                    return activeCase;
+                }
+            }
+        }
+        return null;
     }
 
     /**
@@ -215,7 +239,12 @@ public class Department implements IDepartment {
      * @return The active case
      */
     public ICase findActiveCase(String name) {
-        return Persistence.getInstance().getPersistenceFacade().getCase(name);
+        for (ICase activeCase : getAllActiveCases()) {
+            if (name.toLowerCase().equals(activeCase.getCitizen().getName().toLowerCase())) {
+                return activeCase;
+            }
+        }
+        return null;
     }
 
     /**
@@ -225,7 +254,7 @@ public class Department implements IDepartment {
      */
     @Override
     public List<? extends ICase> getInactiveCases() {
-        return Persistence.getInstance().getPersistenceFacade().getAllInactiveCases(name);
+        return inactiveCases;
     }
 
     /**
@@ -235,7 +264,7 @@ public class Department implements IDepartment {
      */
     @Override
     public List<? extends ICitizen> getCitizens() {
-        return Persistence.getInstance().getPersistenceFacade().getCitizens(name);
+        return citizens;
     }
 
     /**
@@ -257,9 +286,8 @@ public class Department implements IDepartment {
      * @param userId the user id of the caseworker
      */
     public void addCaseWorker(String name, String phoneNumber, String email, int employeeId, String userId) {
-        ICaseWorker caseWorker = new CaseWorker(name, phoneNumber, email, this, employeeId, userId);
-        Persistence.getInstance().getPersistenceFacade().addCaseWorker(caseWorker);
-        caseWorkers.add((CaseWorker) caseWorker);
+        CaseWorker caseWorker = new CaseWorker(name, phoneNumber, email, this, employeeId, userId);
+        caseWorkers.add(caseWorker);
     }
     
     /**
@@ -267,7 +295,6 @@ public class Department implements IDepartment {
      * @param citizen the given citizen
      */
     public void addCitizen(Citizen citizen) {
-        Persistence.getInstance().getPersistenceFacade().addCitizen((ICitizen) citizen);
         citizens.add(citizen);
     }
 

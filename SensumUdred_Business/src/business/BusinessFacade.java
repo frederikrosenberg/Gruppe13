@@ -41,7 +41,7 @@ public class BusinessFacade implements IBusinessFacade {
     /**
      * Instance of the IPersistenceFacade
      */
-    public static IPersistenceFacade persistence;
+    private IPersistenceFacade persistence;
     
     /**
      * Instance of the LoggingFacade
@@ -52,8 +52,7 @@ public class BusinessFacade implements IBusinessFacade {
      * Constructor for the BusinessFacade
      */
     public BusinessFacade() {
-        logic = new LogicFacade();
-        security = new SecurityFacade();
+
     }
 
     /**
@@ -207,7 +206,6 @@ public class BusinessFacade implements IBusinessFacade {
     @Override
     public void injectPersistence(IPersistenceFacade persistence) {
         this.persistence = persistence;
-        Persistence.getInstance().injectPersistence(persistence);
         loggingFacade = new LoggingFacade(persistence);
         load();
     }
@@ -231,7 +229,7 @@ public class BusinessFacade implements IBusinessFacade {
      *
      */
     private void load() {
-       /* if (persistence.saveAvailable()) {
+        if (persistence.saveAvailable()) {
             IDataObject data = persistence.load();
             logic = new LogicFacade(data.getDepartment());
             security = new SecurityFacade(data.getUserManager());
@@ -241,7 +239,7 @@ public class BusinessFacade implements IBusinessFacade {
             security = new SecurityFacade();
             createCaseWorker("Dummy", "12345678", "dummy@dummymail.com", 12345, "Dummyuser", "password", Role.CASEWORKER);
 
-        }*/
+        }
     }
 
     /**
@@ -250,7 +248,7 @@ public class BusinessFacade implements IBusinessFacade {
      * @return true if the data is saved
      */
     private boolean save() {
-        return false; //persistence.save(security.getUserManager(), logic.getDepartment());
+        return persistence.save(security.getUserManager(), logic.getDepartment());
     }
 
     /**
@@ -289,5 +287,6 @@ public class BusinessFacade implements IBusinessFacade {
         loggingFacade.createLog(LogType.VIEW_LOG, security.getCurrentUser().getUserId());
         return loggingFacade.getLogsOfType(type);
     }
+    
     
 }

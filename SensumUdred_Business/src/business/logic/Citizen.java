@@ -53,8 +53,8 @@ public class Citizen extends Person implements ICitizen {
      * @param relationshipStatus The citizens relationship status
      * @param gender The citizens gender
      */
-    public Citizen(String name, String mobileNumber, String email, int cpr, String address, RelationshipStatus relationshipStatus, Gender gender, String departmentName) {
-        super(name, mobileNumber, email, departmentName);
+    public Citizen(String name, String mobileNumber, String email, int cpr, String address, RelationshipStatus relationshipStatus, Gender gender) {
+        super(name, mobileNumber, email);
         this.cpr = cpr;
         this.address = address;
         this.relationshipStatus = relationshipStatus;
@@ -67,7 +67,7 @@ public class Citizen extends Person implements ICitizen {
      * @param citizen The existing citizen to extract data from
      */
     public Citizen(ICitizen citizen) {
-        super(citizen.getName(), citizen.getPhoneNumber(), citizen.getEmail(), citizen.getDepartmentName());
+        super(citizen.getName(), citizen.getPhoneNumber(), citizen.getEmail());
         this.cpr = citizen.getCpr();
         this.address = citizen.getAddress();
         this.relationshipStatus = citizen.getRelationshipStatus();
