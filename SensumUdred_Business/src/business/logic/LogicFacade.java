@@ -1,5 +1,6 @@
 package business.logic;
 
+import business.Persistence;
 import business.common.ILogicFacade;
 import common.ICase;
 import common.ICaseWorker;
@@ -28,6 +29,10 @@ public class LogicFacade implements ILogicFacade {
      * The logged in caseworker
      */
     private CaseWorker caseWorker;
+    
+    public LogicFacade() {
+        
+    }
 
     /**
      * Creates a logic facade from a given department
@@ -114,11 +119,7 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public void setCaseWorker(String userId) {
-        for (ICaseWorker caseWorker : department.getCaseWorkers()) {
-            if (caseWorker.getUserId().equals(userId)) {
-                this.caseWorker = (CaseWorker) caseWorker;
-            }
-        }
+        this.caseWorker = new CaseWorker(Persistence.getInstance().getPersistenceFacade().getCaseworker(department.getName(), userId), department);
     }
 
     /**
