@@ -98,6 +98,22 @@ public class DataCase implements ICase, Serializable {
         }
     }
 
+    public DataCase(DataCitizen citizen, DataCaseWorker caseWorker, String department, String state, int id, boolean consent, String reason, String availableOffers, String sourceOfRequest, Date openingDate, Date closingDate) {
+        this.citizen = citizen;
+        this.caseWorker = caseWorker;
+        this.department = department;
+        this.state = state;
+        this.id = id;
+        this.consent = consent;
+        this.reason = reason;
+        this.availableOffers = availableOffers;
+        this.sourceOfRequest = sourceOfRequest;
+        this.openingDate = openingDate;
+        this.closingDate = closingDate;
+    }
+    
+    
+
     /**
      * The citizen the case is about
      *

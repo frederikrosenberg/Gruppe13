@@ -49,6 +49,16 @@ public abstract class DataPerson implements IPerson, Serializable {
         phoneNumber = person.getPhoneNumber();
         email = person.getEmail();
     }
+
+    public DataPerson(int id, String departmentName, String name, String phoneNumber, String email) {
+        this.id = id;
+        this.departmentName = departmentName;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+    
+    
     
     /**
      * Get the name of the person
