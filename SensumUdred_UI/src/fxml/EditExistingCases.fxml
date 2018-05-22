@@ -366,7 +366,7 @@
                                           <Insets left="25.0" top="55.0" />
                                        </GridPane.margin>
                                     </Group>
-                                    <Label id="check-box" stylesheets="@../Stylesheets/simpleStyle.css" text="Hvis ja, angiv da hvad borgeren søger om (afkrydsning af ydelser/§)" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                    <Label id="check-box" stylesheets="@../Stylesheets/simpleStyle.css" text="Hvis nej, angiv årsagen for det ikke opnåede mål." GridPane.rowIndex="2" GridPane.valignment="TOP">
                                        <font>
                                           <Font name="Arial" size="10.0" />
                                        </font>
