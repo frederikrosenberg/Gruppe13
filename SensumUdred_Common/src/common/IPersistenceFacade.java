@@ -26,7 +26,7 @@ public interface IPersistenceFacade {
      * @param _case the given case
      * @return the id from the database
      */
-    int addCase(String departmentName, ICase _case);
+    int addCase(ICase _case);
     
     /**
      * Adds a case worker from ICaseWorker and returns the id
@@ -150,10 +150,10 @@ public interface IPersistenceFacade {
     
     /**
      * Get a specific department
-     * @param id the given id
+     * @param departmentName the given id
      * @return the specific department or null if the department does not exist
      */
-    IDepartment getDepartment(String id);
+    IDepartment getDepartment(String departmentName);
     
     /**
      * Closes a case
