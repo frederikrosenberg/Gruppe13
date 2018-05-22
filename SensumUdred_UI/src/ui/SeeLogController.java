@@ -6,7 +6,9 @@
 package ui;
 
 import common.IBusinessFacade;
+import common.ICaseLog;
 import common.ILog;
+import common.ILoginAttemptLog;
 import common.Idleable;
 import common.LogType;
 import java.io.IOException;
@@ -82,7 +84,7 @@ public class SeeLogController implements Initializable, Idleable {
         business = GUI.getInstance().getBusiness();
 
         mb = new MainBackgroundController();
-        checker = new IdleChecker(5*60, this);
+        checker = new IdleChecker(5 * 60, this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
@@ -329,7 +331,48 @@ public class SeeLogController implements Initializable, Idleable {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText("User: " + item.getUserId() + "\t " + item.getLogType().name() + "\t Date: " + item.getDate());
+                    switch (item.getLogType()) {
+                        case CASE_VIEWED:
+                            ICaseLog caseviewed = (ICaseLog) item;
+                            setText("User: " + caseviewed.getUserId() + "\t " + "Så sagen: " + caseviewed.getCaseId() + "\t Dato: " + item.getDate());
+                            break;
+                        case OPEN_CASE:
+                            ICaseLog opencase = (ICaseLog) item;
+                            setText("User: " + opencase.getUserId() + "\t " + "Åbnede sagen: " + opencase.getCaseId() + "\t Dato: " + item.getDate());
+                            break;
+                        case CLOSE_CASE:
+                            ICaseLog closecase = (ICaseLog) item;
+                            setText("User: " + closecase.getUserId() + "\t " + "Lukket sagen: " + closecase.getCaseId() + "\t Dato: " + item.getDate());
+                            break;
+                        case LOGIN:
+                            ILoginAttemptLog login = (ILoginAttemptLog) item;
+                            setText("User: " + login.getUsername() + "\t " + "Logget ind" + "\t Dato: " + item.getDate());
+                            break;
+                        case LOGOUT:
+                            ILoginAttemptLog logout = (ILoginAttemptLog) item;
+                            setText("User: " + logout.getUsername() + "\t " + "Logget ud" + "\t Dato: " + item.getDate());
+                            break;
+                        case TIMEOUT:
+                            ILoginAttemptLog timeout = (ILoginAttemptLog) item;
+                            setText("User: " + timeout.getUsername() + "\t " + "Logget ud, grundet inaktivitet" + "\t Dato: " + item.getDate());
+                            break;
+                        case ATTEMPT_LOGIN:
+                            ILoginAttemptLog attempt = (ILoginAttemptLog) item;
+                            setText("User: " + attempt.getUsername() + "\t " + "Forsøgt login" + "\t Dato: " + item.getDate());
+                            break;
+                        case VIEW_ALL_CASES:
+                            setText("User: " + item.getUserId() + "\t " + "Set alle sager" + "\t Dato: " + item.getDate());
+                            break;
+                        case VIEW_CASEWORKERS_CASES:
+                            setText("User: " + item.getUserId() + "\t " + "Set aktive sager" + "\t Dato: " + item.getDate());
+                            break;
+                        case VIEW_LOG:
+                            setText("User: " + item.getUserId() + "\t " + "Set loggen" + "\t Dato: " + item.getDate());
+                            break;
+                        default:
+                            setText("User: " + item.getUserId() + "\t " + item.getLogType().toString().toLowerCase() + "\t Dato: " + item.getDate());
+                            break;
+                    }
                 }
             }
         });
