@@ -78,7 +78,7 @@ public class Department implements IDepartment {
 
         inactiveCases = new ArrayList<>();
         for (ICase inactiveCase : department.getInactiveCases()) {
-            inactiveCases.add(new Case(inactiveCase, findCaseWorker(inactiveCase.getCaseWorker().getUserId()), findCitizen(inactiveCase.getCitizen().getCpr()), false));
+            inactiveCases.add(new Case(inactiveCase, findCaseWorker(inactiveCase.getCaseWorker().getUserId()), findCitizen(inactiveCase.getCitizen().getId()), false));
         }
         name = department.getName();
         treatmentArea = department.getTreatmentArea();

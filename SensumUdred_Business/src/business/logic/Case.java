@@ -132,7 +132,7 @@ public class Case implements ICase {
      *
      * @return The citizen of the case's cpr number
      */
-    public int getCitizenCPR() {
+    public String getCitizenCPR() {
         return citizen.getCpr();
     }
 

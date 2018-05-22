@@ -70,7 +70,7 @@ public class CaseWorker extends Person implements ICaseWorker {
         this.userId = caseWorker.getUserId();
         this.department = department;
         for (ICase activeCase : caseWorker.getActiveCases()) {
-            Citizen citizen = department.findCitizen(activeCase.getCitizen().getCpr());
+            Citizen citizen = department.findCitizen(activeCase.getCitizen().getId());
             Case c = new Case(activeCase, this, citizen, true);
             cases.add(c);
         }
@@ -95,7 +95,7 @@ public class CaseWorker extends Person implements ICaseWorker {
             department.addCitizen((Citizen) citizen);
         }
         ICase c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), (Citizen) citizen, this, department.getName());
-        Persistence.getInstance().getPersistenceFacade().addCase(department.getName(), c);
+        Persistence.getInstance().getPersistenceFacade().addCase(c);
         cases.add((Case) c);
         return (Case) c;
     }
@@ -117,23 +117,6 @@ public class CaseWorker extends Person implements ICaseWorker {
                 itr.remove();
             }
         }
-        return true;
-    }
-
-    /**
-     * Edit an already existing case
-     *
-     * @param data The data to change
-     * @return True if the case is changed
-     */
-    public boolean editCase(Case c, ICitizenData data) {
-        c.setAvailableOffers(data.getAvailableOffers());
-        c.setCaseWorker((CaseWorker) data.getCaseWorker());
-        c.setCitizen((Citizen) data.getCitizen());
-        c.setConsent(data.getConsent());
-        c.setReason(data.getReason());
-        c.setSourceOfRequest(data.getSourceOfRequest());
-        c.setState(data.getState());
         return true;
     }
 

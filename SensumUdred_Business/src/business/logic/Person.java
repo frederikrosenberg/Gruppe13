@@ -14,6 +14,10 @@ import common.IPerson;
  */
 public class Person implements IPerson {
 
+    /**
+     * The id of the person
+     */
+    private int id;
     
     /**
      * The name of the person
@@ -87,4 +91,11 @@ public class Person implements IPerson {
     public String getDepartmentName() {
         return this.departmentName;
     }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+    
+    
 }
