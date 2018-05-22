@@ -1,5 +1,6 @@
 package business.logic;
 
+import business.Persistence;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
@@ -51,7 +52,7 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param userId The case workers user id
      */
     public CaseWorker(String name, String phoneNumber, String email, Department department, int employeeId, String userId) {
-        super(name, phoneNumber, email);
+        super(name, phoneNumber, email, department.getName());
         this.department = department;
         this.employeeId = employeeId;
         this.userId = userId;
@@ -64,12 +65,12 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param department The department the existing case worker works at
      */
     public CaseWorker(ICaseWorker caseWorker, Department department) {
-        super(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail());
+        super(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail(), department.getName());
         this.employeeId = caseWorker.getEmployeeId();
         this.userId = caseWorker.getUserId();
         this.department = department;
         for (ICase activeCase : caseWorker.getActiveCases()) {
-            Citizen citizen = department.findCitizen(activeCase.getCitizen().getCpr());
+            Citizen citizen = department.findCitizen(activeCase.getCitizen().getId());
             Case c = new Case(activeCase, this, citizen, true);
             cases.add(c);
         }
@@ -82,20 +83,21 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @return The new case opened
      */
     public Case openCase(ICitizenData data) {
-        List<? extends ICitizen> citizens = department.getCitizens();
-        Citizen citizen = null;
-        for (ICitizen c : citizens) {
+        ICitizen citizen = null;
+        for (ICitizen c : Persistence.getInstance().getPersistenceFacade().getCitizens(department.getName())) {
             if (c.getCpr() == data.getCitizen().getCpr()) {
                 citizen = (Citizen) c;
             }
         }
         if (citizen == null) {
             citizen = new Citizen(data.getCitizen());
-            department.addCitizen(citizen);
+            Persistence.getInstance().getPersistenceFacade().addCitizen(citizen);
+            department.addCitizen((Citizen) citizen);
         }
-        Case c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), citizen, this);
-        cases.add(c);
-        return c;
+        ICase c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), (Citizen) citizen, this, department.getName());
+        Persistence.getInstance().getPersistenceFacade().addCase(c);
+        cases.add((Case) c);
+        return (Case) c;
     }
 
     /**
@@ -109,6 +111,7 @@ public class CaseWorker extends Person implements ICaseWorker {
         for (Iterator<Case> itr = cases.iterator(); itr.hasNext();) {
             aCase = itr.next();
             if (aCase.getId() == caseId) {
+                Persistence.getInstance().getPersistenceFacade().closeCase(department.getName(), caseId);
                 aCase.closeCase();
                 department.addInactiveCase(aCase);
                 itr.remove();
@@ -118,29 +121,12 @@ public class CaseWorker extends Person implements ICaseWorker {
     }
 
     /**
-     * Edit an already existing case
-     *
-     * @param data The data to change
-     * @return True if the case is changed
-     */
-    public boolean editCase(Case c, ICitizenData data) {
-        c.setAvailableOffers(data.getAvailableOffers());
-        c.setCaseWorker((CaseWorker) data.getCaseWorker());
-        c.setCitizen((Citizen) data.getCitizen());
-        c.setConsent(data.getConsent());
-        c.setReason(data.getReason());
-        c.setSourceOfRequest(data.getSourceOfRequest());
-        c.setState(data.getState());
-        return true;
-    }
-
-    /**
      * Gets all the active cases
      *
      * @return All the active cases
      */
     public List<? extends ICase> getActiveCases() {
-        return cases;
+        return Persistence.getInstance().getPersistenceFacade().getCaseWorkersCases(department.getName(), employeeId);
     }
 
     /**

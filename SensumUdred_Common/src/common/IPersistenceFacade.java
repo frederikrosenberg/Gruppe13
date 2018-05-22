@@ -157,6 +157,7 @@ public interface IPersistenceFacade {
     
     /**
      * Closes a case
+     * @param departmentName The department name
      * @param caseId The case to close
      * @return True if the case is closed
      */
