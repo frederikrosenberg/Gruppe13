@@ -203,7 +203,7 @@ public class DataCase implements ICase, Serializable {
      * @return the department name
      */
     @Override
-    public String getDepartment() {
+    public String getDepartmentName() {
         return department;
     }
 

@@ -1,5 +1,6 @@
 package persistence;
 
+import common.Gender;
 import common.ICase;
 import common.ICaseLog;
 import common.ICaseWorker;
@@ -548,7 +549,28 @@ public class PersistenceFacade implements IPersistenceFacade {
     
     @Override
     public ICitizen getCitizen(String department, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //SELECT * FROM "Citizen" AS C INNER JOIN "Person" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ?
+        
+        try (Connection con = getDbConnection()) {
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM \"Citizen\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ?");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    private DataCitizen getCitizenFromResultSet(ResultSet set) throws SQLException {
+        return new DataCitizen(
+                set.getString("cpr"), 
+                set.getString("address"), 
+                Gender.values()[set.getInt("gender")],
+                set.getInt("id"), 
+                set.getString("departmentname"), 
+                set.getString("name"), 
+                set.getString("phonenumber"), 
+                set.getString("email")
+        );
     }
     
     /**
@@ -578,30 +600,59 @@ public class PersistenceFacade implements IPersistenceFacade {
      * @return All the caseworkers from a department
      */
     @Override
-    public List<ICaseWorker> getCaseworkers(String departmentName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<? extends ICaseWorker> getCaseworkers(String departmentName) {
+        //SELECT * FROM "CaseWorker" AS C INNER JOIN "Person" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.DepartmentName = ?
+        
+        try (Connection con = getDbConnection()) {
+            PreparedStatement statement = con.prepareStatement("//SELECT * FROM \"CaseWorker\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName");
+            statement.setString(1, departmentName);
+            ResultSet set = statement.executeQuery();
+            List<DataCaseWorker> workers = new ArrayList<>();
+            while (set.next()) {
+                workers.add(getCaseWorkerFromResultSet(set));
+            }
+            return workers;
+        } catch (SQLException ex) {
+            Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
 
     /**
      * Gets a caseworker
      * @param departmentName The department name
-     * @param userId The caseworkers user id
+     * @param id The caseworkers id
      * @return A caseworker
      */
     @Override
-    public ICaseWorker getCaseworker(String departmentName, String userId) {
+    public ICaseWorker getCaseworker(String departmentName, int id) {
         //SELECT * FROM "CaseWorker" AS C INNER JOIN "Person" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ? AND C.DepartmentName = ?
         
         try (Connection con = getDbConnection()) {
             PreparedStatement statement = con.prepareStatement("SELECT * FROM \"CaseWorker\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ? AND C.DepartmentName = ?");
             statement.setInt(1, id);
             statement.setString(2, departmentName);
-            
+            ResultSet set = statement.executeQuery();
+            set.next();
+            return getCaseWorkerFromResultSet(set);
         } catch (SQLException ex) {
             Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return null;
+    }
+    
+    private DataCaseWorker getCaseWorkerFromResultSet(ResultSet set) throws SQLException {
+        return new DataCaseWorker(
+                    set.getString("userid"), 
+                    set.getInt("employeeid"), 
+                    set.getInt("id"), 
+                    set.getString("departmentname"), 
+                    set.getString("name"),
+                    set.getString("phonenumber"), 
+                    set.getString("email")
+            );
     }
     
     

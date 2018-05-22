@@ -2,6 +2,7 @@ package persistence;
 
 import common.ICase;
 import common.ICaseWorker;
+import common.IPerson;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,24 @@ public class DataCaseWorker extends DataPerson implements ICaseWorker, Serializa
             cases.add(_case);
         }
     }
+
+    /**
+     *
+     * @param userId
+     * @param employeeId
+     * @param id
+     * @param departmentName
+     * @param name
+     * @param phoneNumber
+     * @param email
+     */
+    public DataCaseWorker(String userId, int employeeId, int id, String departmentName, String name, String phoneNumber, String email) {
+        super(id, departmentName, name, phoneNumber, email);
+        this.userId = userId;
+        this.employeeId = employeeId;
+    }
+    
+    
 
     /**
      * The employee id of the case worker

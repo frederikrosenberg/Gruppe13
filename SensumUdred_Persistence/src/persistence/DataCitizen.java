@@ -54,6 +54,15 @@ public class DataCitizen extends DataPerson implements ICitizen, Serializable {
         relationshipStatus = citizen.getRelationshipStatus();
         activeCase = null;
     }
+
+    public DataCitizen(String cpr, String address, Gender gender, int id, String departmentName, String name, String phoneNumber, String email) {
+        super(id, departmentName, name, phoneNumber, email);
+        this.cpr = cpr;
+        this.address = address;
+        this.gender = gender;
+    }
+    
+    
     
     /**
      * Sets the active case for the citizen
