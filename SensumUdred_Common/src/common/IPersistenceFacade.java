@@ -167,7 +167,7 @@ public interface IPersistenceFacade {
      * @param departmentName Which department to get from
      * @return All the caseworkers from a department
      */
-    List<ICaseWorker> getCaseworkers(String departmentName);
+    List<? extends ICaseWorker> getCaseworkers(String departmentName);
     
     /**
      * Gets a caseworker
