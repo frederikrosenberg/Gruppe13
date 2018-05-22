@@ -8,6 +8,7 @@ import common.IDepartment;
 import common.ILog;
 import common.ILoginAttemptLog;
 import common.IPersistenceFacade;
+import common.IPerson;
 import common.IUser;
 import common.LogType;
 import common.Role;
@@ -115,17 +116,32 @@ public class PersistenceFacade implements IPersistenceFacade {
         }
         return null;
     }
-
+    
     /**
      * Adds a case from a ICase and returns the id
      * @param _case the given case
      * @return the id from the database
      */
     @Override
-    public int addCase(ICase _case) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int addCase(String departmentName, ICase _case) {
+        //INSERT INTO "Case" (DepartmentName, CaseWorkerId, CitizenId, State, Consent, Reason, AvailableOffers, SourceOfRequest) VALUES (?,?,?,?,?,?,?,?) RETURNING Id
+        
+        try (Connection con = getDbConnection()) {
+            PreparedStatement statement = con.prepareStatement("INSERT INTO \"Case\" (DepartmentName, CaseWorkerId, CitizenId, State, Consent, Reason, AvailableOffers, SourceOfRequest) VALUES (?,?,?,?,?,?,?,?) RETURNING Id");
+            statement.setString(1, _case.getDepartment().getName());
+            statement.setInt(2, _case.);
+            
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return -1;
     }
-
+    
+    
     /**
      * Adds a case worker from ICaseWorker and returns the id
      * Does not add
@@ -134,7 +150,38 @@ public class PersistenceFacade implements IPersistenceFacade {
      */
     @Override
     public int addCaseWorker(ICaseWorker caseWorker) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //INSERT INTO "Person" (DepartmentName, Email, PhoneNumber, Name) VALUES (?,?,?,?) RETURNING Id
+        //INSERT INTO "CaseWorker" (Id, DepartmentName, UserId, EmployeeId) VALUES (Id,DepartmentName,?,?)
+        
+        try (Connection con = getDbConnection()) {
+            int id = insertPerson(con, caseWorker);
+            
+            PreparedStatement statement = con.prepareStatement("INSERT INTO \"CaseWorker\" (Id, DepartmentName, UserId, EmployeeId) VALUES (?,?,?,?)");
+            statement.setInt(1, id);
+            statement.setString(2, caseWorker.getDepartmentName());
+            statement.setString(3, caseWorker.getUserId());
+            statement.setInt(4, caseWorker.getEmployeeId());
+            statement.execute();
+            
+            return id;
+        } catch (SQLException ex) {
+            Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return -1;
+    }
+    
+    
+    private int insertPerson(Connection con, IPerson person) throws SQLException {
+        //INSERT INTO "Person" (DepartmentName, Email, PhoneNumber, Name) VALUES (?,?,?,?) RETURNING Id
+        
+        PreparedStatement statement = con.prepareStatement("INSERT INTO \"Person\" (DepartmentName, Email, PhoneNumber, Name) VALUES (?,?,?,?) RETURNING Id");
+        statement.setString(1, person.getDepartmentName());
+        statement.setString(2, person.getEmail());
+        statement.setString(3, person.getPhoneNumber());
+        statement.setString(4, person.getPhoneNumber());
+        ResultSet set = statement.executeQuery();
+        return set.getInt(1);
     }
 
     /**
@@ -174,7 +221,28 @@ public class PersistenceFacade implements IPersistenceFacade {
      */
     @Override
     public int addCitizen(ICitizen citizen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //INSERT INTO "Person" (DepartmentName, Email, PhoneNumber, Name) VALUES (?,?,?,?) RETURNING Id
+        //INSERT INTO "Citizen" (Id, DepartmentName, Cpr, Gender, Address, relationshipStatus) VALUES (Id, DepartmentName,?,?,?,?)
+        
+        try (Connection con = getDbConnection()) {
+            int id = insertPerson(con, citizen);
+            
+            PreparedStatement statement = con.prepareStatement("INSERT INTO \"Citizen\" (Id, DepartmentName, Cpr, Gender, Address, relationshipStatus) VALUES (Id, DepartmentName,?,?,?,?)");
+            statement.setInt(1, id);
+            statement.setString(2, citizen.getDepartmentName());
+            statement.setString(3, citizen.getCpr());
+            statement.setInt(4, citizen.getGender().ordinal());
+            statement.setString(5, citizen.getAddress());
+            statement.setInt(6, citizen.getRelationshipStatus().ordinal());
+            statement.execute();
+            
+            return id;
+        } catch (SQLException ex) {
+            Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return -1;
     }
 
     /**
@@ -341,35 +409,6 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
 
     /**
-     * Get a specific case
-     * @param caseId the case id
-     * @return the given case with the id, or null if the case does not exist 
-     */
-    @Override
-    public ICase getCase(int caseId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Get all the cases
-     * @return all the cases
-     */
-    @Override
-    public List<ICase> getAllCases() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    /**
-     * Get all the cases belonging to that case worker
-     * @param caseWorkerId the id of the case worker
-     * @return the cases for the case worker, empty if the case worker does not exist
-     */
-    @Override
-    public List<ICase> getCaseWorkersCases(int caseWorkerId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
      * Get a specific user
      * @param userId the id of the user
      * @return the given user or null if the user does not exist
@@ -433,25 +472,6 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
 
     /**
-     * Get a specific citizen
-     * @param id the id of the citizen
-     * @return the given citizen or null if the citizen does not exist
-     */
-    @Override
-    public ICitizen getCitizen(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Get all the citizens
-     * @return all the citizens 
-     */
-    @Override
-    public List<ICitizen> getCitizens() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
      * Get a specific department
      * @param id the given id
      * @return the specific department or null if the department does not exist
@@ -476,6 +496,96 @@ public class PersistenceFacade implements IPersistenceFacade {
         }
         
         return null;
+    }
+
+    /**
+     * Gets a specific case from a citizen cpr
+     * @param name The citizen cpr
+     * @return A specific case from a citizen cpr
+     */
+    @Override
+    public ICase getCase(String department, int caseId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+     
+    @Override
+    public ICase getCase(String department, String cpr) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Gets all inactive cases from a department
+     * @param departmentName The department name
+     * @return All inactice cases from a department
+     */
+    @Override
+    public List<ICase> getAllCases(String departmentName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    @Override
+    public List<ICase> getAllInactiveCases(String departmentName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Get all the cases belonging to that case worker
+     * @param caseWorkerId the id of the case worker
+     * @return the cases for the case worker, empty if the case worker does not exist
+     */
+    @Override
+    public List<ICase> getCaseWorkersCases(String department, int caseWorkerId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    @Override
+    public ICitizen getCitizen(String department, int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    /**
+     * Get all the citizens from a department
+     * @param departmentName The department name
+     * @return all the citizens 
+     */
+    @Override
+    public List<ICitizen> getCitizens(String departmentName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Closes a case
+     * @param departmentName
+     * @param caseId The case to close
+     * @return True if the case is closed
+     */
+    @Override
+    public boolean closeCase(String departmentName, int caseId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Gets all the caseworkers from a department
+     * @param departmentName Which department to get from
+     * @return All the caseworkers from a department
+     */
+    @Override
+    public List<ICaseWorker> getCaseworkers(String departmentName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Gets a caseworker
+     * @param departmentName The department name
+     * @param userId The caseworkers user id
+     * @return A caseworker
+     */
+    @Override
+    public ICaseWorker getCaseworker(String departmentName, String userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
