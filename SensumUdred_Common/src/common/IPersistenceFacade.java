@@ -150,10 +150,10 @@ public interface IPersistenceFacade {
     
     /**
      * Get a specific department
-     * @param id the given id
+     * @param departmentName the given id
      * @return the specific department or null if the department does not exist
      */
-    IDepartment getDepartment(int id);
+    IDepartment getDepartment(String departmentName);
     
     /**
      * Closes a case
