@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
  * @author Sebastian Christensen
  * @author Kasper Schødts
  */
-public class TimeThread extends Thread {
+public class TimeChecker implements Runnable {
 
     /**
      * the value of the time, as a string
@@ -33,7 +33,7 @@ public class TimeThread extends Thread {
      *
      * @param label the label from GUI
      */
-    public TimeThread(Label label) {
+    public TimeChecker(Label label) {
         this.label = label;
     }
 
@@ -47,8 +47,7 @@ public class TimeThread extends Thread {
         //Runs eternally:
         while (true) {
             Date moment = new Date();
-            Locale dk = new Locale("dk");
-
+            
             DateFormat timeFormatter = DateFormat.getTimeInstance(DateFormat.DEFAULT);
 
             String timeout = timeFormatter.format(moment);

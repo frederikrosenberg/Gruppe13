@@ -45,7 +45,7 @@ public class GUI extends Application implements IUI {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
         Scene scene = new Scene(root);
 
         gui.stage = stage;
@@ -55,6 +55,11 @@ public class GUI extends Application implements IUI {
         stage.show();
     }
 
+    
+    private void loadLoginScreen(){
+        
+    }
+    
     /**
      * Injects a reference to the IBusinessFacase into the starter class.
      *
