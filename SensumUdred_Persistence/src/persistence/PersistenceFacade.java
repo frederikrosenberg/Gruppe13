@@ -123,17 +123,22 @@ public class PersistenceFacade implements IPersistenceFacade {
      * @return the id from the database
      */
     @Override
-    public int addCase(String departmentName, ICase _case) {
+    public int addCase(ICase _case) {
         //INSERT INTO "Case" (DepartmentName, CaseWorkerId, CitizenId, State, Consent, Reason, AvailableOffers, SourceOfRequest) VALUES (?,?,?,?,?,?,?,?) RETURNING Id
         
         try (Connection con = getDbConnection()) {
             PreparedStatement statement = con.prepareStatement("INSERT INTO \"Case\" (DepartmentName, CaseWorkerId, CitizenId, State, Consent, Reason, AvailableOffers, SourceOfRequest) VALUES (?,?,?,?,?,?,?,?) RETURNING Id");
             statement.setString(1, _case.getDepartment().getName());
-            statement.setInt(2, _case.);
-            
-            
-            
-            
+            statement.setInt(2, _case.getCaseWorker().getId());
+            statement.setInt(3, _case.getCitizen().getId());
+            statement.setString(4, _case.getState());
+            statement.setBoolean(5, _case.getConsent());
+            statement.setString(6, _case.getReason());
+            statement.setString(7, _case.getAvailableOffers());
+            statement.setString(8, _case.getSourceOfRequest());
+            ResultSet set = statement.executeQuery();
+            set.next();
+            return set.getInt(1);
         } catch (SQLException ex) {
             Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -585,7 +590,18 @@ public class PersistenceFacade implements IPersistenceFacade {
      */
     @Override
     public ICaseWorker getCaseworker(String departmentName, String userId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //SELECT * FROM "CaseWorker" AS C INNER JOIN "Person" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ? AND C.DepartmentName = ?
+        
+        try (Connection con = getDbConnection()) {
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM \"CaseWorker\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ? AND C.DepartmentName = ?");
+            statement.setInt(1, id);
+            statement.setString(2, departmentName);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
     }
     
     

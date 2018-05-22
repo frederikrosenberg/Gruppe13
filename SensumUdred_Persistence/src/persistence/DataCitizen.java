@@ -20,7 +20,7 @@ public class DataCitizen extends DataPerson implements ICitizen, Serializable {
     /**
      * The cpr number of the citizen
      */
-    private int cpr;
+    private String cpr;
     
     /**
      * The address of the citizen
@@ -68,7 +68,7 @@ public class DataCitizen extends DataPerson implements ICitizen, Serializable {
      * @return the cpr number
      */
     @Override
-    public int getCpr() {
+    public String getCpr() {
         return cpr;
     }
     

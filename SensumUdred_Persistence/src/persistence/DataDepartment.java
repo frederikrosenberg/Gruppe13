@@ -123,7 +123,7 @@ public class DataDepartment implements IDepartment, Serializable {
      * @return the found citizen
      * @throws IllegalArgumentException if not found, because this should be found while saving otherwise something is missing
      */
-    public DataCitizen findCitizen(int cpr) {
+    public DataCitizen findCitizen(String cpr) {
         for (DataCitizen citizen : citizens) {
             if (citizen.getCpr() == cpr) return citizen;
         }

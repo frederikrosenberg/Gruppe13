@@ -3,6 +3,7 @@ package persistence;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
+import common.IDepartment;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -27,6 +28,11 @@ public class DataCase implements ICase, Serializable {
      * The case worker assigned to the case
      */
     private DataCaseWorker caseWorker;
+    
+    /**
+     * The department of the case
+     */
+    private String department;
 
     /**
      * The state of the citizen
@@ -190,6 +196,15 @@ public class DataCase implements ICase, Serializable {
     @Override
     public Date getClosingDate() {
         return closingDate;
+    }
+
+    /**
+     * Gets the department of the case
+     * @return the department name
+     */
+    @Override
+    public String getDepartment() {
+        return department;
     }
 
 }
