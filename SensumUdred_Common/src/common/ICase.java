@@ -86,5 +86,5 @@ public interface ICase {
      * Gets the department name
      * @return The department name
      */
-    String getDepartment();
+    String getDepartmentName();
 }
