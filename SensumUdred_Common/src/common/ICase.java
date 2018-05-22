@@ -83,8 +83,8 @@ public interface ICase {
     Date getClosingDate();
     
     /**
-     * Gets the department
-     * @return The department
+     * Gets the department name
+     * @return The department name
      */
-    IDepartment getDepartment();
+    String getDepartmentName();
 }

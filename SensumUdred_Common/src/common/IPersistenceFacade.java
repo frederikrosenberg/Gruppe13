@@ -173,9 +173,9 @@ public interface IPersistenceFacade {
     /**
      * Gets a caseworker
      * @param departmentName The department name
-     * @param userId The caseworkers user id
+     * @param id The caseworkers person id
      * @return A caseworker
      */
-    ICaseWorker getCaseworker(String departmentName, String userId);
+    ICaseWorker getCaseworker(String departmentName, int id);
     
 }
