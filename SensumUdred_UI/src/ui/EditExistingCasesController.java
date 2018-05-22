@@ -60,7 +60,6 @@ public class EditExistingCasesController implements Initializable, Idleable {
     private Label noCasesFound;
     @FXML
     private AnchorPane seeSpecificCase;
-    @FXML
     private Label preview_Label;
 
     private static MainBackgroundController mb;
@@ -89,6 +88,28 @@ public class EditExistingCasesController implements Initializable, Idleable {
     private TextArea citizenStillRequires;
     @FXML
     private TextArea caseReviewFinalComments;
+    @FXML
+    private Label preview_Name;
+    @FXML
+    private Label preview_CPR;
+    @FXML
+    private Label preview_Adress;
+    @FXML
+    private Label preview_PhoneNumber;
+    @FXML
+    private Label preview_Email;
+    @FXML
+    private Label preview_CaseDetails;
+    @FXML
+    private Label preview_CaseReason;
+    @FXML
+    private Label preview_CaseOffers;
+    @FXML
+    private Label preview_WorkerId;
+    @FXML
+    private Label preview_WorkerName;
+    @FXML
+    private Label preview_WorkerEmail;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -207,7 +228,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
     private void showCasePreview() {
         editCasesGridPane.setVisible(false);
         seeSpecificCase.setVisible(true);
-        preview_Label.setText(convertCase2String(casepreview));
+        convertCase2String(casepreview);
     }
 
     /**
@@ -217,26 +238,21 @@ public class EditExistingCasesController implements Initializable, Idleable {
      * @param c the case to convert
      * @return String of the case's data
      */
-    private String convertCase2String(ICase c) {
-        String rep = "";
+    private void convertCase2String(ICase c) {
+        preview_CaseDetails.setText("#" + c.getId() + "\tSagsstatus: " + c.getState() + "\t " + c.getOpeningDate() + "\n\n");
 
-        rep += "#" + c.getId() + "\tSagsstatus: " + c.getState() + "\t " + c.getOpeningDate() + "\n\n";
-
-        rep += "Borger:\n";
-        rep += c.getCitizen().getCpr() + "\n";
-        rep += c.getCitizen().getName() + "\n";
-        rep += c.getCitizen().getAddress() + "\n";
-        rep += c.getCitizen().getPhoneNumber() + "\n";
-        rep += c.getCitizen().getEmail() + "\n";
-
-        rep += "\n\n\n";
-
-        rep += c.getReason() + "\n";
-        rep += c.getAvailableOffers() + "\n";
-
-        rep += "Tilhørende sagsbehandler: " + c.getCaseWorker().getName() + "(" + c.getCaseWorker().getUserId() + ")";
-
-        return rep;
+        preview_CPR.setText(String.valueOf(c.getCitizen().getCpr()));
+        preview_Name.setText(c.getCitizen().getName());
+        preview_Adress.setText(c.getCitizen().getAddress());
+        preview_PhoneNumber.setText(c.getCitizen().getPhoneNumber());
+        preview_Email.setText(c.getCitizen().getEmail());
+        
+        preview_CaseReason.setText(c.getReason());
+        preview_CaseOffers.setText(c.getAvailableOffers());
+ 
+        preview_WorkerId.setText(c.getCaseWorker().getUserId());
+        preview_WorkerName.setText(c.getCaseWorker().getName());
+        preview_WorkerEmail.setText(c.getCaseWorker().getEmail());
     }
 
     /**
