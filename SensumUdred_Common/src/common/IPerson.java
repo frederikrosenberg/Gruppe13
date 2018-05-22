@@ -35,4 +35,10 @@ public interface IPerson {
      * @return The department name
      */
     String getDepartmentName();
+    
+    /**
+     * Gets the id of the person
+     * @return The id of the person
+     */
+    int getId();
 }
