@@ -65,15 +65,7 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param department The department the existing case worker works at
      */
     public CaseWorker(ICaseWorker caseWorker, Department department) {
-        super(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail(), department.getName());
-        this.employeeId = caseWorker.getEmployeeId();
-        this.userId = caseWorker.getUserId();
-        this.department = department;
-        for (ICase activeCase : caseWorker.getActiveCases()) {
-            Citizen citizen = department.findCitizen(activeCase.getCitizen().getId());
-            Case c = new Case(activeCase, this, citizen, true);
-            cases.add(c);
-        }
+        this(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail(), department, caseWorker.getEmployeeId(), caseWorker.getUserId());
     }
 
     /**
@@ -85,7 +77,7 @@ public class CaseWorker extends Person implements ICaseWorker {
     public Case openCase(ICitizenData data) {
         ICitizen citizen = null;
         for (ICitizen c : Persistence.getInstance().getPersistenceFacade().getCitizens(department.getName())) {
-            if (c.getCpr() == data.getCitizen().getCpr()) {
+            if (c.getCpr().equals(data.getCitizen().getCpr())) {
                 citizen = (Citizen) c;
             }
         }

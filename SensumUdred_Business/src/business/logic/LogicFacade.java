@@ -70,10 +70,9 @@ public class LogicFacade implements ILogicFacade {
     }
 
     /**
-     * Finds an active case with a specific citizen cpr or case id
+     * Finds an active case with a specific case id
      *
-     * @param value The value of cpr/case id
-     * @param isCpr True if its a cpr
+     * @param caseId The case id
      * @return An active case
      */
     @Override
@@ -82,10 +81,10 @@ public class LogicFacade implements ILogicFacade {
     }
 
     /**
-     * Finds an active case with a specific citizen name
+     * Finds an active case with a specific citizen cpr
      *
-     * @param name The citizen name
-     * @return An active case with a specific citizen name
+     * @param cpr The citizen cpr
+     * @return An active case with a specific citizen cpr
      */
     @Override
     public ICase findActiveCase(String cpr) {
@@ -119,6 +118,8 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public void setCaseWorker(String userId) {
+        ICaseWorker caseWorker = Persistence.getInstance().getPersistenceFacade().getCaseworker(null, userId);
+        department = new Department(Persistence.getInstance().getPersistenceFacade().getDepartment(caseWorker.getDepartmentName()));
         this.caseWorker = new CaseWorker(Persistence.getInstance().getPersistenceFacade().getCaseworker(department.getName(), userId), department);
     }
 

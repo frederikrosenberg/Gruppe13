@@ -89,6 +89,7 @@ public class Case implements ICase {
      * @param sourceOfRequest Source of request
      * @param citizen The citizen the case is about
      * @param caseWorker The case worker of the case
+     * @param departmentName The department name
      */
     public Case(String state, boolean consent, String reason, String availableOffers, String sourceOfRequest, Citizen citizen, CaseWorker caseWorker, String departmentName) {
         this.state = state;

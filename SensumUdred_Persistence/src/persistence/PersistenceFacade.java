@@ -662,11 +662,11 @@ public class PersistenceFacade implements IPersistenceFacade {
     @Override
     public ICaseWorker getCaseworker(String departmentName, String userId) {
         //SELECT * FROM "CaseWorker" AS C INNER JOIN "Person" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ? AND C.DepartmentName = ?
-        
+        System.out.println("userid: " + userId);
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM \"CaseWorker\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ? AND C.DepartmentName = ?");
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM \"CaseWorker\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.UserId = ?");
             statement.setString(1, userId);
-            statement.setString(2, departmentName);
+            //statement.setString(2, departmentName);
             ResultSet set = statement.executeQuery();
             set.next();
             return getCaseWorkerFromResultSet(set);
@@ -796,7 +796,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         return new DataUser(
                 Role.values()[set.getInt("role")],
                 set.getString("username"),
-                set.getString("userid"),
+                set.getString("id"),
                 set.getString("password"),
                 set.getString("name"),
                 set.getBoolean("active")

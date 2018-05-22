@@ -26,7 +26,6 @@ public class LoggingFacade implements ILoggingFacade{
     
     /**
      * Constructs a logging facade
-     * @param persistence The persistence instance
      */
     public LoggingFacade() {
         logs = new ArrayList();
