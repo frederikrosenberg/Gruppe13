@@ -163,4 +163,11 @@ public class LogicFacade implements ILogicFacade {
     public void createCaseWorker(String name, String phoneNumber, String email, int employeeId, String userId) {
         department.addCaseWorker(name, phoneNumber, email, employeeId, userId);
     }
+
+    @Override
+    public void setDepartment(IDepartment department) {
+        this.department = new Department(department);
+    }
+    
+    
 }

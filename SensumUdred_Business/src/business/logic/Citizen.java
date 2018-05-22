@@ -20,7 +20,7 @@ public class Citizen extends Person implements ICitizen {
     /**
      * The CPR number of the citizen
      */
-    private int cpr;
+    private String cpr;
 
     /**
      * The address of the citizen
@@ -53,7 +53,7 @@ public class Citizen extends Person implements ICitizen {
      * @param relationshipStatus The citizens relationship status
      * @param gender The citizens gender
      */
-    public Citizen(String name, String mobileNumber, String email, int cpr, String address, RelationshipStatus relationshipStatus, Gender gender, String departmentName) {
+    public Citizen(String name, String mobileNumber, String email, String cpr, String address, RelationshipStatus relationshipStatus, Gender gender, String departmentName) {
         super(name, mobileNumber, email, departmentName);
         this.cpr = cpr;
         this.address = address;
@@ -80,7 +80,7 @@ public class Citizen extends Person implements ICitizen {
      * @return the citizens cpr number
      */
     @Override
-    public int getCpr() {
+    public String getCpr() {
         return cpr;
     }
 

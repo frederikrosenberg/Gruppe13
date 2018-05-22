@@ -41,7 +41,7 @@ public class BusinessFacade implements IBusinessFacade {
     /**
      * Instance of the IPersistenceFacade
      */
-    public static IPersistenceFacade persistence;
+    private IPersistenceFacade persistence;
     
     /**
      * Instance of the LoggingFacade
@@ -72,6 +72,7 @@ public class BusinessFacade implements IBusinessFacade {
         }
         if (security.hasAccess(Role.CASEWORKER)) {
             logic.setCaseWorker(id);
+            logic.setDepartment(Persistence.getInstance().getPersistenceFacade().getDepartment(logic.getCaseWorker().getDepartmentName()));
         }
         loggingFacade.createLog(LogType.LOGIN, id);
         return true;
@@ -205,7 +206,6 @@ public class BusinessFacade implements IBusinessFacade {
      */
     @Override
     public void injectPersistence(IPersistenceFacade persistence) {
-        this.persistence = persistence;
         Persistence.getInstance().injectPersistence(persistence);
         loggingFacade = new LoggingFacade();
         load();

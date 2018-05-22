@@ -101,4 +101,10 @@ public interface ILogicFacade {
      * @param userId the user id of the case worker
      */
     void createCaseWorker(String name, String phoneNumber, String email, int employeeId, String userId);
+    
+    /**
+     * Sets the department of the logged in user
+     * @param department Which department to set
+     */
+    void setDepartment(IDepartment department);
 }
