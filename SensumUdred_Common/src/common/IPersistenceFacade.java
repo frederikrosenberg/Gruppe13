@@ -31,7 +31,7 @@ public interface IPersistenceFacade {
      * @param _case the given case
      * @return the id from the database
      */
-    int addCase(ICase _case);
+    int addCase(String departmentName, ICase _case);
     
     /**
      * Adds a case worker from ICaseWorker and returns the id
@@ -96,20 +96,35 @@ public interface IPersistenceFacade {
      * @param caseId the case id
      * @return the given case with the id, or null if the case does not exist 
      */
-    ICase getCase(int caseId);
+    ICase getCase(String department, int caseId);
     
     /**
-     * Get all the cases
+     * Gets a specific case from a citizen cpr
+     * @param name The citizen cpr
+     * @return A specific case from a citizen cpr
+     */
+    ICase getCase(String department, String cpr);
+    
+    /**
+     * Get all the cases from a department
+     * @param departmentName The department name
      * @return all the cases
      */
-    List<ICase> getAllCases();
+    List<ICase> getAllCases(String departmentName);
+    
+    /**
+     * Gets all inactive cases from a department
+     * @param departmentName The department name
+     * @return All inactice cases from a department
+     */
+    List<ICase> getAllInactiveCases(String departmentName);
     
     /**
      * Get all the cases belonging to that case worker
      * @param caseWorkerId the id of the case worker
      * @return the cases for the case worker, empty if the case worker does not exist
      */
-    List<ICase> getCaseWorkersCases(int caseWorkerId);
+    List<ICase> getCaseWorkersCases(String department, int caseWorkerId);
     
     /**
      * Get a specific user
@@ -129,13 +144,14 @@ public interface IPersistenceFacade {
      * @param id the id of the citizen
      * @return the given citizen or null if the citizen does not exist
      */
-    ICitizen getCitizen(int id);
+    ICitizen getCitizen(String department, int id);
     
     /**
-     * Get all the citizens
+     * Get all the citizens from a department
+     * @param departmentName The department name
      * @return all the citizens 
      */
-    List<ICitizen> getCitizens();
+    List<ICitizen> getCitizens(String departmentName);
     
     /**
      * Get a specific department
@@ -143,4 +159,27 @@ public interface IPersistenceFacade {
      * @return the specific department or null if the department does not exist
      */
     IDepartment getDepartment(int id);
+    
+    /**
+     * Closes a case
+     * @param caseId The case to close
+     * @return True if the case is closed
+     */
+    boolean closeCase(String departmentName, int caseId);
+  
+    /**
+     * Gets all the caseworkers from a department
+     * @param departmentName Which department to get from
+     * @return All the caseworkers from a department
+     */
+    List<ICaseWorker> getCaseworkers(String departmentName);
+    
+    /**
+     * Gets a caseworker
+     * @param departmentName The department name
+     * @param userId The caseworkers user id
+     * @return A caseworker
+     */
+    ICaseWorker getCaseworker(String departmentName, String userId);
+    
 }
