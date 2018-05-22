@@ -25,7 +25,7 @@ public class UICitizen implements ICitizen {
     /**
      * The social security number of the citizen.
      */
-    private final int cpr;
+    private final String cpr;
     
     /**
      * The address of the citizen.
@@ -68,7 +68,7 @@ public class UICitizen implements ICitizen {
      * @param relstat The citizens relationship status
      * @param gender The citizens gender
      */
-    public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat) {
+    public UICitizen(String cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat) {
         this(cpr, address, name, mobNumber, email, gender, relstat, null);
     }
 
@@ -85,7 +85,7 @@ public class UICitizen implements ICitizen {
      * @param gender The citizens gender
      * @param activeCase The active case of the citizen
      */
-    public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat, ICase activeCase) {
+    public UICitizen(String cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat, ICase activeCase) {
         this.cpr = cpr;
         this.address = address;
         this.name = name;
@@ -102,7 +102,7 @@ public class UICitizen implements ICitizen {
      * @return the social security number
      */
     @Override
-    public int getCpr() {
+    public String getCpr() {
         return this.cpr;
     }
 

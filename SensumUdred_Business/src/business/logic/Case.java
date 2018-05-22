@@ -121,7 +121,7 @@ public class Case implements ICase {
         sourceOfRequest = c.getSourceOfRequest();
         openingDate = c.getOpeningDate();
         closingDate = c.getClosingDate();
-        departmentName = c.getDepartment().getName();
+        departmentName = c.getDepartmentName();
         if (isActive) {
             citizen.setActiveCase(this);
         }
@@ -329,7 +329,9 @@ public class Case implements ICase {
     }
 
     @Override
-    public IDepartment getDepartment() {
-        return Persistence.getInstance().getPersistenceFacade().getDepartment(departmentName);
+    public String getDepartmentName() {
+        return departmentName;
     }
+
+    
 }
