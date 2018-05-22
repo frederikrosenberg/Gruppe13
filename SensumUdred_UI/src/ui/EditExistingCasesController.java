@@ -98,7 +98,6 @@ public class EditExistingCasesController implements Initializable, Idleable {
     private Label preview_PhoneNumber;
     @FXML
     private Label preview_Email;
-    @FXML
     private Label preview_CaseDetails;
     @FXML
     private Label preview_CaseReason;
@@ -110,22 +109,28 @@ public class EditExistingCasesController implements Initializable, Idleable {
     private Label preview_WorkerName;
     @FXML
     private Label preview_WorkerEmail;
+    @FXML
+    private Label preview_CaseId;
+    @FXML
+    private Label preview_CaseStatus;
+    @FXML
+    private Label preview_CaseDate;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
 
         mb = new MainBackgroundController();
-        checker = new IdleChecker(5*60, this);
+        checker = new IdleChecker(5 * 60, this);
         Thread idle = new Thread(checker);
         idle.setDaemon(true);
         idle.start();
-        
+
         Calendar cal = Calendar.getInstance();
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
         Date dato = calen.getTime();
-        
+
         SimpleDateFormat format2 = new SimpleDateFormat("MMM");
         calendarMonth.setText(String.valueOf(format2.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format2.format(dato)).substring(1));
 
@@ -151,7 +156,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
         } else {
             noCasesFound.setVisible(false);
         }
-        
+
         user_Name.setText(business.getCaseWorker().getName());
         user_Email.setText(business.getCaseWorker().getEmail());
         user_JobTitle.setText("Sagsbehandler");
@@ -162,12 +167,13 @@ public class EditExistingCasesController implements Initializable, Idleable {
 
     /**
      * Loads the open new case FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
     @FXML
     private void OpenNewCase(MouseEvent event) throws IOException {
-       AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/OpenNewCase.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/OpenNewCase.fxml"));
         appBackground.getChildren().setAll(pane);
     }
 
@@ -177,6 +183,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
 
     /**
      * Loads the see log FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -188,6 +195,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
 
     /**
      * Loads the login screen FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -200,6 +208,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
 
     /**
      * Loads the main background FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -239,17 +248,19 @@ public class EditExistingCasesController implements Initializable, Idleable {
      * @return String of the case's data
      */
     private void convertCase2String(ICase c) {
-        preview_CaseDetails.setText("#" + c.getId() + "\tSagsstatus: " + c.getState() + "\t " + c.getOpeningDate() + "\n\n");
+        preview_CaseId.setText(String.valueOf(c.getId()));
+        preview_CaseStatus.setText(c.getState());
+        preview_CaseDate.setText(String.valueOf(c.getOpeningDate()));
 
         preview_CPR.setText(String.valueOf(c.getCitizen().getCpr()));
         preview_Name.setText(c.getCitizen().getName());
         preview_Adress.setText(c.getCitizen().getAddress());
         preview_PhoneNumber.setText(c.getCitizen().getPhoneNumber());
         preview_Email.setText(c.getCitizen().getEmail());
-        
+
         preview_CaseReason.setText(c.getReason());
         preview_CaseOffers.setText(c.getAvailableOffers());
- 
+
         preview_WorkerId.setText(c.getCaseWorker().getUserId());
         preview_WorkerName.setText(c.getCaseWorker().getName());
         preview_WorkerEmail.setText(c.getCaseWorker().getEmail());
@@ -278,6 +289,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
 
     /**
      * Resets the idle counter.
+     *
      * @param event mouse moved
      */
     @FXML
@@ -287,6 +299,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
 
     /**
      * Loads the main background FMXL.
+     *
      * @param event mouse click
      * @throws IOException file not found / null pointer
      */
@@ -308,6 +321,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
 
     /**
      * Hides the case closing review
+     *
      * @param event on mouse click
      */
     @FXML
@@ -316,8 +330,8 @@ public class EditExistingCasesController implements Initializable, Idleable {
     }
 
     /**
-     * Closes the case on the business facade.
-     * Loads the editExistingCases.fxml
+     * Closes the case on the business facade. Loads the editExistingCases.fxml
+     *
      * @param event on mouse click
      * @throws IOException file not found
      */
@@ -327,29 +341,32 @@ public class EditExistingCasesController implements Initializable, Idleable {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
         appBackground.getChildren().setAll(pane);
     }
-    
+
     /**
      * Gets the final comments left by the caseworker.
+     *
      * @return final Comments getText.
      */
-    private String getFinalComments(){
+    private String getFinalComments() {
         return this.caseReviewFinalComments.getText();
     }
-    
+
     /**
      * Gets the entered comment of what the citizen still requires.
+     *
      * @return citizenStillRequires getText
      */
-    private String getCitizenRequires(){
+    private String getCitizenRequires() {
         return this.citizenStillRequires.getText();
     }
-    
+
     /**
      * Returns wether or not the goal of the case was achieved.
+     *
      * @return true if yes was selected
      */
-    private boolean goalAchieved(){
+    private boolean goalAchieved() {
         return this.goalAchieved_Yes.isSelected();
     }
-        
+
 }
