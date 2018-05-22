@@ -105,21 +105,21 @@ public interface IPersistenceFacade {
      * @param departmentName The department name
      * @return all the cases
      */
-    List<ICase> getAllCases(String departmentName);
+    List<? extends ICase> getAllCases(String departmentName);
     
     /**
      * Gets all inactive cases from a department
      * @param departmentName The department name
      * @return All inactice cases from a department
      */
-    List<ICase> getAllInactiveCases(String departmentName);
+    List<? extends ICase> getAllInactiveCases(String departmentName);
     
     /**
      * Get all the cases belonging to that case worker
      * @param caseWorkerId the id of the case worker
      * @return the cases for the case worker, empty if the case worker does not exist
      */
-    List<ICase> getCaseWorkersCases(String department, int caseWorkerId);
+    List<? extends ICase> getCaseWorkersCases(String department, int caseWorkerId);
     
     /**
      * Get a specific user
@@ -146,7 +146,7 @@ public interface IPersistenceFacade {
      * @param departmentName The department name
      * @return all the citizens 
      */
-    List<ICitizen> getCitizens(String departmentName);
+    List<? extends ICitizen> getCitizens(String departmentName);
     
     /**
      * Get a specific department
@@ -167,13 +167,13 @@ public interface IPersistenceFacade {
      * @param departmentName Which department to get from
      * @return All the caseworkers from a department
      */
-    List<ICaseWorker> getCaseworkers(String departmentName);
+    List<? extends ICaseWorker> getCaseworkers(String departmentName);
     
     /**
      * Gets a caseworker
      * @param departmentName The department name
-     * @param id The caseworkers person id
+     * @param userId The caseworkers person id
      * @return A caseworker
      */
-    ICaseWorker getCaseworker(String departmentName, int id);
+    ICaseWorker getCaseworker(String departmentName, String userId);
 }
