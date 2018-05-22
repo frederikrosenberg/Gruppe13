@@ -237,7 +237,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
     private void showCasePreview() {
         editCasesGridPane.setVisible(false);
         seeSpecificCase.setVisible(true);
-        convertCase2String(casepreview);
+        makeCasePreview(casepreview);
     }
 
     /**
@@ -247,7 +247,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
      * @param c the case to convert
      * @return String of the case's data
      */
-    private void convertCase2String(ICase c) {
+    private void makeCasePreview(ICase c) {
         preview_CaseId.setText(String.valueOf(c.getId()));
         preview_CaseStatus.setText(c.getState());
         preview_CaseDate.setText(String.valueOf(c.getOpeningDate()));
