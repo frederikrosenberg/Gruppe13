@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * The interface for the facade of the business layer, responsible for communication between GUI
- * and the business layer.
+ * and the business layer
  *
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
@@ -16,7 +16,7 @@ import java.util.List;
 public interface IBusinessFacade {
 
     /**
-     * Logs the the user in, given that their information is valid.
+     * Logs the the user in, given that their information is valid
      *
      * @param username the username of the user
      * @param password the password of the user
@@ -27,12 +27,13 @@ public interface IBusinessFacade {
     /**
      * Logs the user out.
      *
+     * @param isTimeout True if the log out was caused by a timeout
      * @return true.
      */
-    boolean logOut();
+    boolean logOut(boolean isTimeout);
 
     /**
-     * Opens a new case based on the entered data.
+     * Opens a new case based on the entered data
      *
      * @param citizenData the information needed for the case
      * @return the newly opened case
@@ -40,11 +41,11 @@ public interface IBusinessFacade {
     ICase openCase(ICitizenData citizenData);
 
     /**
-     * Closes a case.
-     *
-     * @return true if the case has been closed successfully
+     * Closes a case from a given case id
+     * @param caseId The case to close
+     * @return True if the case is closed
      */
-    boolean closeCase();
+    boolean closeCase(int caseId);
 
     /**
      * To be called when the system shuts down.
@@ -69,14 +70,14 @@ public interface IBusinessFacade {
     ICase findActiveCase(String name);
 
     /**
-     * Returns all active cases in the department.
+     * Returns all active cases in the department
      *
      * @return all active cases in the department
      */
     List<? extends ICase> getAllActiveCases();
 
     /**
-     * Returns all active cases of the current caseworker.
+     * Returns all active cases of the current caseworker
      *
      * @return all active cases of the current caseworker
      */
@@ -85,7 +86,7 @@ public interface IBusinessFacade {
     /**
      * Injects a reference to the persistence layer
      *
-     * @param persistence the reference to be
+     * @param persistence the reference to be injected
      */
     void injectPersistence(IPersistenceFacade persistence);
     
@@ -94,4 +95,17 @@ public interface IBusinessFacade {
      * @return The current logged in case worker
      */
     ICaseWorker getCaseWorker();
+    
+    /**
+     * Gets all the logs
+     * @return All the logs
+     */
+    List<? extends ILog> getAllLogs();
+    
+    /**
+     * Gets all logs of a given type
+     * @param type The log type
+     * @return All the logs of a given type
+     */
+    List<? extends ILog> getLogsOfType(LogType type);
 }
