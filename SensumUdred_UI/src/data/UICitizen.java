@@ -18,7 +18,7 @@ import common.RelationshipStatus;
 public class UICitizen implements ICitizen {
 
     /**
-     * The case obejct for the citizen.
+     * The case object for the citizen.
      */
     private final ICase activeCase;
     
@@ -107,7 +107,7 @@ public class UICitizen implements ICitizen {
     }
 
     /**
-     * Returns the adress of the citizen.
+     * Returns the address of the citizen.
      *
      * @return the address of the citizen
      */
@@ -127,9 +127,9 @@ public class UICitizen implements ICitizen {
     }
 
     /**
-     * Returns the relationshipstatus of the citizen.
+     * Returns the relationship status of the citizen.
      *
-     * @return the citizen's relationshipstatus
+     * @return the citizen's relationship status
      */
     @Override
     public RelationshipStatus getRelationshipStatus() {
@@ -159,7 +159,7 @@ public class UICitizen implements ICitizen {
     /**
      * Returns the email of the citizen.
      *
-     * @return the citizens emal address
+     * @return the citizens email address
      */
     @Override
     public String getEmail() {
