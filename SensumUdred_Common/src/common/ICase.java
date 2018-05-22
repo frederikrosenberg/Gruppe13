@@ -81,4 +81,10 @@ public interface ICase {
      * @return The closing date of the case
      */
     Date getClosingDate();
+    
+    /**
+     * Gets the department
+     * @return The department
+     */
+    IDepartment getDepartment();
 }
