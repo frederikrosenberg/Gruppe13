@@ -23,6 +23,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -76,6 +79,16 @@ public class EditExistingCasesController implements Initializable, Idleable {
      * The business facade used to communicate with business layer
      */
     private IBusinessFacade business;
+    @FXML
+    private AnchorPane closeCaseReview;
+    @FXML
+    private ToggleGroup goalReachedGroup;
+    @FXML
+    private RadioButton goalAchieved_Yes;
+    @FXML
+    private TextArea citizenStillRequires;
+    @FXML
+    private TextArea caseReviewFinalComments;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -243,10 +256,8 @@ public class EditExistingCasesController implements Initializable, Idleable {
      * @param event mouse click on button
      */
     @FXML
-    private void closeCase(ActionEvent event) throws IOException {
-        business.closeCase(casepreview.getId());
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
-        appBackground.getChildren().setAll(pane);
+    private void closeCase(ActionEvent event) {
+        closeCaseReview.setVisible(true);
     }
 
     /**
@@ -268,10 +279,61 @@ public class EditExistingCasesController implements Initializable, Idleable {
         appBackground.getChildren().setAll(pane);
     }
 
+    /**
+     * Calls logout on the business instance, but with ispecifying that it was
+     * due to timeout.
+     */
     @Override
     public void logout() throws IOException {
         business.logOut(true);
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
         appBackground.getChildren().setAll(pane);
     }
+
+    /**
+     * Hides the case closing review
+     * @param event on mouse click
+     */
+    @FXML
+    private void cancelCloseCaseReview(ActionEvent event) {
+        closeCaseReview.setVisible(false);
+    }
+
+    /**
+     * Closes the case on the business facade.
+     * Loads the editExistingCases.fxml
+     * @param event on mouse click
+     * @throws IOException file not found
+     */
+    @FXML
+    private void submitCloseCaseReview(ActionEvent event) throws IOException {
+        business.closeCase(casepreview.getId());
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
+        appBackground.getChildren().setAll(pane);
+    }
+    
+    /**
+     * Gets the final comments left by the caseworker.
+     * @return final Comments getText.
+     */
+    private String getFinalComments(){
+        return this.caseReviewFinalComments.getText();
+    }
+    
+    /**
+     * Gets the entered comment of what the citizen still requires.
+     * @return citizenStillRequires getText
+     */
+    private String getCitizenRequires(){
+        return this.citizenStillRequires.getText();
+    }
+    
+    /**
+     * Returns wether or not the goal of the case was achieved.
+     * @return true if yes was selected
+     */
+    private boolean goalAchieved(){
+        return this.goalAchieved_Yes.isSelected();
+    }
+        
 }
