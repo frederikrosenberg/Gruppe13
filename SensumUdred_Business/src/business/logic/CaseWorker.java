@@ -103,17 +103,18 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @return True if the case is closed
      */
     public boolean closeCase(int caseId) {
-        Case aCase;
-        for (Iterator<Case> itr = cases.iterator(); itr.hasNext();) {
-            aCase = itr.next();
-            if (aCase.getId() == caseId) {
-                Persistence.getInstance().getPersistenceFacade().closeCase(department.getName(), caseId);
-                aCase.closeCase();
-                department.addInactiveCase(aCase);
-                itr.remove();
-            }
-        }
-        return true;
+        return Persistence.getInstance().getPersistenceFacade().closeCase(department.getName(), caseId);
+//        Case aCase;
+//        for (Iterator<Case> itr = cases.iterator(); itr.hasNext();) {
+//            aCase = itr.next();
+//            if (aCase.getId() == caseId) {
+//                
+//                aCase.closeCase();
+//                department.addInactiveCase(aCase);
+//                itr.remove();
+//            }
+//        }
+//        return true;
     }
 
     /**
@@ -122,7 +123,7 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @return All the active cases
      */
     public List<? extends ICase> getActiveCases() {
-        return Persistence.getInstance().getPersistenceFacade().getCaseWorkersCases(department.getName(), employeeId);
+        return Persistence.getInstance().getPersistenceFacade().getCaseWorkersCases(department.getName(), getId());
     }
 
     /**
