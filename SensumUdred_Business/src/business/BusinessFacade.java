@@ -52,7 +52,8 @@ public class BusinessFacade implements IBusinessFacade {
      * Constructor for the BusinessFacade
      */
     public BusinessFacade() {
-
+        logic = new LogicFacade();
+        security = new SecurityFacade();
     }
 
     /**
@@ -106,7 +107,7 @@ public class BusinessFacade implements IBusinessFacade {
     public ICase openCase(ICitizenData citizenData) {
         if (security.hasAccess(Role.CASEWORKER)) {
             ICase temp = logic.openCase(citizenData);
-            loggingFacade.createCaseLog(LogType.OPEN_CASE, security.getCurrentUser().getUserId(), temp.getId());
+            loggingFacade.createCaseLog(LogType.OPEN_CASE, security.getCurrentUser().getUserId(), temp.getId(), logic.getDepartment().getName());
             return temp;
         }
         return null;
@@ -116,13 +117,16 @@ public class BusinessFacade implements IBusinessFacade {
      * Closes a case from a given case id
      *
      * @param caseId The case to close
+     * @param finalComments  The final comments
+     * @param citizenRequires What the citizen requires
+     * @param goalAchieved Is the goal achieved?
      * @return True if the case is closed
      */
     @Override
-    public boolean closeCase(int caseId) {
+    public boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {
         if (security.hasAccess(Role.CASEWORKER)) {
-            if(logic.closeCase(caseId)) {
-                loggingFacade.createCaseLog(LogType.CLOSE_CASE, security.getCurrentUser().getUserId(), caseId);
+            if(logic.closeCase(caseId, finalComments, citizenRequires, goalAchieved)) {
+                loggingFacade.createCaseLog(LogType.CLOSE_CASE, security.getCurrentUser().getUserId(), caseId, logic.getDepartment().getName());
                 return true;
             }
         }
@@ -130,25 +134,16 @@ public class BusinessFacade implements IBusinessFacade {
     }
 
     /**
-     * To be called when the system shuts down
-     */
-    @Override
-    public void closing() {
-        save();
-    }
-
-    /**
      * Finds an active case from either cpr or case id
      *
-     * @param value the search parameter
-     * @param isCpr if true the value is cpr otherwise it is case id
+     * @param caseId the search parameter
      * @return the case found, else null
      */
     @Override
-    public ICase findActiveCase(int value, boolean isCpr) {
+    public ICase findActiveCase(int caseId) {
         if (security.hasAccess(Role.CASEWORKER)) {
-            ICase temp = logic.findActiveCase(value, isCpr);
-            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId());
+            ICase temp = logic.findActiveCase(caseId);
+            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId(), temp.getDepartmentName());
             return temp;
         }
         return null;
@@ -164,7 +159,7 @@ public class BusinessFacade implements IBusinessFacade {
     public ICase findActiveCase(String name) {
         if (security.hasAccess(Role.CASEWORKER)) {
             ICase temp = logic.findActiveCase(name);
-            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId());
+            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId(), temp.getDepartmentName());
             return temp;
         }
         return null;
@@ -205,9 +200,8 @@ public class BusinessFacade implements IBusinessFacade {
      */
     @Override
     public void injectPersistence(IPersistenceFacade persistence) {
-        this.persistence = persistence;
-        loggingFacade = new LoggingFacade(persistence);
-        load();
+        Persistence.getInstance().injectPersistence(persistence);
+        loggingFacade = new LoggingFacade();
     }
 
     /**
@@ -221,34 +215,6 @@ public class BusinessFacade implements IBusinessFacade {
             return logic.getCaseWorker();
         }
         return null;
-    }
-
-    /**
-     * Loads in the saved data if any is available, otherwise generates dummy
-     * data
-     *
-     */
-    private void load() {
-        if (persistence.saveAvailable()) {
-            IDataObject data = persistence.load();
-            logic = new LogicFacade(data.getDepartment());
-            security = new SecurityFacade(data.getUserManager());
-        } else {
-            //dummy data is added here
-            logic = new LogicFacade("Dummy Department", "Dummy Syndrome", "Dummystreet 35", "dummy@dummymail.com", "12345678");
-            security = new SecurityFacade();
-            createCaseWorker("Dummy", "12345678", "dummy@dummymail.com", 12345, "Dummyuser", "password", Role.CASEWORKER);
-
-        }
-    }
-
-    /**
-     * Saves the data
-     *
-     * @return true if the data is saved
-     */
-    private boolean save() {
-        return persistence.save(security.getUserManager(), logic.getDepartment());
     }
 
     /**
@@ -287,6 +253,5 @@ public class BusinessFacade implements IBusinessFacade {
         loggingFacade.createLog(LogType.VIEW_LOG, security.getCurrentUser().getUserId());
         return loggingFacade.getLogsOfType(type);
     }
-    
     
 }

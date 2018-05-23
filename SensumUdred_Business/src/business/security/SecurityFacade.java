@@ -44,7 +44,7 @@ public class SecurityFacade implements ISecurityFacade {
      * security manager and the user manager into each other. This constructor
      * uses an IUserManager to load users into the system.
      *
-     * @param userManager
+     * @param userManager The usermananger instance
      */
     public SecurityFacade(IUserManager userManager) {
         security = new SecurityManager();

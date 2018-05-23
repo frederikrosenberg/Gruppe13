@@ -51,11 +51,6 @@ public interface IBusinessFacade {
     boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved);
 
     /**
-     * To be called when the system shuts down.
-     */
-    void closing();
-
-    /**
      * Finds an active case from case id
      *
      * @param caseId the search parameter
