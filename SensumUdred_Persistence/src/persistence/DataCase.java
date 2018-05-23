@@ -1,5 +1,6 @@
 package persistence;
 
+import common.CaseState;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
@@ -37,7 +38,7 @@ public class DataCase implements ICase, Serializable {
     /**
      * The state of the citizen
      */
-    private String state;
+    private CaseState state;
 
     /**
      * The id of the case
@@ -130,7 +131,7 @@ public class DataCase implements ICase, Serializable {
      * @param citizenRequires if the citizen still requires help
      * @param finalComments the final comments for the case
      */
-    public DataCase(DataCitizen citizen, DataCaseWorker caseWorker, String department, String state, int id, boolean consent, String reason, String availableOffers, String sourceOfRequest, Date openingDate, Date closingDate, boolean goalAchieved, String citizenRequires, String finalComments) {
+    public DataCase(DataCitizen citizen, DataCaseWorker caseWorker, String department, CaseState state, int id, boolean consent, String reason, String availableOffers, String sourceOfRequest, Date openingDate, Date closingDate, boolean goalAchieved, String citizenRequires, String finalComments) {
         this.citizen = citizen;
         this.caseWorker = caseWorker;
         this.department = department;
@@ -165,7 +166,7 @@ public class DataCase implements ICase, Serializable {
      * @return the state
      */
     @Override
-    public String getState() {
+    public CaseState getState() {
         return state;
     }
 
