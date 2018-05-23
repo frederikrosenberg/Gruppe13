@@ -76,6 +76,7 @@ public class IdleChecker implements Runnable {
     public void run() {
         //Runs eternally:
         while (true) {
+            System.out.println(Thread.activeCount());
             if (!loggedIn) {
                 try {
                     synchronized (this) {

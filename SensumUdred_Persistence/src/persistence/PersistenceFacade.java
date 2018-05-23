@@ -588,7 +588,6 @@ public class PersistenceFacade implements IPersistenceFacade {
         
         try (Connection con = getDbConnection()) {
             PreparedStatement statement = con.prepareStatement("SELECT * FROM \"Citizen\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName");
-            statement.setString(1, departmentName);
             ResultSet set = statement.executeQuery();
             List<DataCitizen> citizens = new ArrayList<>();
             while (set.next()) {

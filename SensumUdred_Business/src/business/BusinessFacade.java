@@ -72,7 +72,7 @@ public class BusinessFacade implements IBusinessFacade {
         }
         if (security.hasAccess(Role.CASEWORKER)) {
             logic.setCaseWorker(id);
-            logic.setDepartment(Persistence.getInstance().getPersistenceFacade().getDepartment(logic.getCaseWorker().getDepartmentName()));
+            //logic.setDepartment(Persistence.getInstance().getPersistenceFacade().getDepartment(logic.getCaseWorker().getDepartmentName()));
         }
         loggingFacade.createLog(LogType.LOGIN, id);
         return true;
