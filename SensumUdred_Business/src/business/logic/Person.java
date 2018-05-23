@@ -45,12 +45,15 @@ public class Person implements IPerson {
      * @param name The name of the person
      * @param phoneNumber The phone number of the person
      * @param email The email of the person
+     * @param departmentName The department name
+     * @param id The person id
      */
-    public Person(String name, String phoneNumber, String email, String departmentName) {
+    public Person(String name, String phoneNumber, String email, String departmentName, int id) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.departmentName = departmentName;
+        this.id = id;
     }
 
     /**
@@ -92,10 +95,29 @@ public class Person implements IPerson {
         return this.departmentName;
     }
 
+    /**
+     * Gets the person id
+     * @return The person id
+     */
     @Override
     public int getId() {
         return id;
     }
     
+    /**
+     * Sets the department name
+     * @param name The department name
+     */
+    public void setDepartmentName(String name) {
+        departmentName = name;
+    }
+
+    /**
+     * Sets the person id
+     * @param id The person id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }

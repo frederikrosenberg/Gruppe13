@@ -78,6 +78,21 @@ public class Case implements ICase {
      * The department name
      */
     private String departmentName;
+    
+    /**
+     * Is the goal achieved
+     */
+    private boolean goalAchieved;
+    
+    /**
+     * Final comments
+     */
+    private String finalComments;
+    
+    /**
+     * What the citizen requires
+     */
+    private String citizenRequires;
 
     /**
      * Constructs a new case
@@ -89,6 +104,7 @@ public class Case implements ICase {
      * @param sourceOfRequest Source of request
      * @param citizen The citizen the case is about
      * @param caseWorker The case worker of the case
+     * @param departmentName The department name
      */
     public Case(String state, boolean consent, String reason, String availableOffers, String sourceOfRequest, Citizen citizen, CaseWorker caseWorker, String departmentName) {
         this.state = state;
@@ -328,9 +344,48 @@ public class Case implements ICase {
         return closingDate;
     }
 
+    /**
+     * Gets the department name
+     * @return The department name
+     */
     @Override
     public String getDepartmentName() {
         return departmentName;
+    }
+
+    /**
+     * Sets the person id
+     * @param id Person id
+     */
+    void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Gets the goal achieved
+     * @return The goal achieved
+     */
+    @Override
+    public boolean getGoalAchieved() {
+        return goalAchieved;
+    }
+
+    /**
+     * Gets the citizen requires
+     * @return The citizen requires
+     */
+    @Override
+    public String getCitizenRequires() {
+        return citizenRequires;
+    }
+
+    /**
+     * Gets the final comments
+     * @return The final comments
+     */
+    @Override
+    public String getFinalComments() {
+        return finalComments;
     }
 
     

@@ -50,9 +50,10 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param department The case workers department
      * @param employeeId The case workers employee id
      * @param userId The case workers user id
+     * @param id The person id
      */
-    public CaseWorker(String name, String phoneNumber, String email, Department department, int employeeId, String userId) {
-        super(name, phoneNumber, email, department.getName());
+    public CaseWorker(String name, String phoneNumber, String email, Department department, int employeeId, String userId, int id) {
+        super(name, phoneNumber, email, department.getName(), id);
         this.department = department;
         this.employeeId = employeeId;
         this.userId = userId;
@@ -65,15 +66,7 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param department The department the existing case worker works at
      */
     public CaseWorker(ICaseWorker caseWorker, Department department) {
-        super(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail(), department.getName());
-        this.employeeId = caseWorker.getEmployeeId();
-        this.userId = caseWorker.getUserId();
-        this.department = department;
-        for (ICase activeCase : caseWorker.getActiveCases()) {
-            Citizen citizen = department.findCitizen(activeCase.getCitizen().getId());
-            Case c = new Case(activeCase, this, citizen, true);
-            cases.add(c);
-        }
+        this(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail(), department, caseWorker.getEmployeeId(), caseWorker.getUserId(), caseWorker.getId());
     }
 
     /**
@@ -83,41 +76,38 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @return The new case opened
      */
     public Case openCase(ICitizenData data) {
-        ICitizen citizen = null;
+        Citizen citizen = null;
         for (ICitizen c : Persistence.getInstance().getPersistenceFacade().getCitizens(department.getName())) {
-            if (c.getCpr() == data.getCitizen().getCpr()) {
-                citizen = (Citizen) c;
+            if (c.getCpr().equals(data.getCitizen().getCpr())) {
+                citizen = new Citizen(c);
+                break;
             }
         }
         if (citizen == null) {
             citizen = new Citizen(data.getCitizen());
-            Persistence.getInstance().getPersistenceFacade().addCitizen(citizen);
-            department.addCitizen((Citizen) citizen);
+            int id = Persistence.getInstance().getPersistenceFacade().addCitizen(citizen);
+            citizen.setId(id);
+            citizen.setDepartmentName(department.getName());
+            department.addCitizen(citizen);
         }
-        ICase c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), (Citizen) citizen, this, department.getName());
-        Persistence.getInstance().getPersistenceFacade().addCase(c);
-        cases.add((Case) c);
-        return (Case) c;
+        Case c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), citizen, this, department.getName());
+        int caseId = Persistence.getInstance().getPersistenceFacade().addCase(c);
+        c.setId(caseId);
+        cases.add(c);
+        return c;
     }
 
     /**
      * Closes an case
      *
      * @param caseId The case id of the case to close
+     * @param finalComments The final comments
+     * @param citizenRequires What the citizen requires
+     * @param goalAchieved Is the goal achieved
      * @return True if the case is closed
      */
-    public boolean closeCase(int caseId) {
-        Case aCase;
-        for (Iterator<Case> itr = cases.iterator(); itr.hasNext();) {
-            aCase = itr.next();
-            if (aCase.getId() == caseId) {
-                Persistence.getInstance().getPersistenceFacade().closeCase(department.getName(), caseId);
-                aCase.closeCase();
-                department.addInactiveCase(aCase);
-                itr.remove();
-            }
-        }
-        return true;
+    public boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {
+        return Persistence.getInstance().getPersistenceFacade().closeCase(department.getName(), caseId, finalComments, citizenRequires, goalAchieved);
     }
 
     /**
@@ -126,7 +116,7 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @return All the active cases
      */
     public List<? extends ICase> getActiveCases() {
-        return Persistence.getInstance().getPersistenceFacade().getCaseWorkersCases(department.getName(), employeeId);
+        return Persistence.getInstance().getPersistenceFacade().getCaseWorkersCases(department.getName(), getId());
     }
 
     /**

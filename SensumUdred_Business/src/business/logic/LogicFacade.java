@@ -62,18 +62,20 @@ public class LogicFacade implements ILogicFacade {
      * Closes an case from a given case id
      *
      * @param caseId The case id to close an case
+     * @param finalComments The final comments
+     * @param citizenRequires What the citizen requires
+     * @param goalAchieved Is the goal achieved?
      * @return True if the case is closed
      */
     @Override
-    public boolean closeCase(int caseId) {
-        return caseWorker.closeCase(caseId);
+    public boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {
+        return caseWorker.closeCase(caseId, finalComments, citizenRequires, goalAchieved);
     }
 
     /**
-     * Finds an active case with a specific citizen cpr or case id
+     * Finds an active case with a specific case id
      *
-     * @param value The value of cpr/case id
-     * @param isCpr True if its a cpr
+     * @param caseId The case id
      * @return An active case
      */
     @Override
@@ -82,10 +84,10 @@ public class LogicFacade implements ILogicFacade {
     }
 
     /**
-     * Finds an active case with a specific citizen name
+     * Finds an active case with a specific citizen cpr
      *
-     * @param name The citizen name
-     * @return An active case with a specific citizen name
+     * @param cpr The citizen cpr
+     * @return An active case with a specific citizen cpr
      */
     @Override
     public ICase findActiveCase(String cpr) {
@@ -119,6 +121,8 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public void setCaseWorker(String userId) {
+        ICaseWorker caseWorker = Persistence.getInstance().getPersistenceFacade().getCaseworker(null, userId);
+        department = new Department(Persistence.getInstance().getPersistenceFacade().getDepartment(caseWorker.getDepartmentName()));
         this.caseWorker = new CaseWorker(Persistence.getInstance().getPersistenceFacade().getCaseworker(department.getName(), userId), department);
     }
 
@@ -164,6 +168,10 @@ public class LogicFacade implements ILogicFacade {
         department.addCaseWorker(name, phoneNumber, email, employeeId, userId);
     }
 
+    /**
+     * Sets the department
+     * @param department The department to set
+     */
     @Override
     public void setDepartment(IDepartment department) {
         this.department = new Department(department);
