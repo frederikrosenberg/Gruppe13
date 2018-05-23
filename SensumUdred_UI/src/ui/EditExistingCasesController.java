@@ -39,15 +39,10 @@ public class EditExistingCasesController implements Initializable{
     private AnchorPane appBackground;
     @FXML
     private AnchorPane inappScreen;
-    @FXML
     private Label user_JobTitle;
-    @FXML
     private Label user_Name;
-    @FXML
     private Label user_Email;
-    @FXML
     private Label calendarMonth;
-    @FXML
     private Label calendarDate;
     @FXML
     private GridPane openNewCaseGrid;
@@ -191,7 +186,7 @@ public class EditExistingCasesController implements Initializable{
      */
     private void makeCasePreview(ICase c) {
         preview_CaseId.setText(String.valueOf(c.getId()));
-        preview_CaseStatus.setText(c.getState());
+        preview_CaseStatus.setText(c.getState().toString());
         preview_CaseDate.setText(String.valueOf(c.getOpeningDate()));
 
         preview_CPR.setText(String.valueOf(c.getCitizen().getCpr()));

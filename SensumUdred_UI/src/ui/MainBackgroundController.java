@@ -157,11 +157,8 @@ public class MainBackgroundController implements Initializable, Idleable {
     @FXML
     public void Logout(MouseEvent event) throws IOException {
         business.logOut(false);
-//        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
-//        appBackground.getChildren().setAll(pane);
-        inappBackground.getChildren().clear();
-        inappBackground.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml")));
-
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
+        appBackground.getChildren().setAll(pane);
     }
 
     /**
@@ -182,10 +179,8 @@ public class MainBackgroundController implements Initializable, Idleable {
     @Override
     public void logout() throws IOException {
         business.logOut(true);
-//        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
-//        appBackground.getChildren().setAll(pane);
-        inappBackground.getChildren().clear();
-        inappBackground.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml")));
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
+        appBackground.getChildren().setAll(pane);
 
     }
 

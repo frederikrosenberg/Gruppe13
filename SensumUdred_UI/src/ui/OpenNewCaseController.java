@@ -5,6 +5,7 @@
  */
 package ui;
 
+import static common.CaseState.OPEN;
 import common.Gender;
 import common.IBusinessFacade;
 import common.ICitizen;
@@ -31,7 +32,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -214,7 +214,7 @@ public class OpenNewCaseController implements Initializable{
     @FXML
     private void createNewCase(ActionEvent event) throws IOException {
         ICitizen citizen = new UICitizen(fillable_CprField.getText(), fillable_AdressField.getText(), fillable_NameField.getText(), fillable_PhoneNumberField.getText(), fillable_EmailField.getText(), gender, relstat, business.getCaseWorker().getDepartmentName());
-        ICitizenData citizenData = new UICitizenData(citizen, "Sagsåbning", 0, getConsent(), fillable_ProblemDescription.getText(), getAvailibleOffers(), getSourceOfRequest(), business.getCaseWorker(), business.getCaseWorker().getDepartmentName());
+        ICitizenData citizenData = new UICitizenData(citizen, OPEN, 0, getConsent(), fillable_ProblemDescription.getText(), getAvailibleOffers(), getSourceOfRequest(), business.getCaseWorker(), business.getCaseWorker().getDepartmentName());
         business.openCase(citizenData);
         clearNewCaseForm();
         openNewCaseScrollPane.setVisible(false);

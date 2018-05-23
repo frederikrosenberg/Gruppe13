@@ -1,5 +1,6 @@
 package data;
 
+import common.CaseState;
 import common.ICaseWorker;
 import common.ICitizen;
 import common.ICitizenData;
@@ -25,7 +26,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * The state of the citizens case.
      */
-    private final String state;
+    private final CaseState state;
     
     /**
      * The id of the citizens case.
@@ -33,7 +34,7 @@ public class UICitizenData implements ICitizenData {
     private final int id;
     
     /**
-     * Wether or not the citizen has given consent.
+     * Whether or not the citizen has given consent.
      */
     private final boolean consent;
     
@@ -43,7 +44,7 @@ public class UICitizenData implements ICitizenData {
     private final String reason;
     
     /**
-     * The avalible offers for the citizen.
+     * The available offers for the citizen.
      */
     private final String avalibleOffers;
     
@@ -77,7 +78,7 @@ public class UICitizenData implements ICitizenData {
      * @param sourcerOfRequest The source of the request
      * @param caseWorker The case worker object associated with the case
      */
-    public UICitizenData(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest, ICaseWorker caseWorker, String departmentName) {
+    public UICitizenData(ICitizen citizen, CaseState state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest, ICaseWorker caseWorker, String departmentName) {
         this.citizen = citizen;
         this.state = state;
         this.id = id;
@@ -105,7 +106,7 @@ public class UICitizenData implements ICitizenData {
      * @return the state of the case
      */
     @Override
-    public String getState() {
+    public CaseState getState() {
         return this.state;
     }
 
@@ -120,9 +121,9 @@ public class UICitizenData implements ICitizenData {
     }
 
     /**
-     * Returns wether or not the citizen has given consent.
+     * Returns whether or not the citizen has given consent.
      *
-     * @return wether consent was given
+     * @return whether consent was given
      */
     @Override
     public boolean getConsent() {
