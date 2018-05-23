@@ -17,7 +17,7 @@ public interface ICitizen extends IPerson {
      *
      * @return the cpr number
      */
-    int getCpr();
+    String getCpr();
 
     /**
      * The cpr number of the citizen
