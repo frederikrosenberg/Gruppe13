@@ -78,6 +78,12 @@ public class Case implements ICase {
      * The department name
      */
     private String departmentName;
+    
+    private boolean goalAchieved;
+    
+    private String finalComments;
+    
+    private String citizenRequires;
 
     /**
      * Constructs a new case
@@ -336,6 +342,21 @@ public class Case implements ICase {
 
     void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean getGoalAchieved() {
+        return goalAchieved;
+    }
+
+    @Override
+    public String getCitizenRequires() {
+        return citizenRequires;
+    }
+
+    @Override
+    public String getFinalComments() {
+        return finalComments;
     }
 
     

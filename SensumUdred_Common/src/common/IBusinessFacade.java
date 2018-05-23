@@ -45,7 +45,7 @@ public interface IBusinessFacade {
      * @param caseId The case to close
      * @return True if the case is closed
      */
-    boolean closeCase(int caseId);
+    boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved);
 
     /**
      * To be called when the system shuts down.

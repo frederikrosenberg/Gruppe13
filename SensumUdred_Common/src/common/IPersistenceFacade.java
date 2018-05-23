@@ -161,7 +161,7 @@ public interface IPersistenceFacade {
      * @param caseId The case to close
      * @return True if the case is closed
      */
-    boolean closeCase(String departmentName, int caseId);
+    boolean closeCase(String departmentName, int caseId, String finalComments, String citizenRequires, boolean goalAchieved);
   
     /**
      * Gets all the caseworkers from a department

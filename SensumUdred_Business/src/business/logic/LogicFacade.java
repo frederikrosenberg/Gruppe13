@@ -65,8 +65,8 @@ public class LogicFacade implements ILogicFacade {
      * @return True if the case is closed
      */
     @Override
-    public boolean closeCase(int caseId) {
-        return caseWorker.closeCase(caseId);
+    public boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {
+        return caseWorker.closeCase(caseId, finalComments, citizenRequires, goalAchieved);
     }
 
     /**

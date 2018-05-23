@@ -87,4 +87,11 @@ public interface ICase {
      * @return The department name
      */
     String getDepartmentName();
+    
+    boolean getGoalAchieved();
+    
+    String getCitizenRequires();
+    
+    String getFinalComments();
+    
 }

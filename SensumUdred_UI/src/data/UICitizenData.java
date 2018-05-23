@@ -58,6 +58,12 @@ public class UICitizenData implements ICitizenData {
     private final ICaseWorker caseWorker;
     
     private final String departmentName;
+    
+    private boolean goalAchieved;
+    
+    private String finalComments;
+    
+    private String citizenRequires;
 
     /**
      * The constructor for the UICitizenData class.
@@ -187,6 +193,21 @@ public class UICitizenData implements ICitizenData {
     @Override
     public String getDepartmentName() {
         return departmentName;
+    }
+
+    @Override
+    public boolean getGoalAchieved() {
+        return goalAchieved;
+    }
+
+    @Override
+    public String getCitizenRequires() {
+        return citizenRequires;
+    }
+
+    @Override
+    public String getFinalComments() {
+        return finalComments;
     }
 
 }

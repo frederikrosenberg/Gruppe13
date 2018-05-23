@@ -73,6 +73,12 @@ public class DataCase implements ICase, Serializable {
      * The date the case closed
      */
     private Date closingDate;
+    
+    private boolean goalAchieved;
+    
+    private String finalComments;
+    
+    private String citizenRequires;
 
     /**
      * Constructor for data case
@@ -98,7 +104,7 @@ public class DataCase implements ICase, Serializable {
         }
     }
 
-    public DataCase(DataCitizen citizen, DataCaseWorker caseWorker, String department, String state, int id, boolean consent, String reason, String availableOffers, String sourceOfRequest, Date openingDate, Date closingDate) {
+    public DataCase(DataCitizen citizen, DataCaseWorker caseWorker, String department, String state, int id, boolean consent, String reason, String availableOffers, String sourceOfRequest, Date openingDate, Date closingDate, boolean goalAchieved, String citizenRequires, String finalComments) {
         this.citizen = citizen;
         this.caseWorker = caseWorker;
         this.department = department;
@@ -110,6 +116,9 @@ public class DataCase implements ICase, Serializable {
         this.sourceOfRequest = sourceOfRequest;
         this.openingDate = openingDate;
         this.closingDate = closingDate;
+        this.goalAchieved = goalAchieved;
+        this.citizenRequires = citizenRequires;
+        this.finalComments = finalComments;
     }
     
     
@@ -221,6 +230,21 @@ public class DataCase implements ICase, Serializable {
     @Override
     public String getDepartmentName() {
         return department;
+    }
+    
+    @Override
+    public boolean getGoalAchieved() {
+        return goalAchieved;
+    }
+
+    @Override
+    public String getCitizenRequires() {
+        return citizenRequires;
+    }
+
+    @Override
+    public String getFinalComments() {
+        return finalComments;
     }
 
 }

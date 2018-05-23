@@ -33,7 +33,7 @@ public interface ILogicFacade {
      * @param caseId The case id to find a case from
      * @return True if the case is closed
      */
-    boolean closeCase(int caseId);
+    boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved);
 
     /**
      * Finds an active case with a specific case id

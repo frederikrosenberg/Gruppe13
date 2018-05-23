@@ -102,8 +102,8 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param caseId The case id of the case to close
      * @return True if the case is closed
      */
-    public boolean closeCase(int caseId) {
-        return Persistence.getInstance().getPersistenceFacade().closeCase(department.getName(), caseId);
+    public boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {
+        return Persistence.getInstance().getPersistenceFacade().closeCase(department.getName(), caseId, finalComments, citizenRequires, goalAchieved);
 //        Case aCase;
 //        for (Iterator<Case> itr = cases.iterator(); itr.hasNext();) {
 //            aCase = itr.next();
