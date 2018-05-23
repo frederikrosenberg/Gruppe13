@@ -36,7 +36,7 @@ public interface IUser {
     /**
      * Getter for the users hashed password
      *
-     * @return
+     * @return The password
      */
     String getPassword();
 
