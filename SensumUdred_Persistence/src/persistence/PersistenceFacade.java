@@ -57,9 +57,9 @@ public class PersistenceFacade implements IPersistenceFacade {
     private final String dbPassword;
     
     /**
-     * 
-     * @throws FileNotFoundException
-     * @throws IOException 
+     * Constructor for persistence facade
+     * @throws FileNotFoundException if the credentials.txt is not found
+     * @throws IOException if the format of the file is not correct
      */
     public PersistenceFacade() throws FileNotFoundException, IOException {
         File credentials = new File("credentials.txt");
@@ -529,6 +529,7 @@ public class PersistenceFacade implements IPersistenceFacade {
 
     /**
      * Get all the cases belonging to that case worker
+     * @param department the name of the department
      * @param caseWorkerId the id of the case worker
      * @return the cases for the case worker, empty if the case worker does not exist
      */
@@ -554,10 +555,10 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
 
     /**
-     * 
-     * @param department
-     * @param id
-     * @return 
+     * Gets the citizen from the database
+     * @param department the department name
+     * @param id the id of the case citizen
+     * @return the citizen if it is found or null
      */
     @Override
     public ICitizen getCitizen(String department, int id) {
@@ -604,8 +605,11 @@ public class PersistenceFacade implements IPersistenceFacade {
 
     /**
      * Closes a case
-     * @param departmentName
+     * @param departmentName the department name of the case
      * @param caseId The case to close
+     * @param finalComments the comments to the case when closing
+     * @param citizenRequires the things the citizen requires
+     * @param goalAchieved if the goal of the case got achieved
      * @return True if the case is closed
      */
     @Override
@@ -709,10 +713,10 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
     
     /**
-     * 
-     * @param set
-     * @return
-     * @throws SQLException 
+     * Gets the case worker from a result set
+     * @param set the given set
+     * @return the case worker
+     * @throws SQLException if a database access error occurs or this method is called on a closed result set
      */
     private DataCaseWorker getCaseWorkerFromResultSet(ResultSet set) throws SQLException {
         return new DataCaseWorker(
@@ -727,9 +731,10 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
     
     /**
-     * 
-     * @param set
-     * @return 
+     * Gets a case from a result set
+     * @param set the given result set
+     * @return the given case
+     * @throws SQLException if a database access error occurs or this method is called on a closed result set
      */
     private DataCase getCaseFromResultSet(ResultSet set) throws SQLException {
         DataCitizen citizen = new DataCitizen(
@@ -773,10 +778,10 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
     
     /**
-     * 
-     * @param set
-     * @return
-     * @throws SQLException 
+     * Gets a citizen form a result set
+     * @param set the given result set
+     * @return the given citizen
+     * @throws SQLException if a database access error occurs or this method is called on a closed result set
      */
     private DataCitizen getCitizenFromResultSet(ResultSet set) throws SQLException {
         return new DataCitizen(
@@ -809,11 +814,11 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
     
     /**
-     * 
-     * @param con
-     * @param person
-     * @return
-     * @throws SQLException 
+     * Inserts a person into the database
+     * @param con the connection for the database
+     * @param person the person to insert
+     * @return the id of the person
+     * @throws SQLException if a database access error occurs or this method is called on a closed PreparedStatement
      */
     private int insertPerson(Connection con, IPerson person) throws SQLException {
         //INSERT INTO "Person" (DepartmentName, Email, PhoneNumber, Name) VALUES (?,?,?,?) RETURNING Id

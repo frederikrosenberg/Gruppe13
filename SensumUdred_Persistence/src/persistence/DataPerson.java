@@ -71,7 +71,7 @@ public abstract class DataPerson implements IPerson, Serializable {
 
     /**
      * Get the mobile number of the person
-     * @return 
+     * @return the phone number
      */
     @Override
     public String getPhoneNumber() {
@@ -80,7 +80,7 @@ public abstract class DataPerson implements IPerson, Serializable {
 
     /**
      * Get the email of the person;
-     * @return 
+     * @return the email
      */
     @Override
     public String getEmail() {

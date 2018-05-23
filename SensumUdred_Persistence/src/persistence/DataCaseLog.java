@@ -28,6 +28,7 @@ public class DataCaseLog extends DataLog implements ICaseLog {
      * @param date the date of the log
      * @param userId the user id of the log
      * @param caseId the case id of the log
+     * @param departmentName the department name
      */
     public DataCaseLog(LogType type, Date date, String userId, int caseId, String departmentName) {
         super(type, date, userId);

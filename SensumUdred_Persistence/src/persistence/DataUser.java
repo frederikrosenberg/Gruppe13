@@ -106,7 +106,7 @@ public class DataUser implements IUser, Serializable {
 
     /**
      * Getter for the users hashed password
-     * @return 
+     * @return the password
      */
     @Override
     public String getPassword() {
