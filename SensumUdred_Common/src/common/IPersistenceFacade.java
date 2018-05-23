@@ -89,13 +89,15 @@ public interface IPersistenceFacade {
     /**
      * Get a specific case
      * @param caseId the case id
+     * @param department The department name
      * @return the given case with the id, or null if the case does not exist 
      */
     ICase getCase(String department, int caseId);
     
     /**
      * Gets a specific case from a citizen cpr
-     * @param name The citizen cpr
+     * @param department The department name
+     * @param cpr The citizen cpr
      * @return A specific case from a citizen cpr
      */
     ICase getCase(String department, String cpr);
@@ -116,6 +118,7 @@ public interface IPersistenceFacade {
     
     /**
      * Get all the cases belonging to that case worker
+     * @param department The department name
      * @param caseWorkerId the id of the case worker
      * @return the cases for the case worker, empty if the case worker does not exist
      */
@@ -137,6 +140,7 @@ public interface IPersistenceFacade {
     /**
      * Get a specific citizen
      * @param id the id of the citizen
+     * @param department The department name
      * @return the given citizen or null if the citizen does not exist
      */
     ICitizen getCitizen(String department, int id);
@@ -159,6 +163,9 @@ public interface IPersistenceFacade {
      * Closes a case
      * @param departmentName The department name
      * @param caseId The case to close
+     * @param finalComments The final comments
+     * @param citizenRequires What the citizen requires
+     * @param goalAchieved Is the goal achieved
      * @return True if the case is closed
      */
     boolean closeCase(String departmentName, int caseId, String finalComments, String citizenRequires, boolean goalAchieved);
