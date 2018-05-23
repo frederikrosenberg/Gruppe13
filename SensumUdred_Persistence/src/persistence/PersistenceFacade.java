@@ -668,7 +668,6 @@ public class PersistenceFacade implements IPersistenceFacade {
     @Override
     public ICaseWorker getCaseworker(String departmentName, String userId) {
         //SELECT * FROM "CaseWorker" AS C INNER JOIN "Person" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ? AND C.DepartmentName = ?
-        System.out.println("userid: " + userId);
         try (Connection con = getDbConnection()) {
             PreparedStatement statement = con.prepareStatement("SELECT * FROM \"CaseWorker\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.UserId = ?");
             statement.setString(1, userId);
