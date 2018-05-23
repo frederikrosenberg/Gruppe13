@@ -241,11 +241,8 @@ public class EditExistingCasesController implements Initializable, Idleable {
     }
 
     /**
-     * Converts a given case's data to a string object, for use in the GUI
-     * preview of the case.
-     *
+     * Makes the case into viewable labels for the gui to show.
      * @param c the case to convert
-     * @return String of the case's data
      */
     private void makeCasePreview(ICase c) {
         preview_CaseId.setText(String.valueOf(c.getId()));

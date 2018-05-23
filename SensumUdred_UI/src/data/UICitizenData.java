@@ -181,4 +181,13 @@ public class UICitizenData implements ICitizenData {
         return null;
     }
 
+    /**
+     * Gets the name of the department
+     * @return department name
+     */
+    @Override
+    public String getDepartmentName() {
+        return this.citizen.getDepartmentName();
+    }
+
 }

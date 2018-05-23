@@ -176,4 +176,22 @@ public class UICitizen implements ICitizen {
         return activeCase;
     }
 
+    /**
+     * Gets the associated departments name.
+     * @return department name
+     */
+    @Override
+    public String getDepartmentName() {
+        return this.getDepartmentName();
+    }
+
+    /**
+     * Gets the persons id.
+     * @return person id.
+     */
+    @Override
+    public int getId() {
+        return this.getId();
+    }
+
 }
