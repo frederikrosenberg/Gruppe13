@@ -1,5 +1,6 @@
 package business.logic;
 
+import business.Persistence;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
@@ -65,25 +66,10 @@ public class Department implements IDepartment {
      * @param department The saved department
      */
     public Department(IDepartment department) {
+        this(department.getName(), department.getTreatmentArea(), department.getAddress(), department.getEmail(), department.getPhoneNumber());
         citizens = new ArrayList<>();
-        for (ICitizen citizen : department.getCitizens()) {
-            citizens.add(new Citizen(citizen));
-        }
-
         caseWorkers = new ArrayList<>();
-        for (ICaseWorker caseWorker : department.getCaseWorkers()) {
-            caseWorkers.add(new CaseWorker(caseWorker, this));
-        }
-
         inactiveCases = new ArrayList<>();
-        for (ICase inactiveCase : department.getInactiveCases()) {
-            inactiveCases.add(new Case(inactiveCase, findCaseWorker(inactiveCase.getCaseWorker().getUserId()), findCitizen(inactiveCase.getCitizen().getCpr()), false));
-        }
-        name = department.getName();
-        treatmentArea = department.getTreatmentArea();
-        address = department.getAddress();
-        email = department.getEmail();
-        phoneNumber = department.getPhoneNumber();
     }
 
     /**
@@ -113,27 +99,17 @@ public class Department implements IDepartment {
      * @return the found case worker
      */
     private CaseWorker findCaseWorker(String id) {
-        for (CaseWorker worker : caseWorkers) {
-            if (worker.getUserId().equals(id)) {
-                return worker;
-            }
-        }
-        return null;
+        return new CaseWorker(Persistence.getInstance().getPersistenceFacade().getCaseworker(name, id), this);
     }
 
     /**
      * Find a citizen
      *
-     * @param cpr of the citizen
+     * @param id of the citizen
      * @return the found citizen
      */
-    public Citizen findCitizen(int cpr) {
-        for (Citizen citizen : citizens) {
-            if (citizen.getCpr() == cpr) {
-                return citizen;
-            }
-        }
-        return null;
+    public Citizen findCitizen(int id) {
+        return new Citizen(Persistence.getInstance().getPersistenceFacade().getCitizen(name, id));
     }
 
     /**
@@ -193,7 +169,7 @@ public class Department implements IDepartment {
      */
     @Override
     public List<? extends ICaseWorker> getCaseWorkers() {
-        return caseWorkers;
+        return Persistence.getInstance().getPersistenceFacade().getCaseworkers(name);
     }
 
     /**
@@ -203,48 +179,27 @@ public class Department implements IDepartment {
      */
     @Override
     public List<? extends ICase> getAllActiveCases() {
-        List<ICase> cases = new ArrayList();
-        for (CaseWorker caseWorker : caseWorkers) {
-            cases.addAll(caseWorker.getActiveCases());
-        }
-        return cases;
+        return Persistence.getInstance().getPersistenceFacade().getAllCases(name);
     }
 
     /**
-     * Finds an active case from either a cpr number or a case id
+     * Finds an active case from a case id
      *
-     * @param value The cpr/case id
-     * @param isCpr True if it should search for a cpr
+     * @param caseId The case id
      * @return An active case
      */
-    public ICase findActiveCase(int value, boolean isCpr) {
-        for (ICase activeCase : getAllActiveCases()) {
-            if (isCpr) {
-                if (value == activeCase.getCitizen().getCpr()) {
-                    return activeCase;
-                }
-            } else {
-                if (value == activeCase.getId()) {
-                    return activeCase;
-                }
-            }
-        }
-        return null;
+    public ICase findActiveCase(int caseId) {
+        return Persistence.getInstance().getPersistenceFacade().getCase(name, caseId);
     }
 
     /**
      * Finds an active case with the name of the citizen
      *
-     * @param name The name to search for
+     * @param cpr The name to search for
      * @return The active case
      */
-    public ICase findActiveCase(String name) {
-        for (ICase activeCase : getAllActiveCases()) {
-            if (name.toLowerCase().equals(activeCase.getCitizen().getName().toLowerCase())) {
-                return activeCase;
-            }
-        }
-        return null;
+    public ICase findActiveCase(String cpr) {
+        return Persistence.getInstance().getPersistenceFacade().getCase(name, cpr);
     }
 
     /**
@@ -254,7 +209,7 @@ public class Department implements IDepartment {
      */
     @Override
     public List<? extends ICase> getInactiveCases() {
-        return inactiveCases;
+        return Persistence.getInstance().getPersistenceFacade().getAllInactiveCases(name);
     }
 
     /**
@@ -264,7 +219,7 @@ public class Department implements IDepartment {
      */
     @Override
     public List<? extends ICitizen> getCitizens() {
-        return citizens;
+        return Persistence.getInstance().getPersistenceFacade().getCitizens(name);
     }
 
     /**
@@ -286,8 +241,6 @@ public class Department implements IDepartment {
      * @param userId the user id of the caseworker
      */
     public void addCaseWorker(String name, String phoneNumber, String email, int employeeId, String userId) {
-        CaseWorker caseWorker = new CaseWorker(name, phoneNumber, email, this, employeeId, userId);
-        caseWorkers.add(caseWorker);
     }
     
     /**
@@ -295,6 +248,7 @@ public class Department implements IDepartment {
      * @param citizen the given citizen
      */
     public void addCitizen(Citizen citizen) {
+        Persistence.getInstance().getPersistenceFacade().addCitizen((ICitizen) citizen);
         citizens.add(citizen);
     }
 

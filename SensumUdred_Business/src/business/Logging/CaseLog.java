@@ -21,14 +21,21 @@ public class CaseLog extends Log implements ICaseLog {
     private int caseId;
     
     /**
+     * The department name
+     */
+    private String departmentName;
+    
+    /**
      * Constructs a case log
      * @param caseId The case id
      * @param logType The log type
      * @param userId  The user id
+     * @param departmentName The department name
      */
-    public CaseLog(int caseId, LogType logType, String userId) {
+    public CaseLog(int caseId, LogType logType, String userId, String departmentName) {
         super(logType, userId);
         this.caseId = caseId;
+        this.departmentName = departmentName;
     }
     
     /**
@@ -38,6 +45,15 @@ public class CaseLog extends Log implements ICaseLog {
     @Override
     public int getCaseId() {
         return caseId;
+    }
+
+    /**
+     * Gets the department name
+     * @return The department name
+     */
+    @Override
+    public String getDepartmentName() {
+        return departmentName;
     }
     
 }
