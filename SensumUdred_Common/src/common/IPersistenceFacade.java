@@ -42,7 +42,7 @@ public interface IPersistenceFacade {
      * @param department the given department
      * @return the id from the database
      */
-    int addDeparment(IDepartment department);
+    String addDeparment(IDepartment department);
     
     /**
      * Adds a citizen from ICitizen and returns the id
@@ -157,10 +157,11 @@ public interface IPersistenceFacade {
     
     /**
      * Closes a case
+     * @param departmentName The department name
      * @param caseId The case to close
      * @return True if the case is closed
      */
-    boolean closeCase(String departmentName, int caseId);
+    boolean closeCase(String departmentName, int caseId, String finalComments, String citizenRequires, boolean goalAchieved);
   
     /**
      * Gets all the caseworkers from a department
@@ -176,5 +177,4 @@ public interface IPersistenceFacade {
      * @return A caseworker
      */
     ICaseWorker getCaseworker(String departmentName, String userId);
-    
 }

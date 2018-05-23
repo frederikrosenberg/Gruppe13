@@ -45,7 +45,7 @@ public interface IBusinessFacade {
      * @param caseId The case to close
      * @return True if the case is closed
      */
-    boolean closeCase(int caseId);
+    boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved);
 
     /**
      * To be called when the system shuts down.
@@ -53,21 +53,20 @@ public interface IBusinessFacade {
     void closing();
 
     /**
-     * Finds an active case from either cpr or case id
+     * Finds an active case from case id
      *
-     * @param value the search parameter
-     * @param isCpr if true the value is cpr otherwise it is case id
+     * @param caseId the search parameter
      * @return the case found, else null
      */
-    ICase findActiveCase(int value, boolean isCpr);
+    ICase findActiveCase(int caseId);
 
     /**
-     * Finds an active case from the name of the concerned citizen.
+     * Finds an active case from the cpr of the concerned citizen.
      *
-     * @param name the name of the concerned citizen
+     * @param cpr the name of the concerned citizen
      * @return the case found, else null
      */
-    ICase findActiveCase(String name);
+    ICase findActiveCase(String cpr);
 
     /**
      * Returns all active cases in the department

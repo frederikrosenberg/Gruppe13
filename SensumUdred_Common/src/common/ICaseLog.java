@@ -16,4 +16,10 @@ public interface ICaseLog extends ILog {
      * @return The case id
      */
     int getCaseId();
+    
+    /**
+     * Gets the department name
+     * @return The department name
+     */
+    String getDepartmentName();
 }
