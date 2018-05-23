@@ -24,8 +24,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 /**
- *
- * @author Sebas
+ * The login controller
+ * 
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class LoginScreenController implements Initializable, IController<MainController> {
 
@@ -47,6 +53,8 @@ public class LoginScreenController implements Initializable, IController<MainCon
     private Button loginButton;
     @FXML
     private GridPane wrongUserPassGridPane;
+    @FXML
+    private GridPane forgottenPasswordGridPane;
     
     private MainController mainController;
 
@@ -55,7 +63,12 @@ public class LoginScreenController implements Initializable, IController<MainCon
      */
     private IBusinessFacade business;
     @FXML
-    private GridPane forgottenPasswordGridPane;
+    private GridPane loggedOutGridPane;
+    @FXML
+    private AnchorPane loggedoutBackground;
+    @FXML
+    private Button reLogin;
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -114,6 +127,15 @@ public class LoginScreenController implements Initializable, IController<MainCon
     @Override
     public void unload() {
         
+    }
+    
+    public void setTimedOut() {
+        loggedOutGridPane.setVisible(true);
+    }
+
+    @FXML
+    private void loginAgain(ActionEvent event) {
+        loggedOutGridPane.setVisible(false);
     }
 
 }

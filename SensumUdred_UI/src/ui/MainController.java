@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import common.IBusinessFacade;
@@ -21,9 +16,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
- * FXML Controller class
+ * Main controller for the ui
  *
- * @author fred
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class MainController implements Initializable, Idleable {
 
@@ -97,11 +97,14 @@ public class MainController implements Initializable, Idleable {
     }
 
     @Override
-    public void logout() {
+    public void logout(boolean timeOut) {
         if (loggedIn) {
             loggedIn = false;
             checker.setLogin(loggedIn);
             showLogin();
+            if (timeOut) {
+                ((LoginScreenController)currentController).setTimedOut();
+            }
         }
     }
     
@@ -112,7 +115,5 @@ public class MainController implements Initializable, Idleable {
             loadController("fxml/Menu.fxml");
         }
     }
-    
-    
     
 }

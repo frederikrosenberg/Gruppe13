@@ -15,6 +15,6 @@ public interface Idleable {
 
     public void resetIdle(MouseEvent event);
 
-    public void logout();
+    public void logout(boolean timeOut);
 
 }

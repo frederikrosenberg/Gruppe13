@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import common.IBusinessFacade;
@@ -20,10 +15,17 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 /**
- *
- * @author Sebas
+ * The menu controller
+ * 
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class MenuController implements Initializable, IController<MainController> {
 
@@ -35,6 +37,13 @@ public class MenuController implements Initializable, IController<MainController
     private Label user_Name;
     @FXML
     private Label user_Email;
+    @FXML
+    private GridPane ViewCasesGrid;
+    @FXML
+    private GridPane openCaseGrid;
+    @FXML
+    private GridPane SeLogGrid;
+    
     
     private IController<MenuController> screenController;
     
@@ -45,6 +54,7 @@ public class MenuController implements Initializable, IController<MainController
     private IBusinessFacade business;
     
     private MainController mainController;
+    
     /**
      * Initializes the controller class.
      */
@@ -83,8 +93,8 @@ public class MenuController implements Initializable, IController<MainController
      * @throws java.io.IOException
      */
     @FXML
-    public void EditExistingCases(MouseEvent event) throws IOException {
-        loadController("fxml/EditExistingCases.fxml");
+    public void ShowCases(MouseEvent event) throws IOException {
+        loadController("fxml/ShowCases.fxml");
     }
 
     /**
@@ -113,7 +123,7 @@ public class MenuController implements Initializable, IController<MainController
 
     @FXML
     private void Logout(MouseEvent event) {
-        mainController.logout();
+        mainController.logout(false);
     }
     
     private void unloadController() {

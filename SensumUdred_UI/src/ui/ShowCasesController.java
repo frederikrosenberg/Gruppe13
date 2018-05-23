@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import common.IBusinessFacade;
@@ -28,10 +23,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 /**
+ * Show cases controller
  *
- * @author Sebas
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
-public class EditExistingCasesController implements Initializable, IController<MenuController> {
+public class ShowCasesController implements Initializable, IController<MenuController> {
 
     @FXML
     private AnchorPane appBackground;
@@ -81,8 +82,7 @@ public class EditExistingCasesController implements Initializable, IController<M
     private TextArea citizenStillRequires;
     @FXML
     private TextArea caseReviewFinalComments;
-    
-    
+
     /**
      * An instance of the citizens case, for use in the case preview.
      */
@@ -92,12 +92,11 @@ public class EditExistingCasesController implements Initializable, IController<M
      * The business facade used to communicate with business layer
      */
     private IBusinessFacade business;
-    
+
     /**
      * Ref to main controller
      */
     private MenuController menuController;
-    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -160,6 +159,7 @@ public class EditExistingCasesController implements Initializable, IController<M
 
     /**
      * Makes the case into viewable labels for the gui to show.
+     *
      * @param c the case to convert
      */
     private void makeCasePreview(ICase c) {
@@ -263,7 +263,7 @@ public class EditExistingCasesController implements Initializable, IController<M
 
     @Override
     public void unload() {
-        
+
     }
 
 }

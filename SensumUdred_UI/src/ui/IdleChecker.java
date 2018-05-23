@@ -34,7 +34,7 @@ public class IdleChecker implements Runnable {
     private final Idleable controller;
 
     /**
-     * To check wether the user is logged in or not.
+     * To check whether the user is logged in or not.
      */
     private boolean loggedIn = false;
 
@@ -92,7 +92,7 @@ public class IdleChecker implements Runnable {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            controller.logout();
+                            controller.logout(true);
                         }
                     });
                 }
