@@ -21,15 +21,22 @@ public class DataCaseLog extends DataLog implements ICaseLog {
     private int caseId;
     
     /**
+     * The name of the department
+     */
+    private String departmentName;
+    
+    /**
      * Constructor for the case log
      * @param type the type of log
      * @param date the date of the log
      * @param userId the user id of the log
      * @param caseId the case id of the log
+     * @param departmentName the department name
      */
-    public DataCaseLog(LogType type, Date date, String userId, int caseId) {
+    public DataCaseLog(LogType type, Date date, String userId, int caseId, String departmentName) {
         super(type, date, userId);
         this.caseId = caseId;
+        this.departmentName = departmentName;
     }
 
     /**
@@ -39,6 +46,15 @@ public class DataCaseLog extends DataLog implements ICaseLog {
     @Override
     public int getCaseId() {
         return caseId;
+    }
+    
+    /**
+     * Gets the name of the department
+     * @return the department name
+     */
+    @Override
+    public String getDepartmentName() {
+        return departmentName;
     }
     
 }
