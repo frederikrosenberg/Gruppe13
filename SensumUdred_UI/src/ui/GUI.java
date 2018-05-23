@@ -85,7 +85,7 @@ public class GUI extends Application implements IUI {
     }
     
     /**
-     * Get the ui instance
+     * Get the gui instance
      * @return the gui object
      */
     public static GUI getInstance() {

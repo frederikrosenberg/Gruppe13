@@ -32,12 +32,12 @@ public class IdleChecker implements Runnable {
     private final FXMLDocumentController controller;
 
     /**
-     * To check wether the user is logged in or not.
+     * To check whether the user is logged in or not.
      */
     private boolean loggedIn = false;
 
     /**
-     * Contructor for the IdleChecker.
+     * Constructor for the IdleChecker.
      * @param time the sleep time in milliseconds
      * @param controller a reference to the FXML Document Controller class
      */
@@ -55,7 +55,7 @@ public class IdleChecker implements Runnable {
     }
 
     /**
-     * Sets wether the user is logged in.
+     * Sets whether the user is logged in.
      * @param loggedIn boolean referencing the users logged in status
      */
     public void setLogin(boolean loggedIn) {
