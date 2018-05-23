@@ -1,5 +1,6 @@
 package ui;
 
+import common.CaseState;
 import common.IBusinessFacade;
 import common.ICase;
 import common.IController;
@@ -12,12 +13,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -78,7 +80,19 @@ public class ShowCasesController implements Initializable, IController<MenuContr
     private TextArea citizenStillRequires;
     @FXML
     private TextArea caseReviewFinalComments;
-
+    @FXML
+    private Button closeCaseBtn;
+    @FXML
+    private Group ClosingDetails;
+    @FXML
+    private Label preview_Goal;
+    @FXML
+    private Label preview_FinalComments;
+    @FXML
+    private Label preview_Requires;
+    @FXML
+    private Label ClosingDetailsLabel;
+    
     /**
      * An instance of the citizens case, for use in the case preview.
      */
@@ -93,6 +107,8 @@ public class ShowCasesController implements Initializable, IController<MenuContr
      * Ref to main controller
      */
     private MenuController menuController;
+    
+    
 
     /**
      * Initializes the controller
@@ -164,6 +180,22 @@ public class ShowCasesController implements Initializable, IController<MenuContr
      * @param c the case to convert
      */
     private void makeCasePreview(ICase c) {
+        if (c.getState() == CaseState.CLOSED) {
+            closeCaseBtn.setDisable(true);
+            closeCaseBtn.setVisible(false);
+            ClosingDetails.setVisible(true);
+            ClosingDetailsLabel.setVisible(true);
+            preview_FinalComments.setText(c.getFinalComments());
+            preview_Goal.setText(c.getGoalAchieved() ? "Ja" : "Nej");
+            preview_Requires.setText(c.getCitizenRequires());
+        } else {
+            closeCaseBtn.setDisable(false);
+            closeCaseBtn.setVisible(true);
+            ClosingDetails.setVisible(false);
+            ClosingDetailsLabel.setVisible(false);
+        }
+        
+        
         preview_CaseId.setText(String.valueOf(c.getId()));
         preview_CaseStatus.setText(c.getState().toString());
         preview_CaseDate.setText(String.valueOf(c.getOpeningDate()));
