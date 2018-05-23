@@ -83,6 +83,7 @@ public class LoggingFacade implements ILoggingFacade{
      * @param type The type of the log
      * @param userId The user id who caused the log
      * @param caseId The case id of the case this log is about
+     * @param departmentName The department name
      */
     @Override
     public void createCaseLog(LogType type, String userId, int caseId, String departmentName) {

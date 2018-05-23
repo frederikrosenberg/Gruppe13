@@ -72,7 +72,6 @@ public class BusinessFacade implements IBusinessFacade {
         }
         if (security.hasAccess(Role.CASEWORKER)) {
             logic.setCaseWorker(id);
-            //logic.setDepartment(Persistence.getInstance().getPersistenceFacade().getDepartment(logic.getCaseWorker().getDepartmentName()));
         }
         loggingFacade.createLog(LogType.LOGIN, id);
         return true;
@@ -118,6 +117,9 @@ public class BusinessFacade implements IBusinessFacade {
      * Closes a case from a given case id
      *
      * @param caseId The case to close
+     * @param finalComments  The final comments
+     * @param citizenRequires What the citizen requires
+     * @param goalAchieved Is the goal achieved?
      * @return True if the case is closed
      */
     @Override
@@ -129,14 +131,6 @@ public class BusinessFacade implements IBusinessFacade {
             }
         }
         return false;
-    }
-
-    /**
-     * To be called when the system shuts down
-     */
-    @Override
-    public void closing() {
-        save();
     }
 
     /**
@@ -208,7 +202,6 @@ public class BusinessFacade implements IBusinessFacade {
     public void injectPersistence(IPersistenceFacade persistence) {
         Persistence.getInstance().injectPersistence(persistence);
         loggingFacade = new LoggingFacade();
-        load();
     }
 
     /**
@@ -222,34 +215,6 @@ public class BusinessFacade implements IBusinessFacade {
             return logic.getCaseWorker();
         }
         return null;
-    }
-
-    /**
-     * Loads in the saved data if any is available, otherwise generates dummy
-     * data
-     *
-     */
-    private void load() {
-       /* if (persistence.saveAvailable()) {
-            IDataObject data = persistence.load();
-            logic = new LogicFacade(data.getDepartment());
-            security = new SecurityFacade(data.getUserManager());
-        } else {
-            //dummy data is added here
-            logic = new LogicFacade("Dummy Department", "Dummy Syndrome", "Dummystreet 35", "dummy@dummymail.com", "12345678");
-            security = new SecurityFacade();
-            createCaseWorker("Dummy", "12345678", "dummy@dummymail.com", 12345, "Dummyuser", "password", Role.CASEWORKER);
-
-        }*/
-    }
-
-    /**
-     * Saves the data
-     *
-     * @return true if the data is saved
-     */
-    private boolean save() {
-        return false; //persistence.save(security.getUserManager(), logic.getDepartment());
     }
 
     /**

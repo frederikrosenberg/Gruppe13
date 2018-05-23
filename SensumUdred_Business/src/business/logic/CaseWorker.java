@@ -108,17 +108,6 @@ public class CaseWorker extends Person implements ICaseWorker {
      */
     public boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {
         return Persistence.getInstance().getPersistenceFacade().closeCase(department.getName(), caseId, finalComments, citizenRequires, goalAchieved);
-//        Case aCase;
-//        for (Iterator<Case> itr = cases.iterator(); itr.hasNext();) {
-//            aCase = itr.next();
-//            if (aCase.getId() == caseId) {
-//                
-//                aCase.closeCase();
-//                department.addInactiveCase(aCase);
-//                itr.remove();
-//            }
-//        }
-//        return true;
     }
 
     /**
