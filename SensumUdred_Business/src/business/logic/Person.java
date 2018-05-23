@@ -45,6 +45,8 @@ public class Person implements IPerson {
      * @param name The name of the person
      * @param phoneNumber The phone number of the person
      * @param email The email of the person
+     * @param departmentName The department name
+     * @param id The person id
      */
     public Person(String name, String phoneNumber, String email, String departmentName, int id) {
         this.name = name;

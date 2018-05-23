@@ -31,6 +31,9 @@ public interface ILogicFacade {
      * Closes a case from a given case id
      *
      * @param caseId The case id to find a case from
+     * @param finalComments The final comments
+     * @param citizenRequires What the citizen requires
+     * @param goalAchieved Is the goal achieved
      * @return True if the case is closed
      */
     boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved);

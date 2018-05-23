@@ -50,6 +50,7 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param department The case workers department
      * @param employeeId The case workers employee id
      * @param userId The case workers user id
+     * @param id The person id
      */
     public CaseWorker(String name, String phoneNumber, String email, Department department, int employeeId, String userId, int id) {
         super(name, phoneNumber, email, department.getName(), id);
@@ -100,6 +101,9 @@ public class CaseWorker extends Person implements ICaseWorker {
      * Closes an case
      *
      * @param caseId The case id of the case to close
+     * @param finalComments The final comments
+     * @param citizenRequires What the citizen requires
+     * @param goalAchieved Is the goal achieved
      * @return True if the case is closed
      */
     public boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {

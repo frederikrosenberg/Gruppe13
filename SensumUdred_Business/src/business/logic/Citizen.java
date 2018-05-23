@@ -53,6 +53,7 @@ public class Citizen extends Person implements ICitizen {
      * @param relationshipStatus The citizens relationship status
      * @param gender The citizens gender
      * @param departmentName The department name
+     * @param id The person id
      */
     public Citizen(String name, String mobileNumber, String email, String cpr, String address, RelationshipStatus relationshipStatus, Gender gender, String departmentName, int id) {
         super(name, mobileNumber, email, departmentName, id);
