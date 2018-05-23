@@ -42,7 +42,7 @@ public interface IPersistenceFacade {
      * @param department the given department
      * @return the id from the database
      */
-    int addDeparment(IDepartment department);
+    String addDeparment(IDepartment department);
     
     /**
      * Adds a citizen from ICitizen and returns the id
@@ -77,14 +77,14 @@ public interface IPersistenceFacade {
      * Get all the logs from the database
      * @return the logs
      */
-    List<ILog> getLogs();
+    List<? extends ILog> getLogs();
     
     /**
      * Get all the logs with at given type
      * @param type the type of log
      * @return the logs of that type
      */
-    List<ILog> getLogsOfType(LogType type);
+    List<? extends ILog> getLogsOfType(LogType type);
     
     /**
      * Get a specific case
@@ -105,21 +105,21 @@ public interface IPersistenceFacade {
      * @param departmentName The department name
      * @return all the cases
      */
-    List<ICase> getAllCases(String departmentName);
+    List<? extends ICase> getAllCases(String departmentName);
     
     /**
      * Gets all inactive cases from a department
      * @param departmentName The department name
      * @return All inactice cases from a department
      */
-    List<ICase> getAllInactiveCases(String departmentName);
+    List<? extends ICase> getAllInactiveCases(String departmentName);
     
     /**
      * Get all the cases belonging to that case worker
      * @param caseWorkerId the id of the case worker
      * @return the cases for the case worker, empty if the case worker does not exist
      */
-    List<ICase> getCaseWorkersCases(String department, int caseWorkerId);
+    List<? extends ICase> getCaseWorkersCases(String department, int caseWorkerId);
     
     /**
      * Get a specific user
@@ -132,7 +132,7 @@ public interface IPersistenceFacade {
      * Get all the users
      * @return all the users
      */
-    List<IUser> getUsers();
+    List<? extends IUser> getUsers();
     
     /**
      * Get a specific citizen
@@ -146,7 +146,7 @@ public interface IPersistenceFacade {
      * @param departmentName The department name
      * @return all the citizens 
      */
-    List<ICitizen> getCitizens(String departmentName);
+    List<? extends ICitizen> getCitizens(String departmentName);
     
     /**
      * Get a specific department
@@ -157,24 +157,24 @@ public interface IPersistenceFacade {
     
     /**
      * Closes a case
+     * @param departmentName The department name
      * @param caseId The case to close
      * @return True if the case is closed
      */
-    boolean closeCase(String departmentName, int caseId);
+    boolean closeCase(String departmentName, int caseId, String finalComments, String citizenRequires, boolean goalAchieved);
   
     /**
      * Gets all the caseworkers from a department
      * @param departmentName Which department to get from
      * @return All the caseworkers from a department
      */
-    List<ICaseWorker> getCaseworkers(String departmentName);
+    List<? extends ICaseWorker> getCaseworkers(String departmentName);
     
     /**
      * Gets a caseworker
      * @param departmentName The department name
-     * @param id The caseworkers person id
+     * @param userId The caseworkers person id
      * @return A caseworker
      */
-    ICaseWorker getCaseworker(String departmentName, int id);
-    
+    ICaseWorker getCaseworker(String departmentName, String userId);
 }

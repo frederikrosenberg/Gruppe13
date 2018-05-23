@@ -268,9 +268,8 @@ public class OpenNewCaseController implements Initializable, Idleable {
      */
     @FXML
     private void createNewCase(ActionEvent event) throws IOException {
-        ICitizen citizen = new UICitizen(Integer.valueOf(fillable_CprField.getText()), fillable_AdressField.getText(), fillable_NameField.getText(), fillable_PhoneNumberField.getText(), fillable_EmailField.getText(), gender, relstat);
-
-        ICitizenData citizenData = new UICitizenData(citizen, "Sagsåbning", 0, getConsent(), fillable_ProblemDescription.getText(), getAvailibleOffers(), getSourceOfRequest(), business.getCaseWorker());
+        ICitizen citizen = new UICitizen(fillable_CprField.getText(), fillable_AdressField.getText(), fillable_NameField.getText(), fillable_PhoneNumberField.getText(), fillable_EmailField.getText(), gender, relstat, business.getCaseWorker().getDepartmentName());
+        ICitizenData citizenData = new UICitizenData(citizen, "Sagsåbning", 0, getConsent(), fillable_ProblemDescription.getText(), getAvailibleOffers(), getSourceOfRequest(), business.getCaseWorker(), business.getCaseWorker().getDepartmentName());
         business.openCase(citizenData);
         clearNewCaseForm();
         openNewCaseScrollPane.setVisible(false);

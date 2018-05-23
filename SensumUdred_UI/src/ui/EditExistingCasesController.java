@@ -334,7 +334,7 @@ public class EditExistingCasesController implements Initializable, Idleable {
      */
     @FXML
     private void submitCloseCaseReview(ActionEvent event) throws IOException {
-        business.closeCase(casepreview.getId());
+        business.closeCase(casepreview.getId(), getFinalComments(), getCitizenRequires(), goalAchieved());
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
         appBackground.getChildren().setAll(pane);
     }

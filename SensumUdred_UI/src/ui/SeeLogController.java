@@ -345,16 +345,13 @@ public class SeeLogController implements Initializable, Idleable {
                             setText("User: " + closecase.getUserId() + "\t " + "Lukket sagen: " + closecase.getCaseId() + "\t Dato: " + item.getDate());
                             break;
                         case LOGIN:
-                            ILoginAttemptLog login = (ILoginAttemptLog) item;
-                            setText("User: " + login.getUsername() + "\t " + "Logget ind" + "\t Dato: " + item.getDate());
+                            setText("User: " + item.getUserId() + "\t " + "Logget ind" + "\t Dato: " + item.getDate());
                             break;
                         case LOGOUT:
-                            ILoginAttemptLog logout = (ILoginAttemptLog) item;
-                            setText("User: " + logout.getUsername() + "\t " + "Logget ud" + "\t Dato: " + item.getDate());
+                            setText("User: " + item.getUserId() + "\t " + "Logget ud" + "\t Dato: " + item.getDate());
                             break;
                         case TIMEOUT:
-                            ILoginAttemptLog timeout = (ILoginAttemptLog) item;
-                            setText("User: " + timeout.getUsername() + "\t " + "Logget ud, grundet inaktivitet" + "\t Dato: " + item.getDate());
+                            setText("User: " + item.getUserId() + "\t " + "Logget ud, grundet inaktivitet" + "\t Dato: " + item.getDate());
                             break;
                         case ATTEMPT_LOGIN:
                             ILoginAttemptLog attempt = (ILoginAttemptLog) item;
