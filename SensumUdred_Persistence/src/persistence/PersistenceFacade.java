@@ -763,7 +763,7 @@ public class PersistenceFacade implements IPersistenceFacade {
                 citizen, 
                 caseWorker, 
                 set.getString("departmentname"), 
-                set.getInt("state") == 1 ? "Closed" : "Open", 
+                CaseState.values()[set.getInt("state")], 
                 set.getInt("id"), 
                 set.getBoolean("consent"), 
                 set.getString("reason"), 
