@@ -5,17 +5,13 @@
  */
 package common;
 
-import java.io.IOException;
-import javafx.scene.input.MouseEvent;
 
 /**
  *
- * @author Sebas
+ * @author fred
  */
-public interface Idleable {
-
-    public void resetIdle(MouseEvent event);
-
-    public void logout() throws IOException;
-
+public interface IController<T> {
+    void setParrentController(T parrentController);
+    
+    void unload();
 }

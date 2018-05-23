@@ -7,6 +7,7 @@ package ui;
 
 import common.IBusinessFacade;
 import common.ICase;
+import common.IController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -30,14 +31,10 @@ import javafx.scene.layout.GridPane;
  *
  * @author Sebas
  */
-public class EditExistingCasesController implements Initializable{
+public class EditExistingCasesController implements Initializable, IController<MenuController> {
 
     @FXML
     private AnchorPane appBackground;
-    @FXML
-    private AnchorPane inappScreen;
-    @FXML
-    private GridPane openNewCaseGrid;
     @FXML
     private GridPane editCasesGridPane;
     @FXML
@@ -46,29 +43,6 @@ public class EditExistingCasesController implements Initializable{
     private Label noCasesFound;
     @FXML
     private AnchorPane seeSpecificCase;
-    private Label preview_Label;
-
-    private static MainBackgroundController mb;
-
-    /**
-     * An instance of the citizens case, for use in the case preview.
-     */
-    private ICase casepreview;
-
-    /**
-     * The business facade used to communicate with business layer
-     */
-    private IBusinessFacade business;
-    @FXML
-    private AnchorPane closeCaseReview;
-    @FXML
-    private ToggleGroup goalReachedGroup;
-    @FXML
-    private RadioButton goalAchieved_Yes;
-    @FXML
-    private TextArea citizenStillRequires;
-    @FXML
-    private TextArea caseReviewFinalComments;
     @FXML
     private Label preview_Name;
     @FXML
@@ -79,23 +53,51 @@ public class EditExistingCasesController implements Initializable{
     private Label preview_PhoneNumber;
     @FXML
     private Label preview_Email;
-    private Label preview_CaseDetails;
-    @FXML
-    private Label preview_CaseReason;
-    @FXML
-    private Label preview_CaseOffers;
-    @FXML
-    private Label preview_WorkerId;
-    @FXML
-    private Label preview_WorkerName;
-    @FXML
-    private Label preview_WorkerEmail;
     @FXML
     private Label preview_CaseId;
     @FXML
     private Label preview_CaseStatus;
     @FXML
     private Label preview_CaseDate;
+    @FXML
+    private Label preview_CaseReason;
+    @FXML
+    private Label preview_CaseOffers;
+    @FXML
+    private Label preview_WorkerEmail;
+    @FXML
+    private Label preview_WorkerId;
+    @FXML
+    private Label preview_WorkerName;
+    @FXML
+    private AnchorPane closeCaseReview;
+    @FXML
+    private RadioButton goalAchieved_Yes;
+    @FXML
+    private ToggleGroup goalReachedGroup;
+    @FXML
+    private RadioButton goalAchieved_No;
+    @FXML
+    private TextArea citizenStillRequires;
+    @FXML
+    private TextArea caseReviewFinalComments;
+    
+    
+    /**
+     * An instance of the citizens case, for use in the case preview.
+     */
+    private ICase casepreview;
+
+    /**
+     * The business facade used to communicate with business layer
+     */
+    private IBusinessFacade business;
+    
+    /**
+     * Ref to main controller
+     */
+    private MenuController menuController;
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -130,8 +132,7 @@ public class EditExistingCasesController implements Initializable{
      */
     @FXML
     private void closeEditCasesView(MouseEvent event) throws IOException {
-        loadMainBackground();
-        //todo
+        menuController.showBackground();
     }
 
     /**
@@ -202,18 +203,6 @@ public class EditExistingCasesController implements Initializable{
     }
 
     /**
-     * Loads the main background FMXL.
-     *
-     * @param event mouse click
-     * @throws IOException file not found / null pointer
-     */
-    private void loadMainBackground() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
-        appBackground.getChildren().setAll(pane);
-        //todo
-    }
-
-    /**
      * Hides the case closing review
      *
      * @param event on mouse click
@@ -261,6 +250,20 @@ public class EditExistingCasesController implements Initializable{
      */
     private boolean goalAchieved() {
         return this.goalAchieved_Yes.isSelected();
+    }
+
+    public void setMainController(MenuController mainController) {
+        this.menuController = mainController;
+    }
+
+    @Override
+    public void setParrentController(MenuController parrentController) {
+        menuController = parrentController;
+    }
+
+    @Override
+    public void unload() {
+        
     }
 
 }

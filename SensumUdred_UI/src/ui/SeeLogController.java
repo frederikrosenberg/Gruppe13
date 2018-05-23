@@ -7,6 +7,7 @@ package ui;
 
 import common.IBusinessFacade;
 import common.ICaseLog;
+import common.IController;
 import common.ILog;
 import common.ILoginAttemptLog;
 import common.LogType;
@@ -17,7 +18,6 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -25,20 +25,15 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
 /**
  *
  * @author Sebas
  */
-public class SeeLogController implements Initializable{
+public class SeeLogController implements Initializable, IController<MenuController> {
 
     @FXML
     private AnchorPane appBackground;
-    @FXML
-    private AnchorPane inappScreen;
-    @FXML
-    private GridPane openNewCaseGrid;
     @FXML
     private AnchorPane logPane;
     @FXML
@@ -48,10 +43,11 @@ public class SeeLogController implements Initializable{
     @FXML
     private MenuButton choice_logType;
 
-    private static MainBackgroundController mb;
+    private MenuController menuController;
 
     /**
-     * An instance of the LogType class, used for showing a specific type of log.
+     * An instance of the LogType class, used for showing a specific type of
+     * log.
      */
     private LogType logType;
 
@@ -59,11 +55,13 @@ public class SeeLogController implements Initializable{
      * The business facade used to communicate with business layer
      */
     private IBusinessFacade business;
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
 
+        setCellFactory();
     }
 
     /**
@@ -74,8 +72,7 @@ public class SeeLogController implements Initializable{
      */
     @FXML
     private void closeShowLog(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
-        appBackground.getChildren().setAll(pane);
+        menuController.showBackground();
     }
 
     /**
@@ -208,33 +205,42 @@ public class SeeLogController implements Initializable{
      * sets the listView's items.
      */
     private void getLogOfType() {
-        showStandardLogs();
-
-        LogListView.setItems(FXCollections.observableArrayList((List<ILog>) business.getLogsOfType(logType)));
-        if (LogListView.getItems().isEmpty()) {
-            noLogFound.setVisible(true);
+        List<ILog> logs = (List<ILog>) business.getLogsOfType(logType);
+        if (logs != null) {
+            LogListView.setItems(FXCollections.observableArrayList(logs));
+            if (LogListView.getItems().isEmpty()) {
+                noLogFound.setVisible(true);
+            } else {
+                noLogFound.setVisible(false);
+            }
         } else {
-            noLogFound.setVisible(false);
+            noLogFound.setVisible(true);
         }
+
     }
 
     /**
      * Formats the listview's cells, then gets all the log entries.
      */
     private void getAllLogs() {
-        showStandardLogs();
-        LogListView.setItems(FXCollections.observableArrayList((List<ILog>) business.getAllLogs()));
-        if (LogListView.getItems().isEmpty()) {
-            noLogFound.setVisible(true);
+        List<ILog> logs = (List<ILog>) business.getAllLogs();
+        if (logs != null) {
+            LogListView.setItems(FXCollections.observableArrayList(logs));
+            if (LogListView.getItems().isEmpty()) {
+                noLogFound.setVisible(true);
+            } else {
+                noLogFound.setVisible(false);
+            }
         } else {
-            noLogFound.setVisible(false);
+            noLogFound.setVisible(true);
         }
+
     }
 
     /**
      * Shows the log items as a standard log item.
      */
-    public void showStandardLogs() {
+    public void setCellFactory() {
         LogListView.setCellFactory(value -> new ListCell<ILog>() {
             @Override
             protected void updateItem(ILog item, boolean empty) {
@@ -284,5 +290,14 @@ public class SeeLogController implements Initializable{
                 }
             }
         });
+    }
+
+    @Override
+    public void setParrentController(MenuController parrentController) {
+        menuController = parrentController;
+    }
+
+    @Override
+    public void unload() {
     }
 }

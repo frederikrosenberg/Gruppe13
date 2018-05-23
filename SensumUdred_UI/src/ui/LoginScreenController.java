@@ -6,6 +6,7 @@
 package ui;
 
 import common.IBusinessFacade;
+import common.IController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +27,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Sebas
  */
-public class LoginScreenController implements Initializable {
+public class LoginScreenController implements Initializable, IController<MainController> {
 
     @FXML
     private AnchorPane appBackground;
@@ -46,6 +47,8 @@ public class LoginScreenController implements Initializable {
     private Button loginButton;
     @FXML
     private GridPane wrongUserPassGridPane;
+    
+    private MainController mainController;
 
     /**
      * The business facade used to communicate with business layer
@@ -95,19 +98,22 @@ public class LoginScreenController implements Initializable {
      */
     @FXML
     private void loginRequested(ActionEvent event) throws IOException {
-        
         if (business.login(usernameField.getText(), passwordField.getText())) {
-            wrongUserPassGridPane.setVisible(false);
-            usernameField.clear();
-            passwordField.clear();
-            
-            AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
-            appBackground.getChildren().setAll(pane);
-
+            mainController.login();
         } else {
             wrongUserPassGridPane.setVisible(true);
             passwordField.clear();
         }
+    }
+
+    @Override
+    public void setParrentController(MainController parrentController) {
+        mainController = parrentController;
+    }
+
+    @Override
+    public void unload() {
+        
     }
 
 }

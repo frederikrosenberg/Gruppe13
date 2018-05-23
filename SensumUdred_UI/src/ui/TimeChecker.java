@@ -27,6 +27,11 @@ public class TimeChecker implements Runnable {
      * An instance of the label type
      */
     private Label label;
+    
+    /**
+     * Whether or not the tread runs
+     */
+    private boolean running = true;
 
     /**
      * Initializes an instanse of label
@@ -44,15 +49,12 @@ public class TimeChecker implements Runnable {
      *
      */
     public void run() {
-        //Runs eternally:
-        while (true) {
+        while (running) {
             Date moment = new Date();
             
             DateFormat timeFormatter = DateFormat.getTimeInstance(DateFormat.DEFAULT);
 
-            String timeout = timeFormatter.format(moment);
-
-            output = timeout;
+            output = timeFormatter.format(moment);
 
             //Use runLater as, a non-application thread, cannot update GUI directly.
             Platform.runLater(new Runnable() {
@@ -64,9 +66,16 @@ public class TimeChecker implements Runnable {
 
             try {
                 //sleeps for 1/2 a second each time..
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
             }
         }
+    }
+    
+    /**
+     * Stops the thread
+     */
+    public void stop() {
+        running = false;
     }
 }

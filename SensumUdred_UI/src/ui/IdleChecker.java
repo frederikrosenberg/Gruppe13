@@ -76,7 +76,6 @@ public class IdleChecker implements Runnable {
     public void run() {
         //Runs eternally:
         while (true) {
-            System.out.println(Thread.activeCount());
             if (!loggedIn) {
                 try {
                     synchronized (this) {
@@ -93,10 +92,7 @@ public class IdleChecker implements Runnable {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            try {
-                                controller.logout();
-                            } catch (IOException ex) {
-                            }
+                            controller.logout();
                         }
                     });
                 }

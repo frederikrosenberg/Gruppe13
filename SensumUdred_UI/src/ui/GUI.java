@@ -45,7 +45,7 @@ public class GUI extends Application implements IUI {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Main.fxml"));
         Scene scene = new Scene(root);
 
         gui.stage = stage;

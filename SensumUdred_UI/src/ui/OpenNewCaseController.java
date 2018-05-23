@@ -10,6 +10,7 @@ import common.Gender;
 import common.IBusinessFacade;
 import common.ICitizen;
 import common.ICitizenData;
+import common.IController;
 import common.RelationshipStatus;
 import data.UICitizen;
 import data.UICitizenData;
@@ -36,14 +37,30 @@ import javafx.scene.layout.GridPane;
  *
  * @author Sebas
  */
-public class OpenNewCaseController implements Initializable{
+public class OpenNewCaseController implements Initializable, IController<MenuController> {
 
+
+    /**
+     * An instance of the citizens gender, for use in creating a new case.
+     */
+    private Gender gender;
+
+    /**
+     * An instance of the citizens relationship status, for use in creating a
+     * new case.
+     */
+    private RelationshipStatus relstat;
+
+    /**
+     * The business facade used to communicate with business layer
+     */
+    private IBusinessFacade business;
+    
+    private MenuController menuController;
     @FXML
     private AnchorPane appBackground;
     @FXML
-    private AnchorPane inappScreen;
-    @FXML
-    private GridPane openNewCaseGrid;
+    private GridPane inappScreen;
     @FXML
     private ScrollPane openNewCaseScrollPane;
     @FXML
@@ -130,24 +147,6 @@ public class OpenNewCaseController implements Initializable{
     private TextArea fillable_SpecialCaseDesc;
 
     /**
-     * An instance of the citizens gender, for use in creating a new case.
-     */
-    private Gender gender;
-
-    /**
-     * An instance of the citizens relationship status, for use in creating a
-     * new case.
-     */
-    private RelationshipStatus relstat;
-
-    /**
-     * The business facade used to communicate with business layer
-     */
-    private IBusinessFacade business;
-
-    private static MainBackgroundController mb;
-
-    /**
      * Clears all fields of the form that the caseworker fills to open a new
      * case.
      */
@@ -172,7 +171,6 @@ public class OpenNewCaseController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
-
     }
 
     /**
@@ -191,9 +189,7 @@ public class OpenNewCaseController implements Initializable{
         clearNewCaseForm();
         openNewCaseScrollPane.setVisible(false);
 
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
-        appBackground.getChildren().setAll(pane);
-        //todo
+        menuController.showBackground();
     }
 
     /**
@@ -330,19 +326,15 @@ public class OpenNewCaseController implements Initializable{
      */
     @FXML
     private void cancelNewCase(ActionEvent event) throws IOException {
-        clearNewCaseForm();
-        loadMainBackground();
+        menuController.showBackground();
     }
 
-    /**
-     * Loads the main background FMXL.
-     *
-     * @param event mouse click
-     * @throws IOException file not found / null pointer
-     */
-    private void loadMainBackground() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
-        appBackground.getChildren().setAll(pane);
-        //todo
+    @Override
+    public void setParrentController(MenuController parrentController) {
+        menuController = parrentController;
+    }
+
+    @Override
+    public void unload() {
     }
 }
