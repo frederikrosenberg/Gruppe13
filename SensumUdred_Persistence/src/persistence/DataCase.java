@@ -74,10 +74,19 @@ public class DataCase implements ICase, Serializable {
      */
     private Date closingDate;
     
+    /**
+     * If the goal for the case was achieved
+     */
     private boolean goalAchieved;
     
+    /**
+     * The final comments for the case
+     */
     private String finalComments;
     
+    /**
+     * If the citizen still requires help
+     */
     private String citizenRequires;
 
     /**
@@ -104,6 +113,23 @@ public class DataCase implements ICase, Serializable {
         }
     }
 
+    /**
+     * The constructor for the data case
+     * @param citizen the given citizen
+     * @param caseWorker the given case
+     * @param department the department name
+     * @param state the state of the case
+     * @param id the id of the case
+     * @param consent if there id consent from the citizen
+     * @param reason the reason for the case
+     * @param availableOffers the offers for the citizen
+     * @param sourceOfRequest the source of the request for help
+     * @param openingDate the opening date of the case
+     * @param closingDate the closing date of the case if the case is closed
+     * @param goalAchieved if the goals is achieved
+     * @param citizenRequires if the citizen still requires help
+     * @param finalComments the final comments for the case
+     */
     public DataCase(DataCitizen citizen, DataCaseWorker caseWorker, String department, String state, int id, boolean consent, String reason, String availableOffers, String sourceOfRequest, Date openingDate, Date closingDate, boolean goalAchieved, String citizenRequires, String finalComments) {
         this.citizen = citizen;
         this.caseWorker = caseWorker;
@@ -232,16 +258,28 @@ public class DataCase implements ICase, Serializable {
         return department;
     }
     
+    /**
+     * If the goal of the case is achieved
+     * @return goal achieved?
+     */
     @Override
     public boolean getGoalAchieved() {
         return goalAchieved;
     }
 
+    /**
+     * If the citizen still requires help
+     * @return the requires
+     */
     @Override
     public String getCitizenRequires() {
         return citizenRequires;
     }
 
+    /**
+     * The final comments for the case
+     * @return the comments for the case
+     */
     @Override
     public String getFinalComments() {
         return finalComments;

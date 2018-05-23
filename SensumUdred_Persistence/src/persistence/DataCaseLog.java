@@ -20,6 +20,9 @@ public class DataCaseLog extends DataLog implements ICaseLog {
      */
     private int caseId;
     
+    /**
+     * The name of the department
+     */
     private String departmentName;
     
     /**
@@ -44,7 +47,11 @@ public class DataCaseLog extends DataLog implements ICaseLog {
     public int getCaseId() {
         return caseId;
     }
-
+    
+    /**
+     * Gets the name of the department
+     * @return the department name
+     */
     @Override
     public String getDepartmentName() {
         return departmentName;
