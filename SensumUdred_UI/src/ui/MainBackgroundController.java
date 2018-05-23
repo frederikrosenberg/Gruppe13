@@ -108,7 +108,7 @@ public class MainBackgroundController implements Initializable, Idleable {
     }
 
     /**
-     * Shows the FXML doc for creting a new case.
+     * Shows the FXML doc for creating a new case.
      *
      * @param event mouse click
      */
@@ -126,8 +126,10 @@ public class MainBackgroundController implements Initializable, Idleable {
      */
     @FXML
     public void EditExistingCases(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
-        appBackground.getChildren().setAll(pane);
+//        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
+//        appBackground.getChildren().setAll(pane);
+          inappBackground.getChildren().clear();
+          inappBackground.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml")));
     }
 
     /**
