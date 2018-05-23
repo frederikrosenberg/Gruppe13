@@ -98,6 +98,7 @@ public interface ICase {
     /**
      * Gets what the citizen requires
      * @return what the citizen requires
+     */
     String getCitizenRequires();
     
     /**
