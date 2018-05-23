@@ -62,14 +62,16 @@ public class MenuController implements Initializable, IController<MainController
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
 
-        
-
+        String name = "";
+        String email = "";
+        String job = "";
+        //"Sagsbehandler"
         ICaseWorker worker = business.getCaseWorker();
         
         
-        user_Name.setText(worker.getName());
-        user_Email.setText(worker.getEmail());
-        user_JobTitle.setText("Sagsbehandler");
+        user_Name.setText(name);
+        user_Email.setText(email);
+        user_JobTitle.setText(job);
         
         loadController("fxml/Background.fxml");
     }
