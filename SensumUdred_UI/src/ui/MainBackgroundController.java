@@ -111,6 +111,7 @@ public class MainBackgroundController implements Initializable, Idleable {
      * Shows the FXML doc for creating a new case.
      *
      * @param event mouse click
+     * @throws java.io.IOException
      */
     @FXML
     public void OpenNewCase(MouseEvent event) throws IOException {
@@ -125,19 +126,21 @@ public class MainBackgroundController implements Initializable, Idleable {
      * Shows the FXML doc for editing the existing cases.
      *
      * @param event mouse click
+     * @throws java.io.IOException
      */
     @FXML
     public void EditExistingCases(MouseEvent event) throws IOException {
-//        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
 //        appBackground.getChildren().setAll(pane);
           inappBackground.getChildren().clear();
-          inappBackground.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml")));
+          inappBackground.getChildren().setAll(pane);
     }
 
     /**
      * Shows the FXML doc for seeing the log.
      *
      * @param event mouse click
+     * @throws java.io.IOException
      */
     @FXML
     public void showLog(MouseEvent event) throws IOException {
@@ -153,6 +156,7 @@ public class MainBackgroundController implements Initializable, Idleable {
      * Calls logout on the business instance
      *
      * @param event mouse click
+     * @throws java.io.IOException
      */
     @FXML
     public void Logout(MouseEvent event) throws IOException {
@@ -175,6 +179,7 @@ public class MainBackgroundController implements Initializable, Idleable {
     /**
      * Calls logout on the business instance, but specifying that it was
      * due to timeout.
+     * @throws java.io.IOException
      */
     @Override
     public void logout() throws IOException {

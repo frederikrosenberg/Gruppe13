@@ -72,9 +72,9 @@ public class UICitizenData implements ICitizenData {
      * @param citizen The citizen object 
      * @param state The state of the citizens case
      * @param id The id of the citizens case
-     * @param consent Wether or not consent was given
+     * @param consent Whether or not consent was given
      * @param reason The reason for the request
-     * @param avalibleOffers The avalible offers for the citizen
+     * @param avalibleOffers The available offers for the citizen
      * @param sourcerOfRequest The source of the request
      * @param caseWorker The case worker object associated with the case
      */
@@ -144,7 +144,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the available offers that are relevant for the citizen.
      *
-     * @return the avalible offers for the citizen
+     * @return the available offers for the citizen
      */
     @Override
     public String getAvailableOffers() {

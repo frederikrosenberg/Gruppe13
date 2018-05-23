@@ -85,7 +85,7 @@ public class LoginScreenController implements Initializable {
 
     /**
      * Calls the login functionality upon the business facade, and is given a
-     * boolean in return. if succesful, the login screen will be hidden, and the
+     * boolean in return. if successful, the login screen will be hidden, and the
      * in-app screen is shown for further use. the username and password fields
      * are cleared
      *
@@ -95,6 +95,7 @@ public class LoginScreenController implements Initializable {
      */
     @FXML
     private void loginRequested(ActionEvent event) throws IOException {
+        
         if (business.login(usernameField.getText(), passwordField.getText())) {
             wrongUserPassGridPane.setVisible(false);
             usernameField.clear();

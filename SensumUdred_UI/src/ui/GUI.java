@@ -40,7 +40,7 @@ public class GUI extends Application implements IUI {
      * Sets the stage and scene for the GUI, also loads the FXML Document, and
      * sets it as the scene.
      *
-     * @param stage obejct
+     * @param stage object
      * @throws Exception
      */
     @Override
