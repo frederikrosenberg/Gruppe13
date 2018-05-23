@@ -12,5 +12,5 @@ package common;
  */
 public enum Role {
     CASEWORKER,
-    CITIZEN
+    LOGRESPONSABLE
 }
