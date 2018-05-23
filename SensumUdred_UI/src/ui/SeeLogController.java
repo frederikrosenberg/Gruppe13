@@ -12,9 +12,6 @@ import common.ILoginAttemptLog;
 import common.LogType;
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -40,16 +37,6 @@ public class SeeLogController implements Initializable{
     private AnchorPane appBackground;
     @FXML
     private AnchorPane inappScreen;
-    @FXML
-    private Label user_JobTitle;
-    @FXML
-    private Label user_Name;
-    @FXML
-    private Label user_Email;
-    @FXML
-    private Label calendarMonth;
-    @FXML
-    private Label calendarDate;
     @FXML
     private GridPane openNewCaseGrid;
     @FXML
@@ -77,20 +64,6 @@ public class SeeLogController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
 
-        Calendar cal = Calendar.getInstance();
-        Calendar calen = Calendar.getInstance();
-        calen.add(Calendar.DATE, 0);
-        Date dato = calen.getTime();
-
-        SimpleDateFormat format2 = new SimpleDateFormat("MMM");
-        calendarMonth.setText(String.valueOf(format2.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format2.format(dato)).substring(1));
-
-        SimpleDateFormat format3 = new SimpleDateFormat("d");
-        calendarDate.setText(String.valueOf(format3.format(dato)));
-
-        user_Name.setText(business.getCaseWorker().getName());
-        user_Email.setText(business.getCaseWorker().getEmail());
-        user_JobTitle.setText("Sagsbehandler");
     }
 
     /**

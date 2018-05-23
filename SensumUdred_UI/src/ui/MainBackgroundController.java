@@ -130,10 +130,9 @@ public class MainBackgroundController implements Initializable, Idleable {
      */
     @FXML
     public void EditExistingCases(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
 //        appBackground.getChildren().setAll(pane);
           inappBackground.getChildren().clear();
-          inappBackground.getChildren().setAll(pane);
+          inappBackground.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml")));
     }
 
     /**
