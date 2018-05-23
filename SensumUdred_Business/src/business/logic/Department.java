@@ -241,9 +241,9 @@ public class Department implements IDepartment {
      * @param userId the user id of the caseworker
      */
     public void addCaseWorker(String name, String phoneNumber, String email, int employeeId, String userId) {
-        ICaseWorker caseWorker = new CaseWorker(name, phoneNumber, email, this, employeeId, userId);
-        Persistence.getInstance().getPersistenceFacade().addCaseWorker(caseWorker);
-        caseWorkers.add((CaseWorker) caseWorker);
+//        ICaseWorker caseWorker = new CaseWorker(name, phoneNumber, email, this, employeeId, userId);
+//        Persistence.getInstance().getPersistenceFacade().addCaseWorker(caseWorker);
+//        caseWorkers.add((CaseWorker) caseWorker);
     }
     
     /**

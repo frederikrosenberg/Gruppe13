@@ -334,5 +334,9 @@ public class Case implements ICase {
         return departmentName;
     }
 
+    void setId(int id) {
+        this.id = id;
+    }
+
     
 }

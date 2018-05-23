@@ -1,5 +1,7 @@
-package common;
+package business.common;
 
+import common.ILog;
+import common.LogType;
 import java.util.List;
 
 /**
@@ -46,5 +48,5 @@ public interface ILoggingFacade {
      * @param userId The user id who caused the log
      * @param caseId The case id of the case this log is about
      */
-    void createCaseLog(LogType type, String userId, int caseId);
+    void createCaseLog(LogType type, String userId, int caseId, String departmentName);
 }

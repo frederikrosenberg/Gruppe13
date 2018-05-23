@@ -3,7 +3,7 @@ package business.Logging;
 import business.Persistence;
 import java.util.ArrayList;
 import common.ILog;
-import common.ILoggingFacade;
+import business.common.ILoggingFacade;
 import common.LogType;
 import java.util.List;
 
@@ -85,8 +85,8 @@ public class LoggingFacade implements ILoggingFacade{
      * @param caseId The case id of the case this log is about
      */
     @Override
-    public void createCaseLog(LogType type, String userId, int caseId) {
-        CaseLog log = new CaseLog(caseId, type, userId);
+    public void createCaseLog(LogType type, String userId, int caseId, String departmentName) {
+        CaseLog log = new CaseLog(caseId, type, userId, departmentName);
         logs.add(log);
         Persistence.getInstance().getPersistenceFacade().addCaseLog(log);
     }

@@ -108,7 +108,7 @@ public class BusinessFacade implements IBusinessFacade {
     public ICase openCase(ICitizenData citizenData) {
         if (security.hasAccess(Role.CASEWORKER)) {
             ICase temp = logic.openCase(citizenData);
-            loggingFacade.createCaseLog(LogType.OPEN_CASE, security.getCurrentUser().getUserId(), temp.getId());
+            loggingFacade.createCaseLog(LogType.OPEN_CASE, security.getCurrentUser().getUserId(), temp.getId(), logic.getDepartment().getName());
             return temp;
         }
         return null;
@@ -124,7 +124,7 @@ public class BusinessFacade implements IBusinessFacade {
     public boolean closeCase(int caseId) {
         if (security.hasAccess(Role.CASEWORKER)) {
             if(logic.closeCase(caseId)) {
-                loggingFacade.createCaseLog(LogType.CLOSE_CASE, security.getCurrentUser().getUserId(), caseId);
+                loggingFacade.createCaseLog(LogType.CLOSE_CASE, security.getCurrentUser().getUserId(), caseId, logic.getDepartment().getName());
                 return true;
             }
         }
@@ -149,7 +149,7 @@ public class BusinessFacade implements IBusinessFacade {
     public ICase findActiveCase(int caseId) {
         if (security.hasAccess(Role.CASEWORKER)) {
             ICase temp = logic.findActiveCase(caseId);
-            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId());
+            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId(), temp.getDepartmentName());
             return temp;
         }
         return null;
@@ -165,7 +165,7 @@ public class BusinessFacade implements IBusinessFacade {
     public ICase findActiveCase(String name) {
         if (security.hasAccess(Role.CASEWORKER)) {
             ICase temp = logic.findActiveCase(name);
-            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId());
+            loggingFacade.createCaseLog(LogType.CASE_VIEWED, security.getCurrentUser().getUserId(), temp.getId(), temp.getDepartmentName());
             return temp;
         }
         return null;

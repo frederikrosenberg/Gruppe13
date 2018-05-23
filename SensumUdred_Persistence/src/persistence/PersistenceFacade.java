@@ -222,7 +222,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         try (Connection con = getDbConnection()) {
             int id = insertPerson(con, citizen);
             
-            PreparedStatement statement = con.prepareStatement("INSERT INTO \"Citizen\" (Id, DepartmentName, Cpr, Gender, Address, relationshipStatus) VALUES (Id, DepartmentName,?,?,?,?)");
+            PreparedStatement statement = con.prepareStatement("INSERT INTO \"Citizen\" (Id, DepartmentName, Cpr, Gender, Address, relationshipStatus) VALUES (?,?,?,?,?,?)");
             statement.setInt(1, id);
             statement.setString(2, citizen.getDepartmentName());
             statement.setString(3, citizen.getCpr());
@@ -301,7 +301,7 @@ public class PersistenceFacade implements IPersistenceFacade {
             PreparedStatement statement = con.prepareStatement("INSERT INTO \"CaseLog\" (Id, CaseId, CaseDepartmentName) VALUES (?,?,?)");
             statement.setInt(1, id);
             statement.setInt(2, log.getCaseId());
-            statement.setString(3, "Department"); //TODO get from log. Right now it is not added!
+            statement.setString(3, log.getDepartmentName());
             statement.execute();
             return id;
         } catch (SQLException ex) {
@@ -690,7 +690,7 @@ public class PersistenceFacade implements IPersistenceFacade {
             case CASE_VIEWED:
             case OPEN_CASE:
             case CLOSE_CASE:
-                return new DataCaseLog(type, date, userId, set.getInt("caseid"));
+                return new DataCaseLog(type, date, userId, set.getInt("caseid"), set.getString("casedepartmentname"));
             case VIEW_LOG:
             case LOGIN:
             case LOGOUT:
@@ -818,6 +818,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         statement.setString(3, person.getPhoneNumber());
         statement.setString(4, person.getPhoneNumber());
         ResultSet set = statement.executeQuery();
+        set.next();
         return set.getInt(1);
     }
     

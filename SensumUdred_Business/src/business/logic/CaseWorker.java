@@ -51,8 +51,8 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param employeeId The case workers employee id
      * @param userId The case workers user id
      */
-    public CaseWorker(String name, String phoneNumber, String email, Department department, int employeeId, String userId) {
-        super(name, phoneNumber, email, department.getName());
+    public CaseWorker(String name, String phoneNumber, String email, Department department, int employeeId, String userId, int id) {
+        super(name, phoneNumber, email, department.getName(), id);
         this.department = department;
         this.employeeId = employeeId;
         this.userId = userId;
@@ -65,7 +65,7 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param department The department the existing case worker works at
      */
     public CaseWorker(ICaseWorker caseWorker, Department department) {
-        this(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail(), department, caseWorker.getEmployeeId(), caseWorker.getUserId());
+        this(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail(), department, caseWorker.getEmployeeId(), caseWorker.getUserId(), caseWorker.getId());
     }
 
     /**
@@ -75,21 +75,25 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @return The new case opened
      */
     public Case openCase(ICitizenData data) {
-        ICitizen citizen = null;
+        Citizen citizen = null;
         for (ICitizen c : Persistence.getInstance().getPersistenceFacade().getCitizens(department.getName())) {
             if (c.getCpr().equals(data.getCitizen().getCpr())) {
-                citizen = (Citizen) c;
+                citizen = new Citizen(c);
+                break;
             }
         }
         if (citizen == null) {
             citizen = new Citizen(data.getCitizen());
-            Persistence.getInstance().getPersistenceFacade().addCitizen(citizen);
-            department.addCitizen((Citizen) citizen);
+            int id = Persistence.getInstance().getPersistenceFacade().addCitizen(citizen);
+            citizen.setId(id);
+            citizen.setDepartmentName(department.getName());
+            department.addCitizen(citizen);
         }
-        ICase c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), (Citizen) citizen, this, department.getName());
-        Persistence.getInstance().getPersistenceFacade().addCase(c);
-        cases.add((Case) c);
-        return (Case) c;
+        Case c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), citizen, this, department.getName());
+        int caseId = Persistence.getInstance().getPersistenceFacade().addCase(c);
+        c.setId(caseId);
+        cases.add(c);
+        return c;
     }
 
     /**

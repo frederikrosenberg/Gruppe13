@@ -46,11 +46,12 @@ public class Person implements IPerson {
      * @param phoneNumber The phone number of the person
      * @param email The email of the person
      */
-    public Person(String name, String phoneNumber, String email, String departmentName) {
+    public Person(String name, String phoneNumber, String email, String departmentName, int id) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.departmentName = departmentName;
+        this.id = id;
     }
 
     /**
@@ -97,5 +98,12 @@ public class Person implements IPerson {
         return id;
     }
     
+    public void setDepartmentName(String name) {
+        departmentName = name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
 }
