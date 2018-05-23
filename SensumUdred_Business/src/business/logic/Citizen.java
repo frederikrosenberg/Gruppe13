@@ -20,7 +20,7 @@ public class Citizen extends Person implements ICitizen {
     /**
      * The CPR number of the citizen
      */
-    private String cpr;
+    private int cpr;
 
     /**
      * The address of the citizen
@@ -52,10 +52,9 @@ public class Citizen extends Person implements ICitizen {
      * @param address The citizens address
      * @param relationshipStatus The citizens relationship status
      * @param gender The citizens gender
-     * @param departmentName The department name
      */
-    public Citizen(String name, String mobileNumber, String email, String cpr, String address, RelationshipStatus relationshipStatus, Gender gender, String departmentName, int id) {
-        super(name, mobileNumber, email, departmentName, id);
+    public Citizen(String name, String mobileNumber, String email, int cpr, String address, RelationshipStatus relationshipStatus, Gender gender) {
+        super(name, mobileNumber, email);
         this.cpr = cpr;
         this.address = address;
         this.relationshipStatus = relationshipStatus;
@@ -68,7 +67,7 @@ public class Citizen extends Person implements ICitizen {
      * @param citizen The existing citizen to extract data from
      */
     public Citizen(ICitizen citizen) {
-        super(citizen.getName(), citizen.getPhoneNumber(), citizen.getEmail(), citizen.getDepartmentName(), citizen.getId());
+        super(citizen.getName(), citizen.getPhoneNumber(), citizen.getEmail());
         this.cpr = citizen.getCpr();
         this.address = citizen.getAddress();
         this.relationshipStatus = citizen.getRelationshipStatus();
@@ -81,7 +80,7 @@ public class Citizen extends Person implements ICitizen {
      * @return the citizens cpr number
      */
     @Override
-    public String getCpr() {
+    public int getCpr() {
         return cpr;
     }
 
@@ -140,6 +139,4 @@ public class Citizen extends Person implements ICitizen {
     public ICase getActiveCase() {
         return activeCase;
     }
-
-    
 }

@@ -1,10 +1,9 @@
 package business.security;
 
-import business.BusinessFacade;
-import business.Persistence;
 import common.IUser;
 import common.IUserManager;
 import common.Role;
+import static common.Role.CASEWORKER;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -66,9 +65,6 @@ public class UserManager implements IUserManager {
      */
     @Override
     public List<? extends IUser> getUsers() {
-        for (IUser user : Persistence.getInstance().getPersistenceFacade().getUsers()) {
-            users.add(new User(user));
-        }
         return Collections.unmodifiableList(users);
     }
 
@@ -83,9 +79,7 @@ public class UserManager implements IUserManager {
      */
     public String addUser(String name, String username, String password, Role role) {
         String id = generateId();
-        IUser user = new User(name, username, security.hashPassword(password), role, id);
-        Persistence.getInstance().getPersistenceFacade().addUser(user);
-        users.add((User) user);
+        users.add(new User(name, username, security.hashPassword(password), role, id));
         return id;
     }
 

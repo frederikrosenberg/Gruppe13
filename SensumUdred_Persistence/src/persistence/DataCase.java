@@ -3,7 +3,6 @@ package persistence;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
-import common.IDepartment;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -28,11 +27,6 @@ public class DataCase implements ICase, Serializable {
      * The case worker assigned to the case
      */
     private DataCaseWorker caseWorker;
-    
-    /**
-     * The department of the case
-     */
-    private String department;
 
     /**
      * The state of the citizen
@@ -73,12 +67,6 @@ public class DataCase implements ICase, Serializable {
      * The date the case closed
      */
     private Date closingDate;
-    
-    private boolean goalAchieved;
-    
-    private String finalComments;
-    
-    private String citizenRequires;
 
     /**
      * Constructor for data case
@@ -103,25 +91,6 @@ public class DataCase implements ICase, Serializable {
             citizen.setActiveCase(this);
         }
     }
-
-    public DataCase(DataCitizen citizen, DataCaseWorker caseWorker, String department, String state, int id, boolean consent, String reason, String availableOffers, String sourceOfRequest, Date openingDate, Date closingDate, boolean goalAchieved, String citizenRequires, String finalComments) {
-        this.citizen = citizen;
-        this.caseWorker = caseWorker;
-        this.department = department;
-        this.state = state;
-        this.id = id;
-        this.consent = consent;
-        this.reason = reason;
-        this.availableOffers = availableOffers;
-        this.sourceOfRequest = sourceOfRequest;
-        this.openingDate = openingDate;
-        this.closingDate = closingDate;
-        this.goalAchieved = goalAchieved;
-        this.citizenRequires = citizenRequires;
-        this.finalComments = finalComments;
-    }
-    
-    
 
     /**
      * The citizen the case is about
@@ -221,30 +190,6 @@ public class DataCase implements ICase, Serializable {
     @Override
     public Date getClosingDate() {
         return closingDate;
-    }
-
-    /**
-     * Gets the department of the case
-     * @return the department name
-     */
-    @Override
-    public String getDepartmentName() {
-        return department;
-    }
-    
-    @Override
-    public boolean getGoalAchieved() {
-        return goalAchieved;
-    }
-
-    @Override
-    public String getCitizenRequires() {
-        return citizenRequires;
-    }
-
-    @Override
-    public String getFinalComments() {
-        return finalComments;
     }
 
 }

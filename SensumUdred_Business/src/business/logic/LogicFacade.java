@@ -1,6 +1,5 @@
 package business.logic;
 
-import business.Persistence;
 import business.common.ILogicFacade;
 import common.ICase;
 import common.ICaseWorker;
@@ -29,10 +28,6 @@ public class LogicFacade implements ILogicFacade {
      * The logged in caseworker
      */
     private CaseWorker caseWorker;
-    
-    public LogicFacade() {
-        
-    }
 
     /**
      * Creates a logic facade from a given department
@@ -65,30 +60,31 @@ public class LogicFacade implements ILogicFacade {
      * @return True if the case is closed
      */
     @Override
-    public boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {
-        return caseWorker.closeCase(caseId, finalComments, citizenRequires, goalAchieved);
+    public boolean closeCase(int caseId) {
+        return caseWorker.closeCase(caseId);
     }
 
     /**
-     * Finds an active case with a specific case id
+     * Finds an active case with a specific citizen cpr or case id
      *
-     * @param caseId The case id
+     * @param value The value of cpr/case id
+     * @param isCpr True if its a cpr
      * @return An active case
      */
     @Override
-    public ICase findActiveCase(int caseId) {
-        return department.findActiveCase(caseId);
+    public ICase findActiveCase(int value, boolean isCpr) {
+        return department.findActiveCase(value, isCpr);
     }
 
     /**
-     * Finds an active case with a specific citizen cpr
+     * Finds an active case with a specific citizen name
      *
-     * @param cpr The citizen cpr
-     * @return An active case with a specific citizen cpr
+     * @param name The citizen name
+     * @return An active case with a specific citizen name
      */
     @Override
-    public ICase findActiveCase(String cpr) {
-        return department.findActiveCase(cpr);
+    public ICase findActiveCase(String name) {
+        return department.findActiveCase(name);
     }
 
     /**
@@ -118,9 +114,11 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public void setCaseWorker(String userId) {
-        ICaseWorker caseWorker = Persistence.getInstance().getPersistenceFacade().getCaseworker(null, userId);
-        department = new Department(Persistence.getInstance().getPersistenceFacade().getDepartment(caseWorker.getDepartmentName()));
-        this.caseWorker = new CaseWorker(Persistence.getInstance().getPersistenceFacade().getCaseworker(department.getName(), userId), department);
+        for (ICaseWorker caseWorker : department.getCaseWorkers()) {
+            if (caseWorker.getUserId().equals(userId)) {
+                this.caseWorker = (CaseWorker) caseWorker;
+            }
+        }
     }
 
     /**
@@ -164,11 +162,4 @@ public class LogicFacade implements ILogicFacade {
     public void createCaseWorker(String name, String phoneNumber, String email, int employeeId, String userId) {
         department.addCaseWorker(name, phoneNumber, email, employeeId, userId);
     }
-
-    @Override
-    public void setDepartment(IDepartment department) {
-        this.department = new Department(department);
-    }
-    
-    
 }

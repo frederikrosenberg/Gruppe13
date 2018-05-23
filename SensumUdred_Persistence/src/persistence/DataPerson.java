@@ -15,17 +15,6 @@ import java.io.Serializable;
 public abstract class DataPerson implements IPerson, Serializable {
 
     /**
-     * The id of the person
-     */
-    private int id;
-    
-    
-    /**
-     * The department the person belongs to
-     */
-    private String departmentName;
-    
-    /**
      * Name of the person
      */
     private String name;
@@ -49,16 +38,6 @@ public abstract class DataPerson implements IPerson, Serializable {
         phoneNumber = person.getPhoneNumber();
         email = person.getEmail();
     }
-
-    public DataPerson(int id, String departmentName, String name, String phoneNumber, String email) {
-        this.id = id;
-        this.departmentName = departmentName;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
-    
-    
     
     /**
      * Get the name of the person
@@ -86,25 +65,5 @@ public abstract class DataPerson implements IPerson, Serializable {
     public String getEmail() {
         return email;
     }
-
-    /**
-     * Gets the name of the department the person belongs to
-     * @return name of the department
-     */
-    @Override
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    /**
-     * Gets the id of the person
-     * @return the id
-     */
-    @Override
-    public int getId() {
-        return id;
-    }
-    
-    
     
 }

@@ -15,11 +15,6 @@ import common.IPerson;
 public class Person implements IPerson {
 
     /**
-     * The id of the person
-     */
-    private int id;
-    
-    /**
      * The name of the person
      */
     private String name;
@@ -33,11 +28,6 @@ public class Person implements IPerson {
      * The email of the person
      */
     private String email;
-    
-    /**
-     * The name of the department
-     */
-    private String departmentName;
 
     /**
      * Construct a new person
@@ -46,12 +36,10 @@ public class Person implements IPerson {
      * @param phoneNumber The phone number of the person
      * @param email The email of the person
      */
-    public Person(String name, String phoneNumber, String email, String departmentName, int id) {
+    public Person(String name, String phoneNumber, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.departmentName = departmentName;
-        this.id = id;
     }
 
     /**
@@ -83,27 +71,4 @@ public class Person implements IPerson {
     public String getEmail() {
         return this.email;
     }
-
-    /**
-     * Gets the department name
-     * @return The department name
-     */
-    @Override
-    public String getDepartmentName() {
-        return this.departmentName;
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
-    
-    public void setDepartmentName(String name) {
-        departmentName = name;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
 }

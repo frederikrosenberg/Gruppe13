@@ -4,9 +4,6 @@ import business.BusinessFacade;
 import common.IBusinessFacade;
 import common.IPersistenceFacade;
 import common.IUI;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import persistence.PersistenceFacade;
 import ui.GUI;
 
@@ -28,19 +25,13 @@ public class SensumUdred_Starter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IPersistenceFacade persistence;
-        try {
-            persistence = new PersistenceFacade();
-            IBusinessFacade business = new BusinessFacade();
-            IUI ui = new GUI();
-
-            business.injectPersistence(persistence);
-            ui.injectBusiness(business);
-            ui.startApplication(args);
-        } catch (IOException ex) {
-            Logger.getLogger(SensumUdred_Starter.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        IPersistenceFacade persistence = new PersistenceFacade();
+        IBusinessFacade business = new BusinessFacade();
+        IUI ui = new GUI();
         
+        business.injectPersistence(persistence);
+        ui.injectBusiness(business);
+        ui.startApplication(args);
         
     }
     

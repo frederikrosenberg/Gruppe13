@@ -33,23 +33,24 @@ public interface ILogicFacade {
      * @param caseId The case id to find a case from
      * @return True if the case is closed
      */
-    boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved);
+    boolean closeCase(int caseId);
 
     /**
-     * Finds an active case with a specific case id
+     * Finds an active case with a specific citizen cpr or case id
      *
-     * @param caseId The value of case id
+     * @param value The value of cpr/case id
+     * @param isCpr True if its a cpr
      * @return An active case
      */
-    ICase findActiveCase(int caseId);
+    ICase findActiveCase(int value, boolean isCpr);
 
     /**
-     * Finds an active case with a specific citizen cpr
+     * Finds an active case with a specific citizen name
      *
-     * @param cpr The citizen name
-     * @return An active case with a specific citizen cpr
+     * @param name The citizen name
+     * @return An active case with a specific citizen name
      */
-    ICase findActiveCase(String cpr);
+    ICase findActiveCase(String name);
 
     /**
      * Gets a list of all active cases on the department
@@ -101,10 +102,4 @@ public interface ILogicFacade {
      * @param userId the user id of the case worker
      */
     void createCaseWorker(String name, String phoneNumber, String email, int employeeId, String userId);
-    
-    /**
-     * Sets the department of the logged in user
-     * @param department Which department to set
-     */
-    void setDepartment(IDepartment department);
 }

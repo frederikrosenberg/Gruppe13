@@ -85,24 +85,6 @@ public class DataDepartment implements IDepartment, Serializable {
             inactiveCases.add(new DataCase(inactiveCase, findCaseWorker(inactiveCase.getCaseWorker().getUserId()), findCitizen(inactiveCase.getCitizen().getCpr()), false));
         }
     }
-
-    /**
-     * Constructor for data department
-     * @param name the name of the department
-     * @param treatmentArea the area of treatment the department offers
-     * @param address the address of the department
-     * @param email the email to contract the department
-     * @param phoneNumber the phone for the department
-     */
-    public DataDepartment(String name, String treatmentArea, String address, String email, String phoneNumber) {
-        this.name = name;
-        this.treatmentArea = treatmentArea;
-        this.address = address;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
-    
-    
     
     /**
      * Find a case worker
@@ -123,7 +105,7 @@ public class DataDepartment implements IDepartment, Serializable {
      * @return the found citizen
      * @throws IllegalArgumentException if not found, because this should be found while saving otherwise something is missing
      */
-    public DataCitizen findCitizen(String cpr) {
+    public DataCitizen findCitizen(int cpr) {
         for (DataCitizen citizen : citizens) {
             if (citizen.getCpr() == cpr) return citizen;
         }

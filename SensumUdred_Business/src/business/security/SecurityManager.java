@@ -1,6 +1,5 @@
 package business.security;
 
-import business.Persistence;
 import common.IUser;
 import common.Role;
 
@@ -55,7 +54,7 @@ public class SecurityManager {
      * @return user id if the login was successful, otherwise null
      */
     public String logIn(String username, String password) {
-        for (IUser user : Persistence.getInstance().getPersistenceFacade().getUsers()) {
+        for (IUser user : userManager.getUsers()) {
             if (user.getActive() && user.getUsername().equals(username)
                     && hasher.compare(password, user.getPassword())) {
                 currentUser = user;

@@ -1,6 +1,5 @@
 package business.logic;
 
-import business.Persistence;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
@@ -51,8 +50,8 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param employeeId The case workers employee id
      * @param userId The case workers user id
      */
-    public CaseWorker(String name, String phoneNumber, String email, Department department, int employeeId, String userId, int id) {
-        super(name, phoneNumber, email, department.getName(), id);
+    public CaseWorker(String name, String phoneNumber, String email, Department department, int employeeId, String userId) {
+        super(name, phoneNumber, email);
         this.department = department;
         this.employeeId = employeeId;
         this.userId = userId;
@@ -65,7 +64,15 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param department The department the existing case worker works at
      */
     public CaseWorker(ICaseWorker caseWorker, Department department) {
-        this(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail(), department, caseWorker.getEmployeeId(), caseWorker.getUserId(), caseWorker.getId());
+        super(caseWorker.getName(), caseWorker.getPhoneNumber(), caseWorker.getEmail());
+        this.employeeId = caseWorker.getEmployeeId();
+        this.userId = caseWorker.getUserId();
+        this.department = department;
+        for (ICase activeCase : caseWorker.getActiveCases()) {
+            Citizen citizen = department.findCitizen(activeCase.getCitizen().getCpr());
+            Case c = new Case(activeCase, this, citizen, true);
+            cases.add(c);
+        }
     }
 
     /**
@@ -75,23 +82,18 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @return The new case opened
      */
     public Case openCase(ICitizenData data) {
+        List<? extends ICitizen> citizens = department.getCitizens();
         Citizen citizen = null;
-        for (ICitizen c : Persistence.getInstance().getPersistenceFacade().getCitizens(department.getName())) {
-            if (c.getCpr().equals(data.getCitizen().getCpr())) {
-                citizen = new Citizen(c);
-                break;
+        for (ICitizen c : citizens) {
+            if (c.getCpr() == data.getCitizen().getCpr()) {
+                citizen = (Citizen) c;
             }
         }
         if (citizen == null) {
             citizen = new Citizen(data.getCitizen());
-            int id = Persistence.getInstance().getPersistenceFacade().addCitizen(citizen);
-            citizen.setId(id);
-            citizen.setDepartmentName(department.getName());
             department.addCitizen(citizen);
         }
-        Case c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), citizen, this, department.getName());
-        int caseId = Persistence.getInstance().getPersistenceFacade().addCase(c);
-        c.setId(caseId);
+        Case c = new Case(data.getState(), data.getConsent(), data.getReason(), data.getAvailableOffers(), data.getSourceOfRequest(), citizen, this);
         cases.add(c);
         return c;
     }
@@ -102,19 +104,34 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @param caseId The case id of the case to close
      * @return True if the case is closed
      */
-    public boolean closeCase(int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {
-        return Persistence.getInstance().getPersistenceFacade().closeCase(department.getName(), caseId, finalComments, citizenRequires, goalAchieved);
-//        Case aCase;
-//        for (Iterator<Case> itr = cases.iterator(); itr.hasNext();) {
-//            aCase = itr.next();
-//            if (aCase.getId() == caseId) {
-//                
-//                aCase.closeCase();
-//                department.addInactiveCase(aCase);
-//                itr.remove();
-//            }
-//        }
-//        return true;
+    public boolean closeCase(int caseId) {
+        Case aCase;
+        for (Iterator<Case> itr = cases.iterator(); itr.hasNext();) {
+            aCase = itr.next();
+            if (aCase.getId() == caseId) {
+                aCase.closeCase();
+                department.addInactiveCase(aCase);
+                itr.remove();
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Edit an already existing case
+     *
+     * @param data The data to change
+     * @return True if the case is changed
+     */
+    public boolean editCase(Case c, ICitizenData data) {
+        c.setAvailableOffers(data.getAvailableOffers());
+        c.setCaseWorker((CaseWorker) data.getCaseWorker());
+        c.setCitizen((Citizen) data.getCitizen());
+        c.setConsent(data.getConsent());
+        c.setReason(data.getReason());
+        c.setSourceOfRequest(data.getSourceOfRequest());
+        c.setState(data.getState());
+        return true;
     }
 
     /**
@@ -123,7 +140,7 @@ public class CaseWorker extends Person implements ICaseWorker {
      * @return All the active cases
      */
     public List<? extends ICase> getActiveCases() {
-        return Persistence.getInstance().getPersistenceFacade().getCaseWorkersCases(department.getName(), getId());
+        return cases;
     }
 
     /**
