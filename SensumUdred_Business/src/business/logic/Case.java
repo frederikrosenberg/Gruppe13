@@ -1,10 +1,9 @@
 package business.logic;
 
-import business.Persistence;
+import common.CaseState;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
-import common.IDepartment;
 import java.util.Date;
 
 /**
@@ -27,7 +26,7 @@ public class Case implements ICase {
     /**
      * The state of the case
      */
-    private String state;
+    private CaseState state;
 
     /**
      * The opening date of the case
@@ -106,7 +105,7 @@ public class Case implements ICase {
      * @param caseWorker The case worker of the case
      * @param departmentName The department name
      */
-    public Case(String state, boolean consent, String reason, String availableOffers, String sourceOfRequest, Citizen citizen, CaseWorker caseWorker, String departmentName) {
+    public Case(CaseState state, boolean consent, String reason, String availableOffers, String sourceOfRequest, Citizen citizen, CaseWorker caseWorker, String departmentName) {
         this.state = state;
         this.consent = consent;
         this.reason = reason;
@@ -167,7 +166,7 @@ public class Case implements ICase {
      * @return True if the case is closed correct
      */
     public boolean closeCase() {
-        state = "Closed";
+        state = CaseState.CLOSED;
         closingDate = new Date();
         return true;
     }
@@ -188,7 +187,7 @@ public class Case implements ICase {
      * @return The state of the case
      */
     @Override
-    public String getState() {
+    public CaseState getState() {
         return state;
     }
 
@@ -266,7 +265,7 @@ public class Case implements ICase {
      *
      * @param state Which state the case is in
      */
-    public void setState(String state) {
+    public void setState(CaseState state) {
         this.state = state;
     }
 

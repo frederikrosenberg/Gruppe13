@@ -1,7 +1,7 @@
 package common;
 
 /**
- * Enums for the roles a user can have in the system.
+ * Contains case states
  *
  * @author Andreas Mølgaard-Andersen
  * @author Lars Bjerregaard Jørgensen
@@ -10,7 +10,7 @@ package common;
  * @author Sebastian Christensen
  * @author Kasper Schødts
  */
-public enum Role {
-    CASEWORKER,
-    LOGRESPONSABLE
+public enum CaseState {    
+    OPEN,
+    CLOSED
 }

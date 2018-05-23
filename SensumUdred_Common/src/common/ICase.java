@@ -26,7 +26,7 @@ public interface ICase {
      *
      * @return the state
      */
-    String getState();
+    CaseState getState();
 
     /**
      * The id of the case
