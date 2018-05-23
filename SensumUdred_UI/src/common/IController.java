@@ -1,17 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package common;
 
 
 /**
- *
- * @author fred
+ * Interface for a controller that needs contract to a parent controller
+ * 
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
+ * @param <T> What controller it is
  */
 public interface IController<T> {
-    void setParrentController(T parrentController);
+    /**
+     * Sets the parents controller
+     * @param parentController the parent controller
+     */
+    void setParrentController(T parentController);
     
+    /**
+     * Allows the controller to stop threads and clean up
+     */
     void unload();
 }

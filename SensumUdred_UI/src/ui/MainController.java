@@ -37,11 +37,17 @@ public class MainController implements Initializable, Idleable {
      */
     private IBusinessFacade business;
     
+    /**
+     * Whether or not the user is logged in
+     */
     private boolean loggedIn = false;
     
     @FXML
     private AnchorPane main;
     
+    /**
+     * The current controller showing
+     */
     private IController<MainController> currentController;
     
     /**
@@ -60,16 +66,26 @@ public class MainController implements Initializable, Idleable {
         
     }
     
+    /**
+     * Unloads the current controller
+     */
     private void unloadController() {
         if (currentController != null) {
             currentController.unload();
         }
     }
     
+    /**
+     * Show the login screen
+     */
     private void showLogin() {
         loadController("fxml/LoginScreen.fxml");
     }
     
+    /**
+     * Loads a new current controller
+     * @param url the URL for the .fxml document
+     */
     private void loadController(String url) {
         try {
             unloadController();
@@ -90,12 +106,20 @@ public class MainController implements Initializable, Idleable {
         }
     }
 
+    /**
+     * Resets the idle timer, when the user moves the mouse
+     * @param event the mouse event
+     */
     @Override
     @FXML
     public void resetIdle(MouseEvent event) {
         checker.updateLastMove();
     }
 
+    /**
+     * Logs the current user out
+     * @param timeOut if it was a timeout or not
+     */
     @Override
     public void logout(boolean timeOut) {
         if (loggedIn) {
@@ -108,6 +132,9 @@ public class MainController implements Initializable, Idleable {
         }
     }
     
+    /**
+     * Logs a user in
+     */
     public void login() {
         if (!loggedIn) {
             loggedIn = true;

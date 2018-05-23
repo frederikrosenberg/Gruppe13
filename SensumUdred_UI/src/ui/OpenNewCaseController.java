@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import static common.CaseState.OPEN;
@@ -19,23 +14,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-
 /**
- *
- * @author Sebas
+ * Open a new case controller
+ * 
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class OpenNewCaseController implements Initializable, IController<MenuController> {
 
@@ -58,19 +52,9 @@ public class OpenNewCaseController implements Initializable, IController<MenuCon
     
     private MenuController menuController;
     @FXML
-    private AnchorPane appBackground;
-    @FXML
-    private GridPane inappScreen;
-    @FXML
     private ScrollPane openNewCaseScrollPane;
     @FXML
     private TextArea fillable_ProblemDescription;
-    @FXML
-    private Group clickable_ClarityRegarding;
-    @FXML
-    private ToggleGroup clearlyChoosen;
-    @FXML
-    private Group clickable_CitizenSeeks;
     @FXML
     private RadioButton check_personalCare;
     @FXML
@@ -79,8 +63,6 @@ public class OpenNewCaseController implements Initializable, IController<MenuCon
     private RadioButton check_home;
     @FXML
     private RadioButton check_shoppingFood;
-    @FXML
-    private Group clickable_CameFrom;
     @FXML
     private CheckBox source_citizen;
     @FXML
@@ -100,18 +82,6 @@ public class OpenNewCaseController implements Initializable, IController<MenuCon
     @FXML
     private TextArea fillable_ContactPerson;
     @FXML
-    private Group clickable_Understood;
-    @FXML
-    private ToggleGroup understood;
-    @FXML
-    private Group clickable_InformedOfRights;
-    @FXML
-    private ToggleGroup informed;
-    @FXML
-    private Group clickable_StorageOnline;
-    @FXML
-    private ToggleGroup electronicStorage;
-    @FXML
     private TextField fillable_CprField;
     @FXML
     private TextField fillable_NameField;
@@ -128,21 +98,9 @@ public class OpenNewCaseController implements Initializable, IController<MenuCon
     @FXML
     private MenuButton choice_Relations;
     @FXML
-    private Group clickable_GuardianAndRepresentation;
-    @FXML
-    private Group clickable_consent;
-    @FXML
-    private ToggleGroup relevancy;
-    @FXML
-    private Group clickable_ConsentType;
-    @FXML
     private RadioButton verbal_Consent;
     @FXML
-    private ToggleGroup samtykke;
-    @FXML
     private RadioButton written_Consent;
-    @FXML
-    private Group clickable_ConsentFrom;
     @FXML
     private TextArea fillable_SpecialCaseDesc;
 
@@ -164,9 +122,6 @@ public class OpenNewCaseController implements Initializable, IController<MenuCon
 
     /**
      * Initializes the class.
-     *
-     * @param location
-     * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -329,11 +284,18 @@ public class OpenNewCaseController implements Initializable, IController<MenuCon
         menuController.showBackground();
     }
 
+    /**
+     * Sets the menu controller
+     * @param parrentController the menu controller
+     */
     @Override
     public void setParrentController(MenuController parrentController) {
         menuController = parrentController;
     }
 
+    /**
+     * Allows the controller to stop threads and clean up
+     */
     @Override
     public void unload() {
     }

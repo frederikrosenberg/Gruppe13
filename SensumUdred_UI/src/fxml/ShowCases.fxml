@@ -367,13 +367,13 @@
                                     <children>
                                         <RadioButton fx:id="goalAchieved_Yes" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Ja">
                                             <toggleGroup>
-                                                <ToggleGroup fx:id="goalReachedGroup" />
+                                                <ToggleGroup />
                                             </toggleGroup>
                                             <font>
                                                 <Font size="12.0" />
                                             </font>
                                         </RadioButton>
-                                        <RadioButton fx:id="goalAchieved_No" layoutY="25.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Nej" toggleGroup="$goalReachedGroup">
+                                        <RadioButton layoutY="25.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Nej" toggleGroup="$goalReachedGroup">
                                             <font>
                                                 <Font size="12.0" />
                                             </font>

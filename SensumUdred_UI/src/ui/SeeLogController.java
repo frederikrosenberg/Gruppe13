@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import common.IBusinessFacade;
@@ -27,8 +22,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
- *
- * @author Sebas
+ * View the log controller
+ * 
+ * @author Andreas Mølgaard-Andersen
+ * @author Lars Bjerregaard Jørgensen
+ * @author Frederik Rosenberg
+ * @author Mikkel Larsen
+ * @author Sebastian Christensen
+ * @author Kasper Schødts
  */
 public class SeeLogController implements Initializable, IController<MenuController> {
 
@@ -42,7 +43,10 @@ public class SeeLogController implements Initializable, IController<MenuControll
     private Label noLogFound;
     @FXML
     private MenuButton choice_logType;
-
+    
+    /**
+     * Reference to the main controller
+     */
     private MenuController menuController;
 
     /**
@@ -56,7 +60,9 @@ public class SeeLogController implements Initializable, IController<MenuControll
      */
     private IBusinessFacade business;
     
-
+    /**
+     * Initializes the controller
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
@@ -291,12 +297,19 @@ public class SeeLogController implements Initializable, IController<MenuControll
             }
         });
     }
-
+    
+    /**
+     * Sets the menu controller
+     * @param parrentController the menu controller 
+     */
     @Override
     public void setParrentController(MenuController parrentController) {
         menuController = parrentController;
     }
-
+    
+    /**
+     * Allows the controller to stop threads and clean up
+     */
     @Override
     public void unload() {
     }

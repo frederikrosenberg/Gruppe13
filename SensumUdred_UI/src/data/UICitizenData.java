@@ -58,12 +58,24 @@ public class UICitizenData implements ICitizenData {
      */
     private final ICaseWorker caseWorker;
     
+    /**
+     * The name of the department
+     */
     private final String departmentName;
     
+    /**
+     * If the goal of the case got achieved
+     */
     private boolean goalAchieved;
     
+    /**
+     * The final comments for the case
+     */
     private String finalComments;
     
+    /**
+     * What the citizen still requires
+     */
     private String citizenRequires;
 
     /**
@@ -77,6 +89,7 @@ public class UICitizenData implements ICitizenData {
      * @param avalibleOffers The available offers for the citizen
      * @param sourcerOfRequest The source of the request
      * @param caseWorker The case worker object associated with the case
+     * @param departmentName the name of the department
      */
     public UICitizenData(ICitizen citizen, CaseState state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest, ICaseWorker caseWorker, String departmentName) {
         this.citizen = citizen;
@@ -190,22 +203,38 @@ public class UICitizenData implements ICitizenData {
     public Date getClosingDate() {
         return null;
     }
-
+    
+    /**
+     * Gets the name of the department
+     * @return the name of the department
+     */
     @Override
     public String getDepartmentName() {
         return departmentName;
     }
-
+    
+    /**
+     * If the goal got achieved
+     * @return goal got achieved
+     */
     @Override
     public boolean getGoalAchieved() {
         return goalAchieved;
     }
-
+    
+    /**
+     * Gets what the citizen still requires
+     * @return what the citizen still requires
+     */
     @Override
     public String getCitizenRequires() {
         return citizenRequires;
     }
 
+    /**
+     * Gets the final comments for the case
+     * @return the final comments
+     */
     @Override
     public String getFinalComments() {
         return finalComments;

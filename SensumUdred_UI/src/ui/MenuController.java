@@ -45,7 +45,9 @@ public class MenuController implements Initializable, IController<MainController
     @FXML
     private GridPane ViewLogGrid;
     
-    
+    /**
+     * The current controller loaded on the screen
+     */
     private IController<MenuController> screenController;
     
 
@@ -54,6 +56,9 @@ public class MenuController implements Initializable, IController<MainController
      */
     private IBusinessFacade business;
     
+    /**
+     * Reference to main controller
+     */
     private MainController mainController;
     
     /**
@@ -130,31 +135,52 @@ public class MenuController implements Initializable, IController<MainController
         loadController("fxml/SeeLog.fxml");
     }
 
+    /**
+     * Show the background/main screen in menu
+     */
     public void showBackground() {
         loadController("fxml/Background.fxml");
     }
 
+    /**
+     * Sets the main controller
+     * @param parrentController the main controller
+     */
     @Override
     public void setParrentController(MainController parrentController) {
         mainController = parrentController;
     }
-
+    
+    /**
+     * Called from parent controller, allowing controller to stop threads and clean up
+     */
     @Override
     public void unload() {
         unloadController();
     }
 
+    /**
+     * Logout clicked on by user
+     * @param event the mouse event
+     */
     @FXML
     private void Logout(MouseEvent event) {
         mainController.logout(false);
     }
     
+    /**
+     * Unload the current screen controller
+     */
     private void unloadController() {
         if (screenController != null) {
             screenController.unload();
         }
     }
     
+    /**
+     * Loads a new screen controller
+     * @param url the URL for the .fxml document
+     */
     private void loadController(String url) {
         try {
             unloadController();

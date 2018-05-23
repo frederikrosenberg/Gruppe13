@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import common.IBusinessFacade;
@@ -12,7 +7,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,36 +34,31 @@ public class LoginScreenController implements Initializable, IController<MainCon
     @FXML
     private ImageView backgroundImage;
     @FXML
-    private GridPane loginGridPane;
-    @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
     @FXML
-    private ImageView EGTeamOnlineLogo;
-    @FXML
-    private Label forgottenPassword;
-    @FXML
-    private Button loginButton;
-    @FXML
     private GridPane wrongUserPassGridPane;
     @FXML
     private GridPane forgottenPasswordGridPane;
+    @FXML
+    private GridPane loggedOutGridPane;
     
+    /**
+     * Reference to the main controller
+     */
     private MainController mainController;
 
     /**
      * The business facade used to communicate with business layer
      */
     private IBusinessFacade business;
-    @FXML
-    private GridPane loggedOutGridPane;
-    @FXML
-    private AnchorPane loggedoutBackground;
-    @FXML
-    private Button reLogin;
     
-
+    
+    
+    /**
+     * Initialize the controller
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
@@ -119,20 +108,34 @@ public class LoginScreenController implements Initializable, IController<MainCon
         }
     }
 
+    /**
+     * Sets the main controller
+     * @param parrentController the main controller 
+     */
     @Override
     public void setParrentController(MainController parrentController) {
         mainController = parrentController;
     }
-
+    
+    /**
+     * Allows the controller to stop threads and clean up
+     */
     @Override
     public void unload() {
         
     }
     
+    /**
+     * Shows the timed out pane if the user timed out
+     */
     public void setTimedOut() {
         loggedOutGridPane.setVisible(true);
     }
-
+    
+    /**
+     * Hides the timed out pane
+     * @param event the action event
+     */
     @FXML
     private void loginAgain(ActionEvent event) {
         loggedOutGridPane.setVisible(false);

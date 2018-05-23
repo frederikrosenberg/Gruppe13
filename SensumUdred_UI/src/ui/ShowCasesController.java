@@ -75,10 +75,6 @@ public class ShowCasesController implements Initializable, IController<MenuContr
     @FXML
     private RadioButton goalAchieved_Yes;
     @FXML
-    private ToggleGroup goalReachedGroup;
-    @FXML
-    private RadioButton goalAchieved_No;
-    @FXML
     private TextArea citizenStillRequires;
     @FXML
     private TextArea caseReviewFinalComments;
@@ -98,6 +94,11 @@ public class ShowCasesController implements Initializable, IController<MenuContr
      */
     private MenuController menuController;
 
+    /**
+     * Initializes the controller
+     * @param location
+     * @param resources 
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
@@ -252,15 +253,18 @@ public class ShowCasesController implements Initializable, IController<MenuContr
         return this.goalAchieved_Yes.isSelected();
     }
 
-    public void setMainController(MenuController mainController) {
-        this.menuController = mainController;
-    }
-
+    /**
+     * Sets the menu controller
+     * @param parrentController the menu controller 
+     */
     @Override
     public void setParrentController(MenuController parrentController) {
         menuController = parrentController;
     }
 
+    /**
+     * Allows the controller to stop threads and clean up
+     */
     @Override
     public void unload() {
 

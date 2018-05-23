@@ -24,8 +24,14 @@ import javafx.scene.layout.AnchorPane;
  */
 public class BackgroundController implements Initializable, IController<MenuController> {
 
+    /**
+     * The thread for the timer checker
+     */
     private Thread timerThread;
     
+    /**
+     * Updates the timer on the background
+     */
     private TimeChecker timer;
     
     @FXML
@@ -57,10 +63,17 @@ public class BackgroundController implements Initializable, IController<MenuCont
         date.setText(String.valueOf(format1.format(dato)).substring(0, 1).toUpperCase() + String.valueOf(format1.format(dato)).substring(1));
     }    
 
+    /**
+     * Sets the menu controller
+     * @param parrentController the menu controller
+     */
     @Override
     public void setParrentController(MenuController parrentController) {
     }
 
+    /**
+     * Allows the controller to stop threads and clean up
+     */
     @Override
     public void unload() {
         timer.stop();

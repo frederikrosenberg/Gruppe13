@@ -2,7 +2,6 @@ package ui;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Locale;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
