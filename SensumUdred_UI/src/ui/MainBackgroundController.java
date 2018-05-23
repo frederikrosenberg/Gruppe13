@@ -114,8 +114,10 @@ public class MainBackgroundController implements Initializable, Idleable {
      */
     @FXML
     public void OpenNewCase(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/OpenNewCase.fxml"));
-        appBackground.getChildren().setAll(pane);
+//        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/OpenNewCase.fxml"));
+//        appBackground.getChildren().setAll(pane);
+        inappBackground.getChildren().clear();
+        inappBackground.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/OpenNewCase.fxml")));
 
     }
 
@@ -139,8 +141,11 @@ public class MainBackgroundController implements Initializable, Idleable {
      */
     @FXML
     public void showLog(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SeeLog.fxml"));
-        appBackground.getChildren().setAll(pane);
+//        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SeeLog.fxml"));
+//        appBackground.getChildren().setAll(pane);
+        inappBackground.getChildren().clear();
+        inappBackground.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SeeLog.fxml")));
+
 
     }
 
@@ -152,8 +157,11 @@ public class MainBackgroundController implements Initializable, Idleable {
     @FXML
     public void Logout(MouseEvent event) throws IOException {
         business.logOut(false);
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
-        appBackground.getChildren().setAll(pane);
+//        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
+//        appBackground.getChildren().setAll(pane);
+        inappBackground.getChildren().clear();
+        inappBackground.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml")));
+
     }
 
     /**
@@ -162,18 +170,23 @@ public class MainBackgroundController implements Initializable, Idleable {
      * @param event mouse moved
      */
     @FXML
+    @Override
     public void resetIdle(MouseEvent event) {
         checker.updateLastMove();
     }
 
     /**
-     * Calls logout on the business instance, but with ispecifying that it was
+     * Calls logout on the business instance, but specifying that it was
      * due to timeout.
      */
+    @Override
     public void logout() throws IOException {
         business.logOut(true);
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
-        appBackground.getChildren().setAll(pane);
+//        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
+//        appBackground.getChildren().setAll(pane);
+        inappBackground.getChildren().clear();
+        inappBackground.getChildren().add(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml")));
+
     }
 
 }

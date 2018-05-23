@@ -9,7 +9,6 @@ import common.Gender;
 import common.IBusinessFacade;
 import common.ICitizen;
 import common.ICitizenData;
-import common.Idleable;
 import common.RelationshipStatus;
 import data.UICitizen;
 import data.UICitizenData;
@@ -40,7 +39,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Sebas
  */
-public class OpenNewCaseController implements Initializable, Idleable {
+public class OpenNewCaseController implements Initializable{
 
     @FXML
     private AnchorPane appBackground;
@@ -162,11 +161,6 @@ public class OpenNewCaseController implements Initializable, Idleable {
     private static MainBackgroundController mb;
 
     /**
-     * An instance of the IdleChecker class, used to count idle time.
-     */
-    private IdleChecker checker;
-
-    /**
      * Clears all fields of the form that the caseworker fills to open a new
      * case.
      */
@@ -192,12 +186,6 @@ public class OpenNewCaseController implements Initializable, Idleable {
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
 
-        mb = new MainBackgroundController();
-        checker = new IdleChecker(5*60, this);
-        Thread idle = new Thread(checker);
-        idle.setDaemon(true);
-        idle.start();
-
         Calendar cal = Calendar.getInstance();
         Calendar calen = Calendar.getInstance();
         calen.add(Calendar.DATE, 0);
@@ -213,49 +201,6 @@ public class OpenNewCaseController implements Initializable, Idleable {
         user_Email.setText(business.getCaseWorker().getEmail());
         user_JobTitle.setText("Sagsbehandler");
 
-        checker.updateLastMove();
-        checker.setLogin(true);
-    }
-
-    @FXML
-    private void OpenNewCase(MouseEvent event) {
-    }
-
-    /**
-     * Loads the edit existing case FMXL.
-     *
-     * @param event mouse click
-     * @throws IOException file not found / null pointer
-     */
-    @FXML
-    private void EditExistingCases(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
-        appBackground.getChildren().setAll(pane);
-    }
-
-    /**
-     * Loads the see log FMXL.
-     *
-     * @param event mouse click
-     * @throws IOException file not found / null pointer
-     */
-    @FXML
-    private void showLog(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/SeeLog.fxml"));
-        appBackground.getChildren().setAll(pane);
-    }
-
-    /**
-     * Loads the login screen FMXL.
-     *
-     * @param event mouse click
-     * @throws IOException file not found / null pointer
-     */
-    @FXML
-    private void Logout(MouseEvent event) throws IOException {
-        business.logOut(false);
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
-        appBackground.getChildren().setAll(pane);
     }
 
     /**
@@ -276,6 +221,7 @@ public class OpenNewCaseController implements Initializable, Idleable {
 
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
         appBackground.getChildren().setAll(pane);
+        //todo
     }
 
     /**
@@ -417,16 +363,6 @@ public class OpenNewCaseController implements Initializable, Idleable {
     }
 
     /**
-     * Resets the idle counter.
-     *
-     * @param event mouse moved
-     */
-    @FXML
-    public void resetIdle(MouseEvent event) {
-        checker.updateLastMove();
-    }
-
-    /**
      * Loads the main background FMXL.
      *
      * @param event mouse click
@@ -435,12 +371,6 @@ public class OpenNewCaseController implements Initializable, Idleable {
     private void loadMainBackground() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/MainBackground.fxml"));
         appBackground.getChildren().setAll(pane);
-    }
-
-    @Override
-    public void logout() throws IOException {
-        business.logOut(true);
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
-        appBackground.getChildren().setAll(pane);
+        //todo
     }
 }

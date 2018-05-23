@@ -9,7 +9,6 @@ import common.IBusinessFacade;
 import common.ICaseLog;
 import common.ILog;
 import common.ILoginAttemptLog;
-import common.Idleable;
 import common.LogType;
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +34,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Sebas
  */
-public class SeeLogController implements Initializable, Idleable {
+public class SeeLogController implements Initializable{
 
     @FXML
     private AnchorPane appBackground;
@@ -65,14 +64,9 @@ public class SeeLogController implements Initializable, Idleable {
     private static MainBackgroundController mb;
 
     /**
-     * An instace of the LogType class, used for showing a specific type of log.
+     * An instance of the LogType class, used for showing a specific type of log.
      */
     private LogType logType;
-
-    /**
-     * An instance of the IdleChecker class, used to count idle time.
-     */
-    private IdleChecker checker;
 
     /**
      * The business facade used to communicate with business layer
@@ -82,12 +76,6 @@ public class SeeLogController implements Initializable, Idleable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         business = GUI.getInstance().getBusiness();
-
-        mb = new MainBackgroundController();
-        checker = new IdleChecker(5 * 60, this);
-        Thread idle = new Thread(checker);
-        idle.setDaemon(true);
-        idle.start();
 
         Calendar cal = Calendar.getInstance();
         Calendar calen = Calendar.getInstance();
@@ -103,56 +91,6 @@ public class SeeLogController implements Initializable, Idleable {
         user_Name.setText(business.getCaseWorker().getName());
         user_Email.setText(business.getCaseWorker().getEmail());
         user_JobTitle.setText("Sagsbehandler");
-
-        checker.updateLastMove();
-        checker.setLogin(true);
-    }
-
-    /**
-     * Loads the open new case FMXL.
-     *
-     * @param event mouse click
-     * @throws IOException file not found / null pointer
-     */
-    @FXML
-    private void OpenNewCase(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/OpenNewCase.fxml"));
-        appBackground.getChildren().setAll(pane);
-    }
-
-    /**
-     * Loads the edit extisting case FMXL.
-     *
-     * @param event mouse click
-     * @throws IOException file not found / null pointer
-     */
-    @FXML
-    private void EditExistingCases(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
-        appBackground.getChildren().setAll(pane);
-    }
-
-    /**
-     * Loads the show log FMXL.
-     *
-     * @param event mouse click
-     * @throws IOException file not found / null pointer
-     */
-    @FXML
-    private void showLog(MouseEvent event) {
-    }
-
-    /**
-     * Loads the login screen FMXL.
-     *
-     * @param event mouse click
-     * @throws IOException file not found / null pointer
-     */
-    @FXML
-    private void Logout(MouseEvent event) throws IOException {
-        business.logOut(false);
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/LoginScreen.fxml"));
-        appBackground.getChildren().setAll(pane);
     }
 
     /**
@@ -374,22 +312,4 @@ public class SeeLogController implements Initializable, Idleable {
             }
         });
     }
-
-    /**
-     * Resets the idle counter.
-     *
-     * @param event mouse moved
-     */
-    @FXML
-    public void resetIdle(MouseEvent event) {
-        checker.updateLastMove();
-    }
-
-    @Override
-    public void logout() throws IOException {
-        business.logOut(true);
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/IdleLoginScreen.fxml"));
-        appBackground.getChildren().setAll(pane);
-    }
-
 }

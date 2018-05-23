@@ -44,7 +44,7 @@
                </cursor>
             </TextField>
             <Line id="usernameLine" endX="340.0" fill="WHITE" opacity="0.5" stroke="WHITE" strokeWidth="3.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-            <PasswordField id="fillableField" fx:id="passwordField" maxHeight="60.0" maxWidth="350.0" minHeight="60.0" minWidth="350.0" prefHeight="60.0" prefWidth="350.0" promptText="Kodeord" style="-fx-background-color: transparent;" styleClass="fillablePassword" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <PasswordField id="fillableField" fx:id="passwordField" maxHeight="60.0" maxWidth="350.0" minHeight="60.0" minWidth="350.0" onAction="#loginAgain" prefHeight="60.0" prefWidth="350.0" promptText="Kodeord" style="-fx-background-color: transparent;" styleClass="fillablePassword" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <font>
                   <Font size="16.0" />
                </font>

@@ -124,4 +124,6 @@ public class IdleLoginScreenController implements Initializable {
         loggedOutGridPane.setVisible(false);
     }
 
+   
+
 }

@@ -55,11 +55,6 @@ public class GUI extends Application implements IUI {
         stage.show();
     }
 
-    
-    private void loadLoginScreen(){
-        
-    }
-    
     /**
      * Injects a reference to the IBusinessFacase into the starter class.
      *
@@ -96,13 +91,5 @@ public class GUI extends Application implements IUI {
     public static GUI getInstance() {
         return gui;
     }
-
-    @Override
-    public void stop() throws Exception {
-        getInstance().business.closing();
-        super.stop();
-    }
-    
-    
 
 }
