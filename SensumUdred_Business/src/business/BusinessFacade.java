@@ -12,6 +12,7 @@ import common.ICitizenData;
 import common.IDataObject;
 import common.ILog;
 import common.IPersistenceFacade;
+import common.IUser;
 import common.LogType;
 import common.Role;
 import java.util.List;
@@ -258,6 +259,15 @@ public class BusinessFacade implements IBusinessFacade {
             return loggingFacade.getLogsOfType(type);
         }
         return null;
+    }
+
+    /**
+     * Gets the current logged in user
+     * @return The current logged in user
+     */
+    @Override
+    public IUser getUser() {
+        return security.getCurrentUser();   
     }
     
 }
