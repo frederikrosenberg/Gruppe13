@@ -1,5 +1,6 @@
 package persistence;
 
+import common.CaseState;
 import common.Gender;
 import common.ICase;
 import common.ICaseLog;
@@ -132,8 +133,7 @@ public class PersistenceFacade implements IPersistenceFacade {
             statement.setString(1, _case.getDepartmentName());
             statement.setInt(2, _case.getCaseWorker().getId());
             statement.setInt(3, _case.getCitizen().getId());
-            //statement.setString(4, _case.getState());
-            statement.setInt(4, 0);
+            statement.setInt(4, _case.getState().ordinal());
             statement.setBoolean(5, _case.getConsent());
             statement.setString(6, _case.getReason());
             statement.setString(7, _case.getAvailableOffers());
@@ -619,7 +619,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         try (Connection con = getDbConnection()) {
             PreparedStatement statement = con.prepareStatement("UPDATE \"Case\" SET ClosingDate = ?, State = ?, GoalAchieved = ?, FinalComment = ?, StillRequires = ? WHERE Id = ? AND DepartmentName = ?");
             statement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
-            statement.setInt(2, 1);
+            statement.setInt(2, CaseState.CLOSED.ordinal());
             statement.setBoolean(3, goalAchieved);
             statement.setString(4, finalComments);
             statement.setString(5, citizenRequires);
