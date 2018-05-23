@@ -66,10 +66,25 @@ public class Department implements IDepartment {
      * @param department The saved department
      */
     public Department(IDepartment department) {
-        this(department.getName(), department.getTreatmentArea(), department.getAddress(), department.getEmail(), department.getPhoneNumber());
         citizens = new ArrayList<>();
+        for (ICitizen citizen : department.getCitizens()) {
+            citizens.add(new Citizen(citizen));
+        }
+
         caseWorkers = new ArrayList<>();
+        for (ICaseWorker caseWorker : department.getCaseWorkers()) {
+            caseWorkers.add(new CaseWorker(caseWorker, this));
+        }
+
         inactiveCases = new ArrayList<>();
+        for (ICase inactiveCase : department.getInactiveCases()) {
+            inactiveCases.add(new Case(inactiveCase, findCaseWorker(inactiveCase.getCaseWorker().getUserId()), findCitizen(inactiveCase.getCitizen().getId()), false));
+        }
+        name = department.getName();
+        treatmentArea = department.getTreatmentArea();
+        address = department.getAddress();
+        email = department.getEmail();
+        phoneNumber = department.getPhoneNumber();
     }
 
     /**
@@ -183,9 +198,9 @@ public class Department implements IDepartment {
     }
 
     /**
-     * Finds an active case from a case id
+     * Finds an active case from either a cpr number or a case id
      *
-     * @param caseId The case id
+     * @param value The cpr/case id
      * @return An active case
      */
     public ICase findActiveCase(int caseId) {
@@ -195,7 +210,7 @@ public class Department implements IDepartment {
     /**
      * Finds an active case with the name of the citizen
      *
-     * @param cpr The name to search for
+     * @param name The name to search for
      * @return The active case
      */
     public ICase findActiveCase(String cpr) {
@@ -241,9 +256,9 @@ public class Department implements IDepartment {
      * @param userId the user id of the caseworker
      */
     public void addCaseWorker(String name, String phoneNumber, String email, int employeeId, String userId) {
-//        ICaseWorker caseWorker = new CaseWorker(name, phoneNumber, email, this, employeeId, userId);
-//        Persistence.getInstance().getPersistenceFacade().addCaseWorker(caseWorker);
-//        caseWorkers.add((CaseWorker) caseWorker);
+        ICaseWorker caseWorker = new CaseWorker(name, phoneNumber, email, this, employeeId, userId);
+        Persistence.getInstance().getPersistenceFacade().addCaseWorker(caseWorker);
+        caseWorkers.add((CaseWorker) caseWorker);
     }
     
     /**
