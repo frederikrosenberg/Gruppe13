@@ -95,15 +95,27 @@ public class Person implements IPerson {
         return this.departmentName;
     }
 
+    /**
+     * Gets the person id
+     * @return The person id
+     */
     @Override
     public int getId() {
         return id;
     }
     
+    /**
+     * Sets the department name
+     * @param name The department name
+     */
     public void setDepartmentName(String name) {
         departmentName = name;
     }
 
+    /**
+     * Sets the person id
+     * @param id The person id
+     */
     public void setId(int id) {
         this.id = id;
     }

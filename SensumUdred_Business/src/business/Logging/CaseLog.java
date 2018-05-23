@@ -47,6 +47,10 @@ public class CaseLog extends Log implements ICaseLog {
         return caseId;
     }
 
+    /**
+     * Gets the department name
+     * @return The department name
+     */
     @Override
     public String getDepartmentName() {
         return departmentName;

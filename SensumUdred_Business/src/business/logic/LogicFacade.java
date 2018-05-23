@@ -62,6 +62,9 @@ public class LogicFacade implements ILogicFacade {
      * Closes an case from a given case id
      *
      * @param caseId The case id to close an case
+     * @param finalComments The final comments
+     * @param citizenRequires What the citizen requires
+     * @param goalAchieved Is the goal achieved?
      * @return True if the case is closed
      */
     @Override
@@ -165,6 +168,10 @@ public class LogicFacade implements ILogicFacade {
         department.addCaseWorker(name, phoneNumber, email, employeeId, userId);
     }
 
+    /**
+     * Sets the department
+     * @param department The department to set
+     */
     @Override
     public void setDepartment(IDepartment department) {
         this.department = new Department(department);

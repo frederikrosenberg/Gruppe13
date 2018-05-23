@@ -38,10 +38,6 @@ public class LoggingFacade implements ILoggingFacade{
      */
     @Override
     public List<? extends ILog> getLogsOfType(LogType type) {
-        /*List<Log> temp = new ArrayList();
-        for (Log log : logs) {
-            if(log.getLogType() == type) temp.add(log);
-        }*/
         return Persistence.getInstance().getPersistenceFacade().getLogsOfType(type);
     }
 
