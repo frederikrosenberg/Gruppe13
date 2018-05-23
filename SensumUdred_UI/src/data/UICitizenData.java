@@ -56,6 +56,14 @@ public class UICitizenData implements ICitizenData {
      * The case worker associated with the case.
      */
     private final ICaseWorker caseWorker;
+    
+    private final String departmentName;
+    
+    private boolean goalAchieved;
+    
+    private String finalComments;
+    
+    private String citizenRequires;
 
     /**
      * The constructor for the UICitizenData class.
@@ -69,7 +77,7 @@ public class UICitizenData implements ICitizenData {
      * @param sourcerOfRequest The source of the request
      * @param caseWorker The case worker object associated with the case
      */
-    public UICitizenData(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest, ICaseWorker caseWorker) {
+    public UICitizenData(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest, ICaseWorker caseWorker, String departmentName) {
         this.citizen = citizen;
         this.state = state;
         this.id = id;
@@ -78,6 +86,7 @@ public class UICitizenData implements ICitizenData {
         this.avalibleOffers = avalibleOffers;
         this.sourceOfRequest = sourcerOfRequest;
         this.caseWorker = caseWorker;
+        this.departmentName = departmentName;
     }
 
     /**
@@ -179,6 +188,26 @@ public class UICitizenData implements ICitizenData {
     @Override
     public Date getClosingDate() {
         return null;
+    }
+
+    @Override
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    @Override
+    public boolean getGoalAchieved() {
+        return goalAchieved;
+    }
+
+    @Override
+    public String getCitizenRequires() {
+        return citizenRequires;
+    }
+
+    @Override
+    public String getFinalComments() {
+        return finalComments;
     }
 
 }

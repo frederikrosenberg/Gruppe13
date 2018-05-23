@@ -25,7 +25,7 @@ public class UICitizen implements ICitizen {
     /**
      * The social security number of the citizen.
      */
-    private final int cpr;
+    private final String cpr;
     
     /**
      * The address of the citizen.
@@ -58,6 +58,16 @@ public class UICitizen implements ICitizen {
     private final RelationshipStatus relStat;
 
     /**
+     * The department name
+     */
+    private final String departmentName;
+    
+    /**
+     * The person id
+     */
+    private int id;
+    
+    /**
      * The constructor for the UICitizen.
      *
      * @param name The citizens name
@@ -67,9 +77,10 @@ public class UICitizen implements ICitizen {
      * @param address The citizens address
      * @param relstat The citizens relationship status
      * @param gender The citizens gender
+     * @param departmentName The department name
      */
-    public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat) {
-        this(cpr, address, name, mobNumber, email, gender, relstat, null);
+    public UICitizen(String cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat, String departmentName) {
+        this(cpr, address, name, mobNumber, email, gender, relstat, null, departmentName);
     }
 
     /**
@@ -84,8 +95,9 @@ public class UICitizen implements ICitizen {
      * @param relstat The citizens relationship status
      * @param gender The citizens gender
      * @param activeCase The active case of the citizen
+     * @param departmentName The department name
      */
-    public UICitizen(int cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat, ICase activeCase) {
+    public UICitizen(String cpr, String address, String name, String mobNumber, String email, Gender gender, RelationshipStatus relstat, ICase activeCase, String departmentName) {
         this.cpr = cpr;
         this.address = address;
         this.name = name;
@@ -94,6 +106,7 @@ public class UICitizen implements ICitizen {
         this.gender = gender;
         this.relStat = relstat;
         this.activeCase = activeCase;
+        this.departmentName = departmentName;
     }
 
     /**
@@ -102,7 +115,7 @@ public class UICitizen implements ICitizen {
      * @return the social security number
      */
     @Override
-    public int getCpr() {
+    public String getCpr() {
         return this.cpr;
     }
 
@@ -174,6 +187,28 @@ public class UICitizen implements ICitizen {
     @Override
     public ICase getActiveCase() {
         return activeCase;
+    }
+
+    /**
+     * Gets the department name
+     * @return The department name
+     */
+    @Override
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    /**
+     * Gets the person id
+     * @return The person id;
+     */
+    @Override
+    public int getId() {
+        return id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

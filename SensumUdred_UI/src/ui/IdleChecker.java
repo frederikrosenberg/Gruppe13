@@ -1,5 +1,7 @@
 package ui;
 
+import common.Idleable;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -29,7 +31,7 @@ public class IdleChecker implements Runnable {
     /**
      * A reference to the FXML Controller class, for method calls on that class.
      */
-    private final FXMLDocumentController controller;
+    private final Idleable controller;
 
     /**
      * To check wether the user is logged in or not.
@@ -41,7 +43,7 @@ public class IdleChecker implements Runnable {
      * @param time the sleep time in milliseconds
      * @param controller a reference to the FXML Document Controller class
      */
-    public IdleChecker(int time, FXMLDocumentController controller) {
+    public IdleChecker(int time, Idleable controller) {
         this.time = time;
         this.controller = controller;
         lastMove = System.currentTimeMillis();
@@ -68,12 +70,13 @@ public class IdleChecker implements Runnable {
     }
 
     /**
-     *  The run method of the idle threads.
-     */
+     *  The run method of the idle threads. 
+    */
     @Override
     public void run() {
         //Runs eternally:
         while (true) {
+            System.out.println(Thread.activeCount());
             if (!loggedIn) {
                 try {
                     synchronized (this) {
@@ -90,7 +93,10 @@ public class IdleChecker implements Runnable {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            controller.logout();
+                            try {
+                                controller.logout();
+                            } catch (IOException ex) {
+                            }
                         }
                     });
                 }
