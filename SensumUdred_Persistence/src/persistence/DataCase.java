@@ -3,6 +3,7 @@ package persistence;
 import common.ICase;
 import common.ICaseWorker;
 import common.ICitizen;
+import common.IDepartment;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -27,6 +28,11 @@ public class DataCase implements ICase, Serializable {
      * The case worker assigned to the case
      */
     private DataCaseWorker caseWorker;
+    
+    /**
+     * The department of the case
+     */
+    private String department;
 
     /**
      * The state of the citizen
@@ -67,6 +73,21 @@ public class DataCase implements ICase, Serializable {
      * The date the case closed
      */
     private Date closingDate;
+    
+    /**
+     * If the goal for the case was achieved
+     */
+    private boolean goalAchieved;
+    
+    /**
+     * The final comments for the case
+     */
+    private String finalComments;
+    
+    /**
+     * If the citizen still requires help
+     */
+    private String citizenRequires;
 
     /**
      * Constructor for data case
@@ -91,6 +112,42 @@ public class DataCase implements ICase, Serializable {
             citizen.setActiveCase(this);
         }
     }
+
+    /**
+     * The constructor for the data case
+     * @param citizen the given citizen
+     * @param caseWorker the given case
+     * @param department the department name
+     * @param state the state of the case
+     * @param id the id of the case
+     * @param consent if there id consent from the citizen
+     * @param reason the reason for the case
+     * @param availableOffers the offers for the citizen
+     * @param sourceOfRequest the source of the request for help
+     * @param openingDate the opening date of the case
+     * @param closingDate the closing date of the case if the case is closed
+     * @param goalAchieved if the goals is achieved
+     * @param citizenRequires if the citizen still requires help
+     * @param finalComments the final comments for the case
+     */
+    public DataCase(DataCitizen citizen, DataCaseWorker caseWorker, String department, String state, int id, boolean consent, String reason, String availableOffers, String sourceOfRequest, Date openingDate, Date closingDate, boolean goalAchieved, String citizenRequires, String finalComments) {
+        this.citizen = citizen;
+        this.caseWorker = caseWorker;
+        this.department = department;
+        this.state = state;
+        this.id = id;
+        this.consent = consent;
+        this.reason = reason;
+        this.availableOffers = availableOffers;
+        this.sourceOfRequest = sourceOfRequest;
+        this.openingDate = openingDate;
+        this.closingDate = closingDate;
+        this.goalAchieved = goalAchieved;
+        this.citizenRequires = citizenRequires;
+        this.finalComments = finalComments;
+    }
+    
+    
 
     /**
      * The citizen the case is about
@@ -190,6 +247,42 @@ public class DataCase implements ICase, Serializable {
     @Override
     public Date getClosingDate() {
         return closingDate;
+    }
+
+    /**
+     * Gets the department of the case
+     * @return the department name
+     */
+    @Override
+    public String getDepartmentName() {
+        return department;
+    }
+    
+    /**
+     * If the goal of the case is achieved
+     * @return goal achieved?
+     */
+    @Override
+    public boolean getGoalAchieved() {
+        return goalAchieved;
+    }
+
+    /**
+     * If the citizen still requires help
+     * @return the requires
+     */
+    @Override
+    public String getCitizenRequires() {
+        return citizenRequires;
+    }
+
+    /**
+     * The final comments for the case
+     * @return the comments for the case
+     */
+    @Override
+    public String getFinalComments() {
+        return finalComments;
     }
 
 }

@@ -59,6 +59,25 @@ public class DataUser implements IUser, Serializable {
     }
 
     /**
+     * Constructor for data user
+     * @param role the role the user has
+     * @param username the username of the user
+     * @param userId the id of the user
+     * @param password the password
+     * @param name the name of the user
+     * @param active if the user is active or not. If active is false the user counts as deleted.
+     */
+    public DataUser(Role role, String username, String userId, String password, String name, boolean active) {
+        this.role = role;
+        this.username = username;
+        this.userId = userId;
+        this.password = password;
+        this.name = name;
+        this.active = active;
+    }
+    
+
+    /**
      * Getter for the role the user has
      * @return the user role
      */
@@ -87,7 +106,7 @@ public class DataUser implements IUser, Serializable {
 
     /**
      * Getter for the users hashed password
-     * @return 
+     * @return the password
      */
     @Override
     public String getPassword() {
