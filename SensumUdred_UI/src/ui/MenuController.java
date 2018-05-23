@@ -3,6 +3,7 @@ package ui;
 import common.IBusinessFacade;
 import common.ICaseWorker;
 import common.IController;
+import common.IUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,7 +43,7 @@ public class MenuController implements Initializable, IController<MainController
     @FXML
     private GridPane openCaseGrid;
     @FXML
-    private GridPane SeLogGrid;
+    private GridPane ViewLogGrid;
     
     
     private IController<MenuController> screenController;
@@ -65,9 +66,29 @@ public class MenuController implements Initializable, IController<MainController
         String name = "";
         String email = "";
         String job = "";
-        //"Sagsbehandler"
-        ICaseWorker worker = business.getCaseWorker();
-        
+        IUser user = business.getUser();
+        switch (user.getRole()) {
+            case CASEWORKER:
+                ICaseWorker caseWorker = business.getCaseWorker();
+                name = caseWorker.getName();
+                email = caseWorker.getEmail();
+                job = "Sagsbehandler";
+                ViewLogGrid.setDisable(true);
+                ViewLogGrid.setVisible(false);
+                break;
+            case LOGRESPONSABLE:
+                name = user.getName();
+                email = user.getUserId();
+                job = "Log ansvarlig";
+                openCaseGrid.setDisable(true);
+                openCaseGrid.setVisible(false);
+                ViewCasesGrid.setDisable(true);
+                ViewCasesGrid.setVisible(false);
+                break;
+            default:
+                throw new AssertionError(business.getUser().getRole().name());
+            
+        }
         
         user_Name.setText(name);
         user_Email.setText(email);

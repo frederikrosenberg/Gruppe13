@@ -180,7 +180,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <GridPane fx:id="SeLogGrid" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                        <GridPane fx:id="ViewLogGrid" GridPane.columnSpan="3" GridPane.rowIndex="3">
                            <children>
                               <Label text="Se Log" textFill="#ffffffcc" GridPane.columnIndex="1">
                                  <cursor>
