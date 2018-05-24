@@ -159,8 +159,9 @@ public class ShowCasesController implements Initializable, IController<MenuContr
      */
     @FXML
     public void selectCaseFromListView(MouseEvent event) {
-        casepreview = business.findActiveCase(casesListView.getSelectionModel().getSelectedItem().getId());
+        casepreview = casesListView.getSelectionModel().getSelectedItem();
         if (casepreview != null) {
+            casepreview = business.findActiveCase(casepreview.getId());
             showCasePreview();
         }
     }

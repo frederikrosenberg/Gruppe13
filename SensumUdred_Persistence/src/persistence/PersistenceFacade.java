@@ -344,7 +344,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         List<DataLog> logs = new ArrayList<>();
         
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT L.Id, L.UserId, L.Type, L.DateTime, A.UserName, C.CaseId, C.CaseDepartmentName FROM \"Log\" AS L LEFT JOIN \"AttemptLog\" AS A ON A.Id = L.Id LEFT JOIN \"CaseLog\" AS C ON C.Id = L.Id ORDER BY L.DateTime WHERE L.Type = ?");
+            PreparedStatement statement = con.prepareStatement("SELECT L.Id, L.UserId, L.Type, L.DateTime, A.UserName, C.CaseId, C.CaseDepartmentName FROM \"Log\" AS L LEFT JOIN \"AttemptLog\" AS A ON A.Id = L.Id LEFT JOIN \"CaseLog\" AS C ON C.Id = L.Id WHERE L.Type = ? ORDER BY L.DateTime ");
             statement.setInt(1, type.ordinal());
             ResultSet set = statement.executeQuery();
             while (set.next()) {
