@@ -99,7 +99,7 @@ public class IdleChecker implements Runnable {
             }
 
             try {
-                //sleeps for 1/2 a second each time..
+                //sleeps for a second each time..
                 Thread.sleep(Math.abs(time * 1000 - (System.currentTimeMillis() - lastMove)));
             } catch (InterruptedException ex) {
             }
