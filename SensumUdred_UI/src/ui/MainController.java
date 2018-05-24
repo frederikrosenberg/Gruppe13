@@ -123,6 +123,7 @@ public class MainController implements Initializable, Idleable {
     @Override
     public void logout(boolean timeOut) {
         if (loggedIn) {
+            business.logOut(timeOut);
             loggedIn = false;
             checker.setLogin(loggedIn);
             showLogin();

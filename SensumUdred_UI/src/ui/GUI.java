@@ -49,6 +49,8 @@ public class GUI extends Application implements IUI {
         Scene scene = new Scene(root);
 
         gui.stage = stage;
+        stage.setMinHeight(720.0);
+        stage.setMinWidth(1280.0);
         stage.setScene(scene);
         stage.setTitle("Sensum Udred");
         stage.getIcons().add(new Image("Images/icon.png"));
