@@ -22,7 +22,7 @@
             </rowConstraints>
             <children>
                 <ScrollPane fx:id="openNewCaseScrollPane" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
-                    <content>
+               <content>
                         <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2097.0" prefWidth="913.0" style="-fx-background-color: #eaeaea;">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.5" minWidth="10.0" prefWidth="341.5" />
@@ -359,13 +359,13 @@
                                     </columnConstraints>
                                     <rowConstraints>
                                         <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <GridPane.margin>
                                         <Insets left="1.0" right="1.0" top="1.0" />
@@ -447,7 +447,7 @@
                                                 <Insets />
                                             </GridPane.margin>
                                         </TextField>
-                                        <Label text="Telefon Nr." GridPane.rowIndex="6">
+                                        <Label text="Telefon Nr." GridPane.rowIndex="5">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
@@ -455,7 +455,7 @@
                                                 <Insets left="25.0" />
                                             </GridPane.margin>
                                         </Label>
-                                        <TextField id="fillableForm" fx:id="fillable_PhoneNumberField" promptText="Indtast borgers telefon nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                        <TextField id="fillableForm" fx:id="fillable_PhoneNumberField" promptText="Indtast borgers telefon nummer" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                             <font>
                                                 <Font name="Arial" size="12.0" />
                                             </font>
@@ -466,7 +466,7 @@
                                                 <Insets right="12.0" />
                                             </GridPane.margin>
                                         </TextField>
-                                        <Label text="E-Mail" GridPane.rowIndex="7">
+                                        <Label text="E-Mail" GridPane.rowIndex="6">
                                             <font>
                                                 <Font name="Arial" size="14.0" />
                                             </font>
@@ -474,7 +474,7 @@
                                                 <Insets left="25.0" />
                                             </GridPane.margin>
                                         </Label>
-                                        <TextField id="fillableForm" fx:id="fillable_EmailField" promptText="Indtast borgers email adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                        <TextField id="fillableForm" fx:id="fillable_EmailField" promptText="Indtast borgers email adresse" style="-fx-border: thin; -fx-border-color: #aaaaaa; -fx-border-radius: 55; -fx-background-color: transparent;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                             <font>
                                                 <Font name="Arial" size="12.0" />
                                             </font>
@@ -485,66 +485,66 @@
                                                 <Insets right="12.0" />
                                             </GridPane.margin>
                                         </TextField>
+                                      <GridPane style="-fx-background-color: #fff;" GridPane.columnSpan="2" GridPane.rowIndex="7">
+                                          <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="113.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.5" minWidth="10.0" prefWidth="295.0" />
+                                          </columnConstraints>
+                                          <rowConstraints>
+                                              <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                              <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                          </rowConstraints>
+                                          <GridPane.margin>
+                                              <Insets bottom="1.0" left="1.0" right="1.0" />
+                                          </GridPane.margin>
+                                          <children>
+                                              <Label text="Køn">
+                                                  <font>
+                                                      <Font name="Arial" size="14.0" />
+                                                  </font>
+                                                  <GridPane.margin>
+                                                      <Insets left="25.0" />
+                                                  </GridPane.margin>
+                                              </Label>
+                                              <MenuButton fx:id="choice_Gender" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg køn" GridPane.columnIndex="1">
+                                                  <items>
+                                                      <MenuItem mnemonicParsing="false" onAction="#SetGender_Male" text="Mand" />
+                                                      <MenuItem mnemonicParsing="false" onAction="#setGender_Female" text="Kvinde" />
+                                                  </items>
+                                                  <font>
+                                                      <Font size="12.0" />
+                                                  </font>
+                                                  <GridPane.margin>
+                                                      <Insets left="12.0" />
+                                                  </GridPane.margin>
+                                              </MenuButton>
+                                              <Label text="Civilstatus" GridPane.rowIndex="1">
+                                                  <font>
+                                                      <Font name="Arial" size="14.0" />
+                                                  </font>
+                                                  <GridPane.margin>
+                                                      <Insets left="25.0" />
+                                                  </GridPane.margin>
+                                              </Label>
+                                              <MenuButton fx:id="choice_Relations" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg civilstatus" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                  <font>
+                                                      <Font size="12.0" />
+                                                  </font>
+                                                  <items>
+                                                      <MenuItem mnemonicParsing="false" onAction="#setRelationship_Single" text="Single" />
+                                                      <MenuItem mnemonicParsing="false" onAction="#setRelationship_InRelationship" text="I forhold" />
+                                                      <MenuItem mnemonicParsing="false" onAction="#setRelationship_Married" text="Gift" />
+                                                  </items>
+                                                  <GridPane.margin>
+                                                      <Insets left="12.0" />
+                                                  </GridPane.margin>
+                                              </MenuButton>
+                                          </children>
+                                      </GridPane>
                                     </children>
                                 </GridPane>
-                                <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="2">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="113.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.5" minWidth="10.0" prefWidth="295.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <GridPane.margin>
-                                        <Insets bottom="1.0" left="1.0" right="1.0" />
-                                    </GridPane.margin>
-                                    <children>
-                                        <Label text="Køn">
-                                            <font>
-                                                <Font name="Arial" size="14.0" />
-                                            </font>
-                                            <GridPane.margin>
-                                                <Insets left="25.0" />
-                                            </GridPane.margin>
-                                        </Label>
-                                        <MenuButton fx:id="choice_Gender" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg køn" GridPane.columnIndex="1">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" onAction="#SetGender_Male" text="Mand" />
-                                                <MenuItem mnemonicParsing="false" onAction="#setGender_Female" text="Kvinde" />
-                                            </items>
-                                            <font>
-                                                <Font size="12.0" />
-                                            </font>
-                                            <GridPane.margin>
-                                                <Insets left="12.0" />
-                                            </GridPane.margin>
-                                        </MenuButton>
-                                        <Label text="Civilstatus" GridPane.rowIndex="1">
-                                            <font>
-                                                <Font name="Arial" size="14.0" />
-                                            </font>
-                                            <GridPane.margin>
-                                                <Insets left="25.0" />
-                                            </GridPane.margin>
-                                        </Label>
-                                        <MenuButton fx:id="choice_Relations" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Vælg civilstatus" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                            <font>
-                                                <Font size="12.0" />
-                                            </font>
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" onAction="#setRelationship_Single" text="Single" />
-                                                <MenuItem mnemonicParsing="false" onAction="#setRelationship_InRelationship" text="I forhold" />
-                                                <MenuItem mnemonicParsing="false" onAction="#setRelationship_Married" text="Gift" />
-                                            </items>
-                                            <GridPane.margin>
-                                                <Insets left="12.0" />
-                                            </GridPane.margin>
-                                        </MenuButton>
-                                    </children>
-                                </GridPane>
-                                <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.rowIndex="2" GridPane.valignment="TOP">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
@@ -562,7 +562,7 @@
                                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                     </GridPane.margin>
                                 </GridPane>
-                                <GridPane maxHeight="1.7976931348623157E308" style="-fx-background-color: #fff;" GridPane.rowIndex="3" GridPane.rowSpan="2" GridPane.valignment="TOP">
+                                <GridPane maxHeight="1.7976931348623157E308" style="-fx-background-color: #fff;" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.valignment="TOP">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
@@ -640,7 +640,7 @@
                                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                     </padding>
                                 </GridPane>
-                                <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                                <GridPane maxHeight="50.0" prefHeight="50.0" prefWidth="416.0" style="-fx-background-color: #fff;" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                     <children>
                                         <Label alignment="CENTER" contentDisplay="CENTER" text="Samtykke" textFill="#00000099" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                             <font>
@@ -661,7 +661,7 @@
                                         <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                     </GridPane.margin>
                                 </GridPane>
-                                <GridPane maxHeight="320.0" style="-fx-background-color: #fff;" GridPane.rowIndex="5" GridPane.rowSpan="2" GridPane.valignment="TOP">
+                                <GridPane maxHeight="320.0" style="-fx-background-color: #fff;" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="TOP">
                                     <children>
                                         <Label text="Er det relevant at indhente samtykke?" wrapText="true">
                                             <font>
@@ -734,7 +734,7 @@
                                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                                     </padding>
                                 </GridPane>
-                                <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="7" GridPane.rowSpan="2">
+                                <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="6" GridPane.rowSpan="2">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
@@ -895,9 +895,19 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                 </GridPane>
+                        <GridPane style="-fx-background-color: #fff;" GridPane.rowIndex="8">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
                             </children>
                         </GridPane>
-                    </content>
+               </content>
                 </ScrollPane>
             </children>
         </GridPane>
