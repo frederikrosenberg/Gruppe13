@@ -346,7 +346,7 @@
                                         <Insets left="25.0" top="40.0" />
                                     </GridPane.margin>
                                 </Group>
-                        <Label fx:id="ClosingDetailsLabel" layoutX="35.0" layoutY="77.0" text="Lukkings oplysninger:" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Label fx:id="ClosingDetailsLabel" layoutX="35.0" layoutY="77.0" text="Luknings oplysninger:" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -421,20 +421,17 @@
                                 <Group GridPane.rowIndex="1" GridPane.valignment="TOP">
                                     <children>
                                         <RadioButton fx:id="goalAchieved_Yes" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Ja">
-                                            <toggleGroup>
-                                                <ToggleGroup />
-                                            </toggleGroup>
-                                            <font>
-                                                <Font size="12.0" />
-                                            </font>
-                                        </RadioButton>
-                                        <RadioButton layoutY="25.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Nej">
                                             <font>
                                                 <Font size="12.0" />
                                             </font>
                                  <toggleGroup>
-                                    <ToggleGroup />
+                                    <ToggleGroup fx:id="goal" />
                                  </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton layoutY="25.0" mnemonicParsing="false" stylesheets="@../Stylesheets/simpleStyle.css" text="Nej" toggleGroup="$goal">
+                                            <font>
+                                                <Font size="12.0" />
+                                            </font>
                                         </RadioButton>
                                     </children>
                                     <GridPane.margin>

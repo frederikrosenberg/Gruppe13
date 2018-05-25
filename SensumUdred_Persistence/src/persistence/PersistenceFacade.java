@@ -322,7 +322,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         List<DataLog> logs = new ArrayList<>();
         
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT L.Id, L.UserId, L.Type, L.DateTime, A.UserName, C.CaseId, C.CaseDepartmentName FROM \"Log\" AS L LEFT JOIN \"AttemptLog\" AS A ON A.Id = L.Id LEFT JOIN \"CaseLog\" AS C ON C.Id = L.Id");
+            PreparedStatement statement = con.prepareStatement("SELECT L.Id, L.UserId, L.Type, L.DateTime, A.UserName, C.CaseId, C.CaseDepartmentName FROM \"Log\" AS L LEFT JOIN \"AttemptLog\" AS A ON A.Id = L.Id LEFT JOIN \"CaseLog\" AS C ON C.Id = L.Id ORDER BY L.DateTime");
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 logs.add(getLogFromResultSet(set));
@@ -344,7 +344,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         List<DataLog> logs = new ArrayList<>();
         
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT L.Id, L.UserId, L.Type, L.DateTime, A.UserName, C.CaseId, C.CaseDepartmentName FROM \"Log\" AS L LEFT JOIN \"AttemptLog\" AS A ON A.Id = L.Id LEFT JOIN \"CaseLog\" AS C ON C.Id = L.Id WHERE L.Type = ?");
+            PreparedStatement statement = con.prepareStatement("SELECT L.Id, L.UserId, L.Type, L.DateTime, A.UserName, C.CaseId, C.CaseDepartmentName FROM \"Log\" AS L LEFT JOIN \"AttemptLog\" AS A ON A.Id = L.Id LEFT JOIN \"CaseLog\" AS C ON C.Id = L.Id WHERE L.Type = ? ORDER BY L.DateTime ");
             statement.setInt(1, type.ordinal());
             ResultSet set = statement.executeQuery();
             while (set.next()) {
@@ -826,7 +826,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         statement.setString(1, person.getDepartmentName());
         statement.setString(2, person.getEmail());
         statement.setString(3, person.getPhoneNumber());
-        statement.setString(4, person.getPhoneNumber());
+        statement.setString(4, person.getName());
         ResultSet set = statement.executeQuery();
         set.next();
         return set.getInt(1);

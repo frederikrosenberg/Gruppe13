@@ -161,6 +161,7 @@ public class ShowCasesController implements Initializable, IController<MenuContr
     public void selectCaseFromListView(MouseEvent event) {
         casepreview = casesListView.getSelectionModel().getSelectedItem();
         if (casepreview != null) {
+            casepreview = business.findActiveCase(casepreview.getId());
             showCasePreview();
         }
     }
@@ -254,8 +255,7 @@ public class ShowCasesController implements Initializable, IController<MenuContr
     @FXML
     private void submitCloseCaseReview(ActionEvent event) throws IOException {
         business.closeCase(casepreview.getId(), getFinalComments(), getCitizenRequires(), goalAchieved());
-        AnchorPane pane = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EditExistingCases.fxml"));
-        appBackground.getChildren().setAll(pane);
+        menuController.showBackground();
     }
 
     /**
