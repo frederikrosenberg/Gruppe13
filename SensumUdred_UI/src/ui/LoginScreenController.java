@@ -53,6 +53,10 @@ public class LoginScreenController implements Initializable, IController<MainCon
      * The business facade used to communicate with business layer
      */
     private IBusinessFacade business;
+    @FXML
+    private GridPane loginGridPane;
+    @FXML
+    private AnchorPane loadingPane;
     
     
     
@@ -100,11 +104,13 @@ public class LoginScreenController implements Initializable, IController<MainCon
      */
     @FXML
     private void loginRequested(ActionEvent event) throws IOException {
+        loadingPane.setVisible(true);
         if (business.login(usernameField.getText(), passwordField.getText())) {
             mainController.login();
         } else {
             wrongUserPassGridPane.setVisible(true);
             passwordField.clear();
+            loadingPane.setVisible(false);
         }
     }
 

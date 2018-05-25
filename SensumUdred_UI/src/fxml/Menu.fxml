@@ -107,7 +107,7 @@
                         </ImageView>
                         <AnchorPane id="menuBackground" onMouseClicked="#Logout" opacity="0.2" style="-fx-background-color: #000;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                            <cursor>
-                              <Cursor fx:constant="DEFAULT" />
+                              <Cursor fx:constant="HAND" />
                            </cursor>
                         </AnchorPane>
                         <GridPane fx:id="ViewCasesGrid" GridPane.columnSpan="3" GridPane.rowIndex="2">
@@ -140,7 +140,7 @@
                               </Label>
                               <AnchorPane id="menuBackground" onMouseClicked="#ShowCases" opacity="0.2" style="-fx-background-color: #000;" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
+                                    <Cursor fx:constant="HAND" />
                                  </cursor>
                               </AnchorPane>
                            </children>
