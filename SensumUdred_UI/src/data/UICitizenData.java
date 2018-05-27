@@ -1,5 +1,6 @@
 package data;
 
+import common.CaseState;
 import common.ICaseWorker;
 import common.ICitizen;
 import common.ICitizenData;
@@ -25,7 +26,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * The state of the citizens case.
      */
-    private final String state;
+    private final CaseState state;
     
     /**
      * The id of the citizens case.
@@ -33,7 +34,7 @@ public class UICitizenData implements ICitizenData {
     private final int id;
     
     /**
-     * Wether or not the citizen has given consent.
+     * Whether or not the citizen has given consent.
      */
     private final boolean consent;
     
@@ -43,7 +44,7 @@ public class UICitizenData implements ICitizenData {
     private final String reason;
     
     /**
-     * The avalible offers for the citizen.
+     * The available offers for the citizen.
      */
     private final String avalibleOffers;
     
@@ -56,6 +57,26 @@ public class UICitizenData implements ICitizenData {
      * The case worker associated with the case.
      */
     private final ICaseWorker caseWorker;
+    
+    /**
+     * The name of the department
+     */
+    private final String departmentName;
+    
+    /**
+     * If the goal of the case got achieved
+     */
+    private boolean goalAchieved;
+    
+    /**
+     * The final comments for the case
+     */
+    private String finalComments;
+    
+    /**
+     * What the citizen still requires
+     */
+    private String citizenRequires;
 
     /**
      * The constructor for the UICitizenData class.
@@ -63,13 +84,14 @@ public class UICitizenData implements ICitizenData {
      * @param citizen The citizen object 
      * @param state The state of the citizens case
      * @param id The id of the citizens case
-     * @param consent Wether or not consent was given
+     * @param consent Whether or not consent was given
      * @param reason The reason for the request
-     * @param avalibleOffers The avalible offers for the citizen
+     * @param avalibleOffers The available offers for the citizen
      * @param sourcerOfRequest The source of the request
      * @param caseWorker The case worker object associated with the case
+     * @param departmentName the name of the department
      */
-    public UICitizenData(ICitizen citizen, String state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest, ICaseWorker caseWorker) {
+    public UICitizenData(ICitizen citizen, CaseState state, int id, boolean consent, String reason, String avalibleOffers, String sourcerOfRequest, ICaseWorker caseWorker, String departmentName) {
         this.citizen = citizen;
         this.state = state;
         this.id = id;
@@ -78,6 +100,7 @@ public class UICitizenData implements ICitizenData {
         this.avalibleOffers = avalibleOffers;
         this.sourceOfRequest = sourcerOfRequest;
         this.caseWorker = caseWorker;
+        this.departmentName = departmentName;
     }
 
     /**
@@ -96,7 +119,7 @@ public class UICitizenData implements ICitizenData {
      * @return the state of the case
      */
     @Override
-    public String getState() {
+    public CaseState getState() {
         return this.state;
     }
 
@@ -111,9 +134,9 @@ public class UICitizenData implements ICitizenData {
     }
 
     /**
-     * Returns wether or not the citizen has given consent.
+     * Returns whether or not the citizen has given consent.
      *
-     * @return wether consent was given
+     * @return whether consent was given
      */
     @Override
     public boolean getConsent() {
@@ -134,7 +157,7 @@ public class UICitizenData implements ICitizenData {
     /**
      * Returns the available offers that are relevant for the citizen.
      *
-     * @return the avalible offers for the citizen
+     * @return the available offers for the citizen
      */
     @Override
     public String getAvailableOffers() {
@@ -179,6 +202,42 @@ public class UICitizenData implements ICitizenData {
     @Override
     public Date getClosingDate() {
         return null;
+    }
+    
+    /**
+     * Gets the name of the department
+     * @return the name of the department
+     */
+    @Override
+    public String getDepartmentName() {
+        return departmentName;
+    }
+    
+    /**
+     * If the goal got achieved
+     * @return goal got achieved
+     */
+    @Override
+    public boolean getGoalAchieved() {
+        return goalAchieved;
+    }
+    
+    /**
+     * Gets what the citizen still requires
+     * @return what the citizen still requires
+     */
+    @Override
+    public String getCitizenRequires() {
+        return citizenRequires;
+    }
+
+    /**
+     * Gets the final comments for the case
+     * @return the final comments
+     */
+    @Override
+    public String getFinalComments() {
+        return finalComments;
     }
 
 }

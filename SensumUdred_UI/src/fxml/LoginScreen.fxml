@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="appBackground" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #434343;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LoginScreenController">
+   <children>
+      <ImageView fx:id="backgroundImage" fitHeight="720.0" fitWidth="481.0" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <image>
+            <Image url="@../Images/backgroundImage.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
+      <GridPane fx:id="loginGridPane" alignment="CENTER" maxHeight="480.0" maxWidth="720.0" minHeight="480.0" minWidth="720.0" prefHeight="480.0" prefWidth="720.0" stylesheets="@../Stylesheets/simpleStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="280.0" prefWidth="280.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="350.0" prefWidth="350.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="200.0" prefWidth="200.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="160.0" prefHeight="160.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="154.0" minHeight="100.0" prefHeight="133.5" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="120.5" minHeight="100.0" prefHeight="104.5" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="116.5" minHeight="100.0" prefHeight="105.5" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="160.0" prefHeight="161.5" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField id="fillableField" fx:id="usernameField" maxHeight="60.0" maxWidth="350.0" minHeight="60.0" minWidth="350.0" prefHeight="60.0" prefWidth="350.0" promptText="Brugernavn" style="-fx-background-color: transparent;" styleClass="fillableUsername" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextField>
+            <Line id="usernameLine" endX="340.0" fill="WHITE" opacity="0.5" stroke="WHITE" strokeWidth="3.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+            <PasswordField id="fillableField" fx:id="passwordField" maxHeight="60.0" maxWidth="350.0" minHeight="60.0" minWidth="350.0" onAction="#loginRequested" prefHeight="60.0" prefWidth="350.0" promptText="Kodeord" style="-fx-background-color: transparent;" styleClass="fillablePassword" stylesheets="@../Stylesheets/simpleStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </PasswordField>
+            <Line endX="340.0" fill="WHITE" opacity="0.5" stroke="WHITE" strokeWidth="3.0" styleClass="passwordLine" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+            <ImageView fitWidth="200.0" opacity="0.8" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../Images/eglogo_white.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets right="50.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="35.0" opacity="0.5" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <image>
+                  <Image url="@../Images/user_white.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" right="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="35.0" opacity="0.5" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <image>
+                  <Image url="@../Images/lock_white.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <Label id="glemtKodeord" onMouseClicked="#forgotPassword" opacity="0.8" stylesheets="@../Stylesheets/simpleStyle.css" text="Glemt Kodeord?" textFill="WHITE" underline="true" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" right="10.0" top="20.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Button id="loginButton" maxHeight="50.0" maxWidth="100.0" minHeight="50.0" minWidth="100.0" mnemonicParsing="false" onAction="#loginRequested" prefHeight="50.0" prefWidth="100.0" style="-fx-padding: 12;" stylesheets="@../Stylesheets/simpleStyle.css" text="Log ind" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="20.0" right="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <GridPane fx:id="wrongUserPassGridPane" prefHeight="100.0" prefWidth="223.0" visible="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="90.0" minHeight="90.0" prefHeight="90.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Rectangle fill="WHITE" height="55.0" rotate="45.0" stroke="#ffffff00" strokeType="INSIDE" strokeWidth="0.0" width="55.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="-45.0" />
+                     </GridPane.margin>
+                  </Rectangle>
+                  <AnchorPane maxHeight="90.0" maxWidth="350.0" minHeight="90.0" minWidth="200.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #fff;" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                     <children>
+                        <Label prefHeight="130.0" prefWidth="250.0" text="Brugernavn eller adgangskode var ikke korrekt. Prøv venligst igen." textAlignment="CENTER" textFill="#434343" wrapText="true" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
+                           <font>
+                              <Font name="Arial" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets right="15.0" />
+                     </GridPane.margin>
+                  </AnchorPane>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+      <GridPane fx:id="forgottenPasswordGridPane" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="450.0" prefWidth="450.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="250.0" minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000; -fx-opacity: 0.3;" GridPane.columnSpan="3" GridPane.rowSpan="3" />
+            <AnchorPane maxHeight="250.0" maxWidth="450.0" minHeight="200.0" minWidth="400.0" prefHeight="200.0" prefWidth="450.0" style="-fx-background-color: #fff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ImageView fitWidth="32.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <image>
+                  <Image url="@../Images/icons8-query-96.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="80.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <Label alignment="CENTER" maxHeight="30.0" maxWidth="350.0" minHeight="30.0" minWidth="350.0" prefHeight="30.0" prefWidth="350.0" text="Øv! Det er vi kede af at høre." textAlignment="CENTER" textFill="#434343" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="25.0" top="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <Label text="Beklager, men denne situation skal løses af din lokale systemadministrator." textAlignment="CENTER" textFill="#434343" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="60.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Anmod om et nyt login fra den lokale systemadministrator. Herefter vil du kunne logge ind igen! Medarbejder ID bør medbringes for, at før ændret dit kodeord." textAlignment="CENTER" textFill="#434343" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="25.0" left="20.0" right="20.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Dette gøres af sikkerhedsmæssige årsager. " textAlignment="CENTER" textFill="#434343" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" top="60.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Klik på skærmen for at lukke denne besked..." textAlignment="CENTER" textFill="#404040bf" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets bottom="12.0" />
+               </GridPane.margin>
+            </Label>
+            <AnchorPane onMouseClicked="#closeForgottenPassword" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.columnSpan="3" GridPane.rowSpan="3" />
+         </children>
+      </GridPane>
+      <GridPane fx:id="loggedOutGridPane" layoutX="10.0" layoutY="10.0" minHeight="480.0" minWidth="720.0" prefHeight="480.0" prefWidth="720.0" stylesheets="@../Stylesheets/simpleStyle.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane minHeight="720.0" minWidth="1280.0" style="-fx-background-color: #000; -fx-opacity: 0.25;" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+            <AnchorPane maxHeight="150.0" maxWidth="400.0" minHeight="150.0" minWidth="400.0" prefHeight="150.0" prefWidth="400.0" style="-fx-background-color: #fff;" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
+            <ImageView fitWidth="35.0" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <image>
+                  <Image url="@../Images/icons8-protect-50.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="40.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <Label maxWidth="230.0" minWidth="230.0" prefWidth="230.0" text="Du er blevet logget ud!" textFill="#434343" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Arial" size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" top="15.0" />
+               </GridPane.margin>
+            </Label>
+            <Label maxHeight="40.0" maxWidth="377.0" minHeight="40.0" minWidth="377.0" prefHeight="40.0" prefWidth="377.0" text="Af sikkerhedsmæssige årsager, er du logget ud. Klik knappen herunder, for at logge ind igen." textAlignment="CENTER" textFill="#434343" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="50.0" />
+               </GridPane.margin>
+            </Label>
+            <Button maxWidth="147.0" minWidth="120.0" mnemonicParsing="false" onAction="#loginAgain" prefHeight="36.0" prefWidth="147.0" style="-fx-background-color: transparent; -fx-border-color: #434343; -fx-border-width: 2px; -fx-border-radius: 12px;" text="Prøv igen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/icons8-synchronize-96.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="250.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="400.0" prefWidth="400.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="290.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="474.6666717529297" prefHeight="569.3333282470703" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <AnchorPane fx:id="loadingPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(255,255,255,0.8);" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="169.0" fitWidth="200.0" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../Images/loading-gif-transparent-10.gif" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
