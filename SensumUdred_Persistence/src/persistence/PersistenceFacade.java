@@ -1,5 +1,6 @@
 package persistence;
 
+import common.CaseState;
 import common.Gender;
 import common.ICase;
 import common.ICaseLog;
@@ -57,9 +58,9 @@ public class PersistenceFacade implements IPersistenceFacade {
     private final String dbPassword;
     
     /**
-     * 
-     * @throws FileNotFoundException
-     * @throws IOException 
+     * Constructor for persistence facade
+     * @throws FileNotFoundException if the credentials.txt is not found
+     * @throws IOException if the format of the file is not correct
      */
     public PersistenceFacade() throws FileNotFoundException, IOException {
         File credentials = new File("credentials.txt");
@@ -132,8 +133,7 @@ public class PersistenceFacade implements IPersistenceFacade {
             statement.setString(1, _case.getDepartmentName());
             statement.setInt(2, _case.getCaseWorker().getId());
             statement.setInt(3, _case.getCitizen().getId());
-            //statement.setString(4, _case.getState());
-            statement.setInt(4, 0);
+            statement.setInt(4, _case.getState().ordinal());
             statement.setBoolean(5, _case.getConsent());
             statement.setString(6, _case.getReason());
             statement.setString(7, _case.getAvailableOffers());
@@ -222,7 +222,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         try (Connection con = getDbConnection()) {
             int id = insertPerson(con, citizen);
             
-            PreparedStatement statement = con.prepareStatement("INSERT INTO \"Citizen\" (Id, DepartmentName, Cpr, Gender, Address, relationshipStatus) VALUES (Id, DepartmentName,?,?,?,?)");
+            PreparedStatement statement = con.prepareStatement("INSERT INTO \"Citizen\" (Id, DepartmentName, Cpr, Gender, Address, relationshipStatus) VALUES (?,?,?,?,?,?)");
             statement.setInt(1, id);
             statement.setString(2, citizen.getDepartmentName());
             statement.setString(3, citizen.getCpr());
@@ -301,7 +301,7 @@ public class PersistenceFacade implements IPersistenceFacade {
             PreparedStatement statement = con.prepareStatement("INSERT INTO \"CaseLog\" (Id, CaseId, CaseDepartmentName) VALUES (?,?,?)");
             statement.setInt(1, id);
             statement.setInt(2, log.getCaseId());
-            statement.setString(3, "Department"); //TODO get from log. Right now it is not added!
+            statement.setString(3, log.getDepartmentName());
             statement.execute();
             return id;
         } catch (SQLException ex) {
@@ -441,12 +441,12 @@ public class PersistenceFacade implements IPersistenceFacade {
         //SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM "Case" AS CA INNER JOIN "CaseWorker" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN "Citizen" AS CI ON CA.CitizenId = CI.Id INNER JOIN "Person" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN "Person" AS PCI ON PCI.Id = CA.CitizenId WHERE CA.Id = ? AND CA.DepartmentName = ?
         
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId WHERE CA.Id = ? AND CA.DepartmentName = ?");
+            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate, CA.GoalAchieved, CA.FinalComment, CA.StillRequires FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId WHERE CA.Id = ? AND CA.DepartmentName = ?");
             statement.setInt(1, caseId);
             statement.setString(2, department);
             ResultSet set = statement.executeQuery();
             set.next();
-            return getCasesFromResultSet(set);
+            return getCaseFromResultSet(set);
         } catch (SQLException ex) {
             Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -465,12 +465,12 @@ public class PersistenceFacade implements IPersistenceFacade {
         //SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM "Case" AS CA INNER JOIN "CaseWorker" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN "Citizen" AS CI ON CA.CitizenId = CI.Id INNER JOIN "Person" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN "Person" AS PCI ON PCI.Id = CA.CitizenId WHERE CA.Cpr = ? AND CA.DepartmentName = ?
         
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId WHERE CA.Cpr = ? AND CA.DepartmentName = ?");
+            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate, CA.GoalAchieved, CA.FinalComment, CA.StillRequires FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId WHERE CA.Cpr = ? AND CA.DepartmentName = ?");
             statement.setString(1, cpr);
             statement.setString(2, department);
             ResultSet set = statement.executeQuery();
             set.next();
-            return getCasesFromResultSet(set);
+            return getCaseFromResultSet(set);
         } catch (SQLException ex) {
             Logger.getLogger(PersistenceFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -488,11 +488,11 @@ public class PersistenceFacade implements IPersistenceFacade {
         //SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM "Case" AS CA INNER JOIN "CaseWorker" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN "Citizen" AS CI ON CA.CitizenId = CI.Id INNER JOIN "Person" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN "Person" AS PCI ON PCI.Id = CA.CitizenId
         
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId");
+            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate, CA.GoalAchieved, CA.FinalComment, CA.StillRequires FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId");
             ResultSet set = statement.executeQuery();
             List<DataCase> cases = new ArrayList<>();
             while (set.next()) {
-                cases.add(getCasesFromResultSet(set));
+                cases.add(getCaseFromResultSet(set));
             }
             return cases;
         } catch (SQLException ex) {
@@ -512,12 +512,12 @@ public class PersistenceFacade implements IPersistenceFacade {
         //SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM "Case" AS CA INNER JOIN "CaseWorker" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN "Citizen" AS CI ON CA.CitizenId = CI.Id INNER JOIN "Person" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN "Person" AS PCI ON PCI.Id = CA.CitizenId WHERE CA.State = ?
         
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId WHERE CA.State = ?");
+            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate, CA.GoalAchieved, CA.FinalComment, CA.StillRequires FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId WHERE CA.State = ?");
             statement.setInt(1, 1);
             ResultSet set = statement.executeQuery();
             List<DataCase> cases = new ArrayList<>();
             while (set.next()) {
-                cases.add(getCasesFromResultSet(set));
+                cases.add(getCaseFromResultSet(set));
             }
             return cases;
         } catch (SQLException ex) {
@@ -529,6 +529,7 @@ public class PersistenceFacade implements IPersistenceFacade {
 
     /**
      * Get all the cases belonging to that case worker
+     * @param department the name of the department
      * @param caseWorkerId the id of the case worker
      * @return the cases for the case worker, empty if the case worker does not exist
      */
@@ -537,13 +538,13 @@ public class PersistenceFacade implements IPersistenceFacade {
         //SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM "Case" AS CA INNER JOIN "CaseWorker" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN "Citizen" AS CI ON CA.CitizenId = CI.Id INNER JOIN "Person" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN "Person" AS PCI ON PCI.Id = CA.CitizenId WHERE CW.Id = ? AND CW.DepartmentName = ?
         
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId WHERE CW.Id = ? AND CW.DepartmentName = ?");
+            PreparedStatement statement = con.prepareStatement("SELECT CW.Id AS CWId, CW.departmentname AS departmentName, CW.userId AS CWUserId, CW.employeeid AS CWEmployeeId, CI.id AS CIId, CI.gender AS CIGender, CI.cpr AS CICpr, CI.relationshipStatus AS CIRelationshipStatus, CI.address AS CIAddress, PCW.email AS CWEmail, PCW.phoneNumber AS CWPhone, PCW.name AS CWName, PCI.email AS CIEmail, PCI.phoneNumber AS CIPhone, PCI.name AS CIName, CA.id, CA.state, CA.consent, CA.reason, CA.availableOffers, CA.sourceOfrequest, CA.OpeningDate, CA.ClosingDate, CA.GoalAchieved, CA.FinalComment, CA.StillRequires FROM \"Case\" AS CA INNER JOIN \"CaseWorker\" AS CW ON CA.CaseWorkerId = CW.Id INNER JOIN \"Citizen\" AS CI ON CA.CitizenId = CI.Id INNER JOIN \"Person\" AS PCW ON PCW.Id = CA.CaseWorkerId INNER JOIN \"Person\" AS PCI ON PCI.Id = CA.CitizenId WHERE CW.Id = ? AND CW.DepartmentName = ?");
             statement.setInt(1, caseWorkerId);
             statement.setString(2, department);
             ResultSet set = statement.executeQuery();
             List<DataCase> cases = new ArrayList<>();
             while (set.next()) {
-                cases.add(getCasesFromResultSet(set));
+                cases.add(getCaseFromResultSet(set));
             }
             return cases;
         } catch (SQLException ex) {
@@ -554,10 +555,10 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
 
     /**
-     * 
-     * @param department
-     * @param id
-     * @return 
+     * Gets the citizen from the database
+     * @param department the department name
+     * @param id the id of the case citizen
+     * @return the citizen if it is found or null
      */
     @Override
     public ICitizen getCitizen(String department, int id) {
@@ -588,7 +589,6 @@ public class PersistenceFacade implements IPersistenceFacade {
         
         try (Connection con = getDbConnection()) {
             PreparedStatement statement = con.prepareStatement("SELECT * FROM \"Citizen\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName");
-            statement.setString(1, departmentName);
             ResultSet set = statement.executeQuery();
             List<DataCitizen> citizens = new ArrayList<>();
             while (set.next()) {
@@ -605,20 +605,26 @@ public class PersistenceFacade implements IPersistenceFacade {
 
     /**
      * Closes a case
-     * @param departmentName
+     * @param departmentName the department name of the case
      * @param caseId The case to close
+     * @param finalComments the comments to the case when closing
+     * @param citizenRequires the things the citizen requires
+     * @param goalAchieved if the goal of the case got achieved
      * @return True if the case is closed
      */
     @Override
-    public boolean closeCase(String departmentName, int caseId) {
+    public boolean closeCase(String departmentName, int caseId, String finalComments, String citizenRequires, boolean goalAchieved) {
         //UPDATE "Case" SET  ClosingDate = ?, State = ? WHERE id = ? AND DepartmentName = ?
         
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("UPDATE \"Case\" SET ClosingDate = ?, State = ? WHERE Id = ? AND DepartmentName = ?");
+            PreparedStatement statement = con.prepareStatement("UPDATE \"Case\" SET ClosingDate = ?, State = ?, GoalAchieved = ?, FinalComment = ?, StillRequires = ? WHERE Id = ? AND DepartmentName = ?");
             statement.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
-            statement.setInt(2, 1);
-            statement.setInt(3, caseId);
-            statement.setString(4, departmentName);
+            statement.setInt(2, CaseState.CLOSED.ordinal());
+            statement.setBoolean(3, goalAchieved);
+            statement.setString(4, finalComments);
+            statement.setString(5, citizenRequires);
+            statement.setInt(6, caseId);
+            statement.setString(7, departmentName);
             statement.execute();
             return true;
         } catch (SQLException ex) {
@@ -662,11 +668,11 @@ public class PersistenceFacade implements IPersistenceFacade {
     @Override
     public ICaseWorker getCaseworker(String departmentName, String userId) {
         //SELECT * FROM "CaseWorker" AS C INNER JOIN "Person" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ? AND C.DepartmentName = ?
-        
+        System.out.println("userid: " + userId);
         try (Connection con = getDbConnection()) {
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM \"CaseWorker\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.Id = ? AND C.DepartmentName = ?");
+            PreparedStatement statement = con.prepareStatement("SELECT * FROM \"CaseWorker\" AS C INNER JOIN \"Person\" AS P ON C.Id = P.Id AND C.DepartmentName = P.DepartmentName WHERE C.UserId = ?");
             statement.setString(1, userId);
-            statement.setString(2, departmentName);
+            //statement.setString(2, departmentName);
             ResultSet set = statement.executeQuery();
             set.next();
             return getCaseWorkerFromResultSet(set);
@@ -691,7 +697,7 @@ public class PersistenceFacade implements IPersistenceFacade {
             case CASE_VIEWED:
             case OPEN_CASE:
             case CLOSE_CASE:
-                return new DataCaseLog(type, date, userId, set.getInt("caseid"));
+                return new DataCaseLog(type, date, userId, set.getInt("caseid"), set.getString("casedepartmentname"));
             case VIEW_LOG:
             case LOGIN:
             case LOGOUT:
@@ -707,10 +713,10 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
     
     /**
-     * 
-     * @param set
-     * @return
-     * @throws SQLException 
+     * Gets the case worker from a result set
+     * @param set the given set
+     * @return the case worker
+     * @throws SQLException if a database access error occurs or this method is called on a closed result set
      */
     private DataCaseWorker getCaseWorkerFromResultSet(ResultSet set) throws SQLException {
         return new DataCaseWorker(
@@ -725,11 +731,12 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
     
     /**
-     * 
-     * @param set
-     * @return 
+     * Gets a case from a result set
+     * @param set the given result set
+     * @return the given case
+     * @throws SQLException if a database access error occurs or this method is called on a closed result set
      */
-    private DataCase getCasesFromResultSet(ResultSet set) throws SQLException {
+    private DataCase getCaseFromResultSet(ResultSet set) throws SQLException {
         DataCitizen citizen = new DataCitizen(
                 set.getString("cicpr"), 
                 set.getString("ciaddress"), 
@@ -756,22 +763,25 @@ public class PersistenceFacade implements IPersistenceFacade {
                 citizen, 
                 caseWorker, 
                 set.getString("departmentname"), 
-                set.getInt("state") == 1 ? "Closed" : "Open", 
+                CaseState.values()[set.getInt("state")], 
                 set.getInt("id"), 
                 set.getBoolean("consent"), 
                 set.getString("reason"), 
                 set.getString("availableOffers"), 
                 set.getString("sourceofrequest"), 
                 open == 0 ? null : new Date(open), 
-                closing == 0 ? null : new Date(closing)
+                closing == 0 ? null : new Date(closing),
+                set.getBoolean("goalachieved"),
+                set.getString("stillrequires"),
+                set.getString("finalcomment")
         );
     }
     
     /**
-     * 
-     * @param set
-     * @return
-     * @throws SQLException 
+     * Gets a citizen form a result set
+     * @param set the given result set
+     * @return the given citizen
+     * @throws SQLException if a database access error occurs or this method is called on a closed result set
      */
     private DataCitizen getCitizenFromResultSet(ResultSet set) throws SQLException {
         return new DataCitizen(
@@ -796,7 +806,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         return new DataUser(
                 Role.values()[set.getInt("role")],
                 set.getString("username"),
-                set.getString("userid"),
+                set.getString("id"),
                 set.getString("password"),
                 set.getString("name"),
                 set.getBoolean("active")
@@ -804,11 +814,11 @@ public class PersistenceFacade implements IPersistenceFacade {
     }
     
     /**
-     * 
-     * @param con
-     * @param person
-     * @return
-     * @throws SQLException 
+     * Inserts a person into the database
+     * @param con the connection for the database
+     * @param person the person to insert
+     * @return the id of the person
+     * @throws SQLException if a database access error occurs or this method is called on a closed PreparedStatement
      */
     private int insertPerson(Connection con, IPerson person) throws SQLException {
         //INSERT INTO "Person" (DepartmentName, Email, PhoneNumber, Name) VALUES (?,?,?,?) RETURNING Id
@@ -819,6 +829,7 @@ public class PersistenceFacade implements IPersistenceFacade {
         statement.setString(3, person.getPhoneNumber());
         statement.setString(4, person.getPhoneNumber());
         ResultSet set = statement.executeQuery();
+        set.next();
         return set.getInt(1);
     }
     

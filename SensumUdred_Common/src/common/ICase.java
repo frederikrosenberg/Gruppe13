@@ -26,7 +26,7 @@ public interface ICase {
      *
      * @return the state
      */
-    String getState();
+    CaseState getState();
 
     /**
      * The id of the case
@@ -87,4 +87,23 @@ public interface ICase {
      * @return The department name
      */
     String getDepartmentName();
+    
+    /**
+     * Gets the goal achieved
+     * @return The goal achieved
+     */
+    boolean getGoalAchieved();
+    
+    /**
+     * Gets what the citizen requires
+     * @return what the citizen requires
+     */
+    String getCitizenRequires();
+    
+    /**
+     * Gets the final comments
+     * @return The final comments
+     */
+    String getFinalComments();
+    
 }

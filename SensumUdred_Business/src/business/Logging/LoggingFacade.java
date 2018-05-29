@@ -1,9 +1,9 @@
 package business.Logging;
 
-import common.IPersistenceFacade;
+import business.Persistence;
 import java.util.ArrayList;
 import common.ILog;
-import common.ILoggingFacade;
+import business.common.ILoggingFacade;
 import common.LogType;
 import java.util.List;
 
@@ -18,10 +18,6 @@ import java.util.List;
  * @author Kasper Schødts
  */
 public class LoggingFacade implements ILoggingFacade{
-    /**
-     * Contains the persistence instance
-     */
-    private IPersistenceFacade persistence;
 
     /**
      * Contains all of the logs
@@ -30,10 +26,8 @@ public class LoggingFacade implements ILoggingFacade{
     
     /**
      * Constructs a logging facade
-     * @param persistence The persistence instance
      */
-    public LoggingFacade(IPersistenceFacade persistence) {
-        this.persistence = persistence;
+    public LoggingFacade() {
         logs = new ArrayList();
     }
     
@@ -44,11 +38,7 @@ public class LoggingFacade implements ILoggingFacade{
      */
     @Override
     public List<? extends ILog> getLogsOfType(LogType type) {
-        List<Log> temp = new ArrayList();
-        for (Log log : logs) {
-            if(log.getLogType() == type) temp.add(log);
-        }
-        return temp;
+        return Persistence.getInstance().getPersistenceFacade().getLogsOfType(type);
     }
 
     /**
@@ -57,7 +47,7 @@ public class LoggingFacade implements ILoggingFacade{
      */
     @Override
     public List<? extends ILog> getAllLogs() {
-        return logs;
+        return Persistence.getInstance().getPersistenceFacade().getLogs();
     }
 
     /**
@@ -69,7 +59,7 @@ public class LoggingFacade implements ILoggingFacade{
     public void createLog(LogType type, String userId) {
         Log log = new Log(type, userId);
         logs.add(log);
-        // TODO Sent log to persistence
+        Persistence.getInstance().getPersistenceFacade().addLog(log);
     }
 
     /**
@@ -81,7 +71,7 @@ public class LoggingFacade implements ILoggingFacade{
     public void createLoginAttemptLog(LogType type, String username) {
         LoginAttemptLog log = new LoginAttemptLog(username, type);
         logs.add(log);
-        // TODO sent log to persistence
+        Persistence.getInstance().getPersistenceFacade().addAttemptLog(log);
     }
 
     /**
@@ -89,11 +79,12 @@ public class LoggingFacade implements ILoggingFacade{
      * @param type The type of the log
      * @param userId The user id who caused the log
      * @param caseId The case id of the case this log is about
+     * @param departmentName The department name
      */
     @Override
-    public void createCaseLog(LogType type, String userId, int caseId) {
-        CaseLog log = new CaseLog(caseId, type, userId);
+    public void createCaseLog(LogType type, String userId, int caseId, String departmentName) {
+        CaseLog log = new CaseLog(caseId, type, userId, departmentName);
         logs.add(log);
-        // TODO sent log to persistence
+        Persistence.getInstance().getPersistenceFacade().addCaseLog(log);
     }
 }
