@@ -40,15 +40,17 @@ public class GUI extends Application implements IUI {
      * Sets the stage and scene for the GUI, also loads the FXML Document, and
      * sets it as the scene.
      *
-     * @param stage obejct
+     * @param stage object
      * @throws Exception
      */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Main.fxml"));
         Scene scene = new Scene(root);
 
         gui.stage = stage;
+        stage.setMinHeight(720.0);
+        stage.setMinWidth(1280.0);
         stage.setScene(scene);
         stage.setTitle("Sensum Udred");
         stage.getIcons().add(new Image("Images/icon.png"));
@@ -91,13 +93,5 @@ public class GUI extends Application implements IUI {
     public static GUI getInstance() {
         return gui;
     }
-
-    @Override
-    public void stop() throws Exception {
-        getInstance().business.closing();
-        super.stop();
-    }
-    
-    
 
 }

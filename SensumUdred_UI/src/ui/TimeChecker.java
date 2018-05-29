@@ -2,7 +2,6 @@ package ui;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Locale;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
@@ -16,7 +15,7 @@ import javafx.scene.control.Label;
  * @author Sebastian Christensen
  * @author Kasper Schødts
  */
-public class TimeThread extends Thread {
+public class TimeChecker implements Runnable {
 
     /**
      * the value of the time, as a string
@@ -27,13 +26,18 @@ public class TimeThread extends Thread {
      * An instance of the label type
      */
     private Label label;
+    
+    /**
+     * Whether or not the tread runs
+     */
+    private boolean running = true;
 
     /**
      * Initializes an instanse of label
      *
      * @param label the label from GUI
      */
-    public TimeThread(Label label) {
+    public TimeChecker(Label label) {
         this.label = label;
     }
 
@@ -44,16 +48,12 @@ public class TimeThread extends Thread {
      *
      */
     public void run() {
-        //Runs eternally:
-        while (true) {
+        while (running) {
             Date moment = new Date();
-            Locale dk = new Locale("dk");
-
+            
             DateFormat timeFormatter = DateFormat.getTimeInstance(DateFormat.DEFAULT);
 
-            String timeout = timeFormatter.format(moment);
-
-            output = timeout;
+            output = timeFormatter.format(moment);
 
             //Use runLater as, a non-application thread, cannot update GUI directly.
             Platform.runLater(new Runnable() {
@@ -65,9 +65,16 @@ public class TimeThread extends Thread {
 
             try {
                 //sleeps for 1/2 a second each time..
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
             }
         }
+    }
+    
+    /**
+     * Stops the thread
+     */
+    public void stop() {
+        running = false;
     }
 }

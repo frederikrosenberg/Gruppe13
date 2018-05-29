@@ -42,3 +42,5 @@ hs_err_pid*
 /SensumUdred_Business/dist/
 /SensumUdred_Persistence/dist/
 /SensumUdred_Starter/dist/
+SensumUdred_UI/src/ui/EditExistingCasesController.java
+SensumUdred_UI/src/ui/EditExistingCasesController.java

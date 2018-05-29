@@ -105,4 +105,10 @@ public interface IBusinessFacade {
      * @return All the logs of a given type
      */
     List<? extends ILog> getLogsOfType(LogType type);
+    
+    /**
+     * Gets the current logged in user
+     * @return The current logged in user
+     */
+    IUser getUser();
 }

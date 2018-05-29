@@ -88,6 +88,7 @@ public interface ICase {
      */
     String getDepartmentName();
     
+
     /**
      * Gets the goal achieved
      * @return The goal achieved

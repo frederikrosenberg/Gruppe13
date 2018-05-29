@@ -12,6 +12,7 @@ import common.ICitizenData;
 import common.IDataObject;
 import common.ILog;
 import common.IPersistenceFacade;
+import common.IUser;
 import common.LogType;
 import common.Role;
 import java.util.List;
@@ -239,8 +240,11 @@ public class BusinessFacade implements IBusinessFacade {
      */
     @Override
     public List<? extends ILog> getAllLogs() {
-        loggingFacade.createLog(LogType.VIEW_LOG, security.getCurrentUser().getUserId());
-        return loggingFacade.getAllLogs();
+        if(security.hasAccess(Role.LOGRESPONSABLE)) {
+            loggingFacade.createLog(LogType.VIEW_LOG, security.getCurrentUser().getUserId());
+            return loggingFacade.getAllLogs();
+        }
+        return null;
     }
 
     /**
@@ -250,8 +254,20 @@ public class BusinessFacade implements IBusinessFacade {
      */
     @Override
     public List<? extends ILog> getLogsOfType(LogType type) {
-        loggingFacade.createLog(LogType.VIEW_LOG, security.getCurrentUser().getUserId());
-        return loggingFacade.getLogsOfType(type);
+        if(security.hasAccess(Role.LOGRESPONSABLE)) {
+            loggingFacade.createLog(LogType.VIEW_LOG, security.getCurrentUser().getUserId());
+            return loggingFacade.getLogsOfType(type);
+        }
+        return null;
+    }
+
+    /**
+     * Gets the current logged in user
+     * @return The current logged in user
+     */
+    @Override
+    public IUser getUser() {
+        return security.getCurrentUser();   
     }
     
 }
